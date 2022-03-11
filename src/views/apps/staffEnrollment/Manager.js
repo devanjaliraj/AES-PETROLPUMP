@@ -13,114 +13,42 @@ import {
   Breadcrumb,
   BreadcrumbItem,
   Button,
+  FormGroup
 } from "reactstrap";
 import axios from "axios";
 export default class Manager extends Component {
+  fileArrayAdhar = [];
+  fileArrayPan = [];
+  fileArrayPhoto = [];
   constructor(props) {
     super(props);
     this.state = {
-      maneger_name: "",
       addres: "",
-      mobile: "",
-      joining_date: "",
       adhar_number: "",
       adharimg: "",
-      pan_number: "",
-      panImg: "",
-      photograh: "",
       date_of_brith: "",
-      salary_decieded: "",
+      joining_date: "",
+      maneger_name: "",
+      mobile: "",
+      panImg: "",
+      pan_number: "",
+      photograh:"",
       salary_date: "",
+      salary_decieded:"",
+      status:"",
       selectedFile: null,
-      status: "",
-      imagSrc: [],
+      selectedName: "",
     };
 
-    this.submitHandler = this.submitHandler.bind(this);
-    this.onChangeHandler = this.onChangeHandler.bind(this);
-    this.onChangeHandler1 = this.onChangeHandler1.bind(this);
-    this.onChangeHandler2 = this.onChangeHandler2.bind(this);
+    // this.submitHandler = this.submitHandler.bind(this);
+    
   }
-
   onChangeHandler = (event) => {
-    var imgSrc = [];
-    for (var i = 0; i < event.target.files.length; i++) {
-      let file = event.target.files[i];
-      let reader = new FileReader();
-      let url = reader.readAsDataURL(file);
-      reader.onloadend = function (e) {
-        console.log(i);
-        this.fileArrayShop.push(reader.result);
-        imgSrc.push([reader.result]);
-
-        this.setState({
-          imgSrc: [reader.result],
-        });
-      }.bind(this);
-    }
-    console.log(imgSrc);
-    this.setState({
-      selectedFile: event.target.files,
-      imgSrc,
-    });
-    this.setState({
-      selectedName: event.target.files.name,
-    });
-    console.log(event.target.files);
+    this.setState({ selectedFile: event.target.files[0] });
+    this.setState({ selectedName: event.target.files[0].name });
+    console.log(event.target.files[0]);
   };
 
-  onChangeHandler1 = (event) => {
-    var imgSrc1 = [];
-
-    for (var i = 0; i < event.target.files.length; i++) {
-      let file = event.target.files[i];
-      let reader = new FileReader();
-      console.log(file);
-      let url = reader.readAsDataURL(file);
-      reader.onloadend = function (e) {
-        this.fileArrayLogo.push(reader.result);
-        imgSrc1.push([reader.result]);
-        this.setState({
-          imgSrc1: [reader.result],
-        });
-      }.bind(this);
-    }
-
-    console.log(imgSrc1);
-    this.setState({
-      selectedFile1: event.target.files,
-      imgSrc1,
-    });
-    this.setState({
-      selectedName1: event.target.files.name,
-    });
-    console.log(event.target.files);
-  };
-  onChangeHandler2 = (event) => {
-    var imgSrc2 = [];
-    for (var i = 0; i < event.target.files.length; i++) {
-      let file = event.target.files[i];
-      let reader = new FileReader();
-      let url = reader.readAsDataURL(file);
-      reader.onloadend = function (e) {
-        console.log(i);
-        this.fileArrayGST.push(reader.result);
-        imgSrc2.push([reader.result]);
-        this.setState({
-          imgSrc2: [reader.result],
-        });
-      }.bind(this);
-    }
-    console.log(imgSrc2);
-    this.setState({
-      selectedFile2: event.target.files,
-      imgSrc2,
-    });
-    this.setState({
-      selectedName2: event.target.files.name,
-    });
-    console.log(event.target.files);
-  };
   componentDidMount() {
     let { id } = this.props.match.params;
     console.log(id);
@@ -141,7 +69,6 @@ export default class Manager extends Component {
           date_of_brith: response.data.data.date_of_brith,
           salary_decieded: response.data.data.salary_decieded,
           salary_date: response.data.data.salary_date,
-          selectedFile: response.data.data.selectedFile,
           status: response.data.data.status,
         });
       })
@@ -149,6 +76,9 @@ export default class Manager extends Component {
         console.log(error);
       });
   }
+  changeHandler1 = (e) => {
+    this.setState({ status: e.target.value });
+  };
 
   changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -162,36 +92,29 @@ export default class Manager extends Component {
     data.append("mobile", this.state.mobile);
     data.append("joining_date", this.state.joining_date);
     data.append("adhar_number", this.state.adhar_number);
-    data.append("salary_date", this.state.salary_date);
     data.append("pan_number", this.state.pan_number);
-    data.append("selectedFile", this.state.selectedFile);
-    // data.append("photograh", this.state.photograh);
     data.append("date_of_brith", this.state.date_of_brith);
     data.append("salary_decieded", this.state.salary_decieded);
+    data.append("salary_date", this.state.salary_date);
     data.append("status", this.state.status);
-    if (this.state.selectedFile !== null) {
-      data.append(
-        "adharimg",
-        "panImg",
-        "photograh",
-        this.state.selectedFile,
-        this.state.selectedName
-      );
-    }
-    for (var value of data.values()) {
-      console.log(value);
-    }
-    for (var key of data.keys()) {
-      console.log(key);
-    }
+    data.append(" adharimg",this.state.selectedFile,this.state.selectedName);
+    data.append(" panImg",this.state.selectedFile,this.state.selectedName);
+    data.append(" photograh",this.state.selectedFile,this.state.selectedName);
 
-    let { id } = this.props.match.params;
+  for (var value of data.values()) {
+    console.log(value);
+  }
+  for (var key of data.keys()) {
+    console.log(key);
+  }
+    let { id } = this.props.match.params
+
+
     axios
       .post(
         `http://3.108.185.7/nodejs/api/dealer/updateonemanager/${id}`,
-        this.state
-      )
-      .then((response) => {
+        this.state)
+      .then(response => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
         this.props.history.push("/app/staffEnrollment/staffManagementList");
@@ -220,9 +143,9 @@ export default class Manager extends Component {
           </Col>
         </Row>
         <Card>
-          <CardHeader>
+        {/*  <CardHeader>
             <CardTitle>Manager/Cashiers</CardTitle>
-          </CardHeader>
+          </CardHeader> */}
           <CardBody>
             <Form className="m-1" onSubmit={this.submitHandler}>
               <Row>
@@ -237,7 +160,15 @@ export default class Manager extends Component {
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-                <Col lg="6" md="6" sm="6" className="mb-2">
+                <Col lg="4" md="4" sm="4" className="mb-2">
+                <Label> Photograph</Label>
+                 <Input 
+                    type="file" 
+                    name="photograh"
+                    onChange={this.onChangeHandler}
+                  />
+                </Col>
+                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Address</Label>
                   <Input
                     required
@@ -252,7 +183,7 @@ export default class Manager extends Component {
                   <Label>Mobile</Label>
                   <Input
                     required
-                    type="text"
+                    type="number"
                     name="mobile"
                     placeholder="Enter Name"
                     value={this.state.mobile}
@@ -260,6 +191,45 @@ export default class Manager extends Component {
                   ></Input>
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
+                  <Label>Aadhar Number</Label>
+                  <Input
+                    required
+                    type="number"
+                    name="adhar_number"
+                    placeholder="Enter Aadhar No."
+                    value={this.state.adhar_number}
+                    onChange={this.changeHandler}
+                  ></Input>
+                </Col>
+                <Col lg="4" md="4" sm="4" className="mb-2">
+                 <Label>Adhar Image</Label>
+                 <Input 
+                    type="file" 
+                    name="adharimg" 
+                    onChange={this.onChangeHandler}
+                  />
+                </Col>
+                <Col lg="6" md="6" sm="6" className="mb-2">
+                  <Label>Pan Number</Label>
+                  <Input
+                    required
+                    type="number"
+                    name="pan_number"
+                    placeholder="Enter Pan No."
+                    value={this.state.pan_number}
+                    onChange={this.changeHandler}>
+                  </Input>
+                </Col>
+                
+                <Col lg="4" md="4" sm="4" className="mb-2">
+                <Label>Pan Image</Label>
+                 <Input 
+                    type="file" 
+                    name="panImg"
+                    onChange={this.onChangeHandler}
+                  />
+                </Col>
+              <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Joining Date</Label>
                   <Input
                     required
@@ -270,69 +240,19 @@ export default class Manager extends Component {
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-                <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>Aadhar Number</Label>
-                  <Input
-                    required
-                    type="text"
-                    name="adhar_number"
-                    placeholder="Enter Aadhar No."
-                    value={this.state.adhar_number}
-                    onChange={this.changeHandler}
-                  ></Input>
-                </Col>
+              
 
-                <Col lg="4" md="4" sm="4" className="mb-2">
-                  <Label>Adhar Image</Label>
-                  <CustomInput
-                    required
-                    type="file"
-                    placeholder="Enter Aadhar Image"
-                    onChange={this.onChangeHandler}
-                  />
-                </Col>
-
-                <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>Pan Number</Label>
-                  <Input
-                    required
-                    type="text"
-                    name="pan_number"
-                    placeholder="Enter Pan No."
-                    value={this.state.pan_number}
-                    onChange={this.changeHandler}
-                  ></Input>
-                </Col>
-                <Col lg="4" md="4" sm="4" className="mb-2">
-                  <Label>Pan Image</Label>
-                  <CustomInput
-                    required
-                    type="file"
-                    placeholder="Enter Pan Image"
-                    onChange={this.onChangeHandler1}
-                  />
-                </Col>
-                <Col lg="4" md="4" sm="4" className="mb-2">
-                  <Label>Photograph</Label>
-                  <CustomInput
-                    required
-                    type="file"
-                    placeholder="Enter Banner Image"
-                    onChange={this.onChangeHandler2}
-                  />
-                </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Date of Brith</Label>
                   <Input
                     required
-                    type="text"
+                    type="date"
                     name="date_of_brith"
                     placeholder="Enter DOB"
                     value={this.state.date_of_brith}
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Salary Decieded</Label>
                   <Input
@@ -348,56 +268,45 @@ export default class Manager extends Component {
                   <Label>Salary Date</Label>
                   <Input
                     required
-                    type="text"
-                    name="salary_date"
-                    placeholder="Enter Name"
-                    value={this.state.salary_date}
-                    onChange={this.changeHandler}
-                  ></Input>
-                </Col>
-                <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>Approved Leaves per Month</Label>
-                  <Input
-                    required
                     type="date"
                     name="salary_date"
                     placeholder="Enter Name"
                     value={this.state.salary_date}
                     onChange={this.changeHandler}
                   ></Input>
-                </Col>
-              </Row>
-              {/* <Col lg="6" md="6" sm="6" className="mb-2">
-                <Label className="mb-1">Status</Label>
-                <div
-                  className="form-label-group"
-                  onChange={(e) => this.changeHandler1(e)}
-                >
-                  <input
-                    style={{ marginRight: "3px" }}
-                    type="radio"
-                    name="status"
-                    value="Active"
-                  />
-                  <span style={{ marginRight: "20px" }}>Active</span>
+                </Col> 
+                <Col lg="6" md="6" sm="6" className="mb-2 mt-1">
+                  <Label className="mb-1">Status</Label>
+                  <div
+                    className="form-label-group"
+                    onChange={(e) => this.changeHandler1(e)}>
+                    <input
+                      style={{ marginRight: "3px" }}
+                      type="radio"
+                      name="status"
+                      value="Active"
+                    />
+                    <span style={{ marginRight: "20px" }}>Active</span>
+                    <input
+                      style={{ marginRight: "3px" }}
+                      type="radio"
+                      name="status"
+                      value="Inactive"
+                    />
 
-                  <input
-                    style={{ marginRight: "3px" }}
-                    type="radio"
-                    name="status"
-                    value="Inactive"
-                  />
-                  <span style={{ marginRight: "3px" }}>Inactive</span>
-                </div>
-              </Col> */}
-              <Row>
+                    <span style={{ marginRight: "3px" }}>Inactive</span>
+                  </div>
+                </Col>
+             
+           
+            
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Button.Ripple
                     color="primary"
                     type="submit"
                     className="mr-1 mb-1"
                   >
-                    Add Manager
+                    Update Manager
                   </Button.Ripple>
                 </Col>
               </Row>
