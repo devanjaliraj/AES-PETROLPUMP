@@ -39,7 +39,7 @@ export default class PaymentModeAvalable extends Component {
      axios
      .get("http://3.108.185.7/nodejs/api/dealer/allbank")
      .then((response) => {
-       console.log(response);
+       console.log(response.data.data);
        this.setState({ bankC: response.data.data });
      })
      .catch((error) => {
@@ -121,20 +121,22 @@ export default class PaymentModeAvalable extends Component {
           </Row>
           <CardBody>
             <Form className="m-1" onSubmit={this.submitHandler}>
-              <Col md="6" sm="12">
+              <Col lg="6" md="6" sm="12">
                 <FormGroup>
                   <Label>Select Mode </Label>
                   <CustomInput 
                     type="select"
                     name="select_mode"
-                    value={this.state.select_bank}
+                    value={this.state.select_mode}
                     onChange={this.changeHandler}>
-                    <option>Mode 1</option>
-                    <option>Mode 2</option>
-                    <option>Mode 3</option>
-                    <option>Mode 4</option>
-                    <option>Mode 5</option>
-                    <option>Mode 6</option>
+                    <option value="mode1">Mode1</option>
+                    <option value="mode2">Mode2</option>
+                    <option value="mode3">Mode3</option>
+                    <option value="mode4">Mode4</option>
+                    <option value="mode5">Mode5</option>
+                    <option value="mode6">Mode6</option>
+                    <option value="mode7">Mode7</option>
+                    <option value="mode8">Mode8</option>
                   </CustomInput>
                 </FormGroup>
               </Col>
@@ -142,13 +144,13 @@ export default class PaymentModeAvalable extends Component {
               <Label>Select Bank</Label>
                   <CustomInput
                     type="select"
-                    name="select_bank"
-                    value={this.state.select_bank}
+                    name="name_of_bank	"
+                    value={this.state.name_of_bank	}
                     onChange={this.changeHandler}
                   >
-                    {this.state.pBank.map((bankp) => (
+                    {this.state.bankC?.map((bankp) => (
                       <option value={bankp._id} key={bankp._id}>
-                        {bankp.name}
+                        {bankp.name_of_bank}
                       </option>
                     ))}
                   </CustomInput>

@@ -21,10 +21,21 @@ const FuelStock = lazy(() => import("./views/apps/stockmanagement/FuelStock"));
 const LubeStock = lazy(() => import("./views/apps/stockmanagement/LubeStock"));
 
 // shiftmanagement
-const ShiftManagementList = lazy(() =>import("./views/apps/shiftmanagement/ShiftManagementList"));
-const ShiftDealerTable = lazy(() =>import("./views/apps/shiftmanagement/ShiftDealerTable"));
-const LubricantSales = lazy(() =>import("./views/apps/shiftmanagement/LubricantSales"));
-const StaffAttendance = lazy(() =>import("./views/apps/shiftmanagement/StaffAttendance"));
+const bayManagementForm = lazy(() =>import("./views/apps/shiftmanagement/BayManagementForm"));
+const bayManagementList = lazy(() =>import("./views/apps/shiftmanagement/BayManagementList"));
+const creditGivenForm = lazy(() => import("./views/apps/shiftmanagement/CreditGivenForm"));
+const creditGivenList = lazy(() => import("./views/apps/shiftmanagement/CreditGivenList"));
+const dSMClosingSheetForm = lazy(() => import("./views/apps/shiftmanagement/DSMClosingSheetForm"));
+const dSMClosingSheetList = lazy(() => import("./views/apps/shiftmanagement/DSMClosingSheetList"));
+const lubricantForm = lazy(() => import("./views/apps/shiftmanagement/LubricantForm"));
+const lubricantSalesList = lazy(() => import("./views/apps/shiftmanagement/LubricantSalesList"));
+const retailSellingPricefrom = lazy(() =>import("./views/apps/shiftmanagement/RetailSellingPricefrom"));
+const retailSellingPriceList = lazy(() =>import("./views/apps/shiftmanagement/RetailSellingPricefrom"));
+const salesFigureForm = lazy(() => import("./views/apps/shiftmanagement/SalesFigureForm"));
+const salesFigureList = lazy(() => import("./views/apps/shiftmanagement/SalesFigureList"));
+const shiftManagementList = lazy(() => import("./views/apps/shiftmanagement/ShiftManagementList"));
+const staffAttendanceList = lazy(() => import("./views/apps/shiftmanagement/StaffAttendanceList"));
+const staffAttendenceForm = lazy(() => import("./views/apps/shiftmanagement/StaffAttendenceForm"));
 
 // facilitymanagement
 const FacilityManagementList = lazy(() =>import("./views/apps/facilitymanagement/FacilityManagement"));
@@ -34,19 +45,26 @@ const MpdManagement = lazy(() =>import("./views/apps/facilitymanagement/MpdManag
 const subplanvideos = lazy(() => import("./views/apps/subplan/SubPlanVideos"));
 const addPlan = lazy(() => import("./views/apps/subplan/AddPlan"));
 const dealerList = lazy(() => import("./views/apps/dealer/DealerList"));
-// const editDealer = lazy(() => import("./views/apps/dealer/EditDealer"));
-// const viewDealer = lazy(() => import("./views/apps/dealer/ViewDealer"));
+const editDealer = lazy(() => import("./views/apps/dealer/EditDealer"));
+const viewDealer = lazy(() => import("./views/apps/dealer/ViewDealer"));
 const trainingList = lazy(() => import("./views/apps/training/TrainingList"));
 
 // ro-configuration
+const outletList = lazy (() => import("./views/apps/ro-configuration/OutletList"));
 const roForm = lazy(() => import("./views/apps/ro-configuration/RoForm"));
 const outletForm = lazy(() =>import("./views/apps/ro-configuration/OutletForm"));
+
+
+
 const otherEquipment = lazy(() => import("./views/apps/ro-configuration/OtherEquipment"));
 const paymentModeAvalable = lazy(() => import("./views/apps/ro-configuration/PaymentModeAvalable"));
 const paymentModeList = lazy(() => import("./views/apps/ro-configuration/PaymentModeList"));
 const designYourOutlet = lazy(() => import("./views/apps/ro-configuration/DesignYourOutlet"));
 const designYourOutletList = lazy(() => import("./views/apps/ro-configuration/DesignYourOutletList"));
 const bankForTransaction = lazy(() => import("./views/apps/ro-configuration/BankForTransaction"));
+const bankForTransactionList = lazy(() => import("./views/apps/ro-configuration/BankForTransactionList"));
+const viewBankForTransaction = lazy(() => import("./views/apps/ro-configuration/ViewBankForTransaction"));
+const editBankForTransaction = lazy(() => import("./views/apps/ro-configuration/EditBankForTransaction"));
 const CreditCustomersList = lazy(() =>import("./views/apps/ro-configuration/CreditCustomersList"));
 const RoConfigurationList = lazy(() =>import("./views/apps/ro-configuration/RoConfigurationList"));
 const BasicDetails = lazy(() =>import("./views/apps/ro-configuration/BasicDetails"));
@@ -218,6 +236,8 @@ class AppRouter extends React.Component {
           <AppRoute path="/StaffAttendance" component={StaffAttendance} /> */}
 
           {/* ro-configuration */}
+          <AppRoute path="/app/ro-configuration/outletList" component={outletList}/>
+
           <AppRoute path="/app/ro-configuration/roConfigurationList" component={RoConfigurationList}/>
           <AppRoute path="/app/ro-configuration/otherEquipmentList" component={OtherEquipmentList}/>
           <AppRoute path="/app/ro-configuration/creditCustomersList" component={CreditCustomersList}/>
@@ -225,13 +245,18 @@ class AppRouter extends React.Component {
           <AppRoute path="/app/ro-configuration/roForm" component={roForm} />
           <AppRoute path="/app/ro-configuration/otherEquipment/:id" component={otherEquipment} />
           <AppRoute path="/app/ro-configuration/bankForTransaction" component={ bankForTransaction} />
+          <AppRoute path="/app/ro-configuration/editBankForTransaction/:id" component={ editBankForTransaction} />
+          <AppRoute path="/app/ro-configuration/viewBankForTransaction/:id" component={ viewBankForTransaction} />
+          <AppRoute path="/app/ro-configuration/bankForTransactionList" component={ bankForTransactionList} />
           <AppRoute path="/app/ro-configuration/paymentModeAvalable/:id" component={paymentModeAvalable} />
           <AppRoute path="/app/ro-configuration/paymentModeList" component={paymentModeList} />
-          <AppRoute path="/app/ro-configuration/designYourOutlet" component={designYourOutlet} />
+          <AppRoute path="/app/ro-configuration/designYourOutlet/:id" component={designYourOutlet} />
           <AppRoute path="/app/ro-configuration/designYourOutletList" component={designYourOutletList} />
-
           <AppRoute path="/app/ro-configuration/creditCustomers/:id" component={creditCustomers}/>
-          <AppRoute path="/app/ro-configuration/outletForm"component={outletForm}/>
+          <AppRoute path="/app/ro-configuration/outletForm/:id"component={outletForm}/>
+         
+          
+          
 
           {/* stockManagement */}
           <AppRoute path="/app/stockManagement/stockManagementList" component={StockManagementList} />
@@ -243,12 +268,22 @@ class AppRouter extends React.Component {
           <AppRoute path="/app/facilityManagement/MpdManagement" component={MpdManagement} />
 
           {/* shiftManagement */}
-          <AppRoute path="/app/shiftManagement/shiftManagementList" component={ShiftManagementList}/>
-          <AppRoute path="/app/shiftManagement/shiftDealerTable" component={ShiftDealerTable}/>
-           
-         
-          <AppRoute path="/app/shiftManagement/staffAttendance" component={StaffAttendance}/>
-          <AppRoute path="/app/shiftManagement/lubricantSales" component={LubricantSales}/>
+          <AppRoute path="/app/shiftManagement/bayManagementForm" component={bayManagementForm}/>
+          <AppRoute path="/app/shiftManagement/bayManagementList" component={bayManagementList}/>
+          <AppRoute path="/app/shiftManagement/creditGivenForm" component={creditGivenForm}/>
+          <AppRoute path="/app/shiftManagement/creditGivenList" component={creditGivenList}/>
+          <AppRoute path="/app/shiftManagement/dSMClosingSheetForm" component={dSMClosingSheetForm}/>
+          <AppRoute path="/app/shiftManagement/dSMClosingSheetList" component={dSMClosingSheetList}/>
+          <AppRoute path="/app/shiftManagement/lubricantForm" component={lubricantForm}/>
+          <AppRoute path="/app/shiftManagement/lubricantSalesList" component={lubricantSalesList}/>
+          <AppRoute path="/app/shiftManagement/retailSellingPricefrom" component={retailSellingPricefrom}/>
+          <AppRoute path="/app/shiftManagement/retailSellingPriceList" component={retailSellingPriceList}/>
+          <AppRoute path="/app/shiftManagement/salesFigureForm" component={salesFigureForm}/>
+          <AppRoute path="/app/shiftManagement/salesFigureList" component={salesFigureList}/>
+          <AppRoute path="/app/shiftManagement/shiftManagementList" component={shiftManagementList}/>
+          <AppRoute path="/app/shiftManagement/staffAttendanceList" component={staffAttendanceList}/>
+          <AppRoute path="/app/shiftManagement/staffAttendenceForm" component={staffAttendenceForm}/>
+          {/* <AppRoute path="/app/shiftManagement/lubricantSales" component={LubricantSales}/> */}
 
           {/* staffEnrollment */}
           <AppRoute path="/app/staffEnrollment/staffManagementList" component={staffManagementList}/>
@@ -280,8 +315,8 @@ class AppRouter extends React.Component {
           
           
           <AppRoute path="/app/dealer/dealerList" component={dealerList} />
-          {/* <AppRoute path="/app/dealer/editDealer" component={editDealer} />
-          <AppRoute path="/app/dealer/viewDealer" component={viewDealer} /> */}
+          <AppRoute path="/app/dealer/editDealer/:id" component={editDealer} />
+          <AppRoute path="/app/dealer/viewDealer/:id" component={viewDealer} />
           <AppRoute path="/app/training/trainingList" component={trainingList} />
         
           <AppRoute path="/app/subplan/subplanvideos" component={subplanvideos} />

@@ -10,6 +10,7 @@ import {
   DropdownToggle,
 } from "reactstrap";
 import { AgGridReact } from "ag-grid-react";
+import { history } from "../../../history";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Eye, Edit } from "react-feather";
 import axios from "axios";
@@ -120,7 +121,9 @@ class LubricantSales extends React.Component {
                 className="mr-50"
                 size="25px"
                 color="blue"
-                // onClick={() => history.push("/app/slider/editSlider/${params.data._id}")}
+                onClick={() =>
+                  history.push("/app/shiftManagement/lubricantForm")
+                }
               />
               <Trash2
                 className="mr-50"

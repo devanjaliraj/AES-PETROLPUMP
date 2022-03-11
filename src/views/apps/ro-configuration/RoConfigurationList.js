@@ -32,7 +32,7 @@ class RoConfiguration extends React.Component {
       {
         headerName: "Dealer Name",
         field: "dealer_name",
-        width: 250,
+        width: 140,
         pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
@@ -45,7 +45,7 @@ class RoConfiguration extends React.Component {
       {
         headerName: "Mobile",
         field: "mobile",
-        width: 250,
+        width: 140,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -57,7 +57,7 @@ class RoConfiguration extends React.Component {
       {
         headerName: "Email",
         field: "email",
-        width: 250,
+        width: 140,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -81,7 +81,7 @@ class RoConfiguration extends React.Component {
       {
         headerName: "State",
         field: "state",
-        width: 125,
+        width: 140,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -93,7 +93,7 @@ class RoConfiguration extends React.Component {
       {
         headerName: "District",
         field: "district",
-        width: 150,
+        width: 140,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -105,7 +105,7 @@ class RoConfiguration extends React.Component {
       {
         headerName: "Actions",
         field: "sortorder",
-        width: 150,
+        width: 140,
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">

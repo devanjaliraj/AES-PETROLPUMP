@@ -26,11 +26,14 @@ export default class DesignYourOutlet extends Component {
       total_no_air_machine: "",
       puc_machine: "",
       any_other_facility: "",
+      dealerId : ''
     };
   }
 
   componentDidMount() {
+   
     let { id } = this.props.match.params;
+    this.setState({ dealerId : id });
     axios
       .get(`http://3.108.185.7/nodejs/api/dealer/viewonedealershipform/${id}`)
       .then((response) => {
@@ -72,6 +75,9 @@ export default class DesignYourOutlet extends Component {
   };
 
   render() {
+    const {
+      dealerId
+    } = this.state
     return (
       <div>
         <Row>
@@ -184,15 +190,12 @@ export default class DesignYourOutlet extends Component {
                   >
                     Update
                   </Button.Ripple>
-                  <Button.Ripple
+                  {/* <Button.Ripple
                     color="primary"
                     className="mr-1 mb-1"
-                    onClick={() =>
-                      history.push(`/app/ro-configuration/outletForm`)
-                    }
-                  >
+                    onClick={() => history.push(`/app/ro-configuration/outletForm/`+dealerId)} > 
                     Next
-                  </Button.Ripple>
+                  </Button.Ripple> */}
                 </Col>
               </Row>
             </Form>

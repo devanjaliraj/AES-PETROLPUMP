@@ -13,9 +13,8 @@ import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Eye, Edit } from "react-feather";
 import axios from "axios";
-
+import { history } from "../../../history";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 
 class LubeStock extends React.Component {
@@ -114,9 +113,7 @@ class LubeStock extends React.Component {
                 className="mr-50"
                 size="25px"
                 color="green"
-                // onClick={() =>
-                // history.push(`/app/slider/viewSlider/${params.data._id}`)
-                // }
+                onClick={() => history.push("/app/stockManagement/lubeForm")}
               />
               <Edit
                 className="mr-50"

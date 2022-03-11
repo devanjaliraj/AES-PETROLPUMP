@@ -53,6 +53,7 @@ const navigationConfig = [
         permissions: ["admin", "editor"],
         navLink: "/app/ro-configuration/roConfigurationList",
       },
+   
     
       // {
       //   id: "basicDetails",
@@ -70,14 +71,22 @@ const navigationConfig = [
         permissions: ["admin", "editor"],
         navLink: "/app/ro-configuration/designYourOutletList",
       },
-
       {
-        id: "bankForTransaction",
-        title: "Bank For Transaction",
+        id: "outletList",
+        title: "Outlet List",
         type: "item",
         icon: <Icon.Circle size={12} />,
         permissions: ["admin", "editor"],
-        navLink: "/app/ro-configuration/bankForTransaction",
+        navLink: "/app/ro-configuration/outletList",
+      },
+    
+      {
+        id: "bankForTransactionList",
+        title: "Bank For Transaction List",
+        type: "item",
+        icon: <Icon.Circle size={12} />,
+        permissions: ["admin", "editor"],
+        navLink: "/app/ro-configuration/bankForTransactionList",
       },
       {
         id: "paymentModeList",
@@ -314,54 +323,73 @@ const navigationConfig = [
       },
     ],
   },
-  {
-    id: "shiftManagement",
-    title: "Shift Management",
-    type: "collapse",
-    icon: <Icon.User size={20} />,
-    children: [
-      {
-        id: "shiftManagementList",
-        title: "Shift Management List",
-        type: "item",
-        icon: <Icon.Circle size={12} />,
-        permissions: ["admin", "editor"],
-        navLink: "/app/shiftManagement/shiftManagementList",
-      },
-      {
-        id: "shiftDealerTable",
-        title: "Shift Dealer Table",
-        type: "item",
-        icon: <Icon.Circle size={12} />,
-        permissions: ["admin", "editor"],
-        navLink: "/app/shiftManagement/shiftDealerTable",
-      },
-      {
-        id: "lubricantSales",
-        title: "Lubricant Sales",
-        type: "item",
-        icon: <Icon.Circle size={12} />,
-        permissions: ["admin", "editor"],
-        navLink: "/app/shiftManagement/lubricantSales",
-      },
-      // {
-      //   id: "lubricantSales",
-      //   title: "Lubricant Sales",
-      //   type: "item",
-      //   icon: <Icon.Circle size={12} />,
-      //   permissions: ["admin", "editor"],
-      //   navLink: "/app/shiftManagement/lubricantSales",
-      // },
-      {
-        id: "attendance",
-        title: "Attendance",
-        type: "item",
-        icon: <Icon.Circle size={12} />,
-        permissions: ["admin", "editor"],
-        navLink: "/app/shiftManagement/attendance",
-      },
-    ],
-  },
+ // shiftManagement
+ {
+  id: "shiftManagement",
+  title: "Shift Management",
+  type: "collapse",
+  icon: <Icon.User size={20} />,
+  children: [
+    {
+      id: "retailSellingPriceList",
+      title: "Retail Selling Price List",
+      type: "item",
+      icon: <Icon.Circle size={12} />,
+      permissions: ["admin", "editor"],
+      navLink: "/app/shiftmanagement/retailSellingPriceList",
+    },
+    {
+      id: "bayManagementList",
+      title: "Bay Management List",
+      type: "item",
+      icon: <Icon.Circle size={12} />,
+      permissions: ["admin", "editor"],
+      navLink: "/app/shiftmanagement/bayManagementList",
+    },
+    {
+      id: "dSMClosingSheetList",
+      title: "DSM Closing Sheet List",
+      type: "item",
+      icon: <Icon.Circle size={12} />,
+      permissions: ["admin", "editor"],
+      navLink: "/app/shiftManagement/dSMClosingSheetList",
+    },
+    {
+      id: "salesFigureList",
+      title: "Sales Figure List",
+      type: "item",
+      icon: <Icon.Circle size={12} />,
+      permissions: ["admin", "editor"],
+      navLink: "/app/shiftManagement/salesFigureList",
+    },
+    {
+      id: "creditGivenList",
+      title: "Credit Given List",
+      type: "item",
+      icon: <Icon.Circle size={12} />,
+      permissions: ["admin", "editor"],
+      navLink: "/app/shiftManagement/creditGivenList",
+    },
+
+    {
+      id: "lubricantSales",
+      title: "Lubricant Sales",
+      type: "item",
+      icon: <Icon.Circle size={12} />,
+      permissions: ["admin", "editor"],
+      navLink: "/app/shiftManagement/lubricantSales",
+    },
+
+    {
+      id: "staffAttendanceList",
+      title: "Staff Attendance List",
+      type: "item",
+      icon: <Icon.Circle size={12} />,
+      permissions: ["admin", "editor"],
+      navLink: "/app/shiftManagement/staffAttendanceList",
+    },
+  ],
+},
   {
     id: "training",
     title: "Notification",

@@ -29,8 +29,6 @@ export default class DesignYourOutlet extends Component {
       local_guarantor_name: "",
       local_guarantor_no:"",
 	    document_upload	:	""
-
-
     };
   }
 
@@ -66,7 +64,7 @@ export default class DesignYourOutlet extends Component {
     let { id } = this.props.match.params;
     axios
       .post(
-        `http://3.108.185.7/nodejs/api/dealer/addcreditcustomers/${id}`,
+        `http://3.108.185.7/nodejs/api/dealer/updatecreditcustomers/${id}`,
         this.state
       )
       .then((response) => {

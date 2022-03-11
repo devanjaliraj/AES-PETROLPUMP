@@ -11,14 +11,13 @@ import {
 } from "reactstrap";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2, Edit } from "react-feather";
+import { ChevronDown, Trash2, Eye, Edit } from "react-feather";
 import axios from "axios";
-
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+import { history } from "../../../history";
 
-class RSP extends React.Component {
+class StaffAttendanceList extends React.Component {
   state = {
     rowData: null,
     paginationPageSize: 20,
@@ -32,8 +31,15 @@ class RSP extends React.Component {
     },
     columnDefs: [
       {
-        headerName: "S No",
-        field: "Sno ",
+        headerName: "Name",
+        field: "name",
+        filter: false,
+        width: 250,
+        pinned: window.innerWidth > 992 ? "left" : false,
+      },
+      {
+        headerName: "Designation",
+        field: "designation",
         width: 175,
         filter: false,
         checkboxSelection: false,
@@ -41,59 +47,57 @@ class RSP extends React.Component {
         headerCheckboxSelection: false,
       },
       {
-        headerName: " Date",
-        field: "date",
+        headerName: "Shift",
+        field: "shift",
+        filter: false,
+        width: 250,
+      },
+
+      {
+        headerName: "Date & Time",
+        field: "date&time",
         filter: false,
         width: 175,
       },
-      {
-        headerName: " MS/HSD ",
-        field: "nozzle_map",
-        filter: false,
-        width: 250,
-      },
-
-    
 
       {
-        headerName: "Opening Dip",
-        field: "openingdip",
+        headerName: "Leaves Available",
+        field: "leaves available",
         filter: false,
         width: 250,
       },
       {
-        headerName: "Opening literes",
-        field: "Openingliteres",
+        headerName: "Leaves Taken",
+        field: "leaves taken",
         filter: false,
         width: 150,
       },
-      {
-        headerName: "RSP",
-        field: "RSP",
-        filter: false,
-        width: 150,
-      },
- 
+      //   {
+      //     headerName: "Payment Mode",
+      //     field: "payment mode",
+      //     filter: false,
+      //     width: 150,
+      //   },
+      //   {
+      //     headerName: "DSM/Manager Name",
+      //     field: "DSM/Manager name",
+      //     filter: false,
+      //     width: 125,
+      //   },
       // {
-      //   headerName: "opening totaliser",
-      //   field: "openingtotaliser",
-      //   filter: false,
-      //   width: 125,
-      // },
-      // {
-      //   headerName: " closing totaliser",
-      //   field: " closingtotaliser",
+      //   headerName: "Zip",
+      //   field: "zip",
       //   filter: "agNumberColumnFilter",
       //   width: 140,
       // },
       // {
-      //   headerName: "DSM Name ",
-      //   field: "DSM",
+      //   headerName: "Mobille No.",
+      //   field: "number",
       //   filter: "agNumberColumnFilter",
       //   width: 140,
       // },
       //   {
-      //     headerName: "HSD Sales",
+      //     headerName: "Joining Date.",
       //     field: "Joining Date",
       //     filter: "agNumberColumnFilter",
       //     width: 140,
@@ -105,19 +109,13 @@ class RSP extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              {/* <Eye
-                className="mr-50"
-                size="25px"
-                color="green"
-                // onClick={() =>
-                // history.push(`/app/slider/viewSlider/${params.data._id}`)
-                // }
-              /> */}
               <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
-                // onClick={() => history.push("/app/slider/editSlider/${params.data._id}")}
+                onClick={() =>
+                  history.push("/app/shiftManagement/staffAttendanceForm")
+                }
               />
               <Trash2
                 className="mr-50"
@@ -137,13 +135,11 @@ class RSP extends React.Component {
   };
 
   componentDidMount() {
-    axios
-      .get("http://3.108.185.7/nodejs/api/dealer/alldealers")
-      .then((response) => {
-        let rowData = response.data.data;
-        JSON.stringify(rowData);
-        this.setState({ rowData });
-      });
+    axios.get("/api/aggrid/data").then((response) => {
+      let rowData = response.data.data;
+      JSON.stringify(rowData);
+      this.setState({ rowData });
+    });
   }
 
   onGridReady = (params) => {
@@ -175,9 +171,9 @@ class RSP extends React.Component {
     return (
       <React.Fragment>
         <Breadcrumbs
-          breadCrumbTitle="RSP Management"
+          breadCrumbTitle="Staff Attendance List"
           // breadCrumbParent="Forms & Tables"
-          // breadCrumbActive="Shift Management"
+          // breadCrumbActive="Lubricants Sale"
         />
         <Card className="overflow-hidden agGrid-card">
           <CardBody className="py-0">
@@ -273,4 +269,4 @@ class RSP extends React.Component {
     );
   }
 }
-export default RSP;
+export default StaffAttendanceList;

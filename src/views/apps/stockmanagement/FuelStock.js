@@ -17,6 +17,7 @@ import axios from "axios";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+import { history } from "../../../history";
 
 class FuelStock extends React.Component {
   state = {
@@ -114,9 +115,7 @@ class FuelStock extends React.Component {
                 className="mr-50"
                 size="25px"
                 color="green"
-                // onClick={() =>
-                // history.push(`/app/slider/viewSlider/${params.data._id}`)
-                // }
+                onClick={() => history.push("/app/stockManagement/salesForm")}
               />
               <Edit
                 className="mr-50"

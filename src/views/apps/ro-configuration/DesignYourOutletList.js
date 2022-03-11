@@ -44,8 +44,7 @@ class DesignYourOutletList extends React.Component {
       {
         headerName: "Dealer Name",
         field: "dealer_name",
-        filter: false,
-        width: 250,
+        width: 120,
         pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
@@ -55,12 +54,23 @@ class DesignYourOutletList extends React.Component {
           );
         },
       },
-
+      {
+        headerName: "Email",
+        field: "email",
+        width: 120,
+        pinned: window.innerWidth > 992 ? "left" : false,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.email}</span>
+            </div>
+          );
+        },
+      },
       {
         headerName: "Total No. MPD",
         field: "total_no_mpd",
-        filter: "agNumberColumnFilter",
-        width: 140,
+        width: 90,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -72,8 +82,7 @@ class DesignYourOutletList extends React.Component {
       {
         headerName: "Total No. Bay",
         field: "total_no_bay",
-        filter: "agNumberColumnFilter",
-        width: 140,
+        width: 90,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -85,8 +94,7 @@ class DesignYourOutletList extends React.Component {
       {
         headerName: "Total No. Nozzles",
         field: "total_no_nozzles",
-        filter: "agNumberColumnFilter",
-        width: 140,
+        width: 90,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -98,8 +106,7 @@ class DesignYourOutletList extends React.Component {
       {
         headerName: "Total No. Tanks ",
         field: "total_no_tanks",
-        filter: "agNumberColumnFilter",
-        width: 140,
+        width: 90,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -111,8 +118,7 @@ class DesignYourOutletList extends React.Component {
       {
         headerName: "Total No. Air Machine",
         field: "total_no_air_machine",
-        filter: "agNumberColumnFilter",
-        width: 140,
+        width: 90,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -124,8 +130,7 @@ class DesignYourOutletList extends React.Component {
       {
         headerName: "PUC Machine",
         field: "puc_machine",
-        filter: "agNumberColumnFilter",
-        width: 140,
+        width: 90,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -138,7 +143,7 @@ class DesignYourOutletList extends React.Component {
         headerName: "Any Other Facility",
         field: "any_other_facility",
         filter: false,
-        width: 250,
+        width: 90,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -150,7 +155,7 @@ class DesignYourOutletList extends React.Component {
       {
         headerName: "Actions",
         field: "sortorder",
-        width: 150,
+        width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
@@ -158,7 +163,7 @@ class DesignYourOutletList extends React.Component {
                 className="mr-50"
                 size="25px"
                 color="green"
-                onClick={() => history.push("/app/ro-configuration/roForm")}
+                onClick={() => history.push(`/app/ro-configuration/DesignYourOutlet/${params.data._id}`)}
               /> */}
               <Edit
                 className="mr-50"
@@ -190,6 +195,12 @@ class DesignYourOutletList extends React.Component {
         console.log(rowData);
         this.setState({ rowData });
       });
+  }
+  async runthisfunction(id) {
+    console.log(id);
+    await axios.get(`http://3.108.185.7/nodejs/api/dealer/deletedealershipform/${id}`).then((response) => {
+      console.log(response);
+    });
   }
 
   onGridReady = (params) => {

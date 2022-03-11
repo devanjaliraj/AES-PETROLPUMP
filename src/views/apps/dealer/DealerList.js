@@ -9,9 +9,11 @@ import {
   DropdownItem,
   DropdownToggle,
 } from "reactstrap";
+import { history } from "../../../history";
+
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown } from "react-feather";
+import { ChevronDown ,Trash2,Eye, Edit } from "react-feather";
 import axios from "axios";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
@@ -29,22 +31,10 @@ class DealerList extends React.Component {
       suppressMenu: true,
     },
     columnDefs: [
-      // {
-      //   headerName: "S.No",
-      //   valueGetter: "node.rowIndex + 1",
-      //   field: "node.rowIndex + 1",
-      //   width: 150,
-      //   filter: false,
-      //   checkboxSelection: true,
-      //   headerCheckboxSelectionFilteredOnly: true,
-      //   headerCheckboxSelection: true,
-      // },
-
       {
         headerName: "Dealer Name",
         field: "dealer_name",
-        filter: false,
-        width: 250,
+        width: 140,
         pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
@@ -54,12 +44,10 @@ class DealerList extends React.Component {
           );
         },
       },
-
       {
         headerName: "Mobile",
         field: "mobile",
-        filter: false,
-        width: 250,
+        width: 140,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -71,8 +59,7 @@ class DealerList extends React.Component {
       {
         headerName: "Email",
         field: "email",
-        filter: false,
-        width: 250,
+        width: 140,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -82,61 +69,8 @@ class DealerList extends React.Component {
         },
       },
       {
-        headerName: "District",
-        field: "district",
-        filter: false,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.district}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Location",
-        field: "location",
-        filter: false,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.location}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "State",
-        field: "state",
-        filter: false,
-        width: 125,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.state}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Any Other Facility",
-        field: "any_other_facility",
-        filter: false,
-        width: 250,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.any_other_facility}</span>
-            </div>
-          );
-        },
-      },
-      {
         headerName: "Master Oil Company",
         field: "master_oil_company",
-        filter: "agNumberColumnFilter",
         width: 140,
         cellRendererFramework: (params) => {
           return (
@@ -147,22 +81,20 @@ class DealerList extends React.Component {
         },
       },
       {
-        headerName: "PUC Machine",
-        field: "puc_machine",
-        filter: "agNumberColumnFilter",
+        headerName: "Location",
+        field: "location",
         width: 140,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.puc_machine}</span>
+              <span>{params.data.location}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Customer Code",
+        headerName: "OMC Customer Code",
         field: "omc_customer_code",
-        filter: "agNumberColumnFilter",
         width: 140,
         cellRendererFramework: (params) => {
           return (
@@ -173,70 +105,62 @@ class DealerList extends React.Component {
         },
       },
       {
-        headerName: "Total No. Air Machine",
-        field: "total_no_air_machine",
-        filter: "agNumberColumnFilter",
+        headerName: "State",
+        field: "state",
         width: 140,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.total_no_air_machine}</span>
+              <span>{params.data.state}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Total No. Bay",
-        field: "total_no_bay",
-        filter: "agNumberColumnFilter",
+        headerName: "District",
+        field: "district",
         width: 140,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.total_no_bay}</span>
+              <span>{params.data.district}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Total No. MPD",
-        field: "total_no_mpd",
-        filter: "agNumberColumnFilter",
+        headerName: "Actions",
+        field: "sortorder",
         width: 140,
         cellRendererFramework: (params) => {
           return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.total_no_mpd}</span>
+            <div className="actions cursor-pointer">
+              <Eye
+                className="mr-50"
+                size="25px"
+                color="green"
+                onClick={() => history.push(`/app/dealer/viewDealer/${params.data._id}`)}
+              />
+              <Edit
+                className="mr-50"
+                size="25px"
+                color="blue"
+                onClick={() => history.push(`/app/dealer/editDealer/${params.data._id}`)}
+              />
+              <Trash2
+                className="mr-50"
+                size="25px"
+                color="red"
+                onClick={() => {
+                  let selectedData = this.gridApi.getSelectedRows();
+                  this.runthisfunction(params.data._id);
+                  this.gridApi.updateRowData({ remove: selectedData });
+                }}
+              />
             </div>
           );
         },
-      },
-      {
-        headerName: "Total No. Nozzles",
-        field: "total_no_nozzles",
-        filter: "agNumberColumnFilter",
-        width: 140,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.total_no_nozzles}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Total No. Tanks",
-        field: "total_no_tanks",
-        filter: "agNumberColumnFilter",
-        width: 140,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.total_no_tanks}</span>
-            </div>
-          );
-        },
-      },
+      }, 
     ],
   };
   async componentDidMount() {
@@ -248,7 +172,12 @@ class DealerList extends React.Component {
         this.setState({ rowData });
       });
   }
-
+  async runthisfunction(id) {
+    console.log(id);
+    await axios.get(`http://3.108.185.7/nodejs/api/dealer/deletedealershipform/${id}`).then((response) => {
+      console.log(response);
+    });
+  }
   onGridReady = (params) => {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;

@@ -78,11 +78,11 @@ export default class DMS extends Component {
     }
 
     axios
-      .post("/addbanner", data)
+      .post("", data)
       .then((response) => {
         console.log(response);
-        alert("Slider Added Successful");
-        this.props.history.push("/app/slider/sliderList");
+        // alert("Slider Added Successful");
+        this.props.history.push("/app/staffEnrollment/DMSList");
       })
       .catch((error) => {
         console.log(error);

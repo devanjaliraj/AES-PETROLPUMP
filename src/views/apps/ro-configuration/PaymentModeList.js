@@ -31,21 +31,34 @@ class PaymentModeList extends React.Component {
     columnDefs: [
       {
         headerName: "Dealer Name",
-        field: "dealer_name",
-        width: 250,
+        field: "dealer_name1.dealer_name",
+        width: 150,
         pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dealer_name}</span>
+              <span>{params.data.dealer_name1?.dealer_name}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Email",
+        field: "dealer_name1.email",
+        width: 150,
+        pinned: window.innerWidth > 992 ? "left" : false,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.dealer_name1?.email}</span>
             </div>
           );
         },
       },
       {
         headerName: "Select Bank",
-        field: "select_bank?.name_of_bank",
-        width: 180,
+        field: "select_bank.name_of_bank",
+        width: 140,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex justify-content-center">
@@ -57,7 +70,7 @@ class PaymentModeList extends React.Component {
       {
         headerName: "Select Mode",
         field: "select_mode",
-        width: 250,
+        width: 140,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -66,22 +79,22 @@ class PaymentModeList extends React.Component {
           );
         },
       },
-      {
-        headerName: "Select Bank",
-        field: "select_bank?.document_upload",
-        width: 180,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex justify-content-center">
-              <span>{params.data.select_bank?.document_upload}</span>
-            </div>
-          );
-        },
-      },
+      // {
+      //   headerName: "Document Upload",
+      //   field: "select_bank.document_upload",
+      //   width: 140,
+      //   cellRendererFramework: (params) => {
+      //     return (
+      //       <div className="d-flex justify-content-center">
+      //         <span>{params.data.select_bank?.document_upload}</span>
+      //       </div>
+      //     );
+      //   },
+      // },
       {
         headerName: "Settlement Day",
         field: "settlement_day",
-        width: 250,
+        width: 140,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -93,7 +106,7 @@ class PaymentModeList extends React.Component {
       {
         headerName: "Actions",
         field: "sortorder",
-        width: 150,
+        width: 140,
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">

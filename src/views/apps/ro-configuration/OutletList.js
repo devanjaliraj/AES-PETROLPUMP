@@ -1,3 +1,4 @@
+
 import React from "react";
 import {
   Card,
@@ -9,16 +10,16 @@ import {
   DropdownItem,
   DropdownToggle,
 } from "reactstrap";
+import axios from "axios";
+import { history } from "../../../history";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2, Eye, Edit } from "react-feather";
-import axios from "axios";
+import { ChevronDown, Trash2, Edit } from "react-feather";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
-
-class ShiftDealerTable extends React.Component {
+class OutletList extends React.Component {
   state = {
-    rowData: null,
+    rowData: [],
     paginationPageSize: 20,
     currenPageSize: "",
     getPageSize: "",
@@ -30,90 +31,142 @@ class ShiftDealerTable extends React.Component {
     },
     columnDefs: [
       {
-        headerName: "Tank No",
-        field: "tank_map ",
-        width: 175,
-        filter: false,
-        checkboxSelection: false,
-        headerCheckboxSelectionFilteredOnly: false,
-        headerCheckboxSelection: false,
-      },
-      {
-        headerName: "Nozzle No",
-        field: "nozzle_map",
-        filter: false,
-        width: 250,
-      },
-
-      {
-        headerName: "MS Sales",
-        field: "MS Sales",
-        filter: false,
-        width: 175,
-      },
-
-      // {
-      //   headerName: "Company",
-      //   field: "company",
-      //   filter: false,
-      //   width: 250,
-      // },
-      // {
-      //   headerName: "City",
-      //   field: "city",
-      //   filter: false,
-      //   width: 150,
-      // },
-      // {
-      //   headerName: "Country",
-      //   field: "country",
-      //   filter: false,
-      //   width: 150,
-      // },
-      // {
-      //   headerName: "State",
-      //   field: "state",
-      //   filter: false,
-      //   width: 125,
-      // },
-      // {
-      //   headerName: "Zip",
-      //   field: "zip",
-      //   filter: "agNumberColumnFilter",
-      //   width: 140,
-      // },
-      // {
-      //   headerName: "Mobille No.",
-      //   field: "mobile",
-      //   filter: "agNumberColumnFilter",
-      //   width: 140,
-      // },
-      {
-        headerName: "HSD Sales",
-        field: "Joining Date",
-        filter: "agNumberColumnFilter",
+        headerName: "Dealer Name",
+        field: "dealer_name",
         width: 140,
+        pinned: window.innerWidth > 992 ? "left" : false,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.dealer_name}</span>
+            </div>
+          );
+        },
+      },
+   
+      {
+        headerName: "Email",
+        field: "email",
+        width: 140,
+        pinned: window.innerWidth > 992 ? "left" : false,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.email}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Tank ",
+        field: "tank_map.tank_number",
+        width: 140,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              {params.data.tank_map?.map((tank) => (
+              <span>{tank?.tank_number}</span>
+              ))}
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Tank ",
+        field: "tank_map.product_map",
+        width: 140,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              {params.data.tank_map?.map((tank) => (
+              <span>{tank?.product_map}</span>
+              ))}
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Tank ",
+        field: "tank_map.capacity_litre",
+        width: 140,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              {params.data.tank_map?.map((tank) => (
+              <span>{tank?.capacity_litre}</span>
+              ))}
+            </div>
+          );
+        },
+      },
+      // {
+      //   headerName: "Tank ",
+      //   field: "tank_map.capacity_litre",
+      //   width: 140,
+      //   cellRendererFramework: (params) => {
+      //     return (
+      //       <div className="d-flex align-items-center cursor-pointer">
+      //         {params.data.tank_map?.map((tank) => (
+      //         <span>{tank?.product_map}</span>
+      //         ))}
+      //       </div>
+      //     );
+      //   },
+      // },
+      {
+        headerName: "Master Oil Company",
+        field: "master_oil_company",
+        width: 140,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.master_oil_company}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "State",
+        field: "state",
+        width: 140,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.state}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "District",
+        field: "district",
+        width: 140,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.district}</span>
+            </div>
+          );
+        },
       },
       {
         headerName: "Actions",
         field: "sortorder",
-        width: 150,
+        width: 140,
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              <Eye
+              {/* <Eye
                 className="mr-50"
                 size="25px"
                 color="green"
-                // onClick={() =>
-                // history.push(`/app/slider/viewSlider/${params.data._id}`)
-                // }
-              />
+                onClick={() => history.push("/app/ro-configuration/roForm")}
+              /> */}
               <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
-                // onClick={() => history.push("/app/slider/editSlider/${params.data._id}")}
+                onClick={() => history.push(`/app/ro-configuration/outletForm/${params.data._id}`)}
               />
               <Trash2
                 className="mr-50"
@@ -131,15 +184,20 @@ class ShiftDealerTable extends React.Component {
       },
     ],
   };
-
-  componentDidMount() {
-    axios
+  async componentDidMount() {
+    await axios
       .get("http://3.108.185.7/nodejs/api/dealer/alldealers")
       .then((response) => {
-        let rowData = response.data.data;
-        JSON.stringify(rowData);
+        const rowData = response.data.data;
+        console.log(rowData);
         this.setState({ rowData });
       });
+    }
+  async runthisfunction(id) {
+    console.log(id);
+    await axios.get(`http://3.108.185.7/nodejs/api/dealer/deletedealershipform/${id}`).then((response) => {
+      console.log(response);
+    });
   }
 
   onGridReady = (params) => {
@@ -171,10 +229,7 @@ class ShiftDealerTable extends React.Component {
     return (
       <React.Fragment>
         <Breadcrumbs
-          breadCrumbTitle="Shift Management"
-          // breadCrumbParent="Forms & Tables"
-          // breadCrumbActive="Shift Management"
-        />
+          breadCrumbTitle="Ro Configuration"/>
         <Card className="overflow-hidden agGrid-card">
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
@@ -269,4 +324,4 @@ class ShiftDealerTable extends React.Component {
     );
   }
 }
-export default ShiftDealerTable;
+export default OutletList;

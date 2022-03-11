@@ -4,20 +4,20 @@ import {
   CardBody,
   Row,
   Col,
-  FormGroup,
-  CustomInput,
   Form,
   Label,
   Input,
   Button,
   Breadcrumb,
   BreadcrumbItem,
+  FormGroup,
+  CustomInput
 } from "reactstrap";
 import axios from "axios";
 import { history } from "../../../history";
 // import swal from "sweetalert";
 
-export default class BasicDetails extends Component {
+export default class EditDealer extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -29,7 +29,6 @@ export default class BasicDetails extends Component {
         omc_customer_code:"",
         state:"",
         district:"",
-       
     };
   }
 
@@ -48,7 +47,7 @@ export default class BasicDetails extends Component {
             omc_customer_code: response.data.data.omc_customer_code,
             state: response.data.data.state,
             district: response.data.data.district,
-           
+          
         });
       })
       .catch(error => {
@@ -67,7 +66,7 @@ export default class BasicDetails extends Component {
       .then(response => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/app/ro-configuration/RoConfigurationList");
+        this.props.history.push("/app/dealer/DealerList");
       })
       .catch(error => {
         console.log(error);
@@ -102,7 +101,7 @@ export default class BasicDetails extends Component {
             <Col>
               <Button
                 className=" btn btn-danger float-right"
-                onClick={() => history.push("/app/ro-configuration/RoConfigurationList")}
+                onClick={() => history.push("/app/dealer/DealerList")}
               >
                 Back
               </Button>
@@ -132,21 +131,12 @@ export default class BasicDetails extends Component {
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Email ID</Label>
                   <Input
-                    type="text"
+                    type="taxt"
                     name="Email"
                     value={this.state.email}
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-                {/* <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>Master Oil Company</Label>
-                  <Input
-                    type="text"
-                    name="master_oil_company"
-                    value={this.state.master_oil_company}
-                    onChange={this.changeHandler}
-                  ></Input>
-                </Col> */}
                 <Col md="6" sm="12">
                 <FormGroup>
                    <Label>Master Oil Company</Label>
@@ -180,29 +170,7 @@ export default class BasicDetails extends Component {
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-              
-              <Col md="6" sm="12">
-                <FormGroup>
-                <Label>State</Label>
-                  <CustomInput 
-                    type="select"
-                    name="state"
-                    value={this.state.state}
-                    onChange={this.changeHandler}>
-                    <option>Andhra Pradesh</option>
-                    <option>Arunachal Pradesh</option>
-                    <option>Assam </option>
-                    <option>Madhya Pradesh</option>
-                    <option>Goa</option>
-                    <option>Gujarat</option>
-                    <option>Bihar</option>
-                    <option>Kerala</option>
-                    <option>Maharashtra</option>
-                    <option>Manipur</option>
-                  </CustomInput>
-                </FormGroup>
-              </Col>
-                {/* <Col lg="6" md="6" sm="6" className="mb-2">
+                <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>State</Label>
                   <Input
                     type="text"
@@ -210,8 +178,8 @@ export default class BasicDetails extends Component {
                     value={this.state.state}
                     onChange={this.changeHandler}
                   ></Input>
-                </Col> */}
-                {/* <Col lg="6" md="6" sm="6" className="mb-2">
+                </Col>
+                <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>District </Label>
                   <Input
                     type="text"
@@ -219,32 +187,8 @@ export default class BasicDetails extends Component {
                     value={this.state.district}
                     onChange={this.changeHandler}
                   ></Input>
-                </Col> */}
-                <Col md="6" sm="12">
-                <FormGroup>
-                <Label>District </Label>
-                  <CustomInput 
-                  type="select"
-                  name="district"
-                    value={this.state.district}
-                    onChange={this.changeHandler}>
-                    <option>Jabalpur</option>
-                    <option>Jhabua</option>
-                    <option>Katni </option>
-                    <option>Khandwa</option>
-                    <option>Khargone</option>
-                    <option>Mandla</option>
-                    <option>Mandsaur</option>
-                    <option>Morena</option>
-                    <option>Indore</option>
-                    <option>Sagar</option>
-                  </CustomInput>
-                </FormGroup>
-              </Col>
-                
-
+                </Col>
               </Row>
-
               <Row>
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Button.Ripple

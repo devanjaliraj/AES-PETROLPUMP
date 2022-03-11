@@ -1,4 +1,4 @@
-import React from "react";
+  import React from "react";
 import {
   Card,
   CardBody,
@@ -20,6 +20,7 @@ import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 class OtherEquipmentList extends React.Component {
   state = {
     rowData: [],
+    alldealerData: [],  
     paginationPageSize: 20,
     currenPageSize: "",
     getPageSize: "",
@@ -31,14 +32,27 @@ class OtherEquipmentList extends React.Component {
     },
     columnDefs: [
       {
-        headerName: "Dealer",
-        field: "dealer",
-        width: 250,
+        headerName: "Dealer Name",
+        field: "dealer.dealer_name",
+        width: 150,
         pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dealer}</span>
+              <span>{params.data.dealer?.dealer_name}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Email",
+        field: "dealer.email",
+        width: 150,
+        pinned: window.innerWidth > 992 ? "left" : false,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.dealer?.email}</span>
             </div>
           );
         },
@@ -46,7 +60,7 @@ class OtherEquipmentList extends React.Component {
       {
         headerName: "Nature",
         field: "nature",
-        width: 250,
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -58,7 +72,7 @@ class OtherEquipmentList extends React.Component {
       {
         headerName: "Manufacturer",
         field: "manufacturer",
-        width: 250,
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -70,7 +84,7 @@ class OtherEquipmentList extends React.Component {
       {
         headerName: "Purchased on",
         field: "purchased_on",
-        width: 140,
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -82,7 +96,7 @@ class OtherEquipmentList extends React.Component {
       {
         headerName: "Actions",
         field: "sortorder",
-        width: 150,
+        width: 140,
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
@@ -116,14 +130,27 @@ class OtherEquipmentList extends React.Component {
       },
     ],
   };
-  async componentDidMount() {
-    await axios
+   componentDidMount() {
+     axios
       .get("http://3.108.185.7/nodejs/api/admin/allequipment")
       .then((response) => {
-        const rowData = response.data.data;
-        console.log(rowData);
-        this.setState({ rowData });
+        if(response.status===200){
+          const rowData = response.data.data;
+            console.log(rowData);
+            this.setState({ rowData });
+        }
       });
+    
+         axios
+          .get("http://3.108.185.7/nodejs/api/dealer/alldealers")
+          .then((response) => {
+            if(response.status===200){
+              const alldealerData = response.data.data;
+              console.log(alldealerData);
+              this.setState({ alldealerData : alldealerData });
+            }
+          });
+        
     }
 
   onGridReady = (params) => {
@@ -155,7 +182,7 @@ class OtherEquipmentList extends React.Component {
     return (
       <React.Fragment>
         <Breadcrumbs
-          breadCrumbTitle="Ro Configuration"
+          breadCrumbTitle="Other Equipment List"
           // breadCrumbParent="Forms & Tables"
           // breadCrumbActive="Ro Configuration"
         />

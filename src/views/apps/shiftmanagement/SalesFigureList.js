@@ -9,17 +9,21 @@ import {
   DropdownItem,
   DropdownToggle,
 } from "reactstrap";
-import axios from "axios";
-import { history } from "../../../history";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
+import { history } from "../../../history";
+
+import axios from "axios";
+
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
+
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 
-class CreditCustomersList extends React.Component {
+class SelesFigureList extends React.Component {
   state = {
-    rowData: [],
+    rowData: null,
+    oldData: null,
     paginationPageSize: 20,
     currenPageSize: "",
     getPageSize: "",
@@ -32,169 +36,125 @@ class CreditCustomersList extends React.Component {
     columnDefs: [
       {
         headerName: "Dealer Name",
-        field: "dealer_name1.dealer_name",
-        width: 150,
+        field: "dealer_name",
+        width: 250,
         pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dealer_name1?.dealer_name}</span>
+              <span>{params.data.dealer_name}</span>
             </div>
           );
         },
       },
+
       {
-        headerName: "Email",
-        field: "dealer_name1.email",
+        headerName: " Date",
+        field: "date",
+
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.date}</span>
+            </div>
+          );
+        },
+        width: 175,
+      },
+      {
+        headerName: " MS/Opening Dip ",
+        field: "nozzle_map",
+
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.nozzle_map}</span>
+            </div>
+          );
+        },
+        width: 250,
+      },
+
+      {
+        headerName: "MS/Opening Litres",
+        field: "openingdip",
+
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.dealer_name}</span>
+            </div>
+          );
+        },
+        width: 250,
+      },
+      {
+        headerName: "MS/Rsp Entry",
+        field: "opneing_liter1",
+
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.opneing_liter1}</span>
+            </div>
+          );
+        },
         width: 150,
-        pinned: window.innerWidth > 992 ? "left" : false,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dealer_name1?.email}</span>
-            </div>
-          );
-        },
       },
       {
-        headerName: "Name of Customer",
-        field: "name_of_customer",
-        width: 100,
+        headerName: "Hsd/Opening Dip",
+        field: "RSP",
+
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.name_of_customer}</span>
+              <span>{params.data.dealer_name}</span>
             </div>
           );
         },
+        width: 150,
       },
       {
-        headerName: "mobile",
-        field: "mobile",
-        width: 100,
+        headerName: "Hsd/Opening Litres",
+        field: "RSP",
+
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.mobile}</span>
+              <span>{params.data.dealer_name}</span>
             </div>
           );
         },
+        width: 150,
       },
       {
-        headerName: "Credit Limit",
-        field: "credit_limit",
-        width: 100,
+        headerName: "Hsd/Rsp Entry",
+        field: "RSP",
+
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.credit_limit}</span>
+              <span>{params.data.dealer_name}</span>
             </div>
           );
         },
+        width: 150,
       },
-      {
-        headerName: "Credit Term Lube",
-        field: "credit_term_lube",
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.credit_term_lube}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Address",
-        field: "addres",
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.addres}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Local Id",
-        field: "local_id",
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.local_id}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Document Upload",
-        field: "document_upload",
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.document_upload}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Vehicle no.",
-        field: "vehicle_no",
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.vehicle_no}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Local Guarantor Name",
-        field: "local_guarantor_name",
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.local_guarantor_name}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Local Guarantor no.",
-        field: "local_guarantor_no",
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.local_guarantor_no}</span>
-            </div>
-          );
-        },
-      },
+
       {
         headerName: "Actions",
         field: "sortorder",
-        width: 100,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              {/* <Eye
-                className="mr-50"
-                size="25px"
-                color="green"
-                onClick={() => history.push("/app/ro-configuration/roForm")}
-              /> */}
-              
               <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
-                onClick={() => history.push(`/app/ro-configuration/creditCustomers/${params.data._id}`)}
+                onClick={() =>
+                  history.push("/app/shiftManagement/salesFigureForm")
+                }
               />
               <Trash2
                 className="mr-50"
@@ -212,21 +172,24 @@ class CreditCustomersList extends React.Component {
       },
     ],
   };
-  async componentDidMount() {
-    await axios
-      .get("http://3.108.185.7/nodejs/api/dealer/allcreditcustomer")
+
+  componentDidMount() {
+    axios
+      .get("http://3.108.185.7/nodejs/api/dealer/allrsp")
       .then((response) => {
-        const rowData = response.data.data;
-        console.log(rowData);
+        let rowData = response.data.data;
+        JSON.stringify(rowData);
         this.setState({ rowData });
       });
+    axios
+      .get("http://3.108.185.7/nodejs/api/dealer/alldealers")
+      .then((response) => {
+        let oldData = response.data.data;
+        JSON.stringify(oldData);
+        this.setState({ oldData });
+      });
   }
-  async runthisfunction(id) {
-    console.log(id);
-    await axios.get(`http://3.108.185.7/nodejs/api/dealer/deletecreditcustomers/${id}`).then((response) => {
-      console.log(response);
-    });
-  }
+
   onGridReady = (params) => {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
@@ -236,6 +199,7 @@ class CreditCustomersList extends React.Component {
       totalPages: this.gridApi.paginationGetTotalPages(),
     });
   };
+
   updateSearchQuery = (val) => {
     this.gridApi.setQuickFilter(val);
   };
@@ -249,12 +213,16 @@ class CreditCustomersList extends React.Component {
       });
     }
   };
+
   render() {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
         <Breadcrumbs
-          breadCrumbTitle="Credit Customers List"/>
+          breadCrumbTitle="Seles Figure List"
+          // breadCrumbParent="Forms & Tables"
+          // breadCrumbActive="Shift Management"
+        />
         <Card className="overflow-hidden agGrid-card">
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
@@ -349,4 +317,4 @@ class CreditCustomersList extends React.Component {
     );
   }
 }
-export default CreditCustomersList;
+export default SelesFigureList;

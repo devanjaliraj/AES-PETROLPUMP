@@ -12,13 +12,13 @@ import {
   DropdownToggle,
 } from "reactstrap";
 import axios from "axios";
-import { ContextLayout } from "../../../../utility/context/Layout";
+import { ContextLayout } from "../../../utility/context/Layout";
 import { AgGridReact } from "ag-grid-react";
-import {  Edit, Eye, Trash2, ChevronDown } from "react-feather";
+import {  Edit,  Trash2, ChevronDown } from "react-feather";
 //import classnames from "classnames";
-import { history } from "../../../../history";
-import "../../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-import "../../../../assets/scss/pages/users.scss";
+import { history } from "../../../history";
+import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
+import "../../../assets/scss/pages/users.scss";
 class BankForTransactionList extends React.Component {
   state = {
     rowData: [],
@@ -33,20 +33,38 @@ class BankForTransactionList extends React.Component {
     },
     columnDefs: [
       {
-        headerName: "S.No",
-        valueGetter: "node.rowIndex + 1",
-        field: "node.rowIndex + 1",
+        headerName: "Dealer Name",
+        field: "dealer_name1.dealer_name",
         width: 150,
-        filter: true,
-        // checkboxSelection: true,
-        // headerCheckboxSelectionFilteredOnly: true,
-        // headerCheckboxSelection: true,
+        pinned: window.innerWidth > 992 ? "left" : false,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.dealer_name1?.dealer_name}</span>
+            </div>
+          );
+        },
       },
+      {
+        headerName: "Email",
+        field: "dealer_name1.email",
+        width: 150,
+        pinned: window.innerWidth > 992 ? "left" : false,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.dealer_name1?.email}</span>
+            </div>
+          );
+        },
+      },
+     
+    
       {
         headerName: "Name Of Bank ",
         field: "name_of_bank",
         filter: true,
-        width: 200,
+        width: 100,
         cellRendererFramework: (params) => {
           return (
             <div>
@@ -59,7 +77,7 @@ class BankForTransactionList extends React.Component {
         headerName: "Credit limit of bank",
         field: "credit_limit_of_bank",
         filter: true,
-        width: 170,
+        width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -72,11 +90,50 @@ class BankForTransactionList extends React.Component {
         headerName: "Intrest Rates",
         field: "intrest_rates",
         filter: true,
-        width: 200,
+        width: 100,
         cellRendererFramework: (params) => {
           return (
             <div>
               <span>{params.data.intrest_rates}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "IFSC Code",
+        field: "ifsc_code",
+        filter: true,
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div>
+              <span>{params.data.ifsc_code}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Credit Offer from Bank Valid upto ",
+        field: "cresit_offer",
+        filter: true,
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div>
+              <span>{params.data.cresit_offer}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Documents upload",
+        field: "document_upload",
+        filter: true,
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div>
+              <span>{params.data.document_upload}</span>
             </div>
           );
         },
@@ -106,19 +163,19 @@ class BankForTransactionList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              <Eye
+              {/* <Eye
                 className="mr-50"
                 color="green"
                 size={20}
                 onClick={() =>
-                  history.push(`/app/setting/bank/viewBank/${params.data._id}`)
+                  history.push(`/app/ro-configuration/viewBankForTransaction/${params.data._id}`)
                 }
-              />
+              /> */}
               <Edit
                 className="mr-50"
                 color="blue"
                 size={20}
-                onClick={() => history.push(`/app/setting/bank/editBank/${params.data._id}`)}
+                onClick={() => history.push(`/app/ro-configuration/editBankForTransaction/${params.data._id}`)}
               />
               <Trash2
                 size={20}
@@ -196,12 +253,12 @@ class BankForTransactionList extends React.Component {
                   </h1>
                 </Col>
                 <Col>
-                  <Button
+                  {/* <Button
                     className=" btn btn-danger float-right"
                     onClick={() => history.push("/app/setting/bank/addBank")}
                   >
                     Add Bank
-                  </Button>
+                  </Button> */}
                 </Col>
               </Row>
               <CardBody>
@@ -303,4 +360,5 @@ class BankForTransactionList extends React.Component {
     );
   }
 }
+
 export default BankForTransactionList;

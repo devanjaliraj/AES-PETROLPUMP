@@ -11,12 +11,13 @@ import {
 } from "reactstrap";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2, Eye, Edit } from "react-feather";
+import { ChevronDown, Trash2, Edit } from "react-feather";
+import { history } from "../../../history";
 import axios from "axios";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 
-class Attendance extends React.Component {
+class RetailSellingPriceList extends React.Component {
   state = {
     rowData: null,
     paginationPageSize: 20,
@@ -30,77 +31,89 @@ class Attendance extends React.Component {
     },
     columnDefs: [
       {
-        headerName: "Name",
-        field: "name",
-        filter: false,
-        width: 250,
-        pinned: window.innerWidth > 992 ? "left" : false,
-      },
-      {
-        headerName: "Designation",
-        field: "designation",
+        headerName: "Date",
+        field: "date",
         width: 175,
-        filter: false,
-        checkboxSelection: false,
-        headerCheckboxSelectionFilteredOnly: false,
-        headerCheckboxSelection: false,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.date}</span>
+            </div>
+          );
+        },
       },
       {
-        headerName: "Shift",
-        field: "shift",
-        filter: false,
+        headerName: " MS/Opening Dip ",
+        field: "opneing_dip1",
         width: 250,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.opneing_dip1}</span>
+            </div>
+          );
+        },
       },
-
       {
-        headerName: "Date & Time",
-        field: "date&time",
-        filter: false,
-        width: 175,
-      },
-
-      {
-        headerName: "Leaves Available",
-        field: "leaves available",
-        filter: false,
+        headerName: "MS/Opening Litres",
+        field: "opneing_liter1.closing_Entry",
         width: 250,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.opneing_liter1?.closing_Entry}</span>
+            </div>
+          );
+        },
       },
       {
-        headerName: "Leaves Taken",
-        field: "leaves taken",
-        filter: false,
+        headerName: "MS/Rsp Entry",
+        field: "rsp1",
         width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.rsp1}</span>
+            </div>
+          );
+        },
       },
-      //   {
-      //     headerName: "Payment Mode",
-      //     field: "payment mode",
-      //     filter: false,
-      //     width: 150,
-      //   },
-      //   {
-      //     headerName: "DSM/Manager Name",
-      //     field: "DSM/Manager name",
-      //     filter: false,
-      //     width: 125,
-      //   },
-      // {
-      //   headerName: "Zip",
-      //   field: "zip",
-      //   filter: "agNumberColumnFilter",
-      //   width: 140,
-      // },
-      // {
-      //   headerName: "Mobille No.",
-      //   field: "number",
-      //   filter: "agNumberColumnFilter",
-      //   width: 140,
-      // },
-      //   {
-      //     headerName: "Joining Date.",
-      //     field: "Joining Date",
-      //     filter: "agNumberColumnFilter",
-      //     width: 140,
-      //   },
+      {
+        headerName: "Hsd/Opening Dip",
+        field: "opneing_dip2",
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.opneing_dip2}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Hsd/Opening Litres",
+        field: "opneing_liter2.closing_Entry",
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.opneing_liter2?.closing_Entry}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Hsd/Rsp Entry",
+        field: "rsp2",
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.rsp2}</span>
+            </div>
+          );
+        },
+      },
       {
         headerName: "Actions",
         field: "sortorder",
@@ -108,19 +121,12 @@ class Attendance extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              <Eye
-                className="mr-50"
-                size="25px"
-                color="green"
-                // onClick={() =>
-                // history.push(`/app/slider/viewSlider/${params.data._id}`)
-                // }
-              />
               <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
-                // onClick={() => history.push("/app/slider/editSlider/${params.data._id}")}
+                onClick={() =>
+                  history.push(`/app/shiftmanagement/retailSellingPriceForm/${params.data._id}`)}
               />
               <Trash2
                 className="mr-50"
@@ -140,12 +146,14 @@ class Attendance extends React.Component {
   };
 
   componentDidMount() {
-    axios.get("/api/aggrid/data").then((response) => {
-      let rowData = response.data.data;
-      JSON.stringify(rowData);
-      this.setState({ rowData });
-    });
-  }
+    axios
+      .get("http://3.108.185.7/nodejs/api/dealer/allrsp")
+      .then((response) => {
+        let rowData = response.data.data;
+        JSON.stringify(rowData);
+        this.setState({ rowData });
+      });
+    }
 
   onGridReady = (params) => {
     this.gridApi = params.api;
@@ -176,9 +184,9 @@ class Attendance extends React.Component {
     return (
       <React.Fragment>
         <Breadcrumbs
-          breadCrumbTitle="Attendance"
+          breadCrumbTitle="RSP List"
           // breadCrumbParent="Forms & Tables"
-          // breadCrumbActive="Lubricants Sale"
+          // breadCrumbActive="Shift Management"
         />
         <Card className="overflow-hidden agGrid-card">
           <CardBody className="py-0">
@@ -274,4 +282,4 @@ class Attendance extends React.Component {
     );
   }
 }
-export default Attendance;
+export default RetailSellingPriceList;

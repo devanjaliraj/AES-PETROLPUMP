@@ -9,16 +9,24 @@ import {
   Button,
 } from "reactstrap";
 import axios from "axios";
-import { history } from "../../../history";
+// import { history } from "../../../history";
 import Select from "react-select";
+
+// const colourOptions = [
+//   { value: "Tank1", label: "Tank1" },
+//   { value: "Tank2", label: "Tank2" },
+//   { value: "Tank2", label: "Tank2" },
+//   { value: "Tank2", label: "Tank2" },
+//   { value: "Tank2", label: "Tank2" },
+// ];
 
 const tankOptions = [];
 
 const mpdOptions = [];
 
-const bayOptions = [];
-
 const nozzleOptions = [];
+
+const bayOptions =[];
 
 class OutletForm extends React.Component {
 
@@ -38,24 +46,26 @@ class OutletForm extends React.Component {
       selectedTankCapacity:null,
       tankCapacityOptions: [],
       selectedMpdOption:null,
-      selectedBayOptions:null,
-      selectedBayToMpdOptions:null,
-      bayToMpdOptions:[],
-      nozzleToEachBayOptions:[],
-      selectedNozzleToEachBayOptions:null,
-      selectedNozzleOptions:null,
-      tankToNozzlesOptions:[],
-      selectedTankToNozzlesOptions:null
+      // bayOptions :[],
+      selectedBayOption:null,
+  
+      // selectedBayOptions:null,
+      selectedNozzleOption:null,
+      nozzleOptions:[],
+      selectedTankOptions:null,
+      tankOptions:[],
+      selectedNozzleOptions:null
       };
      
   }
 
   componentDidMount() {
-    let { id } = this.props.match.params.id;
+    let { id } = this.props.match.params;
     this.setState({ dealerId : id });
     axios
-      .post(`http://3.108.185.7/nodejs/api/dealer/addeditadvancedealershipform/${this.props.match.params.id}`)
+      .post(`http://3.108.185.7/nodejs/api/dealer/addeditadvancedealershipform/${id}`)
       .then((response) => {
+        console.log('@@@@@@@@@',response);
         if(response.status === 200){
           let data = response.data.data;
           
@@ -70,12 +80,11 @@ class OutletForm extends React.Component {
             tankOptions.push(tankObj);
            })
           }
-   
+          console.log('@@@@@@@@@11111',tankOptions);
+
           if(data.mpd_map.length > 0){
-            let mpdObj = {}
-            let mpdObjNew = {}
             data.mpd_map.map((mpd) => {
-              mpdObj = {
+             let mpdObj = {
                value: mpd._id, 
                label: mpd.mpd_number
              };
@@ -158,103 +167,108 @@ class OutletForm extends React.Component {
       } 
    });
    let bayObj ={}
+   console.log('filteredBay',filteredBay)
      if(filteredBay.length > 0){
       filteredBay[0].bay_map.map((bay) => {
            bayObj = {
-            value: bay._id, 
+            value: bay, 
             label: bay
           };
           //bayOptions.push(bayObj);
           bayArray.push(bayObj)
         })
        
-       this.setState({ bayToMpdOptions : bayArray})
+       this.setState({ bayOptions : bayArray})
      }
-  };
-
-  handleChangeBayToMpd = (selectedBayToMpdOptions) => {
-    this.setState({ selectedBayToMpdOptions }, () =>
-      console.log(`Option selected:`, this.state.selectedBayToMpdOptions)
-    );
   };
 
   handleChangeBay = (selectedBayOptions) => {
-    let nozzleArray = []
     this.setState({ selectedBayOptions }, () =>
       console.log(`Option selected:`, this.state.selectedBayOptions)
     );
-    var filteredNozzle = this.state.bay_map.filter(function(event){
-      if(event._id === selectedBayOptions.value){
-       return event
-      } 
-   });
-   let nozzleObj ={}
-     if(filteredNozzle.length > 0){
-      filteredNozzle[0].nozzle_map.map((nozzle) => {
-        nozzleObj = {
-            value: nozzle._id, 
-            label: nozzle
-          };
-          nozzleArray.push(nozzleObj)
-        })
-        
-       this.setState({ nozzleToEachBayOptions : nozzleArray})
-     }
   };
 
-  handleChangeNozzleToEachBay = (selectedNozzleToEachBayOptions) => {
-    this.setState({ selectedNozzleToEachBayOptions }, () =>
-      console.log(`Option selected:`, this.state.selectedNozzleToEachBayOptions)
-    );
-  };
-
-  handleChangeNozzle = (selectedNozzleOptions) => {
+  handleChangeNOZZLE = (selectedNozzleOption) => {
     let tankArray = []
-    this.setState({ selectedNozzleOptions }, () =>
-      console.log(`Option selected:`, this.state.selectedNozzleOptions)
+    this.setState({ selectedNozzleOption }, () =>
+      console.log(`Option selected:`, this.state.selectedNozzleOption)
     );
     var filteredTank = this.state.nozzle_map.filter(function(event){
-      if(event._id === selectedNozzleOptions.value){
+      if(event._id === selectedNozzleOption.value){
        return event
       } 
    });
    let tankObj ={}
+   console.log('filteredTank',filteredTank)
      if(filteredTank.length > 0){
-      filteredTank[0].tank_map.map((tank) => {
-        tankObj = {
-            value: tank._id, 
+      filteredTank[0].bay_map.map((tank) => {
+           tankObj = {
+            value: tank, 
             label: tank
           };
+          //bayOptions.push(bayObj);
           tankArray.push(tankObj)
         })
-        
-       this.setState({ tankToNozzlesOptions : tankArray})
+       
+       this.setState({ tankOptions : tankArray})
      }
   };
 
-  handleChangeTankToNozzle = (selectedTankToNozzlesOptions) => {
-    this.setState({ selectedTankToNozzlesOptions }, () =>
-      console.log(`Option selected:`, this.state.selectedTankToNozzlesOptions)
+  handleChangeTank = (selectedTankOptions) => {
+    this.setState({ selectedTankOptions }, () =>
+      console.log(`Option selected:`, this.state.selectedTankOptions)
     );
   };
+
+
+  handleChangeBAY = (selectedBayOption) => {
+    let nozzleArray = []
+    this.setState({ selectedBayOption }, () =>
+      console.log(`Option selected:`, this.state.selectedBayOption)
+    );
+    var filteredNozzle = this.state.bay_map.filter(function(event){
+      if(event._id === selectedBayOption.value){
+       return event
+      } 
+   });
+   let nozzleObj ={}
+   console.log('filteredNozzle',filteredNozzle)
+     if(filteredNozzle.length > 0){
+      filteredNozzle[0].bay_map.map((nozzle) => {
+           nozzleObj = {
+            value: nozzle, 
+            label: nozzle
+          };
+          //bayOptions.push(bayObj);
+          nozzleArray.push(nozzleObj)
+        })
+       
+       this.setState({ tankOptions : nozzleArray})
+     }
+  };
+
+  handleChangeTank = (selectedNozzleOptions) => {
+    this.setState({ selectedNozzleOptions }, () =>
+      console.log(`Option selected:`, this.state.selectedNozzleOptions)
+    );
+  };
+
+  
 
   render() {
     const {
       selectedTankOption,
       product_map_tank,
       selectedMapTankOption,
+      selectedNozzleOption,
       selectedTankCapacity,
       tankCapacityOptions,
       selectedMpdOption,
-      //bayOptions,
-      selectedBayOptions,
-      bayToMpdOptions,
-      selectedBayToMpdOptions,
-      nozzleToEachBayOptions,
-      selectedNozzleToEachBayOptions,
+      selectedTankOptions,
+      selectedBayOption,
+      bayOptions,
       selectedNozzleOptions,
-      tankToNozzlesOptions,
-      selectedTankToNozzlesOptions
+      selectedBayOptions
     } = this.state
     return (
       <Card>
@@ -318,11 +332,11 @@ class OutletForm extends React.Component {
               <Select
                 className="React"
                 classNamePrefix="select"            
-                name="bay_to_mpd"          
+                name="bay"          
                 isClearable={true}
-                defaultValue={selectedBayToMpdOptions}
-                options={bayToMpdOptions}
-                onChange={this.handleChangeBayToMpd}
+                defaultValue={selectedBayOptions}
+                options={bayOptions}
+                onChange={this.handleChangeBay}
               />
             </Col>
             <Col md="6" sm="12">
@@ -330,11 +344,12 @@ class OutletForm extends React.Component {
               <Select
                 className="React"
                 classNamePrefix="select"           
-                name="bay"              
+                name="clear"              
                 isClearable={true}
-                defaultValue={selectedBayOptions}
+                defaultValue={bayOptions[1]}
                 options={bayOptions}
-                onChange={this.handleChangeBay}
+                value={selectedBayOption}
+                onChange={this.handleChangeBAY}
               />
             </Col>
             <Col md="6" sm="12">
@@ -344,11 +359,11 @@ class OutletForm extends React.Component {
               <Select
                 className="React"
                 classNamePrefix="select"              
-                name="nozzleToEachBay"             
+                name="clear"             
                 isClearable={true}
-                defaultValue={selectedNozzleToEachBayOptions}
-                options={nozzleToEachBayOptions}
-                onChange={this.handleChangeNozzleToEachBay}
+                defaultValue={selectedNozzleOptions}
+                options={nozzleOptions}
+                onChange={this.handleChangeNozzle}
               />
             </Col>
             <Col md="6" sm="12">
@@ -358,9 +373,10 @@ class OutletForm extends React.Component {
                 classNamePrefix="select"           
                 name="clear"            
                 isClearable={true}
-                defaultValue={selectedNozzleOptions}
+                defaultValue={nozzleOptions[1]}
                 options={nozzleOptions}
-                onChange={this.handleChangeNozzle}
+                value={selectedNozzleOption}
+                onChange={this.handleChangeNOZZLE}
               />
             </Col>
             <Col md="6" sm="12" style={{ marginBottom: 15 }}>
@@ -370,9 +386,10 @@ class OutletForm extends React.Component {
                 classNamePrefix="select"  
                 name="clear"    
                 isClearable={true}
-                defaultValue={selectedTankToNozzlesOptions}
-                options={tankToNozzlesOptions}
-                onChange={this.handleChangeTankToNozzle}
+                defaultValue={selectedTankOptions}
+                options={tankOptions}
+                onChange={this.handleChangeTank}
+
               />
             </Col>
             <Col lg="12" md="12" sm="12" className="mb-5">

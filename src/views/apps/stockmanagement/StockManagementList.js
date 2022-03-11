@@ -19,6 +19,7 @@ import { history } from "../../../history";
 
 class StockManagementList extends React.Component {
   state = {
+    // rowData: [],
     rowData: null,
     paginationPageSize: 20,
     currenPageSize: "",
@@ -31,44 +32,82 @@ class StockManagementList extends React.Component {
     },
     columnDefs: [
       {
-        headerName: "Dealer's Name",
-        field: "firstname",
-        width: 175,
-        filter: false,
-        checkboxSelection: false,
-        headerCheckboxSelectionFilteredOnly: false,
-        headerCheckboxSelection: false,
+        headerName: "Dealer Name",
+        field: "dealer_name1.dealer_name",
+        width: 140,
+        pinned: window.innerWidth > 992 ? "left" : false,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.dealer_name1?.dealer_name}</span>
+            </div>
+          );
+        },
       },
-      // {
-      //   headerName: "Last Name",
-      //   field: "lastname",
-      //   filter: false,
-      //   width: 175,
-      // },
       {
         headerName: "Email",
-        field: "email",
+        field: "dealer_name1.email",
+        width: 140,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.dealer_name1?.email}</span>
+            </div>
+          );
+        },
+      },
+    
+      {
+        headerName: "Grade",
+        field: "grade",
         filter: false,
         width: 250,
-        pinned: window.innerWidth > 992 ? "left" : false,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.grade}</span>
+            </div>
+          );
+        },
       },
       {
-        headerName: "Company",
-        field: "company",
+        headerName: "Opening Stock",
+        field: "opening_stock",
         filter: false,
         width: 250,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.opening_stock}</span>
+            </div>
+          );
+        },
       },
       {
-        headerName: "City",
-        field: "city",
+        headerName: "RSP",
+        field: "rsp",
         filter: false,
         width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.rsp}</span>
+            </div>
+          );
+        },
       },
       {
-        headerName: "Country",
-        field: "country",
+        headerName: "Purchase Price",
+        field: "purchase_price",
         filter: false,
         width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.purchase_price}</span>
+            </div>
+          );
+        },
       },
       {
         headerName: "State",
@@ -167,7 +206,7 @@ class StockManagementList extends React.Component {
     return (
       <React.Fragment>
         <Breadcrumbs
-          breadCrumbTitle="Stock Management"
+          breadCrumbTitle="Stock Management List"
           // breadCrumbParent="Forms & Tables"
           // breadCrumbActive="Stock Management"
         />
