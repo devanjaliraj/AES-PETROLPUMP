@@ -17,9 +17,9 @@ import { history } from "../../../history";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 
-class LubeStock extends React.Component {
+class LubeStockList extends React.Component {
   state = {
-    rowData: null,
+    rowData: [],
     paginationPageSize: 20,
     currenPageSize: "",
     getPageSize: "",
@@ -31,95 +31,181 @@ class LubeStock extends React.Component {
     },
     columnDefs: [
       {
+        headerName: "Dealer Name",
+        field: "dealer_name1.dealer_name",
+        width: 120,
+        pinned: window.innerWidth > 992 ? "left" : false,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.dealer_name1?.dealer_name}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Email",
+        field: "dealer_name1.email",
+        width: 120,
+        pinned: window.innerWidth > 992 ? "left" : false,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.dealer_name1?.email}</span>
+            </div>
+          );
+        },
+      },
+    
+      {
         headerName: "Grade",
         field: "grade",
         filter: false,
-        width: 250,
-        pinned: window.innerWidth > 992 ? "left" : false,
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.grade}</span>
+            </div>
+          );
+        },
       },
       {
-        headerName: "Purchase Price",
-        field: "purchase price",
-        width: 175,
+        headerName: "Opening Stock",
+        field: "opening_stock",
         filter: false,
-        checkboxSelection: false,
-        headerCheckboxSelectionFilteredOnly: false,
-        headerCheckboxSelection: false,
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.opening_stock}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "RSP",
+        field: "rsp",
+        filter: false,
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.rsp}</span>
+            </div>
+          );
+        },
+      },
+    
+      {
+        headerName: "Purchase Price",
+        field: "purchase_price",
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.purchase_price}</span>
+            </div>
+          );
+        },
       },
       {
         headerName: "Selling Price",
-        field: "selling price",
+        field: "selling_price_maintained",
         filter: false,
-        width: 250,
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.selling_price_maintained}</span>
+            </div>
+          );
+        },
       },
 
       {
         headerName: "No of Pieces",
-        field: "no of pieces",
+        field: "no_of_pieces",
         filter: false,
-        width: 175,
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.no_of_pieces}</span>
+            </div>
+          );
+        },
       },
-
-      //   {
-      //     headerName: "Loss/Gain",
-      //     field: "loss/gain",
-      //     filter: false,
-      //     width: 250,
-      //   },
-      //   {
-      //     headerName: "Leaves Taken",
-      //     field: "leaves taken",
-      //     filter: false,
-      //     width: 150,
-      //   },
-      //   {
-      //     headerName: "Payment Mode",
-      //     field: "payment mode",
-      //     filter: false,
-      //     width: 150,
-      //   },
-      //   {
-      //     headerName: "DSM/Manager Name",
-      //     field: "DSM/Manager name",
-      //     filter: false,
-      //     width: 125,
-      //   },
-      // {
-      //   headerName: "Zip",
-      //   field: "zip",
-      //   filter: "agNumberColumnFilter",
-      //   width: 140,
-      // },
-      // {
-      //   headerName: "Mobille No.",
-      //   field: "number",
-      //   filter: "agNumberColumnFilter",
-      //   width: 140,
-      // },
-      //   {
-      //     headerName: "Joining Date.",
-      //     field: "Joining Date",
-      //     filter: "agNumberColumnFilter",
-      //     width: 140,
-      //   },
+      {
+        headerName: "Amount Before Tax",
+        field: "amount_before_tax",
+        filter: false,
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.amount_before_tax}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "CGST",
+        field: "cgst",
+        filter: false,
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.cgst}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "SGST",
+        field: "sgst",
+        filter: false,
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.sgst}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Final Inventory",
+        field: "final_inventory",
+        filter: false,
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.final_inventory}</span>
+            </div>
+          );
+        },
+      },
       {
         headerName: "Actions",
         field: "sortorder",
-        width: 150,
+        width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              <Eye
+              {/* <Eye
                 className="mr-50"
                 size="25px"
                 color="green"
-                onClick={() => history.push("/app/stockManagement/lubeForm")}
-              />
+                onClick={() => history.push("app/stockManagement/lubeStockForm")}
+              /> */}
               <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
-                // onClick={() => history.push("/app/slider/editSlider/${params.data._id}")}
+                onClick={() => history.push(`/app/stockManagement/lubeStockForm/${params.data._id}`)}
               />
               <Trash2
                 className="mr-50"
@@ -138,11 +224,18 @@ class LubeStock extends React.Component {
     ],
   };
 
-  componentDidMount() {
-    axios.get("/api/aggrid/data").then((response) => {
+  async componentDidMount() {
+    await axios
+    .get("http://3.108.185.7/nodejs/api/dealer/alllubestock").then((response) => {
       let rowData = response.data.data;
       JSON.stringify(rowData);
       this.setState({ rowData });
+    });
+  }
+  async runthisfunction(id) {
+    console.log(id);
+    await axios.get(`http://3.108.185.7/nodejs/api/dealer/deletelubestock/${id}`).then((response) => {
+      console.log(response);
     });
   }
 
@@ -175,7 +268,7 @@ class LubeStock extends React.Component {
     return (
       <React.Fragment>
         <Breadcrumbs
-          breadCrumbTitle="Lubricants Sale"
+          breadCrumbTitle="Lube Stock List"
           // breadCrumbParent="Forms & Tables"
           // breadCrumbActive="Lubricants Sale"
         />
@@ -273,4 +366,4 @@ class LubeStock extends React.Component {
     );
   }
 }
-export default LubeStock;
+export default LubeStockList;

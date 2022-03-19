@@ -24,7 +24,7 @@ export default class BankForTransaction extends Component {
         intrest_rates:"",
         ifsc_code:"",
         cresit_offer:"",
-       
+        account_no:"",
     };
   }
 
@@ -40,7 +40,7 @@ export default class BankForTransaction extends Component {
           intrest_rates: response.data.data.intrest_rates,
           ifsc_code: response.data.data.ifsc_code,
           cresit_offer: response.data.data.cresit_offer,
-           
+          account_no: response.data.data.account_no
         });
       })
       .catch(error => {
@@ -127,6 +127,15 @@ export default class BankForTransaction extends Component {
                     type="text"
                     name="intrest_rates"
                     value={this.state.intrest_rates}
+                    onChange={this.changeHandler}
+                  ></Input>
+                </Col>
+                <Col lg="6" md="6" sm="6" className="mb-2">
+                  <Label>Account No.</Label>
+                  <Input
+                    type="text"
+                    name="account_no"
+                    value={this.state.account_no}
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>

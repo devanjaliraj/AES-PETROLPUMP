@@ -61,14 +61,10 @@ export default class DMS extends Component {
     data.append("salary_decieded", this.state.salary_decieded);
     data.append("salary_date", this.state.salary_date);
     data.append("status", this.state.status);
-    if (this.state.selectedFile !== null) {
-      data.append(
-        "panImg",
-        "adharimg",
-        this.state.selectedFile,
-        this.state.selectedName
-      );
-    }
+    data.append(" adharimg",this.state.selectedFile,this.state.selectedName);
+    data.append(" panImg",this.state.selectedFile,this.state.selectedName);
+    data.append(" photograh",this.state.selectedFile,this.state.selectedName);
+   
     for (var value of data.values()) {
       console.log(value);
     }

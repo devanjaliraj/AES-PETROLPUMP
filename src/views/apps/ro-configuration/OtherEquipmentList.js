@@ -97,6 +97,8 @@ class OtherEquipmentList extends React.Component {
         headerName: "Actions",
         field: "sortorder",
         width: 140,
+        pinned: window.innerWidth > 992 ? "right" : false,
+
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">

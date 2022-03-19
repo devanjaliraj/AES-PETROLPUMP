@@ -9,7 +9,6 @@ import {
   Form,
   Label,
   Input,
-  CustomInput,
   Breadcrumb,
   BreadcrumbItem,
   Button,
@@ -19,111 +18,28 @@ export default class OtherStaff extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      staff_name: "",
       addres: "",
-      mobile: "",
-      joining_date: "",
       adhar_number: "",
       adharimg: "",
-      pan_number: "",
-      panImg: "",
-      photograh: "",
       date_of_brith: "",
-      salary_decieded: "",
+      joining_date: "",
+      staff_name: "",
+      mobile: "",
+      panImg: "",
+      pan_number: "",
+      photograh: "",
       salary_date: "",
-      selectedFile: null,
+      salary_decieded: "",
       status: "",
-      imagSrc: [],
+      selectedFile: null,
     };
-    this.submitHandler = this.submitHandler.bind(this);
-    this.onChangeHandler = this.onChangeHandler.bind(this);
-    this.onChangeHandler1 = this.onChangeHandler1.bind(this);
-    this.onChangeHandler2 = this.onChangeHandler2.bind(this);
   }
-  // onChangeHandler = (event) => {
-  //   this.setState({ selectedFile: event.target.files[0] });
-  //   this.setState({ selectedName: event.target.files[0].name });
-  //   console.log(event.target.files[0]);
-  // };
   onChangeHandler = (event) => {
-    var imgSrc = [];
-    for (var i = 0; i < event.target.files.length; i++) {
-      let file = event.target.files[i];
-      let reader = new FileReader();
-      let url = reader.readAsDataURL(file);
-      reader.onloadend = function (e) {
-        console.log(i);
-        this.fileArrayShop.push(reader.result);
-        imgSrc.push([reader.result]);
-
-        this.setState({
-          imgSrc: [reader.result],
-        });
-      }.bind(this);
-    }
-    console.log(imgSrc);
-    this.setState({
-      selectedFile: event.target.files,
-      imgSrc,
-    });
-    this.setState({
-      selectedName: event.target.files.name,
-    });
-    console.log(event.target.files);
+    this.setState({ selectedFile: event.target.files[0] });
+    this.setState({ selectedName: event.target.files[0].name });
+    console.log(event.target.files[0]);
   };
 
-  onChangeHandler1 = (event) => {
-    var imgSrc1 = [];
-
-    for (var i = 0; i < event.target.files.length; i++) {
-      let file = event.target.files[i];
-      let reader = new FileReader();
-      console.log(file);
-      let url = reader.readAsDataURL(file);
-      reader.onloadend = function (e) {
-        this.fileArrayLogo.push(reader.result);
-        imgSrc1.push([reader.result]);
-        this.setState({
-          imgSrc1: [reader.result],
-        });
-      }.bind(this);
-    }
-
-    console.log(imgSrc1);
-    this.setState({
-      selectedFile1: event.target.files,
-      imgSrc1,
-    });
-    this.setState({
-      selectedName1: event.target.files.name,
-    });
-    console.log(event.target.files);
-  };
-  onChangeHandler2 = (event) => {
-    var imgSrc2 = [];
-    for (var i = 0; i < event.target.files.length; i++) {
-      let file = event.target.files[i];
-      let reader = new FileReader();
-      let url = reader.readAsDataURL(file);
-      reader.onloadend = function (e) {
-        console.log(i);
-        this.fileArrayGST.push(reader.result);
-        imgSrc2.push([reader.result]);
-        this.setState({
-          imgSrc2: [reader.result],
-        });
-      }.bind(this);
-    }
-    console.log(imgSrc2);
-    this.setState({
-      selectedFile2: event.target.files,
-      imgSrc2,
-    });
-    this.setState({
-      selectedName2: event.target.files.name,
-    });
-    console.log(event.target.files);
-  };
   componentDidMount() {
     let { id } = this.props.match.params;
     console.log(id);
@@ -144,7 +60,6 @@ export default class OtherStaff extends Component {
           date_of_brith: response.data.data.date_of_brith,
           salary_decieded: response.data.data.salary_decieded,
           salary_date: response.data.data.salary_date,
-          selectedFile: response.data.data.selectedFile,
           status: response.data.data.status,
         });
       })
@@ -155,6 +70,7 @@ export default class OtherStaff extends Component {
   changeHandler1 = (e) => {
     this.setState({ status: e.target.value });
   };
+
   changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -166,22 +82,13 @@ export default class OtherStaff extends Component {
     data.append("mobile", this.state.mobile);
     data.append("joining_date", this.state.joining_date);
     data.append("adhar_number", this.state.adhar_number);
-    // data.append("adharimg", this.state.adharimg);
     data.append("pan_number", this.state.pan_number);
-    // data.append("panImg", this.state.panImg);
-    // data.append("photograh", this.state.photograh);
     data.append("date_of_brith", this.state.date_of_brith);
     data.append("salary_decieded", this.state.salary_decieded);
     data.append("salary_date", this.state.salary_date);
     data.append("status", this.state.status);
     if (this.state.selectedFile !== null) {
-      data.append(
-        "panImg",
-        "adharimg",
-        "photograh",
-        this.state.selectedFile,
-        this.state.selectedName
-      );
+      data.append("adharimg", this.state.selectedFile, this.state.selectedName);
     }
     for (var value of data.values()) {
       console.log(value);
@@ -193,17 +100,13 @@ export default class OtherStaff extends Component {
 
     let { id } = this.props.match.params;
     axios
-      .post(
-        `http://3.108.185.7/nodejs/api/dealer/updateonestaff/${id}`,
-        this.state
-      )
+      .post(`http://3.108.185.7/nodejs/api/dealer/updateonestaff/${id}`, data)
       .then((response) => {
         console.log(response);
-        // swal("Success!", "Submitted SuccessFull!", "success");
         this.props.history.push("/app/staffEnrollment/otherStaffList");
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.response);
       });
   };
 
@@ -217,9 +120,7 @@ export default class OtherStaff extends Component {
                 <BreadcrumbItem href="/analyticsDashboard" tag="a">
                   Home
                 </BreadcrumbItem>
-                {/* <BreadcrumbItem href="/app/material/materialList" tag="a">
-                    Material List
-                    </BreadcrumbItem> */}
+
                 <BreadcrumbItem active>Update Manager</BreadcrumbItem>
               </Breadcrumb>
             </div>
@@ -238,7 +139,6 @@ export default class OtherStaff extends Component {
                     required
                     type="text"
                     name="staff_name"
-                    placeholder="Enter Name"
                     value={this.state.staff_name}
                     onChange={this.changeHandler}
                   ></Input>
@@ -249,10 +149,27 @@ export default class OtherStaff extends Component {
                     required
                     type="text"
                     name="addres"
-                    placeholder="Enter Address"
                     value={this.state.addres}
                     onChange={this.changeHandler}
                   ></Input>
+                </Col>
+                <Col lg="6" md="6" sm="6" className="mb-2">
+                  <Label>Photograph Url</Label>
+                  <Input
+                    type="url"
+                    name="photograh"
+                    value={this.state.photograh}
+                    onChange={this.onChangeHandler}
+                  />
+                </Col>
+
+                <Col lg="6" md="0" sm="6">
+                  <Label>Photograph</Label>
+                  <img
+                    src={this.state.photograh}
+                    name="photograh"
+                    className="w-25 ml-5 h-50"
+                  />
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Mobile</Label>
@@ -262,17 +179,6 @@ export default class OtherStaff extends Component {
                     name="mobile"
                     placeholder="Enter Mobile no."
                     value={this.state.mobile}
-                    onChange={this.changeHandler}
-                  ></Input>
-                </Col>
-                <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>Joining Date</Label>
-                  <Input
-                    required
-                    type="text"
-                    name="joining_date"
-                    placeholder="Enter Joining Date"
-                    value={this.state.joining_date}
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
@@ -287,13 +193,21 @@ export default class OtherStaff extends Component {
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-                <Col lg="4" md="4" sm="4" className="mb-2">
-                  <Label>Adhar Image</Label>
-                  <CustomInput
-                    required
-                    type="file"
-                    placeholder="Enter Aadhar Image"
+                <Col lg="6" md="6" sm="6" className="mb-2">
+                  <Label>Adhar Url</Label>
+                  <Input
+                    type="url"
+                    name="adharimg"
+                    value={this.state.adharimg}
                     onChange={this.onChangeHandler}
+                  />
+                </Col>
+                <Col lg="6" md="0" sm="6">
+                  <Label>Adhar Image</Label>
+                  <img
+                    src={this.state.adharimg}
+                    name="photograh"
+                    className="w-25 ml-5 h-50"
                   />
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
@@ -307,31 +221,41 @@ export default class OtherStaff extends Component {
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-                <Col lg="4" md="4" sm="4" className="mb-2">
-                  <Label>PAN Image</Label>
-                  <CustomInput
-                    required
-                    type="file"
-                    placeholder="Enter Pan Image"
-                    onChange={this.onChangeHandler1}
+                <Col lg="6" md="0" sm="6" className="mb-2">
+                  <Label>Pan Image</Label>
+                  <img
+                    src={this.state.panImg}
+                    name="panImg"
+                    className="w-25 ml-5 h-50"
                   />
                 </Col>
-                <Col lg="4" md="4" sm="4" className="mb-2">
-                  <Label>Photograph</Label>
-                  <CustomInput
-                    required
-                    type="file"
-                    placeholder="Enter Banner Image"
-                    onChange={this.onChangeHandler2}
+                <Col lg="6" md="6" sm="6" className="mb-2">
+                  <Label>Pan Url</Label>
+                  <Input
+                    type="url"
+                    value={this.state.panImg}
+                    onChange={this.onChangeHandler}
+                    name="panImg"
                   />
                 </Col>
+                <Col lg="6" md="6" sm="6" className="mb-2">
+                  <Label>Joining Date</Label>
+                  <Input
+                    required
+                    type="text"
+                    name="joining_date"
+                    placeholder="Enter Joining Date"
+                    value={this.state.joining_date}
+                    onChange={this.changeHandler}
+                  ></Input>
+                </Col>
+
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Date of Brith</Label>
                   <Input
                     required
                     type="text"
                     name="date_of_brith"
-                    placeholder="Enter DOB"
                     value={this.state.date_of_brith}
                     onChange={this.changeHandler}
                   ></Input>
@@ -359,7 +283,7 @@ export default class OtherStaff extends Component {
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-                <Col lg="6" md="6" sm="6" className="mb-2">
+                {/* <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Approved Leaves per Month</Label>
                   <Input
                     required
@@ -369,6 +293,29 @@ export default class OtherStaff extends Component {
                     value={this.state.salary_date}
                     onChange={this.changeHandler}
                   ></Input>
+                </Col> */}
+                <Col lg="6" md="6" sm="6" className="mb-2 mt-1">
+                  <Label className="mb-1">Status</Label>
+                  <div
+                    className="form-label-group"
+                    onChange={(e) => this.changeHandler1(e)}
+                  >
+                    <input
+                      style={{ marginRight: "3px" }}
+                      type="radio"
+                      name="status"
+                      value="Active"
+                    />
+                    <span style={{ marginRight: "20px" }}>Active</span>
+                    <input
+                      style={{ marginRight: "3px" }}
+                      type="radio"
+                      name="status"
+                      value="Inactive"
+                    />
+
+                    <span style={{ marginRight: "3px" }}>Inactive</span>
+                  </div>
                 </Col>
               </Row>
               <Row>

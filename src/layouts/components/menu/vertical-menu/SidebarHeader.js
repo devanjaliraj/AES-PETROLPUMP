@@ -2,6 +2,7 @@ import React, { Component } from "react"
 import { NavLink } from "react-router-dom"
 import { Disc, X, Circle } from "react-feather"
 import classnames from "classnames"
+import logo from "../../../../assets/img/logo/logo.png";
 class SidebarHeader extends Component {
   render() {
     let {
@@ -17,8 +18,9 @@ class SidebarHeader extends Component {
         <ul className="nav navbar-nav flex-row">
           <li className="nav-item mr-auto">
             <NavLink to="/" className="navbar-brand">
-              <div className="brand-logo" />
-              <h2 className="brand-text mb-0">AES</h2>
+              {/* <div className="brand-logo" /> */}
+              {/* <h2 className="brand-text mb-0">AES</h2> */}
+              <img src={logo} alt="logo" width= "150px" height="40px" style={{width:"150"}}/>
             </NavLink>
           </li>
           <li className="nav-item nav-toggle">

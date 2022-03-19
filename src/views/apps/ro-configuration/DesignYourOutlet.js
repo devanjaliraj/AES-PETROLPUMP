@@ -31,6 +31,7 @@ export default class DesignYourOutlet extends Component {
   }
 
   componentDidMount() {
+    
    
     let { id } = this.props.match.params;
     this.setState({ dealerId : id });
@@ -190,12 +191,12 @@ export default class DesignYourOutlet extends Component {
                   >
                     Update
                   </Button.Ripple>
-                  {/* <Button.Ripple
+                  <Button.Ripple
                     color="primary"
                     className="mr-1 mb-1"
                     onClick={() => history.push(`/app/ro-configuration/outletForm/`+dealerId)} > 
                     Next
-                  </Button.Ripple> */}
+                  </Button.Ripple>
                 </Col>
               </Row>
             </Form>

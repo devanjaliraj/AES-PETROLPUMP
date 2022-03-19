@@ -129,13 +129,13 @@ export default class DesignYourOutlet extends Component {
               <Col lg="6" md="6" sm="6" className="mb-2">
                 <Label>Purchased on</Label>
                 <Input
-                  type="date"
+                  type="text"
                   name="purchased_on"
                   value={this.state.purchased_on}
                   onChange={this.changeHandler}
                 ></Input>
               </Col>
-              <Col lg="6" md="6" sm="6" className="mb-2">
+              {/* <Col lg="6" md="6" sm="6" className="mb-2">
                 <Label>Dealer</Label>
                 <Input
                   type="text"
@@ -143,7 +143,7 @@ export default class DesignYourOutlet extends Component {
                   value={this.state.dealer}
                   onChange={this.changeHandler}
                 ></Input>
-              </Col>
+              </Col> */}
 
               <Row>
                 <Col

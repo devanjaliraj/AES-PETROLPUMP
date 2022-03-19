@@ -28,12 +28,24 @@ export default class PaymentModeAvalable extends Component {
     };
     this.state = {
       bankC: [],
-     
+      modeC:[],
     };
     this.submitHandler = this.submitHandler.bind(this);
   }
 
   componentDidMount() {
+
+
+    //Payment
+    axios
+    .get("http://3.108.185.7/nodejs/api/dealer/allpayment")
+    .then((response) => {
+      console.log(response.data.data);
+      this.setState({ modeC: response.data.data });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 
      //Bank
      axios
@@ -121,6 +133,7 @@ export default class PaymentModeAvalable extends Component {
           </Row>
           <CardBody>
             <Form className="m-1" onSubmit={this.submitHandler}>
+              
               <Col lg="6" md="6" sm="12">
                 <FormGroup>
                   <Label>Select Mode </Label>
@@ -129,14 +142,12 @@ export default class PaymentModeAvalable extends Component {
                     name="select_mode"
                     value={this.state.select_mode}
                     onChange={this.changeHandler}>
-                    <option value="mode1">Mode1</option>
-                    <option value="mode2">Mode2</option>
-                    <option value="mode3">Mode3</option>
-                    <option value="mode4">Mode4</option>
-                    <option value="mode5">Mode5</option>
-                    <option value="mode6">Mode6</option>
-                    <option value="mode7">Mode7</option>
-                    <option value="mode8">Mode8</option>
+                      {this.state.modeC?.map((modep) => (
+                      <option value={modep._id} key={modep._id}>
+                        {modep.select_mode}
+                      </option>
+                    ))}
+                   
                   </CustomInput>
                 </FormGroup>
               </Col>
@@ -145,7 +156,7 @@ export default class PaymentModeAvalable extends Component {
                   <CustomInput
                     type="select"
                     name="name_of_bank	"
-                    value={this.state.name_of_bank	}
+                    value={this.state.name_of_bank}
                     onChange={this.changeHandler}
                   >
                     {this.state.bankC?.map((bankp) => (

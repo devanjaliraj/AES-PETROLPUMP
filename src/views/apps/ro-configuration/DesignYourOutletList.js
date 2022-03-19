@@ -156,6 +156,8 @@ class DesignYourOutletList extends React.Component {
         headerName: "Actions",
         field: "sortorder",
         width: 100,
+        pinned: window.innerWidth > 992 ? "right" : false,
+
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">

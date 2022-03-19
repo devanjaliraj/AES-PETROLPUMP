@@ -18,9 +18,10 @@ const shop = lazy(() => import("./views/apps/ecommerce/shop/Shop"));
 // stockmanagement
 const StockManagementList = lazy(() =>import("./views/apps/stockmanagement/StockManagementList"));
 const FuelStock = lazy(() => import("./views/apps/stockmanagement/FuelStock"));
-const LubeStock = lazy(() => import("./views/apps/stockmanagement/LubeStock"));
+const LubeStockList = lazy(() => import("./views/apps/stockmanagement/LubeStockList"));
+const LubeStockForm = lazy(() => import("./views/apps/stockmanagement/LubeStockForm"));
 
-// shiftmanagement
+// shiftmanagement 
 const bayManagementForm = lazy(() =>import("./views/apps/shiftmanagement/BayManagementForm"));
 const bayManagementList = lazy(() =>import("./views/apps/shiftmanagement/BayManagementList"));
 const creditGivenForm = lazy(() => import("./views/apps/shiftmanagement/CreditGivenForm"));
@@ -92,6 +93,13 @@ const addBank = lazy(() => import("./views/apps/setting/bank/AddBank"));
 const bankList = lazy(() => import("./views/apps/setting/bank/BankList"));
 const editBank = lazy(() => import("./views/apps/setting/bank/EditBank"));
 const viewBank = lazy(() => import("./views/apps/setting/bank/ViewBank"));
+
+const mOCList = lazy(() => import("./views/apps/setting/moc/MOCList"));
+const addMOC = lazy(() => import("./views/apps/setting/moc/AddMOC"));
+const editMOC = lazy(() => import("./views/apps/setting/moc/EditMOC"));
+const viewMOC = lazy(() => import("./views/apps/setting/moc/ViewMOC"));
+
+
 const enquiryForm = lazy(() => import("./views/apps/setting/EnquiryForm"));
 
 const grid = lazy(() => import("./views/ui-elements/grid/Grid"));
@@ -261,7 +269,9 @@ class AppRouter extends React.Component {
           {/* stockManagement */}
           <AppRoute path="/app/stockManagement/stockManagementList" component={StockManagementList} />
           <AppRoute path="/app/stockManagement/fuelStock" component={FuelStock} />
-          <AppRoute path="/app/stockManagement/lubeStock" component={LubeStock} />
+          <AppRoute path="/app/stockManagement/lubeStockList" component={LubeStockList} />
+          <AppRoute path="/app/stockManagement/lubeStockForm/:id" component={LubeStockForm} />
+
 
           {/* facilityManagement */}
           <AppRoute path="/app/facilityManagement/facilityManagementList" component={FacilityManagementList}/>
@@ -305,6 +315,11 @@ class AppRouter extends React.Component {
           <AppRoute path="/app/setting/bank/addBank" component={addBank} />
           <AppRoute path="/app/setting/bank/editBank/:id" component={editBank} />
           <AppRoute path="/app/setting/bank/viewBank/:id" component={viewBank} />
+
+          <AppRoute path="/app/setting/moc/mOCList" component={mOCList} />
+          <AppRoute path="/app/setting/moc/editMOC" component={editMOC} />
+          <AppRoute path="/app/setting/moc/addMOC" component={addMOC} />
+          <AppRoute path="/app/setting/moc/viewMOC" component={viewMOC} />
           <AppRoute path="/app/setting/enquiryForm" component={enquiryForm} />
 
 

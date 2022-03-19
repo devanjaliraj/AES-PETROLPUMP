@@ -47,7 +47,6 @@ class CreditCustomersList extends React.Component {
         headerName: "Email",
         field: "dealer_name1.email",
         width: 150,
-        pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -94,6 +93,18 @@ class CreditCustomersList extends React.Component {
       },
       {
         headerName: "Credit Term Lube",
+        field: "credit_term_lube",
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.credit_term_lube}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Credit Term Fuel",
         field: "credit_term_lube",
         width: 100,
         cellRendererFramework: (params) => {
@@ -180,6 +191,8 @@ class CreditCustomersList extends React.Component {
         headerName: "Actions",
         field: "sortorder",
         width: 100,
+        pinned: window.innerWidth > 992 ? "right" : false,
+
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
@@ -307,7 +320,7 @@ class CreditCustomersList extends React.Component {
                   <div className="d-flex flex-wrap justify-content-between mb-1">
                     <div className="table-input mr-1">
                       <Input
-                        placeholder="search..."
+                        placeholder="Vehicle no./name"
                         onChange={(e) => this.updateSearchQuery(e.target.value)}
                         value={this.state.value}
                       />

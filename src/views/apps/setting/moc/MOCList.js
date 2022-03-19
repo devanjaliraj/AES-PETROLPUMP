@@ -12,14 +12,14 @@ import {
   DropdownToggle,
 } from "reactstrap";
 import axios from "axios";
-import { ContextLayout } from "../../../utility/context/Layout";
+import { ContextLayout } from "../../../../utility/context/Layout";
 import { AgGridReact } from "ag-grid-react";
-import {  Edit,  Trash2, ChevronDown } from "react-feather";
+import {  Edit, Eye, Trash2, ChevronDown } from "react-feather";
 //import classnames from "classnames";
-import { history } from "../../../history";
-import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-import "../../../assets/scss/pages/users.scss";
-class BankForTransactionList extends React.Component {
+import { history } from "../../../../history";
+import "../../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
+import "../../../../assets/scss/pages/users.scss";
+class MOSList extends React.Component {
   state = {
     rowData: [],
     paginationPageSize: 20,
@@ -33,111 +33,30 @@ class BankForTransactionList extends React.Component {
     },
     columnDefs: [
       {
-        headerName: "Dealer Name",
-        field: "dealer_name1.dealer_name",
+        headerName: "S.No",
+        valueGetter: "node.rowIndex + 1",
+        field: "node.rowIndex + 1",
         width: 150,
-        pinned: window.innerWidth > 992 ? "left" : false,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dealer_name1?.dealer_name}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Email",
-        field: "dealer_name1.email",
-        width: 150,
-        pinned: window.innerWidth > 992 ? "left" : false,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dealer_name1?.email}</span>
-            </div>
-          );
-        },
-      },
-     
-    
-      {
-        headerName: "Name Of Bank ",
-        field: "name_of_bank",
         filter: true,
-        width: 100,
+        // checkboxSelection: true,
+        // headerCheckboxSelectionFilteredOnly: true,
+        // headerCheckboxSelection: true,
+      },
+      {
+        headerName: "Master Oil Company",
+        field: "name",
+        filter: true,
+        width: 200,
         cellRendererFramework: (params) => {
           return (
             <div>
-              <span>{params.data.name_of_bank}</span>
+              <span>{params.data.name}</span>
             </div>
           );
         },
       },
-      {
-        headerName: "Credit limit of bank",
-        field: "credit_limit_of_bank",
-        filter: true,
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.credit_limit_of_bank}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Intrest Rates",
-        field: "intrest_rates",
-        filter: true,
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div>
-              <span>{params.data.intrest_rates}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "IFSC Code",
-        field: "ifsc_code",
-        filter: true,
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div>
-              <span>{params.data.ifsc_code}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Credit Offer from Bank Valid upto ",
-        field: "cresit_offer",
-        filter: true,
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div>
-              <span>{params.data.cresit_offer}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Documents upload",
-        field: "document_upload",
-        filter: true,
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div>
-              <span>{params.data.document_upload}</span>
-            </div>
-          );
-        },
-      },
+      
+  
       // {
       //   headerName: "Status",
       //   field: "status",
@@ -160,8 +79,6 @@ class BankForTransactionList extends React.Component {
         field: "sortorder",
         // field: "transactions",
         width: 150,
-        pinned: window.innerWidth > 992 ? "right" : false,
-
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
@@ -170,14 +87,14 @@ class BankForTransactionList extends React.Component {
                 color="green"
                 size={20}
                 onClick={() =>
-                  history.push(`/app/ro-configuration/viewBankForTransaction/${params.data._id}`)
+                  history.push(`/app/setting/moc/viewMOC/${params.data._id}`)
                 }
               /> */}
               <Edit
                 className="mr-50"
                 color="blue"
                 size={20}
-                onClick={() => history.push(`/app/ro-configuration/editBankForTransaction/${params.data._id}`)}
+                onClick={() => history.push(`/app/setting/moc/editMOC/${params.data._id}`)}
               />
               <Trash2
                 size={20}
@@ -196,7 +113,7 @@ class BankForTransactionList extends React.Component {
   };
 
   async componentDidMount() {
-    await axios.get(`http://3.108.185.7/nodejs/api/dealer/allbank`).then((response) => {
+    await axios.get(`http://3.108.185.7/nodejs/api/dealer/allMasterOilCompany`).then((response) => {
       const rowData = response.data.data;
       console.log(rowData);
       this.setState({ rowData });
@@ -251,16 +168,16 @@ class BankForTransactionList extends React.Component {
               <Row className="m-2">
                 <Col>
                   <h1 sm="6" className="float-left">
-                    Bank List
+                    MOC List
                   </h1>
                 </Col>
                 <Col>
-                  {/* <Button
+                  <Button
                     className=" btn btn-danger float-right"
-                    onClick={() => history.push("/app/setting/bank/addBank")}
+                    onClick={() => history.push("/app/setting/moc/addMOC")}
                   >
-                    Add Bank
-                  </Button> */}
+                   ADD MOC 
+                  </Button>
                 </Col>
               </Row>
               <CardBody>
@@ -362,5 +279,4 @@ class BankForTransactionList extends React.Component {
     );
   }
 }
-
-export default BankForTransactionList;
+export default MOSList;

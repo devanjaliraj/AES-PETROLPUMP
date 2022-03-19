@@ -1,25 +1,21 @@
 import React, { Component } from "react";
 import {
   Card,
-  CardHeader,
-  CardTitle,
   CardBody,
   Row,
   Col,
   Form,
   Label,
   Input,
-  CustomInput,
   Breadcrumb,
   BreadcrumbItem,
   Button,
-  FormGroup
 } from "reactstrap";
 import axios from "axios";
 export default class Manager extends Component {
-  fileArrayAdhar = [];
-  fileArrayPan = [];
-  fileArrayPhoto = [];
+  // fileArrayAdhar = [];
+  // fileArrayPan = [];
+  // fileArrayPhoto = [];
   constructor(props) {
     super(props);
     this.state = {
@@ -32,16 +28,13 @@ export default class Manager extends Component {
       mobile: "",
       panImg: "",
       pan_number: "",
-      photograh:"",
+      photograh: "",
       salary_date: "",
-      salary_decieded:"",
-      status:"",
+      salary_decieded: "",
+      status: "",
       selectedFile: null,
-      selectedName: "",
+      // selectedName: "",
     };
-
-    // this.submitHandler = this.submitHandler.bind(this);
-    
   }
   onChangeHandler = (event) => {
     this.setState({ selectedFile: event.target.files[0] });
@@ -97,28 +90,24 @@ export default class Manager extends Component {
     data.append("salary_decieded", this.state.salary_decieded);
     data.append("salary_date", this.state.salary_date);
     data.append("status", this.state.status);
-    data.append(" adharimg",this.state.selectedFile,this.state.selectedName);
-    data.append(" panImg",this.state.selectedFile,this.state.selectedName);
-    data.append(" photograh",this.state.selectedFile,this.state.selectedName);
+    if (this.state.selectedFile !== null) {
+      data.append("adharimg", this.state.selectedFile, this.state.selectedName);
+    }
+    for (var value of data.values()) {
+      console.log(value);
+    }
+    for (var key of data.keys()) {
+      console.log(key);
+    }
 
-  for (var value of data.values()) {
-    console.log(value);
-  }
-  for (var key of data.keys()) {
-    console.log(key);
-  }
-    let { id } = this.props.match.params
-
-
+    let { id } = this.props.match.params;
     axios
-      .post(
-        `http://3.108.185.7/nodejs/api/dealer/updateonemanager/${id}`,
-        this.state)
-      .then(response => {
+      .post(`http://3.108.185.7/nodejs/api/dealer/updateonemanager/${id}`, data)
+      .then((response) => {
         console.log(response);
-        // swal("Success!", "Submitted SuccessFull!", "success");
         this.props.history.push("/app/staffEnrollment/staffManagementList");
       })
+
       .catch((error) => {
         console.log(error);
       });
@@ -134,18 +123,13 @@ export default class Manager extends Component {
                 <BreadcrumbItem href="/analyticsDashboard" tag="a">
                   Home
                 </BreadcrumbItem>
-                {/* <BreadcrumbItem href="/app/material/materialList" tag="a">
-                    Material List
-                    </BreadcrumbItem> */}
+
                 <BreadcrumbItem active>Update Manager</BreadcrumbItem>
               </Breadcrumb>
             </div>
           </Col>
         </Row>
         <Card>
-        {/*  <CardHeader>
-            <CardTitle>Manager/Cashiers</CardTitle>
-          </CardHeader> */}
           <CardBody>
             <Form className="m-1" onSubmit={this.submitHandler}>
               <Row>
@@ -155,20 +139,11 @@ export default class Manager extends Component {
                     required
                     type="text"
                     name="maneger_name"
-                    placeholder="Enter Name"
                     value={this.state.maneger_name}
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-                <Col lg="4" md="4" sm="4" className="mb-2">
-                <Label> Photograph</Label>
-                 <Input 
-                    type="file" 
-                    name="photograh"
-                    onChange={this.onChangeHandler}
-                  />
-                </Col>
-                 <Col lg="6" md="6" sm="6" className="mb-2">
+                <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Address</Label>
                   <Input
                     required
@@ -179,6 +154,25 @@ export default class Manager extends Component {
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
+                <Col lg="6" md="6" sm="6" className="mb-2">
+                  <Label>Photograph Url</Label>
+                  <Input
+                    type="url"
+                    name="photograh"
+                    value={this.state.photograh}
+                    onChange={this.onChangeHandler}
+                  />
+                </Col>
+
+                <Col lg="6" md="0" sm="6">
+                  <Label>Photograph</Label>
+                  <img
+                    src={this.state.photograh}
+                    name="photograh"
+                    className="w-25 ml-5 h-50"
+                  />
+                </Col>
+
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Mobile</Label>
                   <Input
@@ -201,12 +195,21 @@ export default class Manager extends Component {
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-                <Col lg="4" md="4" sm="4" className="mb-2">
-                 <Label>Adhar Image</Label>
-                 <Input 
-                    type="file" 
-                    name="adharimg" 
+                <Col lg="6" md="6" sm="6" className="mb-2">
+                  <Label>Adhar Url</Label>
+                  <Input
+                    type="url"
+                    name="adharimg"
+                    value={this.state.adharimg}
                     onChange={this.onChangeHandler}
+                  />
+                </Col>
+                <Col lg="6" md="0" sm="6">
+                  <Label>Adhar Image</Label>
+                  <img
+                    src={this.state.adharimg}
+                    name="photograh"
+                    className="w-25 ml-5 h-50"
                   />
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
@@ -217,19 +220,28 @@ export default class Manager extends Component {
                     name="pan_number"
                     placeholder="Enter Pan No."
                     value={this.state.pan_number}
-                    onChange={this.changeHandler}>
-                  </Input>
+                    onChange={this.changeHandler}
+                  ></Input>
                 </Col>
-                
-                <Col lg="4" md="4" sm="4" className="mb-2">
-                <Label>Pan Image</Label>
-                 <Input 
-                    type="file" 
+
+                <Col lg="6" md="0" sm="6" className="mb-2">
+                  <Label>Pan Image</Label>
+                  <img
+                    src={this.state.panImg}
                     name="panImg"
-                    onChange={this.onChangeHandler}
+                    className="w-25 ml-5 h-50"
                   />
                 </Col>
-              <Col lg="6" md="6" sm="6" className="mb-2">
+                <Col lg="6" md="6" sm="6" className="mb-2">
+                  <Label>Pan Url</Label>
+                  <Input
+                    type="url"
+                    value={this.state.panImg}
+                    onChange={this.onChangeHandler}
+                    name="panImg"
+                  />
+                </Col>
+                <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Joining Date</Label>
                   <Input
                     required
@@ -240,13 +252,12 @@ export default class Manager extends Component {
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-              
 
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Date of Brith</Label>
                   <Input
                     required
-                    type="date"
+                    type="text"
                     name="date_of_brith"
                     placeholder="Enter DOB"
                     value={this.state.date_of_brith}
@@ -268,18 +279,19 @@ export default class Manager extends Component {
                   <Label>Salary Date</Label>
                   <Input
                     required
-                    type="date"
+                    type="text"
                     name="salary_date"
                     placeholder="Enter Name"
                     value={this.state.salary_date}
                     onChange={this.changeHandler}
                   ></Input>
-                </Col> 
+                </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2 mt-1">
                   <Label className="mb-1">Status</Label>
                   <div
                     className="form-label-group"
-                    onChange={(e) => this.changeHandler1(e)}>
+                    onChange={(e) => this.changeHandler1(e)}
+                  >
                     <input
                       style={{ marginRight: "3px" }}
                       type="radio"
@@ -297,9 +309,8 @@ export default class Manager extends Component {
                     <span style={{ marginRight: "3px" }}>Inactive</span>
                   </div>
                 </Col>
-             
-           
-            
+              </Row>
+              <Row>
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Button.Ripple
                     color="primary"

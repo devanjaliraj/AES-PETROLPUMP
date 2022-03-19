@@ -31,9 +31,50 @@ export default class BasicDetails extends Component {
         district:"",
        
     };
+    this.state = {
+      mocN: [],
+     cityS:[],
+     stateC:[]
+    };
+    this.submitHandler = this.submitHandler.bind(this);
   }
 
   componentDidMount() {
+    
+  //  state
+  axios
+  .get("http://3.108.185.7/nodejs/api/admin/allstate")
+  .then((response) => {
+    console.log(response.data.data);
+    this.setState({ stateC: response.data.data });
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+  //  city
+  axios
+  .get("http://3.108.185.7/nodejs/api/admin/allcity")
+  .then((response) => {
+    console.log(response.data.data);
+    this.setState({ cityS: response.data.data });
+  })
+  .catch((error) => {
+    console.log(error);
+  });
+
+
+    // MOC
+    axios
+    .get("http://3.108.185.7/nodejs/api/dealer/allMasterOilCompany")
+    .then((response) => {
+      console.log(response.data.data);
+      this.setState({ mocN: response.data.data });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
     let { id } = this.props.match.params;
     axios
       .get(`http://3.108.185.7/nodejs/api/dealer/viewonedealershipform/${id}`)
@@ -123,7 +164,7 @@ export default class BasicDetails extends Component {
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Mobile No.</Label>
                   <Input
-                    type="text"
+                    type="number"
                     name="mobile"
                     value={this.state.mobile}
                     onChange={this.changeHandler}
@@ -132,21 +173,13 @@ export default class BasicDetails extends Component {
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Email ID</Label>
                   <Input
-                    type="text"
-                    name="Email"
+                    type="email"
+                    name="email"
                     value={this.state.email}
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-                {/* <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>Master Oil Company</Label>
-                  <Input
-                    type="text"
-                    name="master_oil_company"
-                    value={this.state.master_oil_company}
-                    onChange={this.changeHandler}
-                  ></Input>
-                </Col> */}
+            
                 <Col md="6" sm="12">
                 <FormGroup>
                    <Label>Master Oil Company</Label>
@@ -155,10 +188,12 @@ export default class BasicDetails extends Component {
                     name="master_oil_company"
                     value={this.state.master_oil_company}
                     onChange={this.changeHandler}>
-                    <option>BPL</option>
-                    <option>HPCL</option>
-                    <option>Reliance</option>
-                    <option>Indian Oil</option>
+                       {this.state.mocN?.map((mocp) => (
+                      <option value={mocp._id} key={mocp._id}>
+                        {mocp.name}
+                      </option>
+                    ))}
+                   
                   </CustomInput>
                 </FormGroup>
               </Col>
@@ -189,37 +224,15 @@ export default class BasicDetails extends Component {
                     name="state"
                     value={this.state.state}
                     onChange={this.changeHandler}>
-                    <option>Andhra Pradesh</option>
-                    <option>Arunachal Pradesh</option>
-                    <option>Assam </option>
-                    <option>Madhya Pradesh</option>
-                    <option>Goa</option>
-                    <option>Gujarat</option>
-                    <option>Bihar</option>
-                    <option>Kerala</option>
-                    <option>Maharashtra</option>
-                    <option>Manipur</option>
+                      {this.state.stateC?.map((statep) => (
+                      <option value={statep._id} key={statep._id}>
+                        {statep.name}
+                      </option>
+                    ))}
                   </CustomInput>
                 </FormGroup>
               </Col>
-                {/* <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>State</Label>
-                  <Input
-                    type="text"
-                    name="state"
-                    value={this.state.state}
-                    onChange={this.changeHandler}
-                  ></Input>
-                </Col> */}
-                {/* <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>District </Label>
-                  <Input
-                    type="text"
-                    name="district"
-                    value={this.state.district}
-                    onChange={this.changeHandler}
-                  ></Input>
-                </Col> */}
+              
                 <Col md="6" sm="12">
                 <FormGroup>
                 <Label>District </Label>
@@ -228,16 +241,11 @@ export default class BasicDetails extends Component {
                   name="district"
                     value={this.state.district}
                     onChange={this.changeHandler}>
-                    <option>Jabalpur</option>
-                    <option>Jhabua</option>
-                    <option>Katni </option>
-                    <option>Khandwa</option>
-                    <option>Khargone</option>
-                    <option>Mandla</option>
-                    <option>Mandsaur</option>
-                    <option>Morena</option>
-                    <option>Indore</option>
-                    <option>Sagar</option>
+                        {this.state.cityS?.map((cityp) => (
+                      <option value={cityp._id} key={cityp._id}>
+                        {cityp.name}
+                      </option>
+                    ))}
                   </CustomInput>
                 </FormGroup>
               </Col>

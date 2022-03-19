@@ -68,12 +68,12 @@ class RoConfiguration extends React.Component {
       },
       {
         headerName: "Master Oil Company",
-        field: "master_oil_company",
+        field: "master_oil_company.name",
         width: 140,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.master_oil_company}</span>
+              <span>{params.data.master_oil_company?.name}</span>
             </div>
           );
         },

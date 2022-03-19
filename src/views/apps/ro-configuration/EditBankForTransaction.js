@@ -23,7 +23,9 @@ export default class EditBankForTransaction extends Component {
         intrest_rates: "",
         ifsc_code:"",
         cresit_offer:"",
+        account_no:"",
         document_upload:""
+     
     };
   }
   componentDidMount() {
@@ -39,6 +41,7 @@ export default class EditBankForTransaction extends Component {
             ifsc_code: response.data.data.ifsc_code,
             cresit_offer: response.data.data.cresit_offer,
             document_upload: response.data.data.document_upload,
+            account_no: response.data.data.account_no
         });
       })
       .catch(error => {
@@ -131,6 +134,15 @@ export default class EditBankForTransaction extends Component {
                     value={this.state.intrest_rates}
                     onChange={this.changeHandler}>
                   </Input>
+                </Col>
+                <Col lg="6" md="6" sm="6" className="mb-2">
+                  <Label>Account No.</Label>
+                  <Input
+                    type="text"
+                    name="account_no"
+                    value={this.state.account_no}
+                    onChange={this.changeHandler}
+                  ></Input>
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>IFSC Code</Label>

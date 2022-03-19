@@ -55,14 +55,7 @@ const navigationConfig = [
       },
    
     
-      // {
-      //   id: "basicDetails",
-      //   title: "Basic Details",
-      //   type: "item",
-      //   icon: <Icon.Circle size={12} />,
-      //   permissions: ["admin", "editor"],
-      //   navLink: "/app/ro-configuration/basicDetails",
-      // },
+    
       {
         id: "designYourOutletList",
         title: "Design Your Outlet",
@@ -71,14 +64,14 @@ const navigationConfig = [
         permissions: ["admin", "editor"],
         navLink: "/app/ro-configuration/designYourOutletList",
       },
-      {
-        id: "outletList",
-        title: "Outlet List",
-        type: "item",
-        icon: <Icon.Circle size={12} />,
-        permissions: ["admin", "editor"],
-        navLink: "/app/ro-configuration/outletList",
-      },
+      // {
+      //   id: "outletList",
+      //   title: "Outlet List",
+      //   type: "item",
+      //   icon: <Icon.Circle size={12} />,
+      //   permissions: ["admin", "editor"],
+      //   navLink: "/app/ro-configuration/outletList",
+      // },
     
       {
         id: "bankForTransactionList",
@@ -314,12 +307,12 @@ const navigationConfig = [
         navLink: "/app/stockManagement/fuelStock",
       },
       {
-        id: "lubeStock",
-        title: "Lube Stock",
+        id: "lubeStockList",
+        title: "Lube Stock List",
         type: "item",
         icon: <Icon.Circle size={12} />,
         permissions: ["admin", "editor"],
-        navLink: "/app/stockManagement/lubeStock",
+        navLink: "/app/stockManagement/lubeStockList",
       },
     ],
   },
@@ -420,25 +413,17 @@ const navigationConfig = [
         permissions: ["admin", "editor"],
         navLink: "/app/setting/enquiryForm",
       },
-      
-    ],
-  },
-  {
-    id: "bank",
-    title: "Bank",
-    type: "collapse",
-    icon: <Icon.User size={20} />,
-    children: [
       {
-        id: "bankList",
-        title: "Bank List",
+        id: "mOCList",
+        title: "MOC List",
         type: "item",
         icon: <Icon.Circle size={12} />,
         permissions: ["admin", "editor"],
-        navLink: "/app/setting/bank/bankList",
+        navLink: "/app/setting/moc/mOCList",
       },
       
     ],
   },
+
 ];
 export default navigationConfig;
