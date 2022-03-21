@@ -27,30 +27,30 @@ export default class BasicDetails extends Component {
         master_oil_company:"",
         location:"",
         omc_customer_code:"",
+        // district:"",
+        districts:[],
         state:"",
-        district:"",
-       
     };
     this.state = {
       mocN: [],
      cityS:[],
-     stateC:[]
+     
     };
     this.submitHandler = this.submitHandler.bind(this);
   }
 
   componentDidMount() {
     
-  //  state
-  axios
-  .get("http://3.108.185.7/nodejs/api/admin/allstate")
-  .then((response) => {
-    console.log(response.data.data);
-    this.setState({ stateC: response.data.data });
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+  // //  state
+  // axios
+  // .get("http://3.108.185.7/nodejs/api/admin/allstate")
+  // .then((response) => {
+  //   console.log(response.data.data);
+  //   this.setState({ stateC: response.data.data });
+  // })
+  // .catch((error) => {
+  //   console.log(error);
+  // });
 
   //  city
   axios
@@ -88,8 +88,8 @@ export default class BasicDetails extends Component {
             location: response.data.data.location,
             omc_customer_code: response.data.data.omc_customer_code,
             state: response.data.data.state,
-            district: response.data.data.district,
-           
+            // district: response.data.data.district,
+             districts: response.data.data.districts,
         });
       })
       .catch(error => {
@@ -110,6 +110,15 @@ export default class BasicDetails extends Component {
         // swal("Success!", "Submitted SuccessFull!", "success");
         this.props.history.push("/app/ro-configuration/RoConfigurationList");
       })
+
+  //       //  state
+  // axios
+  // .post(`http://3.108.185.7/nodejs/api/admin/allstate/${id}`)
+  // .then(response => {
+  //   console.log(response.data.data);
+  //   this.setState({ stateC: response.data.data });
+  // })
+ 
       .catch(error => {
         console.log(error);
       });
@@ -224,9 +233,9 @@ export default class BasicDetails extends Component {
                     name="state"
                     value={this.state.state}
                     onChange={this.changeHandler}>
-                      {this.state.stateC?.map((statep) => (
-                      <option value={statep._id} key={statep._id}>
-                        {statep.name}
+                       {this.state.cityS?.map((cityp) => (
+                      <option value={cityp._id} key={cityp._id}>
+                        {cityp.state}
                       </option>
                     ))}
                   </CustomInput>
@@ -238,12 +247,12 @@ export default class BasicDetails extends Component {
                 <Label>District </Label>
                   <CustomInput 
                   type="select"
-                  name="district"
-                    value={this.state.district}
+                  name="districts"
+                    value={this.state.districts}
                     onChange={this.changeHandler}>
                         {this.state.cityS?.map((cityp) => (
-                      <option value={cityp._id} key={cityp._id}>
-                        {cityp.name}
+                      <option value={cityp.state} key={cityp.state}>
+                        {cityp.districts}
                       </option>
                     ))}
                   </CustomInput>

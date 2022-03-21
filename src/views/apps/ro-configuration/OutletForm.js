@@ -58,7 +58,7 @@ class OutletForm extends React.Component {
     let { id } = this.props.match.params.id;
     this.setState({ dealerId : id });
     axios
-      .post(`http://3.108.185.7/nodejs/api/dealer/addeditadvancedealershipform/${this.props.match.params.id}`)
+      .post(`http://3.108.185.7/nodejs/api/dealer/addeditbasicdealershipform/${this.props.match.params.id}`)
       .then((response) => {
         if(response.status === 200){
           let data = response.data.data;
@@ -136,44 +136,50 @@ class OutletForm extends React.Component {
 
   handleChangeTank = (selectedTankOption) => {
     let capacityArray = []
-    let productArray = []
-
+    let productArray=[]
     this.setState({ selectedTankOption }, () =>
       console.log(`Option selected:`, this.state.selectedTankOption)
     );
-    var filteredProTank = this.state.tank_map.filter(function(event){
-      if(event._id === selectedTankOption.value){
-       return event
-      } 
-   });
-   let obj1 ={}
-   if(filteredProTank.length > 0){
-     this.setState({ selectedTankCapacity : filteredProTank[0].product})
-      obj1 = {
-       value : filteredProTank[0].product_map?.product,
-       label : filteredProTank[0].product_map?.product
-     }
-     productArray.push(obj1)
-     this.setState({ tankProductOptions : productArray})
-   }
-
-
       var filteredCapTank = this.state.tank_map.filter(function(event){
          if(event._id === selectedTankOption.value){
           return event
          } 
+         
       });
       let obj ={}
       if(filteredCapTank.length > 0){
-        this.setState({ selectedTankCapacity : filteredCapTank[0].capacity_litre?.capacity})
+        this.setState({ selectedTankCapacity : filteredCapTank[0].capacity_litre})
          obj = {
-          value : filteredCapTank[0].capacity_litre?.capacity,
-          label : filteredCapTank[0].capacity_litre?.capacity
+          value : filteredCapTank[0].capacity_litre,
+          label : filteredCapTank[0].capacity_litre
         }
         capacityArray.push(obj)
         this.setState({ tankCapacityOptions : capacityArray})
       }
+      var filteredProTank = this.state.tank_map.filter(function(event){
+        if(event._id === selectedTankOption.value){
+         return event
+        } 
+        
+     });
+      let obj1 ={}
+      if(filteredProTank.length > 0){
+        this.setState({ selectedTankProduct: filteredProTank[0].product_map})
+         obj1 = {
+          value : filteredProTank[0].product_map,
+          label : filteredProTank[0].product_map
+        }
+        productArray.push(obj1)
+        this.setState({ tankProductOptions : productArray})
+      }
   };
+  handleChangeMapTank = (selectedMapTankOption) => {
+    this.setState({ selectedMapTankOption }, () =>
+      console.log(`Option selected:`, this.state.selectedMapTankOption)
+    );
+  };
+     
+    
 
   handleChangeMapTank = (selectedMapTankOption) => {
     this.setState({ selectedMapTankOption }, () =>
