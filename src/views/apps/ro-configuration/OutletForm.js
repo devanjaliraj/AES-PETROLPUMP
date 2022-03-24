@@ -53,12 +53,17 @@ class OutletForm extends React.Component {
      
   }
 
-  componentDidMount() { 
+ 
+    submitHandler = (e) => {
+      e.preventDefault();
     let { id } = this.props.match.params.id;
     this.setState({ dealerId : id });
     axios
       .post(`http://3.108.185.7/nodejs/api/dealer/addeditadvancedealershipform/${this.props.match.params.id}`)
       .then((response) => {
+        console.log(response);
+        // swal("Success!", "Submitted SuccessFull!", "success");
+        this.props.history.push("/app/ro-configuration/designYourOutletList");
         if(response.status === 200){
           let data = response.data.data;
           
@@ -131,8 +136,8 @@ class OutletForm extends React.Component {
       .catch((error) => {
         console.log(error.response);
       });
-
-      
+    };
+    componentDidMount() { 
       let tankProductArray = []
       axios
       .get(`http://3.108.185.7/nodejs/api/dealer/allproduct`)

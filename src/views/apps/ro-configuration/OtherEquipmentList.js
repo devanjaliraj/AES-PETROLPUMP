@@ -93,6 +93,7 @@ class OtherEquipmentList extends React.Component {
           );
         },
       },
+     
       {
         headerName: "Actions",
         field: "sortorder",

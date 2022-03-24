@@ -153,6 +153,34 @@ class DesignYourOutletList extends React.Component {
         },
       },
       {
+        headerName: "Tank ",
+        field: "tank_map.product_map",
+        width: 140,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              {params.data.tank_map?.map((tank) => (
+              <span>{tank?.product_map}</span>
+              ))}
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Tank ",
+        field: "tank_map.capacity_litre",
+        width: 140,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              {params.data.tank_map?.map((tank) => (
+              <span>{tank?.capacity_litre}</span>
+              ))}
+            </div>
+          );
+        },
+      },
+      {
         headerName: "Actions",
         field: "sortorder",
         width: 100,
