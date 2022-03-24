@@ -181,6 +181,34 @@ class DesignYourOutletList extends React.Component {
         },
       },
       {
+        headerName: "MPD ",
+        field: "mpd_map.bay_map",
+        width: 140,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              {params.data.mpd_map?.map((mpd) => (
+              <span>{mpd?.bay_map}</span>
+              ))}
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "BAY ",
+        field: "bay_map.nozzle_map",
+        width: 140,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              {params.data.bay_map?.map((bay) => (
+              <span>{bay?.nozzle_map}</span>
+              ))}
+            </div>
+          );
+        },
+      },
+      {
         headerName: "Actions",
         field: "sortorder",
         width: 100,

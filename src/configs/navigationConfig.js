@@ -23,22 +23,22 @@ const navigationConfig = [
     type: "groupHeader",
     groupTitle: "Component",
   },
-  {
-    id: "dealer",
-    title: "Dealer",
-    type: "collapse",
-    icon: <Icon.User size={20} />,
-    children: [
-      {
-        id: "dealerList",
-        title: "Dealer List",
-        type: "item",
-        icon: <Icon.Circle size={12} />,
-        permissions: ["admin", "editor"],
-        navLink: "/app/dealer/dealerList",
-      },
-    ],
-  },
+  // {
+  //   id: "dealer",
+  //   title: "Dealer",
+  //   type: "collapse",
+  //   icon: <Icon.User size={20} />,
+  //   children: [
+  //     {
+  //       id: "dealerList",
+  //       title: "Dealer List",
+  //       type: "item",
+  //       icon: <Icon.Circle size={12} />,
+  //       permissions: ["admin", "editor"],
+  //       navLink: "/app/dealer/dealerList",
+  //     },
+  //   ],
+  // },
   {
     id: "ro-configuration",
     title: "RO-configuration",

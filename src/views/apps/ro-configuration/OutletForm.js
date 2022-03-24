@@ -15,7 +15,6 @@ import Select from "react-select";
 
 const tankOptions = [];
 
-
 const mpdOptions = [];
 
 const bayOptions = [];
@@ -53,17 +52,18 @@ class OutletForm extends React.Component {
      
   }
 
- 
-    submitHandler = (e) => {
-      e.preventDefault();
+  componentDidMount() { 
+    // submitHandler = (e) => {
+    //   e.preventDefault();
     let { id } = this.props.match.params.id;
     this.setState({ dealerId : id });
     axios
       .post(`http://3.108.185.7/nodejs/api/dealer/addeditadvancedealershipform/${this.props.match.params.id}`)
       .then((response) => {
         console.log(response);
+        console.log('datadatadata @@@@@@@@@@@@###',response)
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/app/ro-configuration/designYourOutletList");
+        // this.props.history.push("/app/ro-configuration/designYourOutletList");
         if(response.status === 200){
           let data = response.data.data;
           
@@ -136,8 +136,7 @@ class OutletForm extends React.Component {
       .catch((error) => {
         console.log(error.response);
       });
-    };
-    componentDidMount() { 
+  
       let tankProductArray = []
       axios
       .get(`http://3.108.185.7/nodejs/api/dealer/allproduct`)
@@ -178,7 +177,7 @@ class OutletForm extends React.Component {
     // .catch((error) => {
     //   console.log(error);
     // });
-
+//capacity
       let tankCapacityArray = []
       axios
       .get(`http://3.108.185.7/nodejs/api/dealer/allcapacity`)
@@ -253,12 +252,37 @@ class OutletForm extends React.Component {
       }
   };
 
-  handleChangeMapTank = (selectedMapTankOption) => {
-    this.setState({ selectedMapTankOption }, () =>
-      console.log(`Option selected:`, this.state.selectedMapTankOption)
-    );
-  };
+  // handleChangeMapTank = (selectedMapTankOption) => {
+  //   this.setState({ selectedMapTankOption }, () =>
+  //     console.log(`Option selected:`, this.state.selectedMapTankOption)
+  //   );
+  // };
 
+  // handleChangeMPD = (selectedMpdOption) => {
+  //   let bayArray = []
+  //   this.setState({ selectedMpdOption }, () =>
+  //     console.log(`Option selected:`, this.state.selectedMpdOption)
+  //   );
+  //   var filteredBay = this.state.mpd_map.filter(function(event){
+  //     if(event._id === selectedMpdOption.value){
+  //      return event
+  //     } 
+  //  });
+  //  let bayObj ={}
+  //    if(filteredBay.length > 0){
+  //     filteredBay[0].bay_map.map((bay) => {
+  //          bayObj = {
+  //           value: bay._id, 
+  //           label: bay
+  //         };
+  //         //bayOptions.push(bayObj);
+  //         bayArray.push(bayObj)
+  //       })
+       
+  //      this.setState({ bayToMpdOptions : bayArray})
+  //    }
+  // };
+  
   handleChangeMPD = (selectedMpdOption) => {
     let bayArray = []
     this.setState({ selectedMpdOption }, () =>
@@ -270,25 +294,30 @@ class OutletForm extends React.Component {
       } 
    });
    let bayObj ={}
+   console.log('filteredBay',filteredBay)
      if(filteredBay.length > 0){
       filteredBay[0].bay_map.map((bay) => {
            bayObj = {
-            value: bay._id, 
+            value: bay, 
             label: bay
           };
           //bayOptions.push(bayObj);
           bayArray.push(bayObj)
         })
        
-       this.setState({ bayToMpdOptions : bayArray})
+       this.setState({ bayOptions : bayArray})
      }
   };
-
-  handleChangeBayToMpd = (selectedBayToMpdOptions) => {
-    this.setState({ selectedBayToMpdOptions }, () =>
-      console.log(`Option selected:`, this.state.selectedBayToMpdOptions)
+  handleChangeBay = (selectedBayOptions) => {
+    this.setState({ selectedBayOptions }, () =>
+      console.log(`Option selected:`, this.state.selectedBayOptions)
     );
   };
+  // handleChangeBayToMpd = (selectedBayToMpdOptions) => {
+  //   this.setState({ selectedBayToMpdOptions }, () =>
+  //     console.log(`Option selected:`, this.state.selectedBayToMpdOptions)
+  //   );
+  // };
 
   handleChangeBay = (selectedBayOptions) => {
     let nozzleArray = []
@@ -429,7 +458,7 @@ class OutletForm extends React.Component {
                 maxMenuHeight={220}
               />
             </Col>
-            <Col md="6" sm="12">
+            {/* <Col md="6" sm="12">
               <h5 className="my-1 text-bold-600">Select Mpd</h5>
               <Select
                 className="React"
@@ -442,6 +471,19 @@ class OutletForm extends React.Component {
                 isClearable={true}
                 menuPlacement="auto"
                 maxMenuHeight={220}
+              />
+            </Col> */}
+            <Col md="6" sm="12">
+              <h5 className="my-1 text-bold-600">Select Mpd</h5>
+              <Select
+                className="React"
+                classNamePrefix="select"
+                name="mpd"
+                defaultValue={mpdOptions[1]}
+                options={mpdOptions}
+                value={selectedMpdOption}
+                onChange={this.handleChangeMPD}
+                isClearable={true}
               />
             </Col>
             {/* <Col md="6" sm="12">
