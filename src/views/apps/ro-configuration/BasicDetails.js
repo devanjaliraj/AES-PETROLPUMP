@@ -33,35 +33,49 @@ export default class BasicDetails extends Component {
     };
     this.state = {
       mocN: [],
-     cityS:[],
+      instate: [],
+      city:[]
      
     };
     this.submitHandler = this.submitHandler.bind(this);
   }
+  getState = () => {
+    fetch('http://3.108.185.7/nodejs/api/admin/allstate', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify()
+    }).then((res) => res.json())
+    .then((json) => {
+      this.setState({ instate: json.data })
+      console.log("state", json)
+    });
+    
+  }
+
+  handleChange = event => {
+    fetch('http://3.108.185.7/nodejs/api/admin/allcity', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        state: event.target.value
+      })
+    }).then((res) => res.json())
+    .then((json) => {
+      this.setState({ city: json.data[0].districts })
+    });
+    
+  }
 
   componentDidMount() {
-    
-  // //  state
-  // axios
-  // .get("http://3.108.185.7/nodejs/api/admin/allstate")
-  // .then((response) => {
-  //   console.log(response.data.data);
-  //   this.setState({ stateC: response.data.data });
-  // })
-  // .catch((error) => {
-  //   console.log(error);
-  // });
+    this.getState()        
+  
 
-  //  city
-  axios
-  .get("http://3.108.185.7/nodejs/api/admin/allcity")
-  .then((response) => {
-    console.log(response.data.data);
-    this.setState({ cityS: response.data.data });
-  })
-  .catch((error) => {
-    console.log(error);
-  });
 
 
     // MOC
@@ -125,6 +139,8 @@ export default class BasicDetails extends Component {
   };
 
   render() {
+    const { addTodo, list } = this.props;
+    let { instate, city } = this.state;
     return (
       <div>
         <Row>
@@ -226,9 +242,15 @@ export default class BasicDetails extends Component {
                 </Col>
               
               <Col md="6" sm="12">
-                <FormGroup>
+               
                 <Label>State</Label>
-                  <CustomInput 
+                <CustomInput
+                  type="select" value={this.state.value} onChange={this.handleChange}>            
+           {instate.map((item) => {
+              return <option value={item.state} >{item.state}</option>
+            })}
+          </CustomInput>
+                  {/* <CustomInput 
                     type="select"
                     name="state"
                     value={this.state.state}
@@ -238,27 +260,23 @@ export default class BasicDetails extends Component {
                         {cityp.state}
                       </option>
                     ))}
-                  </CustomInput>
-                </FormGroup>
+                  </CustomInput> */}
+                
               </Col>
               
                 <Col md="6" sm="12">
-                <FormGroup>
+               
                 <Label>District </Label>
-                  <CustomInput 
-                  type="select"
-                  name="districts"
-                    value={this.state.districts}
-                    onChange={this.changeHandler}>
-                        {this.state.cityS?.map((cityp) => (
-                      <option value={cityp.state} key={cityp.state}>
-                        {cityp.districts}
-                      </option>
-                    ))}
-                  </CustomInput>
-                </FormGroup>
+                 
+                <CustomInput
+                  type="select">
+            {city.map((item) => {
+              return <option value={item} >{item}</option>
+            })}
+          </CustomInput>
+               
               </Col>
-                
+             
 
               </Row>
 

@@ -112,14 +112,7 @@ export default class DesignYourOutlet extends Component {
         // swal("Success!", "Submitted SuccessFull!", "success");
         this.props.history.push("/app/ro-configuration/CreditCustomersList");
       })
-    
- 
-
-  
-  
-   
       .catch(error => {
-        
         console.log(error);
       });
   };

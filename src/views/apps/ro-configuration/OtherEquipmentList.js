@@ -60,7 +60,7 @@ class OtherEquipmentList extends React.Component {
       {
         headerName: "Nature",
         field: "nature",
-        width: 120,
+        width: 180,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -72,7 +72,7 @@ class OtherEquipmentList extends React.Component {
       {
         headerName: "Manufacturer",
         field: "manufacturer",
-        width: 120,
+        width: 180,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -84,7 +84,7 @@ class OtherEquipmentList extends React.Component {
       {
         headerName: "Purchased on",
         field: "purchased_on",
-        width: 120,
+        width: 180,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -96,7 +96,7 @@ class OtherEquipmentList extends React.Component {
       {
         headerName: "Actions",
         field: "sortorder",
-        width: 140,
+        width: 180,
         pinned: window.innerWidth > 992 ? "right" : false,
 
         cellRendererFramework: (params) => {

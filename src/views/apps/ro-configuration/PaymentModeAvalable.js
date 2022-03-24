@@ -24,7 +24,7 @@ export default class PaymentModeAvalable extends Component {
       select_mode: "",
       select_bank: "",
       settlement_day: "",
-     
+      
     };
     this.state = {
       bankC: [],
@@ -36,9 +36,19 @@ export default class PaymentModeAvalable extends Component {
   componentDidMount() {
 
 
-    //Payment
+    // //Payment
+    // axios
+    // .get("http://3.108.185.7/nodejs/api/dealer/allpayment")
+    // .then((response) => {
+    //   console.log(response.data.data);
+    //   this.setState({ modeC: response.data.data });
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    // });
+    //Bank
     axios
-    .get("http://3.108.185.7/nodejs/api/dealer/allpayment")
+    .get("http://3.108.185.7/nodejs//api/dealer/allmode")
     .then((response) => {
       console.log(response.data.data);
       this.setState({ modeC: response.data.data });
@@ -144,7 +154,7 @@ export default class PaymentModeAvalable extends Component {
                     onChange={this.changeHandler}>
                       {this.state.modeC?.map((modep) => (
                       <option value={modep._id} key={modep._id}>
-                        {modep.select_mode}
+                        {modep.mode}
                       </option>
                     ))}
                    

@@ -399,6 +399,7 @@ const navigationConfig = [
       },
     ],
   },
+ 
   {
     id: "setting",
     title: "Setting",
@@ -420,6 +421,22 @@ const navigationConfig = [
         icon: <Icon.Circle size={12} />,
         permissions: ["admin", "editor"],
         navLink: "/app/setting/moc/mOCList",
+      },
+      {
+        id: "tankList",
+        title: "TANK LIST",
+        type: "item",
+        icon: <Icon.Circle size={12} />,
+        permissions: ["admin", "editor"],
+        navLink: "/app/setting/tank/tankList",
+      },
+      {
+        id: "bayList",
+        title: "BAY LIST",
+        type: "item",
+        icon: <Icon.Circle size={12} />,
+        permissions: ["admin", "editor"],
+        navLink: "/app/setting/bay/bayList",
       },
       
     ],

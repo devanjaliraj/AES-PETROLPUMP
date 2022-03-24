@@ -54,6 +54,8 @@ const trainingList = lazy(() => import("./views/apps/training/TrainingList"));
 const outletList = lazy (() => import("./views/apps/ro-configuration/OutletList"));
 const roForm = lazy(() => import("./views/apps/ro-configuration/RoForm"));
 const outletForm = lazy(() =>import("./views/apps/ro-configuration/OutletForm"));
+// const addInputBox =lazy(()=>import("./views/apps/ro-configuration/AddInputBox"));
+
 
 
 
@@ -98,8 +100,10 @@ const mOCList = lazy(() => import("./views/apps/setting/moc/MOCList"));
 const addMOC = lazy(() => import("./views/apps/setting/moc/AddMOC"));
 const editMOC = lazy(() => import("./views/apps/setting/moc/EditMOC"));
 const viewMOC = lazy(() => import("./views/apps/setting/moc/ViewMOC"));
-
-
+ const addTank = lazy(() =>import("./views/apps/setting/tank/AddTank"));
+const tankList = lazy(() =>import("./views/apps/setting/tank/TankList"));
+const bayList = lazy(() =>import("./views/apps/setting/bay/BayList"));
+const addBay = lazy(() =>import("./views/apps/setting/bay/AddBay"));
 const enquiryForm = lazy(() => import("./views/apps/setting/EnquiryForm"));
 
 const grid = lazy(() => import("./views/ui-elements/grid/Grid"));
@@ -245,7 +249,9 @@ class AppRouter extends React.Component {
 
           {/* ro-configuration */}
           <AppRoute path="/app/ro-configuration/outletList" component={outletList}/>
-
+         
+          {/* <AppRoute path="/app/ro-configuration/addInputBox" component={addInputBox}/> */}
+          
           <AppRoute path="/app/ro-configuration/roConfigurationList" component={RoConfigurationList}/>
           <AppRoute path="/app/ro-configuration/otherEquipmentList" component={OtherEquipmentList}/>
           <AppRoute path="/app/ro-configuration/creditCustomersList" component={CreditCustomersList}/>
@@ -321,7 +327,10 @@ class AppRouter extends React.Component {
           <AppRoute path="/app/setting/moc/addMOC" component={addMOC} />
           <AppRoute path="/app/setting/moc/viewMOC" component={viewMOC} />
           <AppRoute path="/app/setting/enquiryForm" component={enquiryForm} />
-
+          <AppRoute path="/app/setting/tank/addTank" component={addTank} />
+          <AppRoute path="/app/setting/tank/tankList" component={tankList} />
+          <AppRoute path="/app/setting/bay/bayList" component={bayList} />  
+          <AppRoute path="/app/setting/bay/addBay" component={addBay} />
 
           <AppRoute path="/email"exact component={() => <Redirect to="/email/inbox" />}/>
           {/* my componet */}
