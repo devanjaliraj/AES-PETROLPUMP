@@ -18,7 +18,7 @@ import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 class BayManagementList extends React.Component {
   state = {
-    rowData: [],
+    rowData: null,
     paginationPageSize: 20,
     currenPageSize: "",
     getPageSize: "",
@@ -29,145 +29,125 @@ class BayManagementList extends React.Component {
       suppressMenu: true,
     },
     columnDefs: [
-      // {
-      //   headerName: "Dealer Name",
-      //   field: "dsm_name",
-      //   width: 250,
-      //   pinned: window.innerWidth > 992 ? "left" : false,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         <span>{params.data.dsm_name}</span>
-      //       </div>
-      //     );
-      //   },
-      // },
-
       {
-        headerName: "Bay 1",
-        field: "closing_total",
-        width: 140,
+        headerName: "No of Bay",
+        field: "dealer_name1.dealer_name",
+        filter: false,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.closing_total}</span>
+              <span>{params.data.dealer_name1?.dealer_name}</span>
             </div>
           );
         },
       },
       {
         headerName: "Nozzle",
-        field: "nozzel",
-        width: 125,
+        field: "dealer_name1.email",
+        width: 200,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.nozzel}</span>
+              <span>{params.data.dealer_name1?.email}</span>
             </div>
           );
         },
       },
       {
         headerName: "Product",
-        field: "product",
-        width: 150,
+        field: "lube_grade.grade",
+        width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.product}</span>
+              <span>{params.data.lube_grade?.grade}</span>
             </div>
           );
         },
       },
       {
         headerName: "Opening Totaliser",
-        field: "opening_totaliser",
-        width: 150,
+        field: "total_pieces_available.no_of_pieces",
+        width: 160,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.opening_totaliser}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Closing 1",
-        field: "closing_1",
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.closing_1}</span>
+              <span>{params.data.total_pieces_available?.no_of_pieces}</span>
             </div>
           );
         },
       },
       {
         headerName: "Dsm Name",
-        field: "closing_1",
-        width: 150,
+        field: "no_of_pieces_sold",
+        width: 160,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.closing_1}</span>
+              <span>{params.data.no_of_pieces_sold}</span>
             </div>
           );
         },
       },
       {
         headerName: "Closing Totaliser",
-        field: "closing_1",
-        width: 150,
+        field: "selling_price",
+        width: 160,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.closing_1}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Closing 2",
-        field: "closing_1",
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.closing_1}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Dsm Name",
-        field: "closing_1",
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.closing_1}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Closing Totaliser",
-        field: "closing_1",
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.closing_1}</span>
+              <span>{params.data.selling_price}</span>
             </div>
           );
         },
       },
 
       {
+        headerName: "Closing 2",
+        field: "dsm.dsm_name",
+        filter: false,
+        width: 200,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.dsm?.dsm_name}</span>
+            </div>
+          );
+        },
+      },
+
+      {
+        headerName: "Dsm Name",
+        field: "mode_of_pyament",
+        filter: false,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.mode_of_pyament}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Closing Totaliser",
+        field: "mode_of_pyament",
+        filter: false,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.mode_of_pyament}</span>
+            </div>
+          );
+        },
+      },
+      {
         headerName: "Actions",
         field: "sortorder",
         width: 150,
+        pinned: window.innerWidth > 992 ? "right" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
@@ -176,18 +156,20 @@ class BayManagementList extends React.Component {
                 size="25px"
                 color="blue"
                 onClick={() =>
-                  history.push(`/apps/shiftmanagement/bayManagementForm`)
+                  history.push(
+                    `/app/shiftmanagement/retailSellingPriceForm/${params.data._id}`
+                  )
                 }
               />
               <Trash2
                 className="mr-50"
                 size="25px"
                 color="red"
-                onClick={() => {
-                  let selectedData = this.gridApi.getSelectedRows();
-                  this.runthisfunction(params.data._id);
-                  this.gridApi.updateRowData({ remove: selectedData });
-                }}
+                onClick={() =>
+                  history.push(
+                    `/app/shiftmanagement/bayManagementForm/${params.data._id}`
+                  )
+                }
               />
             </div>
           );
@@ -195,24 +177,22 @@ class BayManagementList extends React.Component {
       },
     ],
   };
-  async componentDidMount() {
-    await axios
-      .get("http://3.108.185.7/nodejs/api/dealer/allc_bm")
-      .then((response) => {
-        const rowData = response.data.data;
-        console.log(rowData);
-        this.setState({ rowData });
-      });
+
+  componentDidMount() {
+    axios.get("http://3.108.185.7/nodejs/api/dealer/allbm").then((response) => {
+      let rowData = response.data.data;
+      JSON.stringify(rowData);
+      this.setState({ rowData });
+    });
   }
   async runthisfunction(id) {
     console.log(id);
     await axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/deletedealershipform/${id}`)
+      .get(`http://3.108.185.7/nodejs/api/dealer/deletelubricantsales/${id}`)
       .then((response) => {
         console.log(response);
       });
   }
-
   onGridReady = (params) => {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
@@ -241,8 +221,7 @@ class BayManagementList extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs breadCrumbTitle="Bay Management List" />
-
+        <Breadcrumbs breadCrumbTitle="Lubricants Sale List" />
         <Card className="overflow-hidden agGrid-card">
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
@@ -321,7 +300,7 @@ class BayManagementList extends React.Component {
                       onGridReady={this.onGridReady}
                       colResizeDefault={"shift"}
                       animateRows={true}
-                      floatingFilter={true}
+                      floatingFilter={false}
                       pagination={true}
                       paginationPageSize={this.state.paginationPageSize}
                       pivotPanelShow="always"

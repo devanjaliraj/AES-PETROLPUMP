@@ -11,7 +11,7 @@ import {
 } from "reactstrap";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2,  Edit } from "react-feather";
+import { ChevronDown, Trash2, Eye, Edit } from "react-feather";
 import axios from "axios";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
@@ -208,17 +208,11 @@ class StaffManagementList extends React.Component {
         headerName: "Actions",
         field: "sortorder",
         width: 150,
+        pinned: window.innerWidth > 992 ? "right" : false,
+
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              {/* <Eye
-                className="mr-50"
-                size="25px"
-                color="green"
-                onClick={() =>
-                  history.push("/app/staffManagement/staffManagementDealer")
-                }
-              /> */}
               <Edit
                 className="mr-50"
                 size="25px"
@@ -228,11 +222,6 @@ class StaffManagementList extends React.Component {
                     `/app/staffEnrollment/manager/${params.data._id}`
                   )
                 }
-                // onClick={() =>
-                //   history.push(
-                //     `/app/ro-configuration/basicDetails/${params.data._id}`
-                //   )
-                // }
               />
               <Trash2
                 className="mr-50"
@@ -380,7 +369,7 @@ class StaffManagementList extends React.Component {
                       onGridReady={this.onGridReady}
                       colResizeDefault={"shift"}
                       animateRows={true}
-                      floatingFilter={true}
+                      floatingFilter={false}
                       pagination={true}
                       paginationPageSize={this.state.paginationPageSize}
                       pivotPanelShow="always"

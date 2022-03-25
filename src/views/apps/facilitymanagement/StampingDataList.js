@@ -12,15 +12,14 @@ import {
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
-import { history } from "../../../history";
-
 import axios from "axios";
 
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+import { history } from "../../../history";
 
-class DSMClosingSheetList extends React.Component {
+class StampingDataList extends React.Component {
   state = {
     rowData: null,
     paginationPageSize: 20,
@@ -34,165 +33,152 @@ class DSMClosingSheetList extends React.Component {
     },
     columnDefs: [
       {
-        headerName: "DSM Name",
-        field: "dsm_name",
-        width: 200,
+        headerName: "MPD",
+        field: "MPD.mpd_map",
         pinned: window.innerWidth > 992 ? "left" : false,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dsm_name}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Mobile",
-        field: "mobile",
-        width: 120,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.mobile}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Addres",
-        field: "addres",
-        width: 200,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.addres}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Joining Date",
-        field: "joining_date",
-        filter: false,
         width: 175,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.joining_date}</span>
+              {/* <span>{MPD?.mpd_map?.mpd_number}</span> */}
+              {params.data.mpd_map?.map((MPD, mpd_map) => (
+                <span>
+                  {MPD?.mpd_map}
+                  {mpd_map?.mpd_number}
+                </span>
+              ))}
             </div>
           );
         },
       },
-      {
-        headerName: "Adhar No",
-        field: "adhar_number",
-        filter: false,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.adhar_number}</span>
-            </div>
-          );
-        },
-      },
+      //   {
+      //     headerName: "Tank ",
+      //     field: "tank_map.tank_number",
+      //     width: 140,
+      //     cellRendererFramework: (params) => {
+      //       return (
+      //         <div className="d-flex align-items-center cursor-pointer">
+      //           {params.data.tank_map?.map((tank) => (
+      //             <span>{tank?.tank_number}</span>
+      //           ))}
+      //         </div>
+      //       );
+      //     },
+      //   },
 
       {
-        headerName: "Adhar Img",
-        field: "adharimg",
-        filter: false,
-        width: 200,
+        headerName: "Nozzel",
+        field: "nozzel.nozzle_map.nozzle_number",
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.adharimg}</span>
+              <span>{params.data.nozzel.nozzle_map?.nozzle_number}</span>
             </div>
           );
         },
+        width: 250,
       },
       {
-        headerName: "Pan No",
-        field: "pan_number",
-        filter: false,
+        headerName: "Product",
+        field: "Product.tank_map.tank_number",
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.Product.tank_map?.tank_number}</span>
+            </div>
+          );
+        },
+        width: 250,
+      },
+      {
+        headerName: "Last Stamping Date",
+        field: "Last_Stamping_Date",
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.Last_Stamping_Date}</span>
+            </div>
+          );
+        },
         width: 150,
+      },
+      {
+        headerName: "Due Date",
+        field: "Due_Date",
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.pan_number}</span>
+              <span>{params.data.Due_Date}</span>
             </div>
           );
         },
-      },
-      {
-        headerName: "Pan Img",
-        field: "panImg",
-        filter: false,
-        width: 200,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.panImg}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Photograph",
-        field: "photograh",
-        filter: false,
-        width: 200,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.photograh}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Date of Brith",
-        field: "date_of_brith",
-        filter: false,
         width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.date_of_brith}</span>
-            </div>
-          );
-        },
       },
       {
-        headerName: "Salary Decieded",
-        field: "salary_decieded",
-        filter: false,
-        width: 150,
+        headerName: "K Factor",
+        field: "K_Factor",
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.salary_decieded}</span>
+              <span>{params.data.K_Factor}</span>
             </div>
           );
         },
+        width: 125,
       },
       {
-        headerName: "Salary Date",
-        field: "salary_date",
-        filter: false,
-        width: 150,
+        headerName: "Upload Certificate",
+        field: "Upload_Certificate",
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.salary_date}</span>
+              <span>{params.data.Upload_Certificate}</span>
             </div>
           );
         },
+        width: 140,
+      },
+      {
+        headerName: "Upload Service Report",
+        field: "Upload_Service_Report",
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.Upload_Service_Report}</span>
+            </div>
+          );
+        },
+        width: 140,
+      },
+      {
+        headerName: "Last Service Date",
+        field: "Last_Service_Date",
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.Last_Service_Date}</span>
+            </div>
+          );
+        },
+        width: 140,
+      },
+      {
+        headerName: "Last Service Report",
+        field: "Last_Service_Report",
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.Last_Service_Report}</span>
+            </div>
+          );
+        },
+        width: 140,
       },
 
       {
         headerName: "Actions",
         field: "sortorder",
-        width: 120,
+        width: 150,
         pinned: window.innerWidth > 992 ? "right" : false,
         cellRendererFramework: (params) => {
           return (
@@ -202,7 +188,7 @@ class DSMClosingSheetList extends React.Component {
                 size="25px"
                 color="blue"
                 onClick={() =>
-                  history.push("/app/shiftManagement/dSMClosingSheetForm")
+                  history.push("/app/facilityManagement/stampingDataForm")
                 }
               />
               <Trash2
@@ -221,10 +207,9 @@ class DSMClosingSheetList extends React.Component {
       },
     ],
   };
-
   componentDidMount() {
     axios
-      .get("http://3.108.185.7/nodejs/api/dealer/getDsnform")
+      .get("http://3.108.185.7/nodejs/api/dealer/allStampingdata")
       .then((response) => {
         let rowData = response.data.data;
         JSON.stringify(rowData);
@@ -234,12 +219,11 @@ class DSMClosingSheetList extends React.Component {
   async runthisfunction(id) {
     console.log(id);
     await axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/deleteDsnform/${id}`)
+      .get(`http://3.108.185.7/nodejs/api/dealer/deleteStampingdata/${id}`)
       .then((response) => {
         console.log(response);
       });
   }
-
   onGridReady = (params) => {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
@@ -269,9 +253,9 @@ class DSMClosingSheetList extends React.Component {
     return (
       <React.Fragment>
         <Breadcrumbs
-          breadCrumbTitle="DSM Closing SheetList"
+          breadCrumbTitle="Stamping Data List"
           // breadCrumbParent="Forms & Tables"
-          // breadCrumbActive="Shift Management"
+          // breadCrumbActive="Facility Management"
         />
         <Card className="overflow-hidden agGrid-card">
           <CardBody className="py-0">
@@ -351,7 +335,7 @@ class DSMClosingSheetList extends React.Component {
                       onGridReady={this.onGridReady}
                       colResizeDefault={"shift"}
                       animateRows={true}
-                      floatingFilter={true}
+                      floatingFilter={false}
                       pagination={true}
                       paginationPageSize={this.state.paginationPageSize}
                       pivotPanelShow="always"
@@ -367,4 +351,4 @@ class DSMClosingSheetList extends React.Component {
     );
   }
 }
-export default DSMClosingSheetList;
+export default StampingDataList;

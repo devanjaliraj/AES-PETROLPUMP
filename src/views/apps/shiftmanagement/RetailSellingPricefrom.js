@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Card,
   CardHeader,
@@ -35,7 +35,7 @@ class RetailSellingPrice extends React.Component {
         this.setState({
           date: response.data.data.date,
           opneing_dip1: response.data.data.opneing_dip1,
-          opneing_liter1: response.data.data.opneing_liter1,
+          opneing_liter1: response.data.data.opneing_liter1.closing_Entry,
           rsp1: response.data.data.rsp1,
           opneing_dip2: response.data.data.opneing_dip2,
           opneing_liter2: response.data.data.opneing_liter2,
@@ -45,11 +45,12 @@ class RetailSellingPrice extends React.Component {
       .catch((error) => {
         console.log(error.response);
       });
-    }
-    changeHandler = (e) => {
+  }
+
+  changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
-    submitHandler = (e) => {
+  submitHandler = (e) => {
     e.preventDefault();
     let { id } = this.props.match.params;
     axios
@@ -57,12 +58,12 @@ class RetailSellingPrice extends React.Component {
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/app/shiftmanagement/retailSellingPriceList");
+        this.props.history.push("/app/ro-configuration/RoConfigurationList");
       })
       .catch((error) => {
         console.log(error);
       });
-    };
+  };
   render() {
     return (
       <Card>
@@ -76,12 +77,14 @@ class RetailSellingPrice extends React.Component {
             <Button
               className=" btn btn-danger float-right"
               onClick={() =>
-                history.push("/app/shiftmanagement/retailSellingPriceList")}
+                history.push("/apps/shiftmanagement/retailSellingPriceList")
+              }
             >
               Back
             </Button>
           </Col>
         </Row>
+
         <CardBody>
           <Form className="m-1" onSubmit={this.submitHandler}>
             <Row>
@@ -95,9 +98,11 @@ class RetailSellingPrice extends React.Component {
                 ></Input>
               </Col>
             </Row>
+
             <CardHeader>
-              <CardTitle>MS</CardTitle>
+              <CardTitle>----MS---</CardTitle>
             </CardHeader>
+
             <Row>
               <Col md="6" sm="12">
                 <h5 className="my-1 text-bold-600">Opening Dip</h5>
@@ -113,6 +118,7 @@ class RetailSellingPrice extends React.Component {
                 <Input
                   type="number"
                   name="opneing_liter1.closing_Entry"
+                  // field: "opneing_liter1.closing_Entry",
                   value={this.state.opneing_liter1?.closing_Entry}
                   onChange={this.changeHandler}
                 ></Input>
@@ -127,9 +133,11 @@ class RetailSellingPrice extends React.Component {
                 ></Input>
               </Col>
             </Row>
+
             <CardHeader>
-              <CardTitle>Hsd</CardTitle>
+              <CardTitle>----Hsd----</CardTitle>
             </CardHeader>
+
             <Row>
               <Col md="6" sm="12">
                 <h5 className="my-1 text-bold-600">Opening Dip</h5>

@@ -204,7 +204,7 @@ export default class UpdateDSM extends Component {
                   <Label>Adhar Image</Label>
                   <img
                     src={this.state.adharimg}
-                    name="photograh"
+                    name="adharimg"
                     className="w-25 ml-5 h-50"
                   />
                 </Col>
@@ -241,7 +241,7 @@ export default class UpdateDSM extends Component {
                   <Label>Joining Date</Label>
                   <Input
                     required
-                    type="text"
+                    type="date"
                     name="joining_date"
                     placeholder="Enter Joining Date"
                     value={this.state.joining_date}

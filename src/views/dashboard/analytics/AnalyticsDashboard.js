@@ -1,5 +1,5 @@
 import React from "react"
-import { Row, Col } from "reactstrap"
+import { Row, Col, Card, CardTitle, CardText } from "reactstrap"
 import SalesCard from "./SalesCard"
 import SuberscribersGained from "../../ui-elements/cards/statistics/SubscriberGained"
 import OrdersReceived from "../../ui-elements/cards/statistics/OrdersReceived"
@@ -29,9 +29,190 @@ class AnalyticsDashboard extends React.Component {
   render() {
     return (
       <React.Fragment>
+         <Col lg="12" md="12">
+
+<SalesCard />
+</Col>
+        <h3>RO-Configurtion</h3>
         <Row className="match-height">
-          <Col lg="6" md="12">
-            <SalesCard />
+          
+        
+          <Col lg="3" md="12">
+          <Card
+              className="bg-warning"
+              body
+              inverse
+              style={{ borderColor: "white" }}
+            >
+              <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
+               Total  Basic Details
+              </CardTitle>
+
+              <CardText tag="h3" style={{ color: "white" }}>
+                {/* {this.state.product.data} */}
+              </CardText>
+            </Card>
+          </Col>
+          <Col lg="3" md="12">
+          <Card
+              className="bg-danger"
+              body
+              inverse
+              style={{ borderColor: "white" }}
+            >
+              <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
+               Total Design your outlet
+              </CardTitle>
+
+              <CardText tag="h3" style={{ color: "white" }}>
+                {/* {this.state.product.data} */}
+              </CardText>
+            </Card>
+          </Col>
+          <Col lg="3" md="12">
+          <Card
+              className="bg-info"
+              body
+              inverse
+              style={{ borderColor: "white" }}
+            >
+              <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
+               Total Payment Mode Available
+              </CardTitle>
+
+              <CardText tag="h3" style={{ color: "white" }}>
+                {/* {this.state.product.data} */}
+              </CardText>
+            </Card>
+          </Col>
+          <Col lg="3" md="12">
+          <Card
+              className="bg-danger"
+              body
+              inverse
+              style={{ borderColor: "white" }}
+            >
+              <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
+               Total Credit Customers
+              </CardTitle>
+
+              <CardText tag="h3" style={{ color: "white" }}>
+                {/* {this.state.product.data} */}
+              </CardText>
+            </Card>
+          </Col>
+          <Col lg="3" md="12">
+          <Card
+              className="bg-secondary"
+              body
+              inverse
+              style={{ borderColor: "white" }}
+            >
+              <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
+               Total Other Equipments in Outlet
+              </CardTitle>
+
+              <CardText tag="h3" style={{ color: "white" }}>
+                {/* {this.state.product.data} */}
+              </CardText>
+            </Card>
+          </Col>
+          <Col lg="3" md="12">
+          <Card
+              className="bg-primary"
+              body
+              inverse
+              style={{ borderColor: "white" }}
+            >
+              <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
+               Total Bank for Transaction
+              </CardTitle>
+
+              <CardText tag="h3" style={{ color: "white" }}>
+                {/* {this.state.product.data} */}
+              </CardText>
+            </Card>
+          </Col>
+          <Col lg="3" md="12">
+          <Card
+              className="bg-secondary"
+              body
+              inverse
+              style={{ borderColor: "white" }}
+            >
+              <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
+               Total --------
+              </CardTitle>
+
+              <CardText tag="h3" style={{ color: "white" }}>
+                {/* {this.state.product.data} */}
+              </CardText>
+            </Card>
+          </Col>
+          <Col lg="3" md="12">
+          <Card
+              className="bg-info"
+              body
+              inverse
+              style={{ borderColor: "white" }}
+            >
+              <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
+              Total --------
+              </CardTitle>
+
+              <CardText tag="h3" style={{ color: "white" }}>
+                {/* {this.state.product.data} */}
+              </CardText>
+            </Card>
+          </Col>
+          <Col lg="3" md="12">
+          <Card
+              className="bg-danger"
+              body
+              inverse
+              style={{ borderColor: "white" }}
+            >
+              <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
+              Total --------
+              </CardTitle>
+
+              <CardText tag="h3" style={{ color: "white" }}>
+                {/* {this.state.product.data} */}
+              </CardText>
+            </Card>
+          </Col>
+          <Col lg="3" md="12">
+          <Card
+              className="bg-primary"
+              body
+              inverse
+              style={{ borderColor: "white" }}
+            >
+              <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
+                 Total --------
+              </CardTitle>
+
+              <CardText tag="h3" style={{ color: "white" }}>
+                {/* {this.state.product.data} */}
+              </CardText>
+            </Card>
+          </Col>
+         
+          <Col lg="3" md="12">
+          <Card
+              className="bg-primary"
+              body
+              inverse
+              style={{ borderColor: "white" }}
+            >
+              <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
+               Total 
+              </CardTitle>
+
+              <CardText tag="h3" style={{ color: "white" }}>
+                {/* {this.state.product.data} */}
+              </CardText>
+            </Card>
           </Col>
           {/* <Col lg="3" md="6" sm="12">
             <SuberscribersGained />

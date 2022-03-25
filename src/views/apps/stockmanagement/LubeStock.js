@@ -11,16 +11,14 @@ import {
 } from "reactstrap";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2, Edit } from "react-feather";
-import { history } from "../../../history";
-
+import { ChevronDown, Trash2, Eye, Edit } from "react-feather";
 import axios from "axios";
 
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 
-class DSMClosingSheetList extends React.Component {
+class LubeStock extends React.Component {
   state = {
     rowData: null,
     paginationPageSize: 20,
@@ -34,176 +32,97 @@ class DSMClosingSheetList extends React.Component {
     },
     columnDefs: [
       {
-        headerName: "DSM Name",
-        field: "dsm_name",
-        width: 200,
+        headerName: "Grade",
+        field: "grade",
+        filter: false,
+        width: 250,
         pinned: window.innerWidth > 992 ? "left" : false,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dsm_name}</span>
-            </div>
-          );
-        },
       },
       {
-        headerName: "Mobile",
-        field: "mobile",
-        width: 120,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.mobile}</span>
-            </div>
-          );
-        },
+        headerName: "Purchase Price",
+        field: "purchase price",
+        width: 175,
+        filter: false,
+        checkboxSelection: false,
+        headerCheckboxSelectionFilteredOnly: false,
+        headerCheckboxSelection: false,
       },
       {
-        headerName: "Addres",
-        field: "addres",
-        width: 200,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.addres}</span>
-            </div>
-          );
-        },
+        headerName: "Selling Price",
+        field: "selling price",
+        filter: false,
+        width: 250,
       },
+
       {
-        headerName: "Joining Date",
-        field: "joining_date",
+        headerName: "No of Pieces",
+        field: "no of pieces",
         filter: false,
         width: 175,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.joining_date}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Adhar No",
-        field: "adhar_number",
-        filter: false,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.adhar_number}</span>
-            </div>
-          );
-        },
       },
 
-      {
-        headerName: "Adhar Img",
-        field: "adharimg",
-        filter: false,
-        width: 200,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.adharimg}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Pan No",
-        field: "pan_number",
-        filter: false,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.pan_number}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Pan Img",
-        field: "panImg",
-        filter: false,
-        width: 200,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.panImg}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Photograph",
-        field: "photograh",
-        filter: false,
-        width: 200,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.photograh}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Date of Brith",
-        field: "date_of_brith",
-        filter: false,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.date_of_brith}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Salary Decieded",
-        field: "salary_decieded",
-        filter: false,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.salary_decieded}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Salary Date",
-        field: "salary_date",
-        filter: false,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.salary_date}</span>
-            </div>
-          );
-        },
-      },
-
+      //   {
+      //     headerName: "Loss/Gain",
+      //     field: "loss/gain",
+      //     filter: false,
+      //     width: 250,
+      //   },
+      //   {
+      //     headerName: "Leaves Taken",
+      //     field: "leaves taken",
+      //     filter: false,
+      //     width: 150,
+      //   },
+      //   {
+      //     headerName: "Payment Mode",
+      //     field: "payment mode",
+      //     filter: false,
+      //     width: 150,
+      //   },
+      //   {
+      //     headerName: "DSM/Manager Name",
+      //     field: "DSM/Manager name",
+      //     filter: false,
+      //     width: 125,
+      //   },
+      // {
+      //   headerName: "Zip",
+      //   field: "zip",
+      //   filter: "agNumberColumnFilter",
+      //   width: 140,
+      // },
+      // {
+      //   headerName: "Mobille No.",
+      //   field: "number",
+      //   filter: "agNumberColumnFilter",
+      //   width: 140,
+      // },
+      //   {
+      //     headerName: "Joining Date.",
+      //     field: "Joining Date",
+      //     filter: "agNumberColumnFilter",
+      //     width: 140,
+      //   },
       {
         headerName: "Actions",
         field: "sortorder",
-        width: 120,
-        pinned: window.innerWidth > 992 ? "right" : false,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
+              <Eye
+                className="mr-50"
+                size="25px"
+                color="green"
+                // onClick={() =>
+                // history.push(`/app/slider/viewSlider/${params.data._id}`)
+                // }
+              />
               <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
-                onClick={() =>
-                  history.push("/app/shiftManagement/dSMClosingSheetForm")
-                }
+                // onClick={() => history.push("/app/slider/editSlider/${params.data._id}")}
               />
               <Trash2
                 className="mr-50"
@@ -223,21 +142,11 @@ class DSMClosingSheetList extends React.Component {
   };
 
   componentDidMount() {
-    axios
-      .get("http://3.108.185.7/nodejs/api/dealer/getDsnform")
-      .then((response) => {
-        let rowData = response.data.data;
-        JSON.stringify(rowData);
-        this.setState({ rowData });
-      });
-  }
-  async runthisfunction(id) {
-    console.log(id);
-    await axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/deleteDsnform/${id}`)
-      .then((response) => {
-        console.log(response);
-      });
+    axios.get("/api/aggrid/data").then((response) => {
+      let rowData = response.data.data;
+      JSON.stringify(rowData);
+      this.setState({ rowData });
+    });
   }
 
   onGridReady = (params) => {
@@ -269,9 +178,9 @@ class DSMClosingSheetList extends React.Component {
     return (
       <React.Fragment>
         <Breadcrumbs
-          breadCrumbTitle="DSM Closing SheetList"
+          breadCrumbTitle="Lubricants Sale"
           // breadCrumbParent="Forms & Tables"
-          // breadCrumbActive="Shift Management"
+          // breadCrumbActive="Lubricants Sale"
         />
         <Card className="overflow-hidden agGrid-card">
           <CardBody className="py-0">
@@ -367,4 +276,4 @@ class DSMClosingSheetList extends React.Component {
     );
   }
 }
-export default DSMClosingSheetList;
+export default LubeStock;

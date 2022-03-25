@@ -5,7 +5,7 @@ import {
   FormGroup,
   Input,
   Label,
-  CustomInput,
+  // CustomInput,
   Row,
   Col,
   Card,
@@ -13,7 +13,7 @@ import {
   CardTitle,
   CardHeader,
 } from "reactstrap";
-import Search from "../../pages/search/Search";
+// import Search from "../../pages/search/Search";
 class StaffForm extends React.Component {
   state = {
     steps: [

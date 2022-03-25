@@ -199,17 +199,11 @@ class OtherStaffList extends React.Component {
         headerName: "Actions",
         field: "sortorder",
         width: 150,
+        pinned: window.innerWidth > 992 ? "right" : false,
+
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              {/* <Eye
-                className="mr-50"
-                size="25px"
-                color="green"
-                onClick={() =>
-                  history.push("/app/staffManagement/staffManagementDealer")
-                }
-              /> */}
               <Edit
                 className="mr-50"
                 size="25px"
@@ -219,11 +213,6 @@ class OtherStaffList extends React.Component {
                     `/app/staffEnrollment/addOtherStaff/${params.data._id}`
                   )
                 }
-                // onClick={() =>
-                //   history.push(
-                //     `/app/ro-configuration/basicDetails/${params.data._id}`
-                //   )
-                // }
               />
               <Trash2
                 className="mr-50"

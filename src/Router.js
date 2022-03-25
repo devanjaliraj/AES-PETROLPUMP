@@ -305,7 +305,7 @@ class AppRouter extends React.Component {
           <AppRoute path="/app/staffEnrollment/staffManagementList" component={staffManagementList}/>
           <AppRoute path="/app/staffEnrollment/staffManagementDealer" component={staffManagementDealer}/>
           <AppRoute path="/app/staffEnrollment/AddDMS/:id" component={addDMS}/> 
-          <AppRoute path="/app/staffEnrollment/AddOtherStaff" component={addOtherStaff}/>
+          <AppRoute path="/app/staffEnrollment/AddOtherStaff/:id" component={addOtherStaff}/>
           <AppRoute path="/app/staffEnrollment/OtherStaffList" component={otherStaffList}/>
           <AppRoute path="/app/staffEnrollment/Manager/:id" component={manager}/>
           <AppRoute path="/app/staffEnrollment/DMSList" component={dMSList}/>

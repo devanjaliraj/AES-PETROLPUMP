@@ -18,19 +18,19 @@ export default class OtherStaff extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      addres: "",
-      adhar_number: "",
-      adharimg: "",
-      date_of_brith: "",
-      joining_date: "",
       staff_name: "",
       mobile: "",
-      panImg: "",
+      joining_date: "",
+      adhar_number: "",
       pan_number: "",
-      photograh: "",
-      salary_date: "",
+      date_of_brith: "",
       salary_decieded: "",
+      salary_date: "",
+      apprpved_leave: "",
       status: "",
+      panImg: "",
+      photograh: "",
+      adharimg: "",
       selectedFile: null,
     };
   }
@@ -56,7 +56,9 @@ export default class OtherStaff extends Component {
           adharimg: response.data.data.adharimg,
           pan_number: response.data.data.pan_number,
           panImg: response.data.data.panImg,
+
           photograh: response.data.data.photograh,
+          apprpved_leave: response.data.data.apprpved_leave,
           date_of_brith: response.data.data.date_of_brith,
           salary_decieded: response.data.data.salary_decieded,
           salary_date: response.data.data.salary_date,
@@ -86,6 +88,8 @@ export default class OtherStaff extends Component {
     data.append("date_of_brith", this.state.date_of_brith);
     data.append("salary_decieded", this.state.salary_decieded);
     data.append("salary_date", this.state.salary_date);
+    data.append("apprpved_leave", this.state.apprpved_leave);
+    data.append("any_other_facility", this.state.any_other_facility);
     data.append("status", this.state.status);
     if (this.state.selectedFile !== null) {
       data.append("adharimg", this.state.selectedFile, this.state.selectedName);
@@ -169,6 +173,7 @@ export default class OtherStaff extends Component {
                     src={this.state.photograh}
                     name="photograh"
                     className="w-25 ml-5 h-50"
+                    disabled={true}
                   />
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
@@ -208,6 +213,7 @@ export default class OtherStaff extends Component {
                     src={this.state.adharimg}
                     name="photograh"
                     className="w-25 ml-5 h-50"
+                    aria-disabled
                   />
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
@@ -227,6 +233,7 @@ export default class OtherStaff extends Component {
                     src={this.state.panImg}
                     name="panImg"
                     className="w-25 ml-5 h-50"
+                    disabled={true}
                   />
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
@@ -242,7 +249,7 @@ export default class OtherStaff extends Component {
                   <Label>Joining Date</Label>
                   <Input
                     required
-                    type="text"
+                    type="date"
                     name="joining_date"
                     placeholder="Enter Joining Date"
                     value={this.state.joining_date}
@@ -254,7 +261,7 @@ export default class OtherStaff extends Component {
                   <Label>Date of Brith</Label>
                   <Input
                     required
-                    type="text"
+                    type="date"
                     name="date_of_brith"
                     value={this.state.date_of_brith}
                     onChange={this.changeHandler}
@@ -276,24 +283,25 @@ export default class OtherStaff extends Component {
                   <Label>Salary Date</Label>
                   <Input
                     required
-                    type="text"
+                    type="date"
                     name="salary_date"
                     placeholder="Enter Salary Date"
                     value={this.state.salary_date}
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-                {/* <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>Approved Leaves per Month</Label>
+                <Col lg="6" md="6" sm="6" className="mb-2">
+                  <Label>Apprpved Leave</Label>
                   <Input
                     required
-                    type="date"
-                    name="salary_date"
-                    placeholder="Enter Name"
-                    value={this.state.salary_date}
+                    type="number"
+                    name="apprpved_leave"
+                    placeholder="Enter Salary Date"
+                    value={this.state.apprpved_leave}
                     onChange={this.changeHandler}
                   ></Input>
-                </Col> */}
+                </Col>
+
                 <Col lg="6" md="6" sm="6" className="mb-2 mt-1">
                   <Label className="mb-1">Status</Label>
                   <div
@@ -325,7 +333,7 @@ export default class OtherStaff extends Component {
                     type="submit"
                     className="mr-1 mb-1"
                   >
-                    Add Staff
+                    Update
                   </Button.Ripple>
                 </Col>
               </Row>

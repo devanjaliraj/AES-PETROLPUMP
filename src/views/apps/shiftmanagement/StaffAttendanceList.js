@@ -10,14 +10,15 @@ import {
   DropdownToggle,
 } from "reactstrap";
 import { AgGridReact } from "ag-grid-react";
+import { history } from "../../../history";
+
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Eye, Edit } from "react-feather";
 import axios from "axios";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
-import { history } from "../../../history";
 
-class StaffAttendanceList extends React.Component {
+class StaffAttendance extends React.Component {
   state = {
     rowData: null,
     paginationPageSize: 20,
@@ -31,81 +32,71 @@ class StaffAttendanceList extends React.Component {
     },
     columnDefs: [
       {
-        headerName: "Name",
-        field: "name",
+        headerName: "Staff Name",
+        field: "name_of_staff",
         filter: false,
         width: 250,
-        pinned: window.innerWidth > 992 ? "left" : false,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.name_of_staff}</span>
+            </div>
+          );
+        },
       },
       {
         headerName: "Designation",
         field: "designation",
-        width: 175,
-        filter: false,
-        checkboxSelection: false,
-        headerCheckboxSelectionFilteredOnly: false,
-        headerCheckboxSelection: false,
+        width: 220,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.designation}</span>
+            </div>
+          );
+        },
       },
       {
-        headerName: "Shift",
-        field: "shift",
-        filter: false,
-        width: 250,
-      },
-
-      {
-        headerName: "Date & Time",
-        field: "date&time",
-        filter: false,
-        width: 175,
-      },
-
-      {
-        headerName: "Leaves Available",
-        field: "leaves available",
-        filter: false,
-        width: 250,
+        headerName: "Attendence Marked",
+        field: "attendence_marking",
+        width: 200,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.attendence_marking}</span>
+            </div>
+          );
+        },
       },
       {
-        headerName: "Leaves Taken",
-        field: "leaves taken",
-        filter: false,
-        width: 150,
+        headerName: "Leave Taken",
+        field: "leave_taken",
+        width: 140,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.leave_taken}</span>
+            </div>
+          );
+        },
       },
-      //   {
-      //     headerName: "Payment Mode",
-      //     field: "payment mode",
-      //     filter: false,
-      //     width: 150,
-      //   },
-      //   {
-      //     headerName: "DSM/Manager Name",
-      //     field: "DSM/Manager name",
-      //     filter: false,
-      //     width: 125,
-      //   },
-      // {
-      //   headerName: "Zip",
-      //   field: "zip",
-      //   filter: "agNumberColumnFilter",
-      //   width: 140,
-      // },
-      // {
-      //   headerName: "Mobille No.",
-      //   field: "number",
-      //   filter: "agNumberColumnFilter",
-      //   width: 140,
-      // },
-      //   {
-      //     headerName: "Joining Date.",
-      //     field: "Joining Date",
-      //     filter: "agNumberColumnFilter",
-      //     width: 140,
-      //   },
+      {
+        headerName: "Leave Available",
+        field: "leave_available",
+        width: 170,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.leave_available}</span>
+            </div>
+          );
+        },
+      },
       {
         headerName: "Actions",
         field: "sortorder",
         width: 150,
+        pinned: window.innerWidth > 992 ? "right" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
@@ -114,18 +105,20 @@ class StaffAttendanceList extends React.Component {
                 size="25px"
                 color="blue"
                 onClick={() =>
-                  history.push("/app/shiftManagement/staffAttendanceForm")
+                  history.push(
+                    `/app/shiftManagement/staffAttendanceForm/${params.data._id}`
+                  )
                 }
               />
               <Trash2
                 className="mr-50"
                 size="25px"
                 color="red"
-                onClick={() => {
-                  let selectedData = this.gridApi.getSelectedRows();
-                  this.runthisfunction(params.data._id);
-                  this.gridApi.updateRowData({ remove: selectedData });
-                }}
+                onClick={() =>
+                  history.push(
+                    `http://3.108.185.7/nodejs/api/dealer/deleteatendence/${params.data._id}`
+                  )
+                }
               />
             </div>
           );
@@ -135,13 +128,22 @@ class StaffAttendanceList extends React.Component {
   };
 
   componentDidMount() {
-    axios.get("/api/aggrid/data").then((response) => {
-      let rowData = response.data.data;
-      JSON.stringify(rowData);
-      this.setState({ rowData });
-    });
+    axios
+      .get("http://3.108.185.7/nodejs/api/dealer/allatendence")
+      .then((response) => {
+        let rowData = response.data.data;
+        JSON.stringify(rowData);
+        this.setState({ rowData });
+      });
   }
-
+  // async runthisfunction(id) {
+  //   console.log(id);
+  //   await axios
+  //     .get(`http://3.108.185.7/nodejs/api/dealer/deletelubricantsales/${id}`)
+  //     .then((response) => {
+  //       console.log(response);
+  //     });
+  // }
   onGridReady = (params) => {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
@@ -170,11 +172,7 @@ class StaffAttendanceList extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs
-          breadCrumbTitle="Staff Attendance List"
-          // breadCrumbParent="Forms & Tables"
-          // breadCrumbActive="Lubricants Sale"
-        />
+        <Breadcrumbs breadCrumbTitle="Lubricants Sale List" />
         <Card className="overflow-hidden agGrid-card">
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
@@ -253,7 +251,7 @@ class StaffAttendanceList extends React.Component {
                       onGridReady={this.onGridReady}
                       colResizeDefault={"shift"}
                       animateRows={true}
-                      floatingFilter={true}
+                      floatingFilter={false}
                       pagination={true}
                       paginationPageSize={this.state.paginationPageSize}
                       pivotPanelShow="always"
@@ -269,4 +267,4 @@ class StaffAttendanceList extends React.Component {
     );
   }
 }
-export default StaffAttendanceList;
+export default StaffAttendance;

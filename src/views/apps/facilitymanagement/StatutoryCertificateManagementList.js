@@ -11,16 +11,15 @@ import {
 } from "reactstrap";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2, Edit } from "react-feather";
-import { history } from "../../../history";
-
+import { ChevronDown, Trash2, Eye, Edit } from "react-feather";
 import axios from "axios";
 
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+import { history } from "../../../history";
 
-class DSMClosingSheetList extends React.Component {
+class StatutoryCertificateManagementList extends React.Component {
   state = {
     rowData: null,
     paginationPageSize: 20,
@@ -34,165 +33,167 @@ class DSMClosingSheetList extends React.Component {
     },
     columnDefs: [
       {
-        headerName: "DSM Name",
-        field: "dsm_name",
-        width: 200,
+        headerName: "Due Stamping",
+        field: "Due_Date_of_Stamping",
         pinned: window.innerWidth > 992 ? "left" : false,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dsm_name}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Mobile",
-        field: "mobile",
-        width: 120,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.mobile}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Addres",
-        field: "addres",
-        width: 200,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.addres}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Joining Date",
-        field: "joining_date",
-        filter: false,
         width: 175,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.joining_date}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Adhar No",
-        field: "adhar_number",
-        filter: false,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.adhar_number}</span>
+              <span>{params.data.Due_Date_of_Stamping}</span>
             </div>
           );
         },
       },
 
       {
-        headerName: "Adhar Img",
-        field: "adharimg",
-        filter: false,
-        width: 200,
+        headerName: "Upload 5l",
+        field: "Upload_5l",
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.adharimg}</span>
+              <span>{params.data.Upload_5l}</span>
             </div>
           );
         },
+        width: 250,
       },
       {
-        headerName: "Pan No",
-        field: "pan_number",
-        filter: false,
+        headerName: "Due PESO",
+        field: "Due_Date_of_PESO",
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.Due_Date_of_PESO}</span>
+            </div>
+          );
+        },
+        width: 250,
+      },
+      {
+        headerName: "Upload PESO",
+        field: "Upload_PESO",
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.Upload_PESO}</span>
+            </div>
+          );
+        },
         width: 150,
+      },
+      {
+        headerName: "Scale",
+        field: "scale",
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.pan_number}</span>
+              <span>{params.data.scale}</span>
             </div>
           );
         },
-      },
-      {
-        headerName: "Pan Img",
-        field: "panImg",
-        filter: false,
-        width: 200,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.panImg}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Photograph",
-        field: "photograh",
-        filter: false,
-        width: 200,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.photograh}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Date of Brith",
-        field: "date_of_brith",
-        filter: false,
         width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.date_of_brith}</span>
-            </div>
-          );
-        },
       },
       {
-        headerName: "Salary Decieded",
-        field: "salary_decieded",
-        filter: false,
-        width: 150,
+        headerName: "Upload Hydrometer",
+        field: "Upload_Hydrometer",
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.salary_decieded}</span>
+              <span>{params.data.Upload_Hydrometer}</span>
             </div>
           );
         },
+        width: 125,
       },
       {
-        headerName: "Salary Date",
-        field: "salary_date",
-        filter: false,
-        width: 150,
+        headerName: "calibration_Due_date",
+        field: "calibration_Due_date",
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.salary_date}</span>
+              <span>{params.data.calibration_Due_date}</span>
             </div>
           );
         },
+        width: 140,
       },
-
+      {
+        headerName: "uplodad_thermameter",
+        field: "uplodad_thermameter",
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.uplodad_thermameter}</span>
+            </div>
+          );
+        },
+        width: 140,
+      },
+      {
+        headerName: "Uplodad air Gauage",
+        field: "uplodad_air_gauage",
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.uplodad_air_gauage}</span>
+            </div>
+          );
+        },
+        width: 140,
+      },
+      {
+        headerName: "DPSL Upload",
+        field: "DPSL_upload",
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.DPSL_upload}</span>
+            </div>
+          );
+        },
+        width: 140,
+      },
+      {
+        headerName: "Due DPSL",
+        field: "due_date_DPSL",
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.due_date_DPSL}</span>
+            </div>
+          );
+        },
+        width: 140,
+      },
+      {
+        headerName: "Due Outher",
+        field: "due_date_outher",
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.due_date_outher}</span>
+            </div>
+          );
+        },
+        width: 140,
+      },
+      {
+        headerName: "Upload Outher",
+        field: "upload_outher",
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.upload_outher}</span>
+            </div>
+          );
+        },
+        width: 140,
+      },
       {
         headerName: "Actions",
         field: "sortorder",
-        width: 120,
+        width: 150,
         pinned: window.innerWidth > 992 ? "right" : false,
         cellRendererFramework: (params) => {
           return (
@@ -201,9 +202,7 @@ class DSMClosingSheetList extends React.Component {
                 className="mr-50"
                 size="25px"
                 color="blue"
-                onClick={() =>
-                  history.push("/app/shiftManagement/dSMClosingSheetForm")
-                }
+                // onClick={() => history.push("/app/slider/editSlider/${params.data._id}")}
               />
               <Trash2
                 className="mr-50"
@@ -224,7 +223,7 @@ class DSMClosingSheetList extends React.Component {
 
   componentDidMount() {
     axios
-      .get("http://3.108.185.7/nodejs/api/dealer/getDsnform")
+      .get("http://3.108.185.7/nodejs/api/dealer/allstatutoryCertificate")
       .then((response) => {
         let rowData = response.data.data;
         JSON.stringify(rowData);
@@ -234,12 +233,13 @@ class DSMClosingSheetList extends React.Component {
   async runthisfunction(id) {
     console.log(id);
     await axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/deleteDsnform/${id}`)
+      .get(
+        `http://3.108.185.7/nodejs/api/dealer/deletestatutoryCertificate/${id}`
+      )
       .then((response) => {
         console.log(response);
       });
   }
-
   onGridReady = (params) => {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
@@ -269,9 +269,9 @@ class DSMClosingSheetList extends React.Component {
     return (
       <React.Fragment>
         <Breadcrumbs
-          breadCrumbTitle="DSM Closing SheetList"
+          breadCrumbTitle="Facility Management"
           // breadCrumbParent="Forms & Tables"
-          // breadCrumbActive="Shift Management"
+          // breadCrumbActive="Facility Management"
         />
         <Card className="overflow-hidden agGrid-card">
           <CardBody className="py-0">
@@ -351,7 +351,7 @@ class DSMClosingSheetList extends React.Component {
                       onGridReady={this.onGridReady}
                       colResizeDefault={"shift"}
                       animateRows={true}
-                      floatingFilter={true}
+                      floatingFilter={false}
                       pagination={true}
                       paginationPageSize={this.state.paginationPageSize}
                       pivotPanelShow="always"
@@ -367,4 +367,4 @@ class DSMClosingSheetList extends React.Component {
     );
   }
 }
-export default DSMClosingSheetList;
+export default StatutoryCertificateManagementList;

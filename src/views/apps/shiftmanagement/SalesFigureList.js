@@ -175,18 +175,19 @@ class SelesFigureList extends React.Component {
 
   componentDidMount() {
     axios
-      .get("http://3.108.185.7/nodejs/api/dealer/allrsp")
+      .get("http://3.108.185.7/nodejs/api/dealer/alllubricantsales")
       .then((response) => {
         let rowData = response.data.data;
         JSON.stringify(rowData);
         this.setState({ rowData });
       });
-    axios
-      .get("http://3.108.185.7/nodejs/api/dealer/alldealers")
+  }
+  async runthisfunction(id) {
+    console.log(id);
+    await axios
+      .get(`http://3.108.185.7/nodejs/api/dealer/deletelubricantsales/${id}`)
       .then((response) => {
-        let oldData = response.data.data;
-        JSON.stringify(oldData);
-        this.setState({ oldData });
+        console.log(response);
       });
   }
 

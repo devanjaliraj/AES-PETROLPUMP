@@ -13,11 +13,14 @@ import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
 import { history } from "../../../history";
+
 import axios from "axios";
+
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
+
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 
-class RetailSellingPriceList extends React.Component {
+class RSP extends React.Component {
   state = {
     rowData: null,
     paginationPageSize: 20,
@@ -31,7 +34,33 @@ class RetailSellingPriceList extends React.Component {
     },
     columnDefs: [
       {
-        headerName: "Date",
+        headerName: "Dealer Name",
+        field: "dealer_name2.dealer_name",
+        width: 200,
+        pinned: window.innerWidth > 992 ? "left" : false,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.dealer_name2?.dealer_name}</span>
+            </div>
+          );
+        },
+      },
+
+      {
+        headerName: "Email",
+        field: "dealer_name2.email",
+        width: 200,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.dealer_name2?.email}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: " Date",
         field: "date",
         width: 175,
         cellRendererFramework: (params) => {
@@ -45,7 +74,7 @@ class RetailSellingPriceList extends React.Component {
       {
         headerName: " MS/Opening Dip ",
         field: "opneing_dip1",
-        width: 250,
+        width: 170,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -54,10 +83,11 @@ class RetailSellingPriceList extends React.Component {
           );
         },
       },
+
       {
         headerName: "MS/Opening Litres",
         field: "opneing_liter1.closing_Entry",
-        width: 250,
+        width: 190,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -69,7 +99,7 @@ class RetailSellingPriceList extends React.Component {
       {
         headerName: "MS/Rsp Entry",
         field: "rsp1",
-        width: 150,
+        width: 190,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -81,7 +111,7 @@ class RetailSellingPriceList extends React.Component {
       {
         headerName: "Hsd/Opening Dip",
         field: "opneing_dip2",
-        width: 150,
+
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -89,11 +119,12 @@ class RetailSellingPriceList extends React.Component {
             </div>
           );
         },
+        width: 200,
       },
       {
         headerName: "Hsd/Opening Litres",
         field: "opneing_liter2.closing_Entry",
-        width: 150,
+
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -101,11 +132,12 @@ class RetailSellingPriceList extends React.Component {
             </div>
           );
         },
+        width: 200,
       },
       {
         headerName: "Hsd/Rsp Entry",
         field: "rsp2",
-        width: 150,
+
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -113,11 +145,14 @@ class RetailSellingPriceList extends React.Component {
             </div>
           );
         },
+        width: 200,
       },
+
       {
         headerName: "Actions",
         field: "sortorder",
         width: 150,
+        pinned: window.innerWidth > 992 ? "right" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
@@ -126,7 +161,10 @@ class RetailSellingPriceList extends React.Component {
                 size="25px"
                 color="blue"
                 onClick={() =>
-                  history.push(`/app/shiftmanagement/retailSellingPriceForm/${params.data._id}`)}
+                  history.push(
+                    `/app/shiftmanagement/retailSellingPriceForm/${params.data._id}`
+                  )
+                }
               />
               <Trash2
                 className="mr-50"
@@ -153,7 +191,15 @@ class RetailSellingPriceList extends React.Component {
         JSON.stringify(rowData);
         this.setState({ rowData });
       });
-    }
+  }
+  async runthisfunction(id) {
+    console.log(id);
+    await axios
+      .get(`http://3.108.185.7/nodejs/api/dealer/deletersp/${id}`)
+      .then((response) => {
+        console.log(response);
+      });
+  }
 
   onGridReady = (params) => {
     this.gridApi = params.api;
@@ -266,7 +312,7 @@ class RetailSellingPriceList extends React.Component {
                       onGridReady={this.onGridReady}
                       colResizeDefault={"shift"}
                       animateRows={true}
-                      floatingFilter={true}
+                      floatingFilter={false}
                       pagination={true}
                       paginationPageSize={this.state.paginationPageSize}
                       pivotPanelShow="always"
@@ -282,4 +328,4 @@ class RetailSellingPriceList extends React.Component {
     );
   }
 }
-export default RetailSellingPriceList;
+export default RSP;

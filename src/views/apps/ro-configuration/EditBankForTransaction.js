@@ -179,7 +179,7 @@ export default class EditBankForTransaction extends Component {
                     type="submit"
                     className="mr-1 mb-1"
                   >
-                    Add
+                    Update
                   </Button.Ripple>
                 </Col>
               </Row>
