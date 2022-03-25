@@ -27,7 +27,7 @@ export default class BasicDetails extends Component {
         master_oil_company:"",
         location:"",
         omc_customer_code:"",
-        // district:"",
+        district:"",
         districts:[],
         state:"",
     };
@@ -56,6 +56,7 @@ export default class BasicDetails extends Component {
   }
 
   handleChange = event => {
+    this.setState({ state: event.target.value })
     fetch('http://3.108.185.7/nodejs/api/admin/allcity', {
       method: 'POST',
       headers: {
@@ -73,11 +74,7 @@ export default class BasicDetails extends Component {
   }
 
   componentDidMount() {
-    this.getState()        
-  
-
-
-
+    this.getState()
     // MOC
     axios
     .get("http://3.108.185.7/nodejs/api/dealer/allMasterOilCompany")
@@ -102,8 +99,8 @@ export default class BasicDetails extends Component {
             location: response.data.data.location,
             omc_customer_code: response.data.data.omc_customer_code,
             state: response.data.data.state,
-            // district: response.data.data.district,
-             districts: response.data.data.districts,
+            district: response.data.data.district,
+            districts: response.data.data.districts,
         });
       })
       .catch(error => {
@@ -245,7 +242,7 @@ export default class BasicDetails extends Component {
                
                 <Label>State</Label>
                 <CustomInput
-                  type="select" value={this.state.value} onChange={this.handleChange}>            
+                  type="select" name="state" value={this.state.state} onChange={this.handleChange}>            
            {instate.map((item) => {
               return <option value={item.state} >{item.state}</option>
             })}
@@ -269,7 +266,7 @@ export default class BasicDetails extends Component {
                 <Label>District </Label>
                  
                 <CustomInput
-                  type="select">
+                  type="select" name="district" value={this.state.district} onChange={this.changeHandler}>
             {city.map((item) => {
               return <option value={item} >{item}</option>
             })}
