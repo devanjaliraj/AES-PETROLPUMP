@@ -30,6 +30,7 @@ export default class BasicDetails extends Component {
         district:"",
         districts:[],
         state:"",
+        userverified:""
     };
     this.state = {
       mocN: [],
@@ -133,6 +134,9 @@ export default class BasicDetails extends Component {
       .catch(error => {
         console.log(error);
       });
+  };
+  changeHandler1 = (e) => {
+    this.setState({ status: e.target.value });
   };
 
   render() {
@@ -271,10 +275,33 @@ export default class BasicDetails extends Component {
               return <option value={item} >{item}</option>
             })}
           </CustomInput>
-               
-              </Col>
-             
+          <Col lg="6" md="6" sm="6" className="mb-2 mt-1">
+                  <Label className="mb-1">Status</Label>
+                  <div
+                    className="form-label-group"
+                    onChange={(e) => this.changeHandler1(e)}
+                  >
+                    <input
+                      style={{ marginRight: "3px" }}
+                      type="radio"
+                      name="userverified"
+                      value="Active"
+                    />
+                    <span style={{ marginRight: "20px" }}>Active</span>
 
+                    <input
+                      style={{ marginRight: "3px" }}
+                      type="radio"
+                      name="userverified"
+                      value="Inactive"
+                    />
+
+                    <span style={{ marginRight: "3px" }}>Inactive</span>
+                  </div>
+                </Col>
+              </Col>
+        
+              
               </Row>
 
               <Row>

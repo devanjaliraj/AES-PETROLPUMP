@@ -14,13 +14,9 @@ import axios from "axios";
 import Select from "react-select";
 
 const tankOptions = [];
-
 const mpdOptions = [];
-
 const bayOptions = [];
-
 const nozzleOptions = [];
-
 class OutletForm extends React.Component {
 
   constructor(props) {
@@ -48,13 +44,12 @@ class OutletForm extends React.Component {
       selectedTankToNozzlesOptions:null,
       tankProductOptionsNew:[],
       tankCapacityOptionsNew:[]
-      };
-     
+      }; 
   }
+ // submitHandler = (e) => {
+    //   e.preventDefault();
 
   componentDidMount() { 
-    // submitHandler = (e) => {
-    //   e.preventDefault();
     let { id } = this.props.match.params.id;
     this.setState({ dealerId : id });
     axios
@@ -62,14 +57,10 @@ class OutletForm extends React.Component {
       .then((response) => {
         console.log(response);
         console.log('datadatadata @@@@@@@@@@@@###',response)
-        // swal("Success!", "Submitted SuccessFull!", "success");
-        // this.props.history.push("/app/ro-configuration/designYourOutletList");
+       
         if(response.status === 200){
           let data = response.data.data;
-          
-          // eslint-disable-next-line no-lone-blocks
-          // eslint-disable-next-line no-unused-expressions
-          if(data.tank_map.length > 0){
+           if(data.tank_map.length > 0){
            data.tank_map.map((tank) => {
             let tankObj = {
               value: tank._id, 
@@ -78,21 +69,11 @@ class OutletForm extends React.Component {
             tankOptions.push(tankObj);
            })
           }
-          // if(data.product_map_tank.length > 0){
-          //   data.product_map_tank.map((product) => {
-          //    let productObj = {
-          //      value: product._id, 
-          //      label: product.tank_number
-          //    };
-          //    productOptions.push(productObj);
-          //   })
-          //  }
-   
-          if(data.mpd_map.length > 0){
-            let mpdObj = {}
-            // let mpdObjNew = {}
-            data.mpd_map.map((mpd) => {
-              mpdObj = {
+        
+        if(data.mpd_map.length > 0){
+          let mpdObj = {}
+           data.mpd_map.map((mpd) => {
+           mpdObj = {
                value: mpd._id, 
                label: mpd.mpd_number
              };
@@ -100,9 +81,9 @@ class OutletForm extends React.Component {
             })
            }
 
-           if(data.bay_map.length > 0){
-            data.bay_map.map((bay) => {
-             let bayObj = {
+        if(data.bay_map.length > 0){
+          data.bay_map.map((bay) => {
+            let bayObj = {
                value: bay._id, 
                label: bay.bay_number
              };
@@ -110,9 +91,9 @@ class OutletForm extends React.Component {
             })
            }
 
-           if(data.nozzle_map.length > 0){
-            data.nozzle_map.map((nozzle) => {
-             let nozzleObj = {
+        if(data.nozzle_map.length > 0){
+          data.nozzle_map.map((nozzle) => {
+            let nozzleObj = {
                value: nozzle._id, 
                label: nozzle.nozzle_number
              };
@@ -131,12 +112,13 @@ class OutletForm extends React.Component {
         else{
           alert('Something went wrong in Dealer Shipform Api');
         }
-        
       })
       .catch((error) => {
         console.log(error.response);
       });
-  
+
+      
+  // product
       let tankProductArray = []
       axios
       .get(`http://3.108.185.7/nodejs/api/dealer/allproduct`)
@@ -167,16 +149,7 @@ class OutletForm extends React.Component {
         console.log(error.response);
       });
 
-        // Tank
-    // axios
-    // .get("http://3.108.185.7/nodejs/api/dealer/gettank")
-    // .then((response) => {
-    //   console.log(response.data.data);
-    //   this.setState({ tankN: response.data.data });
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    // });
+     
 //capacity
       let tankCapacityArray = []
       axios
@@ -211,8 +184,8 @@ class OutletForm extends React.Component {
   }
 
   handleChangeTank = (selectedTankOption) => {
-    let capacityArray = []
-    let productArray = []
+    // let capacityArray = []
+    // let productArray = []
 
     this.setState({ selectedTankOption }, () =>
       console.log(`Option selected:`, this.state.selectedTankOption)
@@ -223,16 +196,16 @@ class OutletForm extends React.Component {
       } 
    });
    console.log('@@######filteredProTank',filteredProTank);
-   let obj1 ={}
-   if(filteredProTank.length > 0){
-     this.setState({ selectedTankCapacity : filteredProTank[0].product})
-      obj1 = {
-       value : filteredProTank[0].product_map?.product,
-       label : filteredProTank[0].product_map?.product
-     }
-     productArray.push(obj1)
-     this.setState({ tankProductOptions : productArray})
-   }
+  //  let obj1 ={}
+  //  if(filteredProTank.length > 0){
+  //    this.setState({ selectedTankCapacity : filteredProTank[0].product})
+  //     obj1 = {
+  //      value : filteredProTank[0].product_map?.product,
+  //      label : filteredProTank[0].product_map?.product
+  //    }
+  //    productArray.push(obj1)
+  //    this.setState({ tankProductOptions : productArray})
+  //  }
 
 
       var filteredCapTank = this.state.tank_map.filter(function(event){
@@ -240,16 +213,16 @@ class OutletForm extends React.Component {
           return event
          } 
       });
-      let obj ={}
-      if(filteredCapTank.length > 0){
-        this.setState({ selectedTankCapacity : filteredCapTank[0].capacity_litre?.capacity})
-         obj = {
-          value : filteredCapTank[0].capacity_litre?.capacity,
-          label : filteredCapTank[0].capacity_litre?.capacity
-        }
-        capacityArray.push(obj)
-        this.setState({ tankCapacityOptions : capacityArray})
-      }
+      // let obj ={}
+      // if(filteredCapTank.length > 0){
+      //   this.setState({ selectedTankCapacity : filteredCapTank[0].capacity_litre?.capacity})
+      //    obj = {
+      //     value : filteredCapTank[0].capacity_litre?.capacity,
+      //     label : filteredCapTank[0].capacity_litre?.capacity
+      //   }
+      //   capacityArray.push(obj)
+      //   this.setState({ tankCapacityOptions : capacityArray})
+      // }
   };
 
   // handleChangeMapTank = (selectedMapTankOption) => {
@@ -313,11 +286,10 @@ class OutletForm extends React.Component {
       console.log(`Option selected:`, this.state.selectedBayOptions)
     );
   };
-  // handleChangeBayToMpd = (selectedBayToMpdOptions) => {
-  //   this.setState({ selectedBayToMpdOptions }, () =>
-  //     console.log(`Option selected:`, this.state.selectedBayToMpdOptions)
-  //   );
-  // };
+ 
+
+
+// BAY //
 
   handleChangeBay = (selectedBayOptions) => {
     let nozzleArray = []
@@ -349,6 +321,8 @@ class OutletForm extends React.Component {
     );
   };
 
+
+// Nozzel
   handleChangeNozzle = (selectedNozzleOptions) => {
     let tankArray = []
     this.setState({ selectedNozzleOptions }, () =>
@@ -414,7 +388,8 @@ class OutletForm extends React.Component {
                   <Select
                     className="React"
                     classNamePrefix="select"
-                    name="tank" 
+                    name="tank_number" 
+                    type ="text"
                     defaultValue={tankOptions[1]}
                     options={tankOptions}
                     value={selectedTankOption}
@@ -445,8 +420,8 @@ class OutletForm extends React.Component {
               <Select
                 className="React"
                 classNamePrefix="select"         
-                onChange={this.handleChangeTank} 
-                name="capacity"         
+                onChange={this.handleChangeCap} 
+                name="capacity_litr"         
                 isClearable={true}
                 // value={tankCapacityOptions[1]}
                 // defaultValue={tankCapacityOptions[1]}

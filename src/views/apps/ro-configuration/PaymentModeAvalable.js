@@ -46,7 +46,7 @@ export default class PaymentModeAvalable extends Component {
     // .catch((error) => {
     //   console.log(error);
     // });
-    //Bank
+    //mode
     axios
     .get("http://3.108.185.7/nodejs//api/dealer/allmode")
     .then((response) => {
@@ -165,8 +165,8 @@ export default class PaymentModeAvalable extends Component {
               <Label>Select Bank</Label>
                   <CustomInput
                     type="select"
-                    name="name_of_bank	"
-                    value={this.state.name_of_bank}
+                    name="select_bank"
+                    value={this.state.select_bank}
                     onChange={this.changeHandler}
                   >
                     {this.state.bankC?.map((bankp) => (

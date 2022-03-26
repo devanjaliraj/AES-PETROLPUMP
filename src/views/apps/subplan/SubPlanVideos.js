@@ -39,20 +39,20 @@ class SubPlanVideos extends React.Component {
       //   headerCheckboxSelectionFilteredOnly: true,
       //   headerCheckboxSelection: true,
       // },
-      {
-        headerName: "ID",
-        field: "_id",
-        filter: true,
-        width: 250,
-        pinned: window.innerWidth > 992 ? "left" : false,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data._id}</span>
-            </div>
-          );
-        },
-      },
+      // {
+      //   headerName: "ID",
+      //   field: "_id",
+      //   filter: true,
+      //   width: 250,
+      //   pinned: window.innerWidth > 992 ? "left" : false,
+      //   cellRendererFramework: (params) => {
+      //     return (
+      //       <div className="d-flex align-items-center cursor-pointer">
+      //         <span>{params.data._id}</span>
+      //       </div>
+      //     );
+      //   },
+      // },
       {
         headerName: "Video Link",
         field: "video_link",
