@@ -43,7 +43,9 @@ class OutletForm extends React.Component {
       tankToNozzlesOptions:[],
       selectedTankToNozzlesOptions:null,
       tankProductOptionsNew:[],
-      tankCapacityOptionsNew:[]
+      tankCapacityOptionsNew:[],
+      tankProductOptionsValue:null,
+      tankCapacityOptionsValue:null
       }; 
   }
  // submitHandler = (e) => {
@@ -286,7 +288,18 @@ class OutletForm extends React.Component {
       console.log(`Option selected:`, this.state.selectedBayOptions)
     );
   };
- 
+
+  handleChangeCap = (tankCapacityOptionsValue) => {
+    this.setState({ tankCapacityOptionsValue }, () =>
+      console.log(`handleChangeCap`, this.state.tankCapacityOptionsValue)
+    );
+  };
+  
+  handleChangeProd = (tankProductOptionsValue) => {
+    this.setState({ tankProductOptionsValue }, () =>
+      console.log(`handleChangeProd:`, this.state.tankProductOptionsValue)
+    );
+  };
 
 
 // BAY //
@@ -371,7 +384,9 @@ class OutletForm extends React.Component {
       // selectedNozzleToEachBayOptions,
       selectedNozzleOptions,
       tankProductOptionsNew,
-      tankCapacityOptionsNew
+      tankCapacityOptionsNew,
+      tankProductOptionsValue,
+      tankCapacityOptionsValue
       // tankToNozzlesOptions,
       // selectedTankToNozzlesOptions
     } = this.state
@@ -408,9 +423,10 @@ class OutletForm extends React.Component {
                     // defaultValue={tankProductOptions[1]}
                     // options={tankProductOptions}
                     // value={tankProductOptions[1]}
+                    onChange={this.handleChangeProd} 
                     defaultValue={tankProductOptionsNew[1]}
                     options={tankProductOptionsNew}
-                    value={tankProductOptionsNew[1]}
+                    value={tankProductOptionsValue}
                     menuPlacement="auto"
                     maxMenuHeight={220}  
                   />
@@ -426,9 +442,9 @@ class OutletForm extends React.Component {
                 // value={tankCapacityOptions[1]}
                 // defaultValue={tankCapacityOptions[1]}
                 // options={tankCapacityOptions}
-                defaultValue={tankCapacityOptionsNew[1]}
+                defaultValue={tankCapacityOptionsValue}
                 options={tankCapacityOptionsNew}
-                value={tankCapacityOptionsNew[1]}
+                value={tankCapacityOptionsValue}
                 menuPlacement="auto"
                 maxMenuHeight={220}
               />
