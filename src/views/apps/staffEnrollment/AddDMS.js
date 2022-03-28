@@ -12,7 +12,6 @@ import {
   Button,
 } from "reactstrap";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
 export default class UpdateDSM extends Component {
   constructor(props) {
     super(props);
@@ -89,10 +88,6 @@ export default class UpdateDSM extends Component {
     data.append("salary_decieded", this.state.salary_decieded);
     data.append("salary_date", this.state.salary_date);
     data.append("status", this.state.status);
-    // data.append(" adharimg", this.state.selectedFile, this.state.selectedName);
-    // data.append(" panImg", this.state.selectedFile, this.state.selectedName);
-    // data.append(" photograh", this.state.selectedFile, this.state.selectedName);
-
     if (this.state.selectedFile !== null) {
       data.append("adharimg", this.state.selectedFile, this.state.selectedName);
     }
@@ -212,7 +207,7 @@ export default class UpdateDSM extends Component {
                   <Label>Pan Number</Label>
                   <Input
                     required
-                    type="number"
+                    type="text"
                     name="pan_number"
                     placeholder="Enter Pan No."
                     value={this.state.pan_number}

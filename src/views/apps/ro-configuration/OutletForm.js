@@ -114,6 +114,7 @@ class OutletForm extends React.Component {
         else{
           alert('Something went wrong in Dealer Shipform Api');
         }
+        // this.props.history.push("/app/ro-configuration/designYourOutletList");
       })
       .catch((error) => {
         console.log(error.response);
@@ -437,7 +438,7 @@ class OutletForm extends React.Component {
                 className="React"
                 classNamePrefix="select"         
                 onChange={this.handleChangeCap} 
-                name="capacity_litr"         
+                name="capacity_litre"         
                 isClearable={true}
                 // value={tankCapacityOptions[1]}
                 // defaultValue={tankCapacityOptions[1]}

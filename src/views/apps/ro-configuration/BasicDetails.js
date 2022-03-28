@@ -275,7 +275,7 @@ export default class BasicDetails extends Component {
               return <option value={item} >{item}</option>
             })}
           </CustomInput>
-          <Col lg="6" md="6" sm="6" className="mb-2 mt-1">
+          {/* <Col lg="6" md="6" sm="6" className="mb-2 mt-1">
                   <Label className="mb-1">Status</Label>
                   <div
                     className="form-label-group"
@@ -298,7 +298,7 @@ export default class BasicDetails extends Component {
 
                     <span style={{ marginRight: "3px" }}>Inactive</span>
                   </div>
-                </Col>
+                </Col> */}
               </Col>
         
               

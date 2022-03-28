@@ -1,11 +1,10 @@
 import React from "react";
 import Wizard from "../../../components/@vuexy/wizard/WizardComponent";
 import {
-  // Form,
+  Form,
   FormGroup,
   Input,
   Label,
-  // CustomInput,
   Row,
   Col,
   Card,

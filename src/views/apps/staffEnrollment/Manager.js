@@ -13,9 +13,6 @@ import {
 } from "reactstrap";
 import axios from "axios";
 export default class Manager extends Component {
-  // fileArrayAdhar = [];
-  // fileArrayPan = [];
-  // fileArrayPhoto = [];
   constructor(props) {
     super(props);
     this.state = {
@@ -216,7 +213,7 @@ export default class Manager extends Component {
                   <Label>Pan Number</Label>
                   <Input
                     required
-                    type="number"
+                    type="text"
                     name="pan_number"
                     placeholder="Enter Pan No."
                     value={this.state.pan_number}
@@ -245,7 +242,7 @@ export default class Manager extends Component {
                   <Label>Joining Date</Label>
                   <Input
                     required
-                    type="text"
+                    type="date"
                     name="joining_date"
                     placeholder="Enter Joining Date"
                     value={this.state.joining_date}
@@ -257,7 +254,7 @@ export default class Manager extends Component {
                   <Label>Date of Brith</Label>
                   <Input
                     required
-                    type="text"
+                    type="date"
                     name="date_of_brith"
                     placeholder="Enter DOB"
                     value={this.state.date_of_brith}
@@ -279,7 +276,7 @@ export default class Manager extends Component {
                   <Label>Salary Date</Label>
                   <Input
                     required
-                    type="text"
+                    type="date"
                     name="salary_date"
                     placeholder="Enter Name"
                     value={this.state.salary_date}

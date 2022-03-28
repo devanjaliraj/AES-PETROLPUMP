@@ -56,7 +56,6 @@ export default class OtherStaff extends Component {
           adharimg: response.data.data.adharimg,
           pan_number: response.data.data.pan_number,
           panImg: response.data.data.panImg,
-
           photograh: response.data.data.photograh,
           apprpved_leave: response.data.data.apprpved_leave,
           date_of_brith: response.data.data.date_of_brith,
