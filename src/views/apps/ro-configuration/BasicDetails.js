@@ -116,23 +116,17 @@ export default class BasicDetails extends Component {
     e.preventDefault();
     let { id } = this.props.match.params;
     axios
-      .post(`http://3.108.185.7/nodejs/api/dealer/addeditadvancedealershipform/${id}`, this.state)
+      .post(`http://3.108.185.7/nodejs/api/dealer/addeditbasicdealershipform/${id}`, this.state)
       .then(response => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
         this.props.history.push("/app/ro-configuration/RoConfigurationList");
       })
 
-  //       //  state
-  // axios
-  // .post(`http://3.108.185.7/nodejs/api/admin/allstate/${id}`)
-  // .then(response => {
-  //   console.log(response.data.data);
-  //   this.setState({ stateC: response.data.data });
-  // })
+ 
  
       .catch(error => {
-        console.log(error);
+        console.log(error.response);
       });
   };
   changeHandler1 = (e) => {
@@ -140,7 +134,7 @@ export default class BasicDetails extends Component {
   };
 
   render() {
-    const { addTodo, list } = this.props;
+    // const { addTodo, list } = this.props;
     let { instate, city } = this.state;
     return (
       <div>

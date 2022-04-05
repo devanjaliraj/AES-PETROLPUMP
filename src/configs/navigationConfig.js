@@ -64,14 +64,22 @@ const navigationConfig = [
         permissions: ["admin", "editor"],
         navLink: "/app/ro-configuration/designYourOutletList",
       },
-      // {
-      //   id: "outletList",
-      //   title: "Outlet List",
-      //   type: "item",
-      //   icon: <Icon.Circle size={12} />,
-      //   permissions: ["admin", "editor"],
-      //   navLink: "/app/ro-configuration/outletList",
-      // },
+      {
+        id: "tankMapList",
+        title: "Tank Map List",
+        type: "item",
+        icon: <Icon.Circle size={12} />,
+        permissions: ["admin", "editor"],
+        navLink: "/app/ro-configuration/tankMapList",
+      },
+      {
+        id: "nozzleMapList",
+        title: "Nozzle Map List",
+        type: "item",
+        icon: <Icon.Circle size={12} />,
+        permissions: ["admin", "editor"],
+        navLink: "/app/ro-configuration/nozzleMapList",
+      },
     
       {
         id: "bankForTransactionList",
@@ -132,7 +140,7 @@ const navigationConfig = [
     },
     {
       id: "dMSList",
-      title: "DMS List",
+      title: "DSM List",
       type: "item",
       icon: <Icon.Circle size={12} />,
       permissions: ["admin", "editor"],

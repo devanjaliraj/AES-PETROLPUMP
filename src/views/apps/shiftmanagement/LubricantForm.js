@@ -120,7 +120,7 @@ class LubricantForm extends React.Component {
               </Col>
               <Col md="6" sm="12">
                 <h5 className="my-1 text-bold-600">Total Pieces Available</h5>
-                <Input
+                <CustomInput
                   type="select"
                   name="total_pieces_available"
                   value={this.state.total_pieces_available}
@@ -131,7 +131,7 @@ class LubricantForm extends React.Component {
                       {mocp.no_of_pieces}
                     </option>
                   ))}
-                </Input>
+                </CustomInput>
               </Col>
               <Col md="6" sm="12">
                 <h5 className="my-1 text-bold-600">No-of Pieces Sold</h5>

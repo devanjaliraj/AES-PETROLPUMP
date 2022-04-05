@@ -10,37 +10,72 @@ import { ContextLayout } from "./utility/context/Layout";
 
 // Route-based code splitting
 const analyticsDashboard = lazy(() => import("./views/dashboard/analytics/AnalyticsDashboard"));
-const ecommerceDashboard = lazy(() =>import("./views/dashboard/ecommerce/EcommerceDashboard"));
+const ecommerceDashboard = lazy(() => import("./views/dashboard/ecommerce/EcommerceDashboard"));
 const checkout = lazy(() => import("./views/apps/ecommerce/cart/Cart"));
-const productDetail = lazy(() =>import("./views/apps/ecommerce/detail/Detail"));
+const productDetail = lazy(() => import("./views/apps/ecommerce/detail/Detail"));
 const shop = lazy(() => import("./views/apps/ecommerce/shop/Shop"));
 
 // stockmanagement
-const StockManagementList = lazy(() =>import("./views/apps/stockmanagement/StockManagementList"));
+const StockManagementList = lazy(() => import("./views/apps/stockmanagement/StockManagementList"));
 const FuelStock = lazy(() => import("./views/apps/stockmanagement/FuelStock"));
 const LubeStockList = lazy(() => import("./views/apps/stockmanagement/LubeStockList"));
 const LubeStockForm = lazy(() => import("./views/apps/stockmanagement/LubeStockForm"));
 
 // shiftmanagement 
-const bayManagementForm = lazy(() =>import("./views/apps/shiftmanagement/BayManagementForm"));
-const bayManagementList = lazy(() =>import("./views/apps/shiftmanagement/BayManagementList"));
-const creditGivenForm = lazy(() => import("./views/apps/shiftmanagement/CreditGivenForm"));
-const creditGivenList = lazy(() => import("./views/apps/shiftmanagement/CreditGivenList"));
-const dSMClosingSheetForm = lazy(() => import("./views/apps/shiftmanagement/DSMClosingSheetForm"));
-const dSMClosingSheetList = lazy(() => import("./views/apps/shiftmanagement/DSMClosingSheetList"));
-const lubricantForm = lazy(() => import("./views/apps/shiftmanagement/LubricantForm"));
-const lubricantSalesList = lazy(() => import("./views/apps/shiftmanagement/LubricantSalesList"));
-const retailSellingPricefrom = lazy(() =>import("./views/apps/shiftmanagement/RetailSellingPricefrom"));
-const retailSellingPriceList = lazy(() =>import("./views/apps/shiftmanagement/RetailSellingPricefrom"));
-const salesFigureForm = lazy(() => import("./views/apps/shiftmanagement/SalesFigureForm"));
-const salesFigureList = lazy(() => import("./views/apps/shiftmanagement/SalesFigureList"));
-const shiftManagementList = lazy(() => import("./views/apps/shiftmanagement/ShiftManagementList"));
-const staffAttendanceList = lazy(() => import("./views/apps/shiftmanagement/StaffAttendanceList"));
-const staffAttendenceForm = lazy(() => import("./views/apps/shiftmanagement/StaffAttendenceForm"));
+/////////////////////////////// shiftmanagement///////////////////////////
+const AddRsp = lazy(() => import("./views/apps/shiftmanagement/rsp/AddRsp"));
+const AddBm = lazy(() => import("./views/apps/shiftmanagement/rsp/AddBm"));
+const AddDsmClosing = lazy(() =>
+  import("./views/apps/shiftmanagement/rsp/AddDsmCS")
+);
+const RetailSellingPriceList = lazy(() =>
+  import("./views/apps/shiftmanagement/RetailSellingPriceList")
+);
+const RetailSellingPriceForm = lazy(() =>
+  import("./views/apps/shiftmanagement/RetailSellingPricefrom")
+);
+
+const BayManagementList = lazy(() =>
+  import("./views/apps/shiftmanagement/BayManagementList")
+);
+const BayManagementForm = lazy(() =>
+  import("./views/apps/shiftmanagement/BayManagementForm")
+);
+const DSMClosingSheetList = lazy(() =>
+  import("./views/apps/shiftmanagement/DSMClosingSheetList")
+);
+const DSMClosingSheetForm = lazy(() =>
+  import("./views/apps/shiftmanagement/DSMClosingSheetForm")
+);
+const SalesFigureList = lazy(() =>
+  import("./views/apps/shiftmanagement/SalesFigureList")
+);
+const SalesFigureForm = lazy(() =>
+  import("./views/apps/shiftmanagement/SalesFigureForm")
+);
+const CreditGivenList = lazy(() =>
+  import("./views/apps/shiftmanagement/CreditGivenList")
+);
+const CreditGivenForm = lazy(() =>
+  import("./views/apps/shiftmanagement/CreditGivenForm")
+);
+const LubricantSales = lazy(() =>
+  import("./views/apps/shiftmanagement/LubricantSalesList")
+);
+
+const lubricantForm = lazy(() =>
+  import("./views/apps/shiftmanagement/LubricantForm")
+);
+const StaffAttendanceList = lazy(() =>
+  import("./views/apps/shiftmanagement/StaffAttendanceList")
+);
+const StaffAttendanceForm = lazy(() =>
+  import("./views/apps/shiftmanagement/StaffAttendenceForm")
+);
 
 // facilitymanagement
-const FacilityManagementList = lazy(() =>import("./views/apps/facilitymanagement/FacilityManagement"));
-const MpdManagement = lazy(() =>import("./views/apps/facilitymanagement/MpdManagement"));
+const FacilityManagementList = lazy(() => import("./views/apps/facilitymanagement/FacilityManagement"));
+const MpdManagement = lazy(() => import("./views/apps/facilitymanagement/MpdManagement"));
 
 // my component
 const subplanvideos = lazy(() => import("./views/apps/subplan/SubPlanVideos"));
@@ -53,7 +88,12 @@ const trainingList = lazy(() => import("./views/apps/training/TrainingList"));
 // ro-configuration
 const outletList = lazy (() => import("./views/apps/ro-configuration/OutletList"));
 const roForm = lazy(() => import("./views/apps/ro-configuration/RoForm"));
-const outletForm = lazy(() =>import("./views/apps/ro-configuration/OutletForm"));
+const outletForm = lazy(() => import("./views/apps/ro-configuration/OutletForm"));
+const tankMapList = lazy(() => import("./views/apps/ro-configuration/TankMapList"));
+const editTankMap = lazy(() => import("./views/apps/ro-configuration/EditTankMap"));
+const nozzleMapList = lazy(() => import("./views/apps/ro-configuration/NozzleMapList"));
+const editNozzleMap = lazy(() => import("./views/apps/ro-configuration/EditNozzleMap"));
+
 // const addInputBox =lazy(()=>import("./views/apps/ro-configuration/AddInputBox"));
 
 
@@ -68,15 +108,15 @@ const bankForTransaction = lazy(() => import("./views/apps/ro-configuration/Bank
 const bankForTransactionList = lazy(() => import("./views/apps/ro-configuration/BankForTransactionList"));
 const viewBankForTransaction = lazy(() => import("./views/apps/ro-configuration/ViewBankForTransaction"));
 const editBankForTransaction = lazy(() => import("./views/apps/ro-configuration/EditBankForTransaction"));
-const CreditCustomersList = lazy(() =>import("./views/apps/ro-configuration/CreditCustomersList"));
-const RoConfigurationList = lazy(() =>import("./views/apps/ro-configuration/RoConfigurationList"));
-const BasicDetails = lazy(() =>import("./views/apps/ro-configuration/BasicDetails"));
-const OtherEquipmentList = lazy(() =>import("./views/apps/ro-configuration/OtherEquipmentList"));
-const creditCustomers = lazy(() =>import("./views/apps/ro-configuration/CreditCustomers"));
+const CreditCustomersList = lazy(() => import("./views/apps/ro-configuration/CreditCustomersList"));
+const RoConfigurationList = lazy(() => import("./views/apps/ro-configuration/RoConfigurationList"));
+const BasicDetails = lazy(() => import("./views/apps/ro-configuration/BasicDetails"));
+const OtherEquipmentList = lazy(() => import("./views/apps/ro-configuration/OtherEquipmentList"));
+const creditCustomers = lazy(() => import("./views/apps/ro-configuration/CreditCustomers"));
 
 // staffEnrollment
-const staffManagementList = lazy(() =>import("./views/apps/staffEnrollment/StaffManagementList"));
-const staffManagementDealer = lazy(() =>import("./views/apps/staffEnrollment/StaffManagementDealer"));
+const staffManagementList = lazy(() => import("./views/apps/staffEnrollment/StaffManagementList"));
+const staffManagementDealer = lazy(() => import("./views/apps/staffEnrollment/StaffManagementDealer"));
 const staffForm = lazy(() => import("./views/apps/staffEnrollment/StaffForm"));
 const manager = lazy(() => import("./views/apps/staffEnrollment/Manager"));
 const addDMS = lazy(() => import("./views/apps/staffEnrollment/AddDMS"));
@@ -86,8 +126,8 @@ const otherStaffList = lazy(() => import("./views/apps/staffEnrollment/OtherStaf
 
 
 // cashmanagement
-const cashDealerTable = lazy(() =>import("./views/apps/cashmanagement/CashDealerTable"));
-const cashManagementList = lazy(() =>import("./views/apps/cashmanagement/CashManagementList"));
+const cashDealerTable = lazy(() => import("./views/apps/cashmanagement/CashDealerTable"));
+const cashManagementList = lazy(() => import("./views/apps/cashmanagement/CashManagementList"));
 
 
 // setting
@@ -100,44 +140,44 @@ const mOCList = lazy(() => import("./views/apps/setting/moc/MOCList"));
 const addMOC = lazy(() => import("./views/apps/setting/moc/AddMOC"));
 const editMOC = lazy(() => import("./views/apps/setting/moc/EditMOC"));
 const viewMOC = lazy(() => import("./views/apps/setting/moc/ViewMOC"));
- const addTank = lazy(() =>import("./views/apps/setting/tank/AddTank"));
-const tankList = lazy(() =>import("./views/apps/setting/tank/TankList"));
-const bayList = lazy(() =>import("./views/apps/setting/bay/BayList"));
-const addBay = lazy(() =>import("./views/apps/setting/bay/AddBay"));
+ const addTank = lazy(() => import("./views/apps/setting/tank/AddTank"));
+const tankList = lazy(() => import("./views/apps/setting/tank/TankList"));
+const bayList = lazy(() => import("./views/apps/setting/bay/BayList"));
+const addBay = lazy(() => import("./views/apps/setting/bay/AddBay"));
 const enquiryForm = lazy(() => import("./views/apps/setting/EnquiryForm"));
 
 const grid = lazy(() => import("./views/ui-elements/grid/Grid"));
-const typography = lazy(() =>import("./views/ui-elements/typography/Typography"));
-const textutilities = lazy(() =>import("./views/ui-elements/text-utilities/TextUtilities"));
-const syntaxhighlighter = lazy(() =>import("./views/ui-elements/syntax-highlighter/SyntaxHighlighter"));
+const typography = lazy(() => import("./views/ui-elements/typography/Typography"));
+const textutilities = lazy(() => import("./views/ui-elements/text-utilities/TextUtilities"));
+const syntaxhighlighter = lazy(() => import("./views/ui-elements/syntax-highlighter/SyntaxHighlighter"));
 const colors = lazy(() => import("./views/ui-elements/colors/Colors"));
-const reactfeather = lazy(() =>import("./views/ui-elements/icons/FeatherIcons"));
+const reactfeather = lazy(() => import("./views/ui-elements/icons/FeatherIcons"));
 const basicCards = lazy(() => import("./views/ui-elements/cards/basic/Cards"));
 const statisticsCards = lazy(() => import("./views/ui-elements/cards/statistics/StatisticsCards"));
 const analyticsCards = lazy(() =>import("./views/ui-elements/cards/analytics/Analytics"));
-const actionCards = lazy(() =>import("./views/ui-elements/cards/actions/CardActions"));
+const actionCards = lazy(() => import("./views/ui-elements/cards/actions/CardActions"));
 const Alerts = lazy(() => import("./components/reactstrap/alerts/Alerts"));
 const Buttons = lazy(() => import("./components/reactstrap/buttons/Buttons"));
 const Breadcrumbs = lazy(() => import("./components/reactstrap/breadcrumbs/Breadcrumbs"));
-const Carousel = lazy(() =>import("./components/reactstrap/carousel/Carousel"));
+const Carousel = lazy(() => import("./components/reactstrap/carousel/Carousel"));
 const Collapse = lazy(() => import("./components/reactstrap/collapse/Collapse"));
-const Dropdowns = lazy(() =>import("./components/reactstrap/dropdowns/Dropdown"));
-const ListGroup = lazy(() =>import("./components/reactstrap/listGroup/ListGroup"));
+const Dropdowns = lazy(() => import("./components/reactstrap/dropdowns/Dropdown"));
+const ListGroup = lazy(() => import("./components/reactstrap/listGroup/ListGroup"));
 const Modals = lazy(() => import("./components/reactstrap/modal/Modal"));
-const Pagination = lazy(() =>import("./components/reactstrap/pagination/Pagination"));
-const NavComponent = lazy(() =>import("./components/reactstrap/navComponent/NavComponent"));
+const Pagination = lazy(() => import("./components/reactstrap/pagination/Pagination"));
+const NavComponent = lazy(() => import("./components/reactstrap/navComponent/NavComponent"));
 const Navbar = lazy(() => import("./components/reactstrap/navbar/Navbar"));
 const Tabs = lazy(() => import("./components/reactstrap/tabs/Tabs"));
-const TabPills = lazy(() =>import("./components/reactstrap/tabPills/TabPills"));
-const Tooltips = lazy(() =>import("./components/reactstrap/tooltips/Tooltips"));
-const Popovers = lazy(() =>import("./components/reactstrap/popovers/Popovers"));
+const TabPills = lazy(() => import("./components/reactstrap/tabPills/TabPills"));
+const Tooltips = lazy(() => import("./components/reactstrap/tooltips/Tooltips"));
+const Popovers = lazy(() => import("./components/reactstrap/popovers/Popovers"));
 const Badge = lazy(() => import("./components/reactstrap/badge/Badge"));
-const BadgePill = lazy(() =>import("./components/reactstrap/badgePills/BadgePill"));
-const Progress = lazy(() =>import("./components/reactstrap/progress/Progress"));
+const BadgePill = lazy(() => import("./components/reactstrap/badgePills/BadgePill"));
+const Progress = lazy(() => import("./components/reactstrap/progress/Progress"));
 const Media = lazy(() => import("./components/reactstrap/media/MediaObject"));
-const Spinners = lazy(() =>import("./components/reactstrap/spinners/Spinners"));
+const Spinners = lazy(() => import("./components/reactstrap/spinners/Spinners"));
 const avatar = lazy(() => import("./components/@vuexy/avatar/Avatar"));
-const AutoComplete = lazy(() =>import("./components/@vuexy/autoComplete/AutoComplete"));
+const AutoComplete = lazy(() => import("./components/@vuexy/autoComplete/AutoComplete"));
 const chips = lazy(() => import("./components/@vuexy/chips/Chips"));
 const divider = lazy(() => import("./components/@vuexy/divider/Divider"));
 const vuexyWizard = lazy(() => import("./components/@vuexy/wizard/Wizard"));
@@ -145,18 +185,18 @@ const listView = lazy(() => import("./views/ui-elements/data-list/ListView"));
 const thumbView = lazy(() => import("./views/ui-elements/data-list/ThumbView"));
 const select = lazy(() => import("./views/forms/form-elements/select/Select"));
 const switchComponent = lazy(() =>import("./views/forms/form-elements/switch/Switch"));
-const checkbox = lazy(() =>import("./views/forms/form-elements/checkboxes/Checkboxes"));
+const checkbox = lazy(() => import("./views/forms/form-elements/checkboxes/Checkboxes"));
 const radio = lazy(() => import("./views/forms/form-elements/radio/Radio"));
 const input = lazy(() => import("./views/forms/form-elements/input/Input"));
-const group = lazy(() =>import("./views/forms/form-elements/input-groups/InputGoups"));
-const numberInput = lazy(() =>import("./views/forms/form-elements/number-input/NumberInput"));
-const textarea = lazy(() =>import("./views/forms/form-elements/textarea/Textarea"));
-const pickers = lazy(() =>import("./views/forms/form-elements/datepicker/Pickers"));
-const inputMask = lazy(() =>import("./views/forms/form-elements/input-mask/InputMask"));
+const group = lazy(() => import("./views/forms/form-elements/input-groups/InputGoups"));
+const numberInput = lazy(() => import("./views/forms/form-elements/number-input/NumberInput"));
+const textarea = lazy(() => import("./views/forms/form-elements/textarea/Textarea"));
+const pickers = lazy(() => import("./views/forms/form-elements/datepicker/Pickers"));
+const inputMask = lazy(() => import("./views/forms/form-elements/input-mask/InputMask"));
 const layout = lazy(() => import("./views/forms/form-layouts/FormLayouts"));
 const formik = lazy(() => import("./views/forms/formik/Formik"));
 const tables = lazy(() => import("./views/tables/reactstrap/Tables"));
-const ReactTables = lazy(() =>import("./views/tables/react-tables/ReactTables"));
+const ReactTables = lazy(() => import("./views/tables/react-tables/ReactTables"));
 const Aggrid = lazy(() => import("./views/tables/aggrid/Aggrid"));
 const DataTable = lazy(() => import("./views/tables/data-tables/DataTables"));
 const profile = lazy(() => import("./views/pages/profile/Profile"));
@@ -181,7 +221,7 @@ const uploader = lazy(() => import("./extensions/dropzone/Dropzone"));
 const editor = lazy(() => import("./extensions/editor/Editor"));
 const drop = lazy(() => import("./extensions/drag-and-drop/DragAndDrop"));
 const tour = lazy(() => import("./extensions/tour/Tour"));
-const clipboard = lazy(() =>import("./extensions/copy-to-clipboard/CopyToClipboard"));
+const clipboard = lazy(() => import("./extensions/copy-to-clipboard/CopyToClipboard"));
 const menu = lazy(() => import("./extensions/contexify/Contexify"));
 const swiper = lazy(() => import("./extensions/swiper/Swiper"));
 const i18n = lazy(() => import("./extensions/i18n/I18n"));
@@ -189,16 +229,16 @@ const reactPaginate = lazy(() => import("./extensions/pagination/Pagination"));
 const tree = lazy(() => import("./extensions/treeview/TreeView"));
 const Import = lazy(() => import("./extensions/import-export/Import"));
 const Export = lazy(() => import("./extensions/import-export/Export"));
-const ExportSelected = lazy(() =>import("./extensions/import-export/ExportSelected"));
+const ExportSelected = lazy(() => import("./extensions/import-export/ExportSelected"));
 const userList = lazy(() => import("./views/apps/user/list/List"));
 const userEdit = lazy(() => import("./views/apps/user/edit/Edit"));
 const userView = lazy(() => import("./views/apps/user/view/View"));
 const Login = lazy(() => import("./views/pages/authentication/login/Login"));
-const forgotPassword = lazy(() =>import("./views/pages/authentication/ForgotPassword"));
-const lockScreen = lazy(() =>import("./views/pages/authentication/LockScreen"));
-const resetPassword = lazy(() =>import("./views/pages/authentication/ResetPassword"));
-const register = lazy(() =>import("./views/pages/authentication/register/Register"));
-const accessControl = lazy(() =>import("./extensions/access-control/AccessControl"));
+const forgotPassword = lazy(() => import("./views/pages/authentication/ForgotPassword"));
+const lockScreen = lazy(() => import("./views/pages/authentication/LockScreen"));
+const resetPassword = lazy(() => import("./views/pages/authentication/ResetPassword"));
+const register = lazy(() => import("./views/pages/authentication/register/Register"));
+const accessControl = lazy(() => import("./extensions/access-control/AccessControl"));
 
 // Set Layout and Component Using App Route
 const RouteConfig = ({ component: Component, fullLayout, ...rest }) => (
@@ -268,6 +308,10 @@ class AppRouter extends React.Component {
           <AppRoute path="/app/ro-configuration/designYourOutletList" component={designYourOutletList} />
           <AppRoute path="/app/ro-configuration/creditCustomers/:id" component={creditCustomers}/>
           <AppRoute path="/app/ro-configuration/outletForm/:id"component={outletForm}/>
+          <AppRoute path="/app/ro-configuration/tankMapList"component={tankMapList}/>
+          <AppRoute path="/app/ro-configuration/editTankMap/:id"component={editTankMap}/>
+          <AppRoute path="/app/ro-configuration/nozzleMapList"component={nozzleMapList}/>
+          <AppRoute path="/app/ro-configuration/editNozzleMap/:id"component={editNozzleMap}/>
          
           
           
@@ -284,21 +328,70 @@ class AppRouter extends React.Component {
           <AppRoute path="/app/facilityManagement/MpdManagement" component={MpdManagement} />
 
           {/* shiftManagement */}
-          <AppRoute path="/app/shiftManagement/bayManagementForm" component={bayManagementForm}/>
-          <AppRoute path="/app/shiftManagement/bayManagementList" component={bayManagementList}/>
-          <AppRoute path="/app/shiftManagement/creditGivenForm" component={creditGivenForm}/>
-          <AppRoute path="/app/shiftManagement/creditGivenList" component={creditGivenList}/>
-          <AppRoute path="/app/shiftManagement/dSMClosingSheetForm" component={dSMClosingSheetForm}/>
-          <AppRoute path="/app/shiftManagement/dSMClosingSheetList" component={dSMClosingSheetList}/>
-          <AppRoute path="/app/shiftManagement/lubricantForm" component={lubricantForm}/>
-          <AppRoute path="/app/shiftManagement/lubricantSalesList" component={lubricantSalesList}/>
-          <AppRoute path="/app/shiftManagement/retailSellingPricefrom" component={retailSellingPricefrom}/>
-          <AppRoute path="/app/shiftManagement/retailSellingPriceList" component={retailSellingPriceList}/>
-          <AppRoute path="/app/shiftManagement/salesFigureForm" component={salesFigureForm}/>
-          <AppRoute path="/app/shiftManagement/salesFigureList" component={salesFigureList}/>
-          <AppRoute path="/app/shiftManagement/shiftManagementList" component={shiftManagementList}/>
-          <AppRoute path="/app/shiftManagement/staffAttendanceList" component={staffAttendanceList}/>
-          <AppRoute path="/app/shiftManagement/staffAttendenceForm" component={staffAttendenceForm}/>
+         
+          <AppRoute path="/app/shiftmanagement/rsp/addRsp" component={AddRsp} />
+          <AppRoute path="/app/shiftmanagement/rsp/addBm" component={AddBm} />
+          <AppRoute
+            path="/app/shiftmanagement/rsp/addDsmClosing"
+            component={AddDsmClosing}
+          />
+          <AppRoute
+            path="/app/shiftmanagement/retailSellingPriceList"
+            component={RetailSellingPriceList}
+          />
+          <AppRoute
+            path="/app/shiftmanagement/retailSellingPriceForm/:id"
+            component={RetailSellingPriceForm}
+          />
+          <AppRoute
+            path="/app/shiftmanagement/bayManagementList"
+            component={BayManagementList}
+          />
+          <AppRoute
+            path="/app/shiftmanagement/bayManagementForm/:id"
+            component={BayManagementForm}
+          />
+          <AppRoute
+            path="/app/shiftManagement/dSMClosingSheetList"
+            component={DSMClosingSheetList}
+          />
+          <AppRoute
+            path="/app/shiftManagement/dSMClosingSheetForm/:id"
+            component={DSMClosingSheetForm}
+          />
+          <AppRoute
+            path="/app/shiftManagement/salesFigureList"
+            component={SalesFigureList}
+          />
+          <AppRoute
+            path="/app/shiftManagement/salesFigureForm"
+            component={SalesFigureForm}
+          />
+          <AppRoute
+            path="/app/shiftManagement/creditGivenList"
+            component={CreditGivenList}
+          />
+          <AppRoute
+            path="/app/shiftManagement/creditGivenForm"
+            component={CreditGivenForm}
+          />
+          <AppRoute
+            path="/app/shiftManagement/lubricantForm/:id"
+            component={lubricantForm}
+          />
+          <AppRoute
+            path="/app/shiftManagement/lubricantSales"
+            component={LubricantSales}
+          />
+          <AppRoute
+            path="/app/shiftManagement/staffAttendanceList"
+            component={StaffAttendanceList}
+          />
+          <AppRoute
+            path="/app/shiftManagement/staffAttendanceForm/:id"
+            component={StaffAttendanceForm}
+          />
+          
           {/* <AppRoute path="/app/shiftManagement/lubricantSales" component={LubricantSales}/> */}
 
           {/* staffEnrollment */}

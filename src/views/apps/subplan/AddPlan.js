@@ -92,7 +92,7 @@ export class AddPlans extends Component {
           <CardBody>
             <Form className="m-1" onSubmit={this.submitHandler}>
               <Row className="mb-2">
-              <Col lg="6" md="6" className="mb-2">
+              {/* <Col lg="6" md="6" className="mb-2">
                   <Label>ID </Label>
                   <Input
                     type="text"
@@ -100,7 +100,7 @@ export class AddPlans extends Component {
                     value={this.state._id}
                     onChange={this.changeHandler}
                   />
-                </Col>
+                </Col> */}
                 <Col lg="6" md="6" className="mb-2">
                   <Label>Video Link </Label>
                   <Input

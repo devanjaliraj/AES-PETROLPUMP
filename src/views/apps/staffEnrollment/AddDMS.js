@@ -51,13 +51,13 @@ export default class UpdateDSM extends Component {
           dsm_name: response.data.data.dsm_name,
           addres: response.data.data.addres,
           mobile: response.data.data.mobile,
-          joining_date: response.data.data.joining_date,
+          joining_date: response.data.data.joining_date.split(","),
           adhar_number: response.data.data.adhar_number,
           adharimg: response.data.data.adharimg,
           pan_number: response.data.data.pan_number,
           panImg: response.data.data.panImg,
           photograh: response.data.data.photograh,
-          date_of_brith: response.data.data.date_of_brith,
+          date_of_brith: response.data.data.date_of_brith.split(","),
           salary_decieded: response.data.data.salary_decieded,
           salary_date: response.data.data.salary_date,
           status: response.data.data.status,
@@ -81,12 +81,12 @@ export default class UpdateDSM extends Component {
     data.append("dsm_name", this.state.dsm_name);
     data.append("addres", this.state.addres);
     data.append("mobile", this.state.mobile);
-    data.append("joining_date", this.state.joining_date);
+    data.append("joining_date", this.state.joining_date.toString());
     data.append("adhar_number", this.state.adhar_number);
     data.append("pan_number", this.state.pan_number);
-    data.append("date_of_brith", this.state.date_of_brith);
+    data.append("date_of_brith", this.state.date_of_brith.toString());
     data.append("salary_decieded", this.state.salary_decieded);
-    data.append("salary_date", this.state.salary_date);
+    data.append("salary_date", this.state.salary_date.toString());
     data.append("status", this.state.status);
     if (this.state.selectedFile !== null) {
       data.append("adharimg", this.state.selectedFile, this.state.selectedName);

@@ -12,7 +12,6 @@ import {
 } from "reactstrap";
 import axios from "axios";
 import { history } from "../../../history";
-
 class RetailSellingPrice extends React.Component {
   constructor(props) {
     super(props);
@@ -35,7 +34,7 @@ class RetailSellingPrice extends React.Component {
         this.setState({
           date: response.data.data.date,
           opneing_dip1: response.data.data.opneing_dip1,
-          opneing_liter1: response.data.data.opneing_liter1.closing_Entry,
+          opneing_liter1: response.data.data.opneing_liter1,
           rsp1: response.data.data.rsp1,
           opneing_dip2: response.data.data.opneing_dip2,
           opneing_liter2: response.data.data.opneing_liter2,
@@ -58,7 +57,7 @@ class RetailSellingPrice extends React.Component {
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/app/ro-configuration/RoConfigurationList");
+        this.props.history.push("/app/shiftmanagement/retailSellingPriceList");
       })
       .catch((error) => {
         console.log(error);
@@ -87,20 +86,20 @@ class RetailSellingPrice extends React.Component {
 
         <CardBody>
           <Form className="m-1" onSubmit={this.submitHandler}>
-            <Row>
+            {/* <Row>
               <Col md="6" sm="12">
                 <h5 className="my-1 text-bold-600">Date</h5>
-                <Input
-                  type="text"
+                <input
+                  type="date"
                   name="date"
                   value={this.state.date}
                   onChange={this.changeHandler}
-                ></Input>
+                ></input>
               </Col>
-            </Row>
+            </Row> */}
 
             <CardHeader>
-              <CardTitle>----MS---</CardTitle>
+              <h3>---- MS ---</h3>
             </CardHeader>
 
             <Row>
@@ -117,9 +116,9 @@ class RetailSellingPrice extends React.Component {
                 <h5 className="my-1 text-bold-600">Opening Litres</h5>
                 <Input
                   type="number"
-                  name="opneing_liter1.closing_Entry"
+                  name="opneing_liter1"
                   // field: "opneing_liter1.closing_Entry",
-                  value={this.state.opneing_liter1?.closing_Entry}
+                  value={this.state.opneing_liter1}
                   onChange={this.changeHandler}
                 ></Input>
               </Col>
@@ -135,7 +134,7 @@ class RetailSellingPrice extends React.Component {
             </Row>
 
             <CardHeader>
-              <CardTitle>----Hsd----</CardTitle>
+              <h3>---- Hsd ----</h3>
             </CardHeader>
 
             <Row>
@@ -152,8 +151,8 @@ class RetailSellingPrice extends React.Component {
                 <h5 className="my-1 text-bold-600">Opening Litres</h5>
                 <Input
                   type="number"
-                  name="opneing_liter2.closing_Entry"
-                  value={this.state.opneing_liter2?.closing_Entry}
+                  name="opneing_liter2"
+                  value={this.state.opneing_liter2}
                   onChange={this.changeHandler}
                 ></Input>
               </Col>

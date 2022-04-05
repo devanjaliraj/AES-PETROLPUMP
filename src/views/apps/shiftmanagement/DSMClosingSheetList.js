@@ -35,155 +35,129 @@ class DSMClosingSheetList extends React.Component {
     columnDefs: [
       {
         headerName: "DSM Name",
-        field: "dsm_name",
+        field: "name_of_dsm.dsm_name",
         width: 200,
         pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dsm_name}</span>
+              <span>{params.data.name_of_dsm?.dsm_name}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Mobile",
-        field: "mobile",
+        headerName: "Date",
+        field: "date",
         width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.mobile}</span>
+              <span>{params.data.date}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Addres",
-        field: "addres",
-        width: 200,
+        headerName: "MS Sales",
+        field: "ms_sales",
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.addres}</span>
+              <span>{params.data.ms_sales}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Joining Date",
-        field: "joining_date",
-        filter: false,
-        width: 175,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.joining_date}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Adhar No",
-        field: "adhar_number",
+        headerName: "MS Testing",
+        field: "ms_testing",
         filter: false,
         width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.adhar_number}</span>
+              <span>{params.data.ms_testing}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "MS Own Use",
+        field: "ms_own_use",
+        filter: false,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.ms_own_use}</span>
             </div>
           );
         },
       },
 
       {
-        headerName: "Adhar Img",
-        field: "adharimg",
-        filter: false,
-        width: 200,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.adharimg}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Pan No",
-        field: "pan_number",
+        headerName: "HSD Sales",
+        field: "hsd_sales",
         filter: false,
         width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.pan_number}</span>
+              <span>{params.data.hsd_sales}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Pan Img",
-        field: "panImg",
-        filter: false,
-        width: 200,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.panImg}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Photograph",
-        field: "photograh",
-        filter: false,
-        width: 200,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.photograh}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Date of Brith",
-        field: "date_of_brith",
+        headerName: "HSD Testing",
+        field: "hsd_testing",
         filter: false,
         width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.date_of_brith}</span>
+              <span>{params.data.hsd_testing}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Salary Decieded",
-        field: "salary_decieded",
+        headerName: "HSD Own Use",
+        field: "hsd_own_use",
         filter: false,
         width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.salary_decieded}</span>
+              <span>{params.data.hsd_own_use}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Salary Date",
-        field: "salary_date",
+        headerName: "Lubricant Sales",
+        field: "lubricant_sales",
         filter: false,
         width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.salary_date}</span>
+              <span>{params.data.lubricant_sales}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Net Cash",
+        field: "net_cash",
+        filter: false,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.net_cash}</span>
             </div>
           );
         },
@@ -202,7 +176,9 @@ class DSMClosingSheetList extends React.Component {
                 size="25px"
                 color="blue"
                 onClick={() =>
-                  history.push("/app/shiftManagement/dSMClosingSheetForm")
+                  history.push(
+                    `/app/shiftManagement/dSMClosingSheetForm/${params.data._id}`
+                  )
                 }
               />
               <Trash2
@@ -224,7 +200,7 @@ class DSMClosingSheetList extends React.Component {
 
   componentDidMount() {
     axios
-      .get("http://3.108.185.7/nodejs/api/dealer/getDsnform")
+      .get("http://3.108.185.7/nodejs/api/dealer/alldsmclosing")
       .then((response) => {
         let rowData = response.data.data;
         JSON.stringify(rowData);
@@ -234,7 +210,7 @@ class DSMClosingSheetList extends React.Component {
   async runthisfunction(id) {
     console.log(id);
     await axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/deleteDsnform/${id}`)
+      .get(`http://3.108.185.7/nodejs/api/dealer/deletedsmclosing/${id}`)
       .then((response) => {
         console.log(response);
       });

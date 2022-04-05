@@ -18,7 +18,7 @@ import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 import { Trash2, Edit } from "react-feather";
 import { history } from "../../../history";
 
-class DesignYourOutletList extends React.Component {
+class TankMapList extends React.Component {
   state = {
     rowData: [],
     paginationPageSize: 20,
@@ -42,224 +42,48 @@ class DesignYourOutletList extends React.Component {
       //   headerCheckboxSelection: true,
       // },
       {
-        headerName: "Dealer Name",
-        field: "dealer_name",
-        width: 120,
-        pinned: window.innerWidth > 992 ? "left" : false,
+        headerName: "Tank",
+        field: "tank",
+        width: 150,
+        // pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dealer_name}</span>
+              <span>{params.data.tank}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Email",
-        field: "email",
-        width: 120,
-        pinned: window.innerWidth > 992 ? "left" : false,
+        headerName: "Product",
+        field: "Product",
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.email}</span>
+              <span className="text-uppercase">{params.data.Product}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Total No. MPD",
-        field: "total_no_mpd",
-        width: 90,
+        headerName: "Capacity",
+        field: "capacity",
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.total_no_mpd}</span>
+              <span>{params.data.capacity}</span>
             </div>
           );
         },
       },
-      {
-        headerName: "Total No. Bay",
-        field: "total_no_bay",
-        width: 90,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.total_no_bay}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Total No. Nozzles",
-        field: "total_no_nozzles",
-        width: 90,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.total_no_nozzles}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Total No. Tanks ",
-        field: "total_no_tanks",
-        width: 90,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.total_no_tanks}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Total No. Air Machine",
-        field: "total_no_air_machine",
-        width: 90,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.total_no_air_machine}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "PUC Machine",
-        field: "puc_machine",
-        width: 90,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.puc_machine}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Any Other Facility",
-        field: "any_other_facility",
-        filter: false,
-        width: 90,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.any_other_facility}</span>
-            </div>
-          );
-        },
-      },
-      // {
-      //   headerName: "Tank ",
-      //   field: "tank_map.product_map",
-      //   width: 140,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         {/* {params.data.tank_map?.map((tank) => (
-      //         <span>{tank?.product_map}</span>
-      //         ))} */}
-
-      //       {
-      //           params.data.tank_map.filter(parameter => parameter.tank_number.includes(params.data.total_no_tanks))
-      //             .map(parameter => {
-      //               const { product_map,tank_number } = parameter;
-      //               return (
-      //                 <span>{product_map}</span>
-      //               )
-      //           })
-      //       }
-
-      //       </div>
-      //     );
-      //   },
-      // },
-      // {
-      //   headerName: "Tank ",
-      //   field: "tank_map.capacity_litre",
-      //   width: 140,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         {/* {params.data.tank_map?.map((tank) => (
-      //         <span>{tank?.capacity_litre}</span>
-      //         ))} */}
-
-      //         {
-      //           params.data.tank_map.filter(parameter => parameter.tank_number.includes(params.data.total_no_tanks))
-      //             .map(parameter => {
-      //               const { capacity_litre,tank_number } = parameter;
-      //               return (
-      //                 <span>{capacity_litre}</span>
-      //               )
-      //           })
-      //         }
-
-      //       </div>
-      //     );
-      //   },
-      // },
-      // {
-      //   headerName: "MPD ",
-      //   field: "mpd_map.bay_map",
-      //   width: 140,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         {/* {params.data.mpd_map?.map((mpd) => (
-      //         <span>{mpd?.bay_map}</span>
-      //         ))} */}
-
-      //         {
-      //           params.data.mpd_map.filter(parameter => parameter.mpd_number.includes(params.data.total_no_mpd))
-      //             .map(parameter => {
-      //               const { bay_map,mpd_number } = parameter;
-      //               return (
-      //                 <span>{bay_map+' '}</span>
-      //               )
-      //           })
-      //         }
-      //         {/* const { capacity_litre,tank_number } = parameter;
-      //               return (
-      //                 <span>{capacity_litre}</span>
-      //               ) */}
-      //       </div>
-      //     );
-      //   },
-      // },
-      // {
-      //   headerName: "BAY ",
-      //   field: "bay_map.nozzle_map",
-      //   width: 140,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         {/* {params.data.bay_map?.map((bay) => (
-      //         <span>{bay?.nozzle_map}</span>
-      //         ))} */}
-
-      //         {
-      //           params.data.bay_map.filter(parameter => parameter.bay_number.includes(params.data.total_no_bay))
-      //             .map(parameter => {
-      //               const { nozzle_map,bay_number } = parameter;
-      //               return (
-      //                 <span>{nozzle_map+' '}</span>
-      //               )
-      //           })
-      //         }
-
-      //       </div>
-      //     );
-      //   },
-      // },
+   
       {
         headerName: "Actions",
         field: "sortorder",
-        width: 100,
-        pinned: window.innerWidth > 992 ? "right" : false,
+        width: 150,
+        // pinned: window.innerWidth > 992 ? "right" : false,
 
         cellRendererFramework: (params) => {
           return (
@@ -274,7 +98,7 @@ class DesignYourOutletList extends React.Component {
                 className="mr-50"
                 size="25px"
                 color="blue"
-                onClick={() => history.push(`/app/ro-configuration/DesignYourOutlet/${params.data._id}`)}
+                onClick={() => history.push(`/app/ro-configuration/editTankMap/${params.data._id}`)}
               />
               <Trash2
                 className="mr-50"
@@ -293,20 +117,21 @@ class DesignYourOutletList extends React.Component {
     ],
   };
   async componentDidMount() {
+      
     await axios
-      .get("http://3.108.185.7/nodejs/api/dealer/alldealers")
+      .get("http://3.108.185.7/nodejs/api/dealer/alltankmap")
       .then((response) => {
         const rowData = response.data.data;
         console.log(rowData);
         this.setState({ rowData });
       });
   }
-  async runthisfunction(id) {
-    console.log(id);
-    await axios.get(`http://3.108.185.7/nodejs/api/dealer/deletedealershipform/${id}`).then((response) => {
-      console.log(response);
-    });
-  }
+//   async runthisfunction(id) {
+//     console.log(id);
+//     await axios.get(`http://3.108.185.7/nodejs/api/dealer/deletedealershipform/${id}`).then((response) => {
+//       console.log(response);
+//     });
+//   }
 
   onGridReady = (params) => {
     this.gridApi = params.api;
@@ -337,7 +162,7 @@ class DesignYourOutletList extends React.Component {
     return (
       <React.Fragment>
         <Breadcrumbs
-          breadCrumbTitle="Dealer List"
+          breadCrumbTitle="Tank Map List"
           // breadCrumbParent="Forms & Tables"
           // breadCrumbActive="Dealer List"
         />
@@ -435,4 +260,4 @@ class DesignYourOutletList extends React.Component {
     );
   }
 }
-export default DesignYourOutletList;
+export default TankMapList;

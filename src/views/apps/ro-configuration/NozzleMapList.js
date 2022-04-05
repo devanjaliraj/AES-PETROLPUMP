@@ -18,7 +18,7 @@ import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 import { Trash2, Edit } from "react-feather";
 import { history } from "../../../history";
 
-class DesignYourOutletList extends React.Component {
+class NozzleMapList extends React.Component {
   state = {
     rowData: [],
     paginationPageSize: 20,
@@ -42,116 +42,116 @@ class DesignYourOutletList extends React.Component {
       //   headerCheckboxSelection: true,
       // },
       {
-        headerName: "Dealer Name",
-        field: "dealer_name",
+        headerName: "Nozzle",
+        field: "nozzle",
         width: 120,
         pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dealer_name}</span>
+              <span>{params.data.nozzle}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Email",
-        field: "email",
+        headerName: "MPD",
+        field: "mpd",
         width: 120,
-        pinned: window.innerWidth > 992 ? "left" : false,
+        // pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.email}</span>
+              <span>{params.data.mpd}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Total No. MPD",
-        field: "total_no_mpd",
-        width: 90,
+        headerName: "Bay",
+        field: "bay",
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.total_no_mpd}</span>
+              <span>{params.data.bay}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Total No. Bay",
-        field: "total_no_bay",
-        width: 90,
+        headerName: "Tank",
+        field: "tank_map.tank",
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.total_no_bay}</span>
+              <span>{params.data.tank_map?.tank}</span>
             </div>
           );
         },
       },
-      {
-        headerName: "Total No. Nozzles",
-        field: "total_no_nozzles",
-        width: 90,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.total_no_nozzles}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Total No. Tanks ",
-        field: "total_no_tanks",
-        width: 90,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.total_no_tanks}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Total No. Air Machine",
-        field: "total_no_air_machine",
-        width: 90,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.total_no_air_machine}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "PUC Machine",
-        field: "puc_machine",
-        width: 90,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.puc_machine}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Any Other Facility",
-        field: "any_other_facility",
-        filter: false,
-        width: 90,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.any_other_facility}</span>
-            </div>
-          );
-        },
-      },
+    //   {
+    //     headerName: "Total No. Nozzles",
+    //     field: "total_no_nozzles",
+    //     width: 90,
+    //     cellRendererFramework: (params) => {
+    //       return (
+    //         <div className="d-flex align-items-center cursor-pointer">
+    //           <span>{params.data.total_no_nozzles}</span>
+    //         </div>
+    //       );
+    //     },
+    //   },
+    //   {
+    //     headerName: "Total No. Tanks ",
+    //     field: "total_no_tanks",
+    //     width: 90,
+    //     cellRendererFramework: (params) => {
+    //       return (
+    //         <div className="d-flex align-items-center cursor-pointer">
+    //           <span>{params.data.total_no_tanks}</span>
+    //         </div>
+    //       );
+    //     },
+    //   },
+    //   {
+    //     headerName: "Total No. Air Machine",
+    //     field: "total_no_air_machine",
+    //     width: 90,
+    //     cellRendererFramework: (params) => {
+    //       return (
+    //         <div className="d-flex align-items-center cursor-pointer">
+    //           <span>{params.data.total_no_air_machine}</span>
+    //         </div>
+    //       );
+    //     },
+    //   },
+    //   {
+    //     headerName: "PUC Machine",
+    //     field: "puc_machine",
+    //     width: 90,
+    //     cellRendererFramework: (params) => {
+    //       return (
+    //         <div className="d-flex align-items-center cursor-pointer">
+    //           <span>{params.data.puc_machine}</span>
+    //         </div>
+    //       );
+    //     },
+    //   },
+    //   {
+    //     headerName: "Any Other Facility",
+    //     field: "any_other_facility",
+    //     filter: false,
+    //     width: 90,
+    //     cellRendererFramework: (params) => {
+    //       return (
+    //         <div className="d-flex align-items-center cursor-pointer">
+    //           <span>{params.data.any_other_facility}</span>
+    //         </div>
+    //       );
+    //     },
+    //   },
       // {
       //   headerName: "Tank ",
       //   field: "tank_map.product_map",
@@ -258,7 +258,7 @@ class DesignYourOutletList extends React.Component {
       {
         headerName: "Actions",
         field: "sortorder",
-        width: 100,
+        width: 120,
         pinned: window.innerWidth > 992 ? "right" : false,
 
         cellRendererFramework: (params) => {
@@ -274,7 +274,7 @@ class DesignYourOutletList extends React.Component {
                 className="mr-50"
                 size="25px"
                 color="blue"
-                onClick={() => history.push(`/app/ro-configuration/DesignYourOutlet/${params.data._id}`)}
+                onClick={() => history.push(`/app/ro-configuration/EditNozzleMap/${params.data._id}`)}
               />
               <Trash2
                 className="mr-50"
@@ -294,19 +294,19 @@ class DesignYourOutletList extends React.Component {
   };
   async componentDidMount() {
     await axios
-      .get("http://3.108.185.7/nodejs/api/dealer/alldealers")
+      .get("http://3.108.185.7/nodejs/api/dealer/allnozzle")
       .then((response) => {
         const rowData = response.data.data;
         console.log(rowData);
         this.setState({ rowData });
       });
   }
-  async runthisfunction(id) {
-    console.log(id);
-    await axios.get(`http://3.108.185.7/nodejs/api/dealer/deletedealershipform/${id}`).then((response) => {
-      console.log(response);
-    });
-  }
+//   async runthisfunction(id) {
+//     console.log(id);
+//     await axios.get(`http://3.108.185.7/nodejs/api/dealer/deletedealershipform/${id}`).then((response) => {
+//       console.log(response);
+//     });
+//   }
 
   onGridReady = (params) => {
     this.gridApi = params.api;
@@ -435,4 +435,4 @@ class DesignYourOutletList extends React.Component {
     );
   }
 }
-export default DesignYourOutletList;
+export default NozzleMapList;

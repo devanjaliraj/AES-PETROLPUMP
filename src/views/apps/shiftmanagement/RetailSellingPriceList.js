@@ -35,13 +35,13 @@ class RSP extends React.Component {
     columnDefs: [
       {
         headerName: "Dealer Name",
-        field: "dealer_name2.dealer_name",
+        field: "dealer_Id.dealer_name",
         width: 200,
         pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dealer_name2?.dealer_name}</span>
+              <span>{params.data.dealer_Id?.dealer_name}</span>
             </div>
           );
         },
@@ -49,12 +49,12 @@ class RSP extends React.Component {
 
       {
         headerName: "Email",
-        field: "dealer_name2.email",
+        field: "dealer_Id.email",
         width: 200,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dealer_name2?.email}</span>
+              <span>{params.data.dealer_Id?.email}</span>
             </div>
           );
         },
@@ -72,9 +72,9 @@ class RSP extends React.Component {
         },
       },
       {
-        headerName: " MS/Opening Dip ",
+        headerName: " MS/Opening Dip",
         field: "opneing_dip1",
-        width: 170,
+        width: 200,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -86,12 +86,12 @@ class RSP extends React.Component {
 
       {
         headerName: "MS/Opening Litres",
-        field: "opneing_liter1.closing_Entry",
+        field: "opneing_liter1",
         width: 190,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.opneing_liter1?.closing_Entry}</span>
+              <span>{params.data.opneing_liter1}</span>
             </div>
           );
         },
@@ -123,19 +123,19 @@ class RSP extends React.Component {
       },
       {
         headerName: "Hsd/Opening Litres",
-        field: "opneing_liter2.closing_Entry",
+        field: "opneing_liter2",
 
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.opneing_liter2?.closing_Entry}</span>
+              <span>{params.data.opneing_liter2}</span>
             </div>
           );
         },
-        width: 200,
+        width: 250,
       },
       {
-        headerName: "Hsd/Rsp Entry",
+        headerName: "Hsd/Rsp",
         field: "rsp2",
 
         cellRendererFramework: (params) => {

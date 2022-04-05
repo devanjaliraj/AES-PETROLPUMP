@@ -30,15 +30,7 @@ class StaffManagementList extends React.Component {
       suppressMenu: true,
     },
     columnDefs: [
-      // {
-      //   headerName: "Maneger Name",
-      //   field: "maneger_name",
-      //   width: 175,
-      //   filter: false,
-      //   checkboxSelection: false,
-      //   headerCheckboxSelectionFilteredOnly: false,
-      //   headerCheckboxSelection: false,
-      // },
+    
       {
         headerName: "Maneger Name",
         field: "maneger_name",
@@ -53,7 +45,7 @@ class StaffManagementList extends React.Component {
         },
       },
       {
-        headerName: "Addres",
+        headerName: "Address",
         field: "addres",
         width: 250,
         cellRendererFramework: (params) => {
@@ -101,7 +93,7 @@ class StaffManagementList extends React.Component {
         },
       },
       {
-        headerName: "Adhar Img",
+        headerName: "Adhar Image",
         field: "adharimg",
         width: 150,
         cellRendererFramework: (params) => {
@@ -125,7 +117,7 @@ class StaffManagementList extends React.Component {
         },
       },
       {
-        headerName: "Pan Img",
+        headerName: "Pan Image",
         field: "panImg",
         width: 150,
         cellRendererFramework: (params) => {
@@ -137,7 +129,7 @@ class StaffManagementList extends React.Component {
         },
       },
       {
-        headerName: "Photograh",
+        headerName: "Photograph",
         field: "photograh",
         width: 150,
         cellRendererFramework: (params) => {
@@ -149,7 +141,7 @@ class StaffManagementList extends React.Component {
         },
       },
       {
-        headerName: "Bate of Brith",
+        headerName: "Date of Brith",
         field: "date_of_brith",
         width: 150,
         cellRendererFramework: (params) => {
@@ -161,7 +153,7 @@ class StaffManagementList extends React.Component {
         },
       },
       {
-        headerName: "Salary_Decieded",
+        headerName: "Salary Decieded",
         field: "salary_decieded",
         width: 150,
         cellRendererFramework: (params) => {
@@ -218,8 +210,7 @@ class StaffManagementList extends React.Component {
                 size="25px"
                 color="blue"
                 onClick={() =>
-                  history.push(
-                    `/app/staffEnrollment/manager/${params.data._id}`
+                  history.push(`/app/staffEnrollment/manager/${params.data._id}`
                   )
                 }
               />

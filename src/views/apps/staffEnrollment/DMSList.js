@@ -277,7 +277,7 @@ class DSMList extends React.Component {
     return (
       <React.Fragment>
         <Breadcrumbs
-          breadCrumbTitle="DMS List"
+          breadCrumbTitle="DSM List"
           // breadCrumbParent="Forms & Tables"
           // breadCrumbActive="Staff Management List"
         />

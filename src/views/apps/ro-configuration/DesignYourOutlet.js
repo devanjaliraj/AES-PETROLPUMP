@@ -194,7 +194,7 @@ export default class DesignYourOutlet extends Component {
                   <Button.Ripple
                     color="primary"
                     className="mr-1 mb-1"
-                    onClick={() => history.push(`/app/ro-configuration/outletForm/`+dealerId)} > 
+                    onClick={() => history.push(`/app/ro-configuration/editTankMap/`+dealerId)} > 
                     Next
                   </Button.Ripple>
                 </Col>

@@ -30,115 +30,155 @@ class BayManagementList extends React.Component {
     },
     columnDefs: [
       {
-        headerName: "No of Bay",
-        field: "dealer_name1.dealer_name",
+        headerName: "DSM_Name",
+        field: "dsm__Id.dsm_name",
         filter: false,
+        pinned: window.innerWidth > 992 ? "left" : false,
         width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dealer_name1?.dealer_name}</span>
+              <span>{params.data.dsm__Id?.dsm_name}</span>
+            </div>
+          );
+        },
+      },
+
+      {
+        headerName: "Date",
+        field: "date",
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.date}</span>
             </div>
           );
         },
       },
       {
         headerName: "Nozzle",
-        field: "dealer_name1.email",
-        width: 200,
+        field: "nozzel.nozzle",
+        width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dealer_name1?.email}</span>
+              <span>{params.data.nozzel?.nozzle}</span>
             </div>
           );
         },
       },
       {
         headerName: "Product",
-        field: "lube_grade.grade",
-        width: 100,
+        field: "product",
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.lube_grade?.grade}</span>
+              <span>{params.data.product}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Opening Totaliser",
-        field: "total_pieces_available.no_of_pieces",
-        width: 160,
+        headerName: "Closing Entry",
+        field: "closing_Entry",
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.total_pieces_available?.no_of_pieces}</span>
+              <span>{params.data.closing_Entry}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Dsm Name",
-        field: "no_of_pieces_sold",
+        headerName: "Opening total",
+        field: "opening_total",
         width: 160,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.no_of_pieces_sold}</span>
+              <span>{params.data.opening_total}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Closing Totaliser",
-        field: "selling_price",
-        width: 160,
+        headerName: "Closing Entry MS",
+        field: "closing_Entry_MS",
+        width: 180,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.selling_price}</span>
+              <span>{params.data.closing_Entry_MS}</span>
             </div>
           );
         },
       },
 
       {
-        headerName: "Closing 2",
-        field: "dsm.dsm_name",
+        headerName: "closing Entry HSD",
+        field: "closing_Entry_HSD",
         filter: false,
         width: 200,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dsm?.dsm_name}</span>
+              <span>{params.data.closing_Entry_HSD}</span>
             </div>
           );
         },
       },
 
       {
-        headerName: "Dsm Name",
-        field: "mode_of_pyament",
+        headerName: "Closing Total MS",
+        field: "closing_total_MS",
         filter: false,
-        width: 150,
+        width: 180,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.mode_of_pyament}</span>
+              <span>{params.data.closing_total_MS}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Closing Totaliser",
-        field: "mode_of_pyament",
+        headerName: "Closing Total HSD",
+        field: "closing_total_HSD",
+        filter: false,
+        width: 180,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.closing_total_HSD}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Sum MS",
+        field: "sumMS",
         filter: false,
         width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.mode_of_pyament}</span>
+              <span>{params.data.sumMS}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Sum HSD",
+        field: "sumHSD",
+        filter: false,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.sumHSD}</span>
             </div>
           );
         },
@@ -157,19 +197,20 @@ class BayManagementList extends React.Component {
                 color="blue"
                 onClick={() =>
                   history.push(
-                    `/app/shiftmanagement/retailSellingPriceForm/${params.data._id}`
+                    `/app/shiftmanagement/bayManagementForm/${params.data._id}`
                   )
                 }
               />
+
               <Trash2
                 className="mr-50"
                 size="25px"
                 color="red"
-                onClick={() =>
-                  history.push(
-                    `/app/shiftmanagement/bayManagementForm/${params.data._id}`
-                  )
-                }
+                onClick={() => {
+                  let selectedData = this.gridApi.getSelectedRows();
+                  this.runthisfunction(params.data._id);
+                  this.gridApi.updateRowData({ remove: selectedData });
+                }}
               />
             </div>
           );
@@ -183,12 +224,13 @@ class BayManagementList extends React.Component {
       let rowData = response.data.data;
       JSON.stringify(rowData);
       this.setState({ rowData });
+      console.log(rowData);
     });
   }
   async runthisfunction(id) {
     console.log(id);
     await axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/deletelubricantsales/${id}`)
+      .get(`http://3.108.185.7/nodejs/api/dealer/deletebm/${id}`)
       .then((response) => {
         console.log(response);
       });
