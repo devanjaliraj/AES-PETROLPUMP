@@ -20,39 +20,39 @@ export default class EditTankMap extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        // tank : "", 
-        // Product: "",
-        // capacity: "",
-        dealerId : '',
-        tank:[],
-        Product : [
-            { value: "ms", label: "MS" },
-            { value: "hsd", label:"HSD" }],
-         selectedTankOption:null,
-      selectedMapTankOption:null,
-      capacity : [
-        { value: "10kl", label: "10kl" },
-        { value: "15kl", label:"15kl" } ,
-        { value: "20kl", label: "20kl" },
-        { value: "40kl", label:"40kl" },
-         { value: "45kl", label: "45kl" },
-        { value: "80kl", label:"80kl" }],
-        selectedMapTankOption1:null,
+        tank : "", 
+        Product: "",
+         capacity: "",
+        // dealerId : '',
+        // tank:[],
+      //   Product : [
+      //       { value: "ms", label: "MS" },
+      //       { value: "hsd", label:"HSD" }],
+      //    selectedTankOption:null,
+      // selectedMapTankOption:null,
+      // capacity : [
+      //   { value: "10kl", label: "10kl" },
+      //   { value: "15kl", label:"15kl" } ,
+      //   { value: "20kl", label: "20kl" },
+      //   { value: "40kl", label:"40kl" },
+      //    { value: "45kl", label: "45kl" },
+      //   { value: "80kl", label:"80kl" }],
+      //   selectedMapTankOption1:null,
 
     };
     this.submitHandler = this.submitHandler.bind(this);
   }
   componentDidMount() {
     let { id } = this.props.match.params;
-    this.setState({ dealerId : id });
+    // this.setState({ dealerId : id });
     axios 
     .get(`http://3.108.185.7/nodejs/api/dealer/getonetank/${id}`)
     .then(response => {
       console.log(response);
       this.setState({
-        //   tank: response.data.data.tank,
-        //   Product: response.data.data.Product,
-        //   capacity: response.data.data.capacity,
+          tank: response.data.data.tank,
+          Product: response.data.data.Product,
+          capacity: response.data.data.capacity,
          
       });
     })
@@ -72,7 +72,7 @@ export default class EditTankMap extends Component {
         console.log(response);
 
         // swal("Success!", "Submitted SuccessFull!", "success");
-        // this.props.history.push("/app/ro-configuration/tankMapList");
+       this.props.history.push("/app/ro-configuration/tankMapList");
     // }
     // else{
     //   alert('Something went wrong in Dealer Shipform Api');
@@ -197,12 +197,12 @@ handleChangeTank = (selectedTankOption) => {
    
     const {
         dealerId,
-        Product,
-        capacity,
-        tank,
-        selectedTankOption,
-        selectedMapTankOption,
-        selectedMapTankOption1,
+        // Product,
+        // capacity,
+        // // tank,
+        // // selectedTankOption,
+        // selectedMapTankOption,
+        // selectedMapTankOption1,
     } = this.state
     return (
       <div>
@@ -241,8 +241,8 @@ handleChangeTank = (selectedTankOption) => {
           <CardBody>
             <Form className="m-1" onSubmit={this.submitHandler}>
             <Row>
-                {/* <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>Tank</Label>
+                <Col lg="6" md="6" sm="6" className="mb-2">
+                <h5 className="my-1 text-bold-600">Tank</h5>
                   <Input
                     type="text"
                     name="tank"
@@ -250,8 +250,8 @@ handleChangeTank = (selectedTankOption) => {
                     onChange={this.changeHandler}>
                         
                   </Input>
-                </Col> */}
-                <Col md="6" sm="12">
+                </Col>
+                {/* <Col md="6" sm="12">
                 <h5 className="my-1 text-bold-600">Select Tank</h5>
                   <Select
                     className="React"
@@ -265,20 +265,20 @@ handleChangeTank = (selectedTankOption) => {
                     menuPlacement="auto"
                     maxMenuHeight={220}
                   />
-              </Col>
+              </Col> */}
             
                 <Col lg="6" md="6" sm="6" className="mb-2">
                 <h5 className="my-1 text-bold-600">Product</h5>
                   {/* <Label>Product</Label> */}
-                  {/* <Select
-                    type="text"
+                  <Input
+                    type="select"
                     name="Product"
                     value={this.state.Product}
                     onChange={this.changeHandler}>
                         <option value="MS">MS</option>
                         <option value= "HSD">Hsd</option>
-                  </Select> */}
-                     <Select
+                  </Input>
+                     {/* <Select
                 className="React"
                 classNamePrefix="select"
                 name="Product"            
@@ -287,11 +287,11 @@ handleChangeTank = (selectedTankOption) => {
                 options={Product}
                 value={selectedMapTankOption}
                 onChange={this.handleChangeMapTank}
-              />
+              /> */}
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
                 <h5 className="my-1 text-bold-600">Capacity</h5>
-                  {/* <Label>Capacity</Label> */}
+                  {/* <Label>Capacity</Label>
                   
                   <Select
                 className="React"
@@ -302,7 +302,8 @@ handleChangeTank = (selectedTankOption) => {
                 options={capacity}
                 value={selectedMapTankOption1}
                 onChange={this.handleChangeMapTank1}
-              />{/* <Input
+              /> */}
+              <Input
                     type="select"
                     name="capacity"
                     value={this.state.capacity}
@@ -311,20 +312,29 @@ handleChangeTank = (selectedTankOption) => {
                         <option value= "15kl">15kl</option> <option value="20kl">20kl</option>
                         <option value= "40kl">40kl</option> <option value="45kl">45kl</option>
                         <option value= "80kl">80kl</option>
-                  </Input> */}
+                  </Input>
                 </Col>
               
               </Row>
               <Row>
                 <Col lg="6" md="6" sm="6" className="mb-2">
+                  {/* <Button.Ripple
+                    color="primary"
+                    type="submit"
+                    className="mr-1 mb-1"
+                    onClick={)} > 
+                  
+                    Update
+                  </Button.Ripple> */}
+                  <Col lg="6" md="6" sm="6" className="mb-2">
                   <Button.Ripple
                     color="primary"
                     type="submit"
                     className="mr-1 mb-1"
-                    onClick={() => history.push(`/app/ro-configuration/editNozzleMap/`+dealerId)} > 
-                  
+                  >
                     Update
                   </Button.Ripple>
+                </Col>
                 </Col>
               </Row>
             </Form>

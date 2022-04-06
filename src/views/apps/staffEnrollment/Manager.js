@@ -12,6 +12,8 @@ import {
   Button,
 } from "reactstrap";
 import axios from "axios";
+import { Download } from "react-feather";
+
 export default class Manager extends Component {
   constructor(props) {
     super(props);
@@ -114,6 +116,27 @@ export default class Manager extends Component {
       });
   };
 
+   download = e => {
+    console.log(e.target.href);
+    fetch(e.target.href, {
+      method: "GET",
+      headers: {}
+    })
+      .then(response => {
+        response.arrayBuffer().then(function(buffer) {
+          const url = window.URL.createObjectURL(new Blob([buffer]));
+          const link = document.createElement("a");
+          link.href = url;
+          link.setAttribute("download", "image.png"); //or any other extension
+          document.body.appendChild(link);
+          link.click();
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   render() {
     return (
       <div>
@@ -155,7 +178,7 @@ export default class Manager extends Component {
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-                <Col lg="6" md="6" sm="6" className="mb-2">
+                {/* <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Photograph Url</Label>
                   <Input
                     type="url"
@@ -163,16 +186,26 @@ export default class Manager extends Component {
                     value={this.state.photograh}
                     onChange={this.onChangeHandler}
                   />
-                </Col>
+                </Col> */}
 
                 <Col lg="6" md="0" sm="6">
-                  <Label>Photograph</Label>
-                  <img
+                  {/* <Label>Photograph</Label> */}
+                  {/* <img
                     src={this.state.photograh}
                     name="photograh"
                     className="w-25 ml-5 h-50"
-                  />
+                  /> */}
+                  <a
+                      href={this.state.photograh}
+                      download
+                      target='blank'
+                      onClick={e => this.download(e)}
+                    >
+                       <Download className="mr-50" size="25px" color="blue" />
+                      download Photograph
+                </a>
                 </Col>
+                
 
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Mobile</Label>
@@ -196,7 +229,7 @@ export default class Manager extends Component {
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-                <Col lg="6" md="6" sm="6" className="mb-2">
+                {/* <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Adhar Url</Label>
                   <Input
                     type="url"
@@ -204,14 +237,23 @@ export default class Manager extends Component {
                     value={this.state.adharimg}
                     onChange={this.onChangeHandler}
                   />
-                </Col>
+                </Col> */}
                 <Col lg="6" md="0" sm="6">
-                  <Label>Adhar Image</Label>
-                  <img
+                  {/* <Label>Adhar Image</Label> */}
+                  {/* <img
                     src={this.state.adharimg}
                     name="photograh"
                     className="w-25 ml-5 h-50"
-                  />
+                  /> */}
+                         <a
+                      href={this.state.adharimg}
+                      download 
+                      target='blank'
+                      onClick={e => this.download(e)}
+                    >
+                      <Download className="mr-50" size="25px" color="blue" />
+                      download Adhar Image
+                </a>
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Pan Number</Label>
@@ -226,14 +268,25 @@ export default class Manager extends Component {
                 </Col>
 
                 <Col lg="6" md="0" sm="6" className="mb-2">
-                  <Label>Pan Image</Label>
+                  {/* <Label>Pan Image</Label>
                   <img
                     src={this.state.panImg}
                     name="panImg"
                     className="w-25 ml-5 h-50"
-                  />
+                  /> */}
+                    <a
+                      href={this.state.panImg}
+                      download
+                      target='blank'
+                      onClick={e => this.download(e)}
+                    >
+                      {/* <i className="fa fa-download" /> */}
+                      <Download className="mr-50" size="25px" color="blue" />
+                      download Pan Image
+                </a>
                 </Col>
-                <Col lg="6" md="6" sm="6" className="mb-2">
+              
+                {/* <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Pan Url</Label>
                   <Input
                     type="url"
@@ -241,25 +294,23 @@ export default class Manager extends Component {
                     onChange={this.onChangeHandler}
                     name="panImg"
                   />
-                </Col>
+                </Col> */}
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Joining Date</Label>
-                  
                   <Input
                     required
-                    type="text"
+                    type="date"
                     name="joining_date"
                     placeholder="Enter Joining Date"
                     value={this.state.joining_date}
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Date of Brith</Label>
                   <Input
                     required
-                    type="text"
+                    type="date"
                     name="date_of_brith"
                     placeholder="Enter DOB"
                     value={this.state.date_of_brith}

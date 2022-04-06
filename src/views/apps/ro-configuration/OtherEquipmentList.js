@@ -15,6 +15,8 @@ import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
+import axiosConfig from "../../../axiosConfig";
+
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 
 class OtherEquipmentList extends React.Component {
@@ -133,28 +135,19 @@ class OtherEquipmentList extends React.Component {
       },
     ],
   };
-   componentDidMount() {
-     axios
-      .get("http://3.108.185.7/nodejs/api/admin/allequipment")
-      .then((response) => {
-        if(response.status===200){
-          const rowData = response.data.data;
-            console.log(rowData);
-            this.setState({ rowData });
-        }
+  
+    async componentDidMount() {
+      await axiosConfig.get("/admin/allequipment").then((response) => {
+        let rowData = response.data.data;
+        this.setState({ rowData });
       });
-    
-         axios
-          .get("http://3.108.185.7/nodejs/api/dealer/alldealers")
-          .then((response) => {
-            if(response.status===200){
-              const alldealerData = response.data.data;
-              console.log(alldealerData);
-              this.setState({ alldealerData : alldealerData });
-            }
-          });
-        
     }
+      // async runthisfunction(id) {
+      //   console.log(id);
+      //   await axios.get(`http://3.108.185.7/nodejs/api/dealer/allequipmentofdealer/${id}`).then((response) => {
+      //     console.log(response);
+      //   });
+      // }
 
   onGridReady = (params) => {
     this.gridApi = params.api;

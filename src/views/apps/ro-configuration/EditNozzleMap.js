@@ -27,16 +27,17 @@ export default class EditNozzleMap extends Component {
     this.state = {
         tank: "", 
         nozzle: "",
-        mpd: [],
-        selectedMpdOption:null,
-        selectedBayOption:null,
+        mpd: "",
+        // selectedMpdOption:null,
+        // selectedBayOption:null,
 
-        bay:[],
+        bay:"",
         dealerId : '',
        };
        
     this.state = {
         tankN: [],
+        nozzleN:[]
       };
       this.submitHandler = this.submitHandler.bind(this);
   }
@@ -51,6 +52,17 @@ export default class EditNozzleMap extends Component {
     .catch((error) => {
       console.log(error.response);
     });
+
+    axios
+    .get("http://3.108.185.7/nodejs/api/dealer/allnozzle")
+    .then((response) => {
+      console.log(response.data.data);
+      this.setState({ nozzleN: response.data.data });
+    })
+    .catch((error) => {
+      console.log(error.response);
+    });
+
     let { id } = this.props.match.params;
   
     this.setState({ dealerId : id });
@@ -84,7 +96,7 @@ export default class EditNozzleMap extends Component {
       .then(response => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        // this.props.history.push("/app/ro-configuration/nozzleMapList");
+        this.props.history.push("/app/ro-configuration/nozzleMapList");
         if(response.status === 200){
           let data = response.data.data;
           if(data.mpd_map.length > 0){
@@ -109,7 +121,7 @@ export default class EditNozzleMap extends Component {
             bay_map: data.bay_map,
             mpd: data.mpd,
             // nozzle_map: data.nozzle_map,
-            // tank_map: data.tank_map,
+            tank_map: data.tank_map,
          });
         }
       })
@@ -184,7 +196,9 @@ handleChangeBAY = (selectedBayOption) => {
               <Row>
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <FormGroup>
-                    <Label>Tank</Label>
+                <h5 className="my-1 text-bold-600">Tank</h5>
+
+                    {/* <Label>Tank</Label> */}
                     <CustomInput 
                       type="select"
                       name="tank"
@@ -199,24 +213,39 @@ handleChangeBAY = (selectedBayOption) => {
                   </FormGroup>
                 </Col> 
                 <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>nozzle</Label>
+                <FormGroup>
+                <h5 className="my-1 text-bold-600">Nozzle</h5>
+                    {/* <Label>Nozzle</Label> */}
+                    <CustomInput 
+                      type="select"
+                      name="tank"
+                      value={this.state.nozzle}
+                      onChange={this.changeHandler1}>
+                      {this.state.nozzleN?.map((nozzlep) => (
+                      <option value={nozzlep._id} key={nozzlep._id}>
+                        {nozzlep.nozzle}
+                      </option>
+                      ))}
+                    </CustomInput>
+                  </FormGroup>
+                  {/* <Label>nozzle</Label>
                   <Input
                     type="text"
                     name="nozzle"
                     value={this.state.nozzle}
                     onChange={this.changeHandler}>
-                  </Input>
+                  </Input> */}
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
                 <h5 className="my-1 text-bold-600">Select MPD</h5>
-                  {/* <Label>MPD </Label>
+                  {/* <Label>MPD </Label> */}
                   <Input
                     type="text"
                     name="mpd"
                     value={this.state.mpd}
                     onChange={this.changeHandler}>
-                  </Input> */}
-                  <Select
+                  </Input>
+                  {/* <Select
                 className="React"
                 classNamePrefix="select"
                 name="mpd"
@@ -225,18 +254,18 @@ handleChangeBAY = (selectedBayOption) => {
                 value={selectedMpdOption}
                 onChange={this.handleChangeMPD}
                 isClearable={true}
-              />
+              /> */}
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
                 <h5 className="my-1 text-bold-600">Select BAY</h5>
                   {/* <Label>BAY</Label> */}
-                  {/* <Input
+                  <Input
                     type="text"
                     name="bay"
                     value={this.state.bay}
                     onChange={this.changeHandler}>
-                  </Input> */}
-                         <Select
+                  </Input>
+                         {/* <Select
                 className="React"
                 classNamePrefix="select"
                 name="bay"
@@ -245,7 +274,7 @@ handleChangeBAY = (selectedBayOption) => {
                 value={selectedBayOption}
                 onChange={this.handleChangeBay}
                 isClearable={true}
-              />
+              /> */}
                 </Col>
               </Row> 
               <Row>
