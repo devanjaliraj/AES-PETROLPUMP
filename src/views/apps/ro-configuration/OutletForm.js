@@ -9,7 +9,7 @@ import {
   Button,
   Form,
 } from "reactstrap";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 // import { history } from "../../../history";
 import Select from "react-select";
 
@@ -54,8 +54,8 @@ class OutletForm extends React.Component {
   componentDidMount() { 
     let { id } = this.props.match.params.id;
     this.setState({ dealerId : id });
-    axios
-      .post(`http://3.108.185.7/nodejs/api/dealer/addeditadvancedealershipform/${this.props.match.params.id}`)
+    axiosConfig
+      .post(`/dealer/addeditadvancedealershipform/${this.props.match.params.id}`)
       .then((response) => {
         console.log(response);
         console.log('datadatadata @@@@@@@@@@@@###',response)
@@ -123,8 +123,8 @@ class OutletForm extends React.Component {
       
   // product
       let tankProductArray = []
-      axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/allproduct`)
+      axiosConfig
+      .get(`/dealer/allproduct`)
       .then((response) => { 
         if(response.status === 200){
           let data = response.data.data;
@@ -155,7 +155,7 @@ class OutletForm extends React.Component {
      
 //capacity
       let tankCapacityArray = []
-      axios
+      axiosConfig
       .get(`http://3.108.185.7/nodejs/api/dealer/allcapacity`)
       .then((response) => { 
         if(response.status === 200){

@@ -12,7 +12,7 @@ import {
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 
@@ -34,62 +34,58 @@ class StampingDataList extends React.Component {
     columnDefs: [
       {
         headerName: "MPD",
-        field: "MPD.mpd_map",
-        pinned: window.innerWidth > 992 ? "left" : false,
-        width: 175,
+        field: "mpd_map.mpd_number",
+        width: 140,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              {/* <span>{MPD?.mpd_map?.mpd_number}</span> */}
-              {params.data.mpd_map?.map((MPD, mpd_map) => (
-                <span>
-                  {MPD?.mpd_map}
-                  {mpd_map?.mpd_number}
-                </span>
+              {params.data.mpd_map?.map((mpd) => (
+                <span>{mpd?.mpd_number}</span>
               ))}
             </div>
           );
         },
       },
-      //   {
-      //     headerName: "Tank ",
-      //     field: "tank_map.tank_number",
-      //     width: 140,
-      //     cellRendererFramework: (params) => {
-      //       return (
-      //         <div className="d-flex align-items-center cursor-pointer">
-      //           {params.data.tank_map?.map((tank) => (
-      //             <span>{tank?.tank_number}</span>
-      //           ))}
-      //         </div>
-      //       );
-      //     },
-      //   },
 
-      {
-        headerName: "Nozzel",
-        field: "nozzel.nozzle_map.nozzle_number",
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.nozzel.nozzle_map?.nozzle_number}</span>
-            </div>
-          );
-        },
-        width: 250,
-      },
-      {
-        headerName: "Product",
-        field: "Product.tank_map.tank_number",
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.Product.tank_map?.tank_number}</span>
-            </div>
-          );
-        },
-        width: 250,
-      },
+      // {
+      //   headerName: "Tank ",
+      //   field: "tank_map.tank_number",
+      //   width: 140,
+      //   cellRendererFramework: (params) => {
+      //     return (
+      //       <div className="d-flex align-items-center cursor-pointer">
+      //         {params.data.tank_map?.map((tank) => (
+      //           <span>{tank?.tank_number}</span>
+      //         ))}
+      //       </div>
+      //     );
+      //   },
+      // },
+
+      // {
+      //   headerName: "Nozzel",
+      //   field: "nozzel.nozzle_map.nozzle_number",
+      //   cellRendererFramework: (params) => {
+      //     return (
+      //       <div className="d-flex align-items-center cursor-pointer">
+      //         <span>{params.data.nozzel.nozzle_map?.nozzle_number}</span>
+      //       </div>
+      //     );
+      //   },
+      //   width: 250,
+      // },
+      // {
+      //   headerName: "Product",
+      //   field: "Product.tank_map.tank_number",
+      //   cellRendererFramework: (params) => {
+      //     return (
+      //       <div className="d-flex align-items-center cursor-pointer">
+      //         <span>{params.data.Product.tank_map?.tank_number}</span>
+      //       </div>
+      //     );
+      //   },
+      //   width: 250,
+      // },
       {
         headerName: "Last Stamping Date",
         field: "Last_Stamping_Date",
@@ -188,7 +184,9 @@ class StampingDataList extends React.Component {
                 size="25px"
                 color="blue"
                 onClick={() =>
-                  history.push("/app/facilityManagement/stampingDataForm")
+                  history.push(
+                    `/app/facilityManagement/stampingDataForm/${params.data._id}`
+                  )
                 }
               />
               <Trash2
@@ -208,8 +206,17 @@ class StampingDataList extends React.Component {
     ],
   };
   componentDidMount() {
-    axios
-      .get("http://3.108.185.7/nodejs/api/dealer/allStampingdata")
+    // axiosConfig
+    //   .get("http://3.108.185.7/nodejs/api/dealer/alldealers")
+    //   .then((response) => {
+    //     console.log(response.data.data);
+    //     this.setState({ mfp: response.data.data });
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    axiosConfig
+      .get("/dealer/allStampingdata")
       .then((response) => {
         let rowData = response.data.data;
         JSON.stringify(rowData);
@@ -218,8 +225,8 @@ class StampingDataList extends React.Component {
   }
   async runthisfunction(id) {
     console.log(id);
-    await axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/deleteStampingdata/${id}`)
+    await axiosConfig
+      .get(`/dealer/deleteStampingdata/${id}`)
       .then((response) => {
         console.log(response);
       });

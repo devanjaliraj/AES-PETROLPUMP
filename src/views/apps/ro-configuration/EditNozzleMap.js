@@ -13,7 +13,7 @@ import {
   BreadcrumbItem,
   CustomInput,
 } from "reactstrap";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 import { history } from "../../../history";
 // import swal from "sweetalert";
 import Select from "react-select";
@@ -43,8 +43,8 @@ export default class EditNozzleMap extends Component {
   }
   componentDidMount() {
     
-     axios
-    .get("http://3.108.185.7/nodejs/api/dealer/alltankmap")
+    axiosConfig
+    .get("/dealer/alltankmap")
     .then((response) => {
       console.log(response.data.data);
       this.setState({ tankN: response.data.data });
@@ -53,8 +53,8 @@ export default class EditNozzleMap extends Component {
       console.log(error.response);
     });
 
-    axios
-    .get("http://3.108.185.7/nodejs/api/dealer/allnozzle")
+    axiosConfig
+    .get("/dealer/allnozzle")
     .then((response) => {
       console.log(response.data.data);
       this.setState({ nozzleN: response.data.data });
@@ -66,8 +66,8 @@ export default class EditNozzleMap extends Component {
     let { id } = this.props.match.params;
   
     this.setState({ dealerId : id });
-    axios
-      .get(` http://3.108.185.7/nodejs/api/dealer/getonenozzle/${id}`)
+    axiosConfig
+      .get(`/dealer/getonenozzle/${id}`)
       .then(response => {
         console.log(response);
         this.setState({
@@ -91,8 +91,8 @@ export default class EditNozzleMap extends Component {
   submitHandler = e => {
     e.preventDefault();
     let { id } = this.props.match.params;
-    axios
-      .post(`http://3.108.185.7/nodejs/api/dealer/updatnozzle/${id}`, this.state)
+    axiosConfig
+      .post(`/dealer/updatnozzle/${id}`, this.state)
       .then(response => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");

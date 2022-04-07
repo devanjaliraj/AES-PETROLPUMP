@@ -11,7 +11,7 @@ import {
   Breadcrumb,
   BreadcrumbItem,
 } from "reactstrap";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 import { history } from "../../../history";
 // import swal from "sweetalert";
 
@@ -30,8 +30,8 @@ export default class BankForTransaction extends Component {
 
   componentDidMount() {
     let { id } = this.props.match.params;
-    axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/getonebank/${id}`)
+    axiosConfig
+      .get(`/dealer/getonebank/${id}`)
       .then(response => {
         console.log(response);
         this.setState({
@@ -54,8 +54,8 @@ export default class BankForTransaction extends Component {
   submitHandler = e => {
     e.preventDefault();
     let { id } = this.props.match.params;
-    axios
-      .post(`http://3.108.185.7/nodejs/api/dealer/updateonebank/${id}`, this.state)
+    axiosConfig
+      .post(`/dealer/updateonebank/${id}`, this.state)
       .then(response => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");

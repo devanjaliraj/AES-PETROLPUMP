@@ -13,7 +13,7 @@ import {
   Breadcrumb,
   BreadcrumbItem,
 } from "reactstrap";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 import { history } from "../../../history";
 // import swal from "sweetalert";
 
@@ -37,8 +37,8 @@ export default class PaymentModeAvalable extends Component {
 
 
     // //Payment
-    // axios
-    // .get("http://3.108.185.7/nodejs/api/dealer/allpayment")
+    // axiosConfig
+    // .get("/dealer/allpayment")
     // .then((response) => {
     //   console.log(response.data.data);
     //   this.setState({ modeC: response.data.data });
@@ -47,8 +47,8 @@ export default class PaymentModeAvalable extends Component {
     //   console.log(error);
     // });
     //mode
-    axios
-    .get("http://3.108.185.7/nodejs//api/dealer/allmode")
+    axiosConfig
+    .get("/dealer/allmode")
     .then((response) => {
       console.log(response.data.data);
       this.setState({ modeC: response.data.data });
@@ -58,8 +58,8 @@ export default class PaymentModeAvalable extends Component {
     });
 
      //Bank
-     axios
-     .get("http://3.108.185.7/nodejs/api/dealer/allbank")
+     axiosConfig
+     .get("/dealer/allbank")
      .then((response) => {
        console.log(response.data.data);
        this.setState({ bankC: response.data.data });
@@ -69,8 +69,8 @@ export default class PaymentModeAvalable extends Component {
      });
 
     let { id } = this.props.match.params;
-    axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/getonepayment/${id}`)
+    axiosConfig
+      .get(`/dealer/getonepayment/${id}`)
       .then((response) => {
         console.log(response);
         this.setState({
@@ -91,9 +91,9 @@ export default class PaymentModeAvalable extends Component {
   submitHandler = (e) => {
     e.preventDefault();
     let { id } = this.props.match.params;
-    axios
+    axiosConfig
       .post(
-        `http://3.108.185.7/nodejs/api/dealer/updateonepayment/${id}`,
+        `/dealer/updateonepayment/${id}`,
         this.state
       )
       .then((response) => {

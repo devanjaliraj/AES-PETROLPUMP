@@ -12,7 +12,7 @@ import {
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Eye, Edit } from "react-feather";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 
@@ -222,8 +222,8 @@ class StatutoryCertificateManagementList extends React.Component {
   };
 
   componentDidMount() {
-    axios
-      .get("http://3.108.185.7/nodejs/api/dealer/allstatutoryCertificate")
+    axiosConfig
+      .get("/dealer/allstatutoryCertificate")
       .then((response) => {
         let rowData = response.data.data;
         JSON.stringify(rowData);
@@ -232,9 +232,9 @@ class StatutoryCertificateManagementList extends React.Component {
   }
   async runthisfunction(id) {
     console.log(id);
-    await axios
+    await axiosConfig
       .get(
-        `http://3.108.185.7/nodejs/api/dealer/deletestatutoryCertificate/${id}`
+        `/dealer/deletestatutoryCertificate/${id}`
       )
       .then((response) => {
         console.log(response);

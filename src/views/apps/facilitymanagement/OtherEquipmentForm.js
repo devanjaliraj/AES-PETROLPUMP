@@ -1,5 +1,5 @@
+
 import React from "react";
-import axios from "axios";
 import {
   Card,
   CardHeader,
@@ -11,7 +11,9 @@ import {
   Button,
   Input,
 } from "reactstrap";
-
+import { Download } from "react-feather";
+import { history } from "../../../history";
+import axiosConfig from "../../../axiosConfig";
 class OtherEquipmentForm extends React.Component {
   constructor(props) {
     super(props);
@@ -24,15 +26,20 @@ class OtherEquipmentForm extends React.Component {
       Upload_Fire_Equipment: "",
       Due_Date2: "",
       Remarks2: "",
+      selectedFile: null,
+      selectedName: "",
     };
   }
+  onChangeHandler = (event) => {
+    this.setState({ selectedFile: event.target.files[0] });
+    this.setState({ selectedName: event.target.files[0].name });
+    console.log(event.target.files[0]);
+  };
   componentDidMount() {
     let { id } = this.props.match.params;
-    axios
-      .get(`http://3.108.185.7/nodejs//api/dealer/getoneequipment/${id}`)
+    axiosConfig
+      .get(`/dealer/getoneequipment/${id}`)
       .then((response) => {
-        console.log(response);
-
         this.setState({
           Equipment: response.data.data.Equipment,
           Due_Date: response.data.data.Due_Date,
@@ -51,23 +58,69 @@ class OtherEquipmentForm extends React.Component {
   changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
+
   submitHandler = (e) => {
     e.preventDefault();
+    console.log(this.props.match.params, this.state);
+    const data = new FormData();
+    data.append("Equipment", this.state.Equipment);
+    data.append("Due_Date", this.state.Due_Date.toString());
+    data.append("Remarks", this.state.Remarks);
+    data.append("Fire_Equipment", this.state.Fire_Equipment);
+    data.append("Due_Date2", this.state.Due_Date2.toString());
+    data.append("Remarks2", this.state.Remarks2);
+    if (this.state.selectedFile !== null) {
+      data.append(
+        "Uplaod_Document",
+        this.state.selectedFile,
+        this.state.selectedName
+      );
+      data.append(
+        "Upload_Fire_Equipment",
+        this.state.selectedFile,
+        this.state.selectedName
+      );
+    }
+    for (var value of data.values()) {
+      console.log(value);
+    }
+    for (var key of data.keys()) {
+      console.log(key);
+    }
+
     let { id } = this.props.match.params;
-    axios
-      .post(
-        `http://3.108.185.7/nodejs/api/dealer/updateequipment/${id}`,
-        this.state
-      )
+    axiosConfig
+      .post(`/dealer/updateequipment/${id}`, data)
       .then((response) => {
         console.log(response);
-        // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/app/ro-configuration/otherEquipmentForm");
+        this.props.history.push("/app/facilityManagement/otherEquipmentList");
       })
+
       .catch((error) => {
-        console.log(error.response);
+        console.log(error);
       });
   };
+  download = (e) => {
+    console.log(e.target.href);
+    fetch(e.target.href, {
+      method: "GET",
+      headers: {},
+    })
+      .then((response) => {
+        response.arrayBuffer().then(function (buffer) {
+          const url = window.URL.createObjectURL(new Blob([buffer]));
+          const link = document.createElement("a");
+          link.href = url;
+          link.setAttribute("download", "image.png"); //or any other extension
+          document.body.appendChild(link);
+          link.click();
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   render() {
     return (
       <Card>
@@ -75,9 +128,9 @@ class OtherEquipmentForm extends React.Component {
           <CardTitle>Other Equipment</CardTitle>
           <Button
             className=" btn btn-danger float-right"
-            // onClick={() =>
-            //   history.push("/app/ro-configuration/List")
-            // }
+            onClick={() =>
+              history.push("/app/facilityManagement/otherEquipmentList")
+            }
           >
             Back
           </Button>
@@ -86,25 +139,38 @@ class OtherEquipmentForm extends React.Component {
           <Form className="m-1" onSubmit={this.submitHandler}>
             <Row>
               <Col md="6" sm="12">
-                <h5 className="my-1 text-bold-600">Due Date-1</h5>
+                <h5 className="my-1 text-bold-600">Equipment</h5>
                 <Input
                   type="text"
+                  name="Equipment"
+                  value={this.state.Equipment.nature}
+                  onChange={this.changeHandler}
+                ></Input>
+              </Col>
+              <Col md="6" sm="12">
+                <h5 className="my-1 text-bold-600">Due Date-1</h5>
+                <Input
+                  type="date"
                   name="Due_Date"
                   value={this.state.Due_Date}
                   onChange={this.changeHandler}
                 ></Input>
               </Col>
               <Col md="6" sm="12">
-                <h5 className="my-1 text-bold-600">Document Upload</h5>
-                <Input
-                  type="url"
-                  name="Uplaod_Document"
-                  value={this.state.Uplaod_Document}
-                  onChange={this.changeHandler}
-                ></Input>
+                <h5 className="my-2 text-bold-600">Uploaded Document</h5>
+                <a
+                  href={this.state.Uplaod_Document}
+                  download
+                  target="_blank"
+                  onClick={(e) => this.download(e)}
+                  className="mb-3 p-1 rounded bg-light"
+                >
+                  <Download className="mr-50" size="25px" color="blue" />
+                  View/Download Document
+                </a>
               </Col>
               <Col md="6" sm="12">
-                <h5 className="my-1 text-bold-600">Rewards</h5>
+                <h5 className="my-1 text-bold-600">Remarks-1</h5>
                 <Input
                   type="text"
                   name="Remarks"
@@ -122,16 +188,30 @@ class OtherEquipmentForm extends React.Component {
                 ></Input>
               </Col>
               <Col md="6" sm="12">
-                <h5 className="my-1 text-bold-600">Due Date</h5>
+                <h5 className="my-1 text-bold-600">Due Date-2</h5>
                 <Input
-                  type="text"
+                  type="date"
                   name="Due_Date2"
                   value={this.state.Due_Date2}
                   onChange={this.changeHandler}
                 ></Input>
               </Col>
               <Col md="6" sm="12">
-                <h5 className="my-1 text-bold-600">Document Upload</h5>
+                <h5 className="my-2 text-bold-600">Uploaded Fire Equipment</h5>
+                <a
+                  href={this.state.Upload_Fire_Equipment}
+                  download
+                  target="_blank"
+                  onClick={(e) => this.download(e)}
+                  className="mb-3 p-1 rounded bg-light"
+                >
+                  <Download className="mr-50" size="25px" color="blue" />
+                  View/Download Fire Equipment
+                </a>
+              </Col>
+
+              <Col md="6" sm="12">
+                <h5 className="my-1 text-bold-600">Remarks-2</h5>
                 <Input
                   type="text"
                   name="Remarks2"
@@ -140,7 +220,7 @@ class OtherEquipmentForm extends React.Component {
                 ></Input>
               </Col>
 
-              <Col lg="12" md="12" sm="12" className="mb-5">
+              <Col lg="12" md="12" sm="12" className="mt-5">
                 <Button.Ripple
                   color="primary"
                   type="submit"

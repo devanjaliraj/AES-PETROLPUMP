@@ -12,7 +12,7 @@ import {
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown } from "react-feather";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 import { Trash2, Edit } from "react-feather";
@@ -293,8 +293,8 @@ class DesignYourOutletList extends React.Component {
     ],
   };
   async componentDidMount() {
-    await axios
-      .get("http://3.108.185.7/nodejs/api/dealer/alldealers")
+    await axiosConfig
+      .get("/dealer/alldealers")
       .then((response) => {
         const rowData = response.data.data;
         console.log(rowData);
@@ -303,7 +303,7 @@ class DesignYourOutletList extends React.Component {
   }
   async runthisfunction(id) {
     console.log(id);
-    await axios.get(`http://3.108.185.7/nodejs/api/dealer/deletedealershipform/${id}`).then((response) => {
+    await axiosConfig.get(`/dealer/deletedealershipform/${id}`).then((response) => {
       console.log(response);
     });
   }

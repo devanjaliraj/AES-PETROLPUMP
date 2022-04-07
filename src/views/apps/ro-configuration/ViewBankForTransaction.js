@@ -10,7 +10,7 @@ import {
 } from "reactstrap";
 import { history } from "../../../history";
 import "../../../assets/scss/pages/app-ecommerce-shop.scss";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 class ViewBankForTransaction extends React.Component {
   constructor(props) {
     super(props);
@@ -21,8 +21,8 @@ class ViewBankForTransaction extends React.Component {
 
   componentDidMount() {
     let { id } = this.props.match.params;
-    axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/getonebank/${id}`)
+    axiosConfig
+      .get(`/dealer/getonebank/${id}`)
       .then(response => {
         // console.log(response.data);
         console.log(response.data.data);

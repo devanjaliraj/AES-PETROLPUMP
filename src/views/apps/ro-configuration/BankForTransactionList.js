@@ -11,7 +11,7 @@ import {
   DropdownItem,
   DropdownToggle,
 } from "reactstrap";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { AgGridReact } from "ag-grid-react";
 import {  Edit,  Trash2, ChevronDown } from "react-feather";
@@ -196,7 +196,7 @@ class BankForTransactionList extends React.Component {
   };
 
   async componentDidMount() {
-    await axios.get(`http://3.108.185.7/nodejs/api/dealer/allbank`).then((response) => {
+    await axiosConfig.get(`/dealer/allbank`).then((response) => {
       const rowData = response.data.data;
       console.log(rowData);
       this.setState({ rowData });
@@ -204,7 +204,7 @@ class BankForTransactionList extends React.Component {
   }
   async runthisfunction(id) {
     console.log(id);
-    await axios.get(`http://3.108.185.7/nodejs/api/dealer/deletebank/${id}`).then(
+    await axiosConfig.get(`/dealer/deletebank/${id}`).then(
       (response) => {
         console.log(response);
       },

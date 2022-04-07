@@ -11,7 +11,7 @@ import {
   Breadcrumb,
   BreadcrumbItem,
 } from "reactstrap";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 import { history } from "../../../history";
 // import swal from "sweetalert";
 import Select from "react-select";
@@ -45,8 +45,8 @@ export default class EditTankMap extends Component {
   componentDidMount() {
     let { id } = this.props.match.params;
     // this.setState({ dealerId : id });
-    axios 
-    .get(`http://3.108.185.7/nodejs/api/dealer/getonetank/${id}`)
+    axiosConfig 
+    .get(`/dealer/getonetank/${id}`)
     .then(response => {
       console.log(response);
       this.setState({
@@ -66,8 +66,8 @@ export default class EditTankMap extends Component {
       submitHandler = e => {
         e.preventDefault();
         let { id } = this.props.match.params;
-        axios
-      .post(`http://3.108.185.7/nodejs/api/dealer/updattankmap/${id}`,this.state)
+        axiosConfig
+      .post(`/dealer/updattankmap/${id}`,this.state)
       .then(response => {
         console.log(response);
 

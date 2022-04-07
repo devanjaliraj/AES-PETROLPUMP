@@ -12,7 +12,7 @@ import {
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown } from "react-feather";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 import { Trash2, Edit } from "react-feather";
@@ -91,170 +91,7 @@ class NozzleMapList extends React.Component {
           );
         },
       },
-    //   {
-    //     headerName: "Total No. Nozzles",
-    //     field: "total_no_nozzles",
-    //     width: 90,
-    //     cellRendererFramework: (params) => {
-    //       return (
-    //         <div className="d-flex align-items-center cursor-pointer">
-    //           <span>{params.data.total_no_nozzles}</span>
-    //         </div>
-    //       );
-    //     },
-    //   },
-    //   {
-    //     headerName: "Total No. Tanks ",
-    //     field: "total_no_tanks",
-    //     width: 90,
-    //     cellRendererFramework: (params) => {
-    //       return (
-    //         <div className="d-flex align-items-center cursor-pointer">
-    //           <span>{params.data.total_no_tanks}</span>
-    //         </div>
-    //       );
-    //     },
-    //   },
-    //   {
-    //     headerName: "Total No. Air Machine",
-    //     field: "total_no_air_machine",
-    //     width: 90,
-    //     cellRendererFramework: (params) => {
-    //       return (
-    //         <div className="d-flex align-items-center cursor-pointer">
-    //           <span>{params.data.total_no_air_machine}</span>
-    //         </div>
-    //       );
-    //     },
-    //   },
-    //   {
-    //     headerName: "PUC Machine",
-    //     field: "puc_machine",
-    //     width: 90,
-    //     cellRendererFramework: (params) => {
-    //       return (
-    //         <div className="d-flex align-items-center cursor-pointer">
-    //           <span>{params.data.puc_machine}</span>
-    //         </div>
-    //       );
-    //     },
-    //   },
-    //   {
-    //     headerName: "Any Other Facility",
-    //     field: "any_other_facility",
-    //     filter: false,
-    //     width: 90,
-    //     cellRendererFramework: (params) => {
-    //       return (
-    //         <div className="d-flex align-items-center cursor-pointer">
-    //           <span>{params.data.any_other_facility}</span>
-    //         </div>
-    //       );
-    //     },
-    //   },
-      // {
-      //   headerName: "Tank ",
-      //   field: "tank_map.product_map",
-      //   width: 140,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         {/* {params.data.tank_map?.map((tank) => (
-      //         <span>{tank?.product_map}</span>
-      //         ))} */}
-
-      //       {
-      //           params.data.tank_map.filter(parameter => parameter.tank_number.includes(params.data.total_no_tanks))
-      //             .map(parameter => {
-      //               const { product_map,tank_number } = parameter;
-      //               return (
-      //                 <span>{product_map}</span>
-      //               )
-      //           })
-      //       }
-
-      //       </div>
-      //     );
-      //   },
-      // },
-      // {
-      //   headerName: "Tank ",
-      //   field: "tank_map.capacity_litre",
-      //   width: 140,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         {/* {params.data.tank_map?.map((tank) => (
-      //         <span>{tank?.capacity_litre}</span>
-      //         ))} */}
-
-      //         {
-      //           params.data.tank_map.filter(parameter => parameter.tank_number.includes(params.data.total_no_tanks))
-      //             .map(parameter => {
-      //               const { capacity_litre,tank_number } = parameter;
-      //               return (
-      //                 <span>{capacity_litre}</span>
-      //               )
-      //           })
-      //         }
-
-      //       </div>
-      //     );
-      //   },
-      // },
-      // {
-      //   headerName: "MPD ",
-      //   field: "mpd_map.bay_map",
-      //   width: 140,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         {/* {params.data.mpd_map?.map((mpd) => (
-      //         <span>{mpd?.bay_map}</span>
-      //         ))} */}
-
-      //         {
-      //           params.data.mpd_map.filter(parameter => parameter.mpd_number.includes(params.data.total_no_mpd))
-      //             .map(parameter => {
-      //               const { bay_map,mpd_number } = parameter;
-      //               return (
-      //                 <span>{bay_map+' '}</span>
-      //               )
-      //           })
-      //         }
-      //         {/* const { capacity_litre,tank_number } = parameter;
-      //               return (
-      //                 <span>{capacity_litre}</span>
-      //               ) */}
-      //       </div>
-      //     );
-      //   },
-      // },
-      // {
-      //   headerName: "BAY ",
-      //   field: "bay_map.nozzle_map",
-      //   width: 140,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         {/* {params.data.bay_map?.map((bay) => (
-      //         <span>{bay?.nozzle_map}</span>
-      //         ))} */}
-
-      //         {
-      //           params.data.bay_map.filter(parameter => parameter.bay_number.includes(params.data.total_no_bay))
-      //             .map(parameter => {
-      //               const { nozzle_map,bay_number } = parameter;
-      //               return (
-      //                 <span>{nozzle_map+' '}</span>
-      //               )
-      //           })
-      //         }
-
-      //       </div>
-      //     );
-      //   },
-      // },
+   
       {
         headerName: "Actions",
         field: "sortorder",
@@ -293,8 +130,8 @@ class NozzleMapList extends React.Component {
     ],
   };
   async componentDidMount() {
-    await axios
-      .get("http://3.108.185.7/nodejs/api/dealer/allnozzle")
+    await axiosConfig
+      .get("/dealer/allnozzle")
       .then((response) => {
         const rowData = response.data.data;
         console.log(rowData);
@@ -303,7 +140,7 @@ class NozzleMapList extends React.Component {
   }
 //   async runthisfunction(id) {
 //     console.log(id);
-//     await axios.get(`http://3.108.185.7/nodejs/api/dealer/deletedealershipform/${id}`).then((response) => {
+//     await axiosConfig.get(`/dealer/deletedealershipform/${id}`).then((response) => {
 //       console.log(response);
 //     });
 //   }

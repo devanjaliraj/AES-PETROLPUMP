@@ -11,7 +11,7 @@ import {
   Breadcrumb,
   BreadcrumbItem,
 } from "reactstrap";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 import { history } from "../../../history";
 // import { data } from "jquery";
 // import swal from "sweetalert";
@@ -30,9 +30,9 @@ export default class DesignYourOutlet extends Component {
 
   componentDidMount() {
     let { id } = this.props.match.params;
-    axios
+    axiosConfig
       .get(
-        `http://3.108.185.7/nodejs/api/admin/viewoneequipment/${id}`,
+        `/admin/viewoneequipment/${id}`,
       )
       .then((response) => {
         console.log(response);
@@ -54,9 +54,8 @@ export default class DesignYourOutlet extends Component {
     submitHandler = (e) => {
       e.preventDefault();
       let { id } = this.props.match.params;
-      axios
-        .post(
-          `http://3.108.185.7/nodejs/api/admin/editequipment/${id}`,
+      axiosConfig
+        .post(`/admin/editequipment/${id}`,
           this.state
         )
         .then((response) => {

@@ -12,7 +12,7 @@ import {
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2,  Edit } from "react-feather";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 import { history } from "../../../history";
@@ -232,8 +232,8 @@ class StaffManagementList extends React.Component {
   };
 
   componentDidMount() {
-    axios
-      .get("http://3.108.185.7/nodejs/api/dealer/allmanager")
+    axiosConfig
+      .get("/dealer/allmanager")
       .then((response) => {
         let rowData = response.data.data;
         JSON.stringify(rowData);
@@ -242,8 +242,8 @@ class StaffManagementList extends React.Component {
   }
   async runthisfunction(id) {
     console.log(id);
-    await axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/deletemanager/${id}`)
+    await axiosConfig
+      .get(`/dealer/deletemanager/${id}`)
       .then((response) => {
         console.log(response);
       });

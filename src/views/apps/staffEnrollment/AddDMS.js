@@ -11,7 +11,7 @@ import {
   Input,
   Button,
 } from "reactstrap";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 import { Download } from "react-feather";
 
 export default class AddDSM extends Component {
@@ -45,8 +45,8 @@ export default class AddDSM extends Component {
   componentDidMount() {
     let { id } = this.props.match.params;
     console.log(id);
-    axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/getoneDsnform/${id}`)
+    axiosConfig
+      .get(`/dealer/getoneDsnform/${id}`)
       .then((response) => {
         console.log(response);
         this.setState({
@@ -105,8 +105,8 @@ export default class AddDSM extends Component {
 
     let { id } = this.props.match.params;
 
-    axios
-      .post(`http://3.108.185.7/nodejs/api/dealer/updateoneDSN/${id}`, data)
+    axiosConfig
+      .post(`/dealer/updateoneDSN/${id}`, data)
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");

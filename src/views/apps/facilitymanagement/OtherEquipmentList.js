@@ -12,7 +12,7 @@ import {
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 
@@ -111,7 +111,6 @@ class OtherEquipmentList extends React.Component {
       {
         headerName: "Due Date-2",
         field: "Due_Date2",
-
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -137,6 +136,7 @@ class OtherEquipmentList extends React.Component {
       {
         headerName: "Actions",
         field: "sortorder",
+        pinned: window.innerWidth > 992 ? "right" : false,
         width: 150,
         cellRendererFramework: (params) => {
           return (
@@ -147,7 +147,7 @@ class OtherEquipmentList extends React.Component {
                 color="blue"
                 onClick={() =>
                   history.push(
-                    `/app/ro-configuration/otherEquipmentForm/${params.data._id}`
+                    `/app/facilityManagement/otherEquipmentForm/${params.data._id}`
                   )
                 }
               />
@@ -169,8 +169,8 @@ class OtherEquipmentList extends React.Component {
   };
 
   componentDidMount() {
-    axios
-      .get("http://3.108.185.7/nodejs/api/dealer/allequipment")
+    axiosConfig
+      .get("/dealer/allequipment")
       .then((response) => {
         let rowData = response.data.data;
         JSON.stringify(rowData);

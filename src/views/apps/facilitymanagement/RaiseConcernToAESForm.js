@@ -6,63 +6,68 @@ import {
   CardBody,
   Row,
   Col,
+  Form,
   Button,
   Input,
 } from "reactstrap";
-import Select from "react-select";
-import { useDropzone } from "react-dropzone";
+import axiosConfig from "../../../axiosConfig";
+import { history } from "../../../history";
 
-const colourOptions = [
-  { value: "ocean", label: "Ocean" },
-  { value: "blue", label: "Blue" },
-  { value: "purple", label: "Purple" },
-  { value: "red", label: "Red" },
-  { value: "orange", label: "Orange" },
+const concernOption = [
+  "Service Request",
+  "Spare Puecahse",
+  "Maintainanace of Assets",
+  "Others",
 ];
 
-function BasicDropzone(props) {
-  const [files, setFiles] = useState([]);
-  const { getRootProps, getInputProps } = useDropzone({
-    accept: "image/*",
-    onDrop: (acceptedFiles) => {
-      setFiles(
-        acceptedFiles.map((file) =>
-          Object.assign(file, {
-            preview: URL.createObjectURL(file),
-          })
-        )
-      );
-    },
-  });
-
-  const thumbs = files.map((file) => (
-    <div className="dz-thumb" key={file.name}>
-      <div className="dz-thumb-inner">
-        <img src={file.preview} className="dz-img" alt={file.name} />
-      </div>
-    </div>
-  ));
-
-  useEffect(
-    () => () => {
-      // Make sure to revoke the data uris to avoid memory leaks
-      files.forEach((file) => URL.revokeObjectURL(file.preview));
-    },
-    [files]
-  );
-
-  return (
-    <section>
-      <div {...getRootProps({ className: "dropzone" })}>
-        <input {...getInputProps()} />
-        <p className="mx-1"> Click to Upload</p>
-      </div>
-      <aside className="thumb-container">{thumbs}</aside>
-    </section>
-  );
-}
-
 class RaiseConcernToAESForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      concern: [],
+      remark: "",
+    };
+  }
+
+  componentDidMount() {
+    let { id } = this.props.match.params;
+    axiosConfig
+      .get(`/dealer/getoneraiseConcern/${id}`)
+      .then((response) => {
+        console.log(response);
+        this.setState({
+          concern: response.data.data.concern,
+          remark: response.data.data.remark,
+        });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
+  changeHandler = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+  submitHandler = (e) => {
+    e.preventDefault();
+    let { id } = this.props.match.params;
+    axiosConfig
+      .post(
+        `/dealer/updateraiseConcern/${id}`,
+        this.state
+      )
+      .then((response) => {
+        console.log(response);
+        // swal("Success!", "Submitted SuccessFull!", "success");
+        this.props.history.push(
+          "/app/facilityManagement/raiseConcernToAESList"
+        );
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+  };
+
   render() {
     return (
       <Card>
@@ -70,40 +75,54 @@ class RaiseConcernToAESForm extends React.Component {
           <CardTitle>Raise Form</CardTitle>
           <Button
             className=" btn btn-danger float-right"
-            // onClick={() =>
-            //   history.push("/app/ro-configuration/List")
-            // }
+            onClick={() =>
+              history.push("/app/facilityManagement/raiseConcernToAESList")
+            }
           >
             Back
           </Button>
         </CardHeader>
         <CardBody>
-          <Row>
-            <Col md="6" sm="12">
-              <h5 className="my-1 text-bold-600">Concern About</h5>
-              <Select
-                className="React"
-                classNamePrefix="select"
-                defaultValue={colourOptions[0]}
-                name="color"
-                options={colourOptions}
-              />
-            </Col>
-            <Col md="6" sm="12" style={{ marginBottom: 15 }}>
-              <h5 className="my-1 text-bold-600">Remarks</h5>
-              <Input type="text" name="total_no_mpd"></Input>
-            </Col>
+          <Form className="m-1" onSubmit={this.submitHandler}>
+            <Row>
+              <Col md="6" sm="12">
+                <h5 className="my-1 text-bold-600">Total Pieces Available</h5>
+                <Input
+                  type="select"
+                  name="concern"
+                  value={this.state.concern}
+                  onChange={this.changeHandler}
+                >
+                  {concernOption.map((concern, i) => {
+                    return (
+                      <option key={i} value={this.concern}>
+                        {concern}
+                      </option>
+                    );
+                  })}
+                </Input>
+              </Col>
+              <Col md="6" sm="12" style={{ marginBottom: 15 }}>
+                <h5 className="my-1 text-bold-600">Remarks</h5>
+                <Input
+                  type="text"
+                  name="remark"
+                  value={this.state.remark}
+                  onChange={this.changeHandler}
+                ></Input>
+              </Col>
 
-            <Col lg="12" md="12" sm="12" className="mb-5">
-              <Button.Ripple
-                color="primary"
-                type="submit"
-                className="mr-1 mb-1"
-              >
-                Submit
-              </Button.Ripple>
-            </Col>
-          </Row>
+              <Col lg="12" md="12" sm="12" className="mb-5">
+                <Button.Ripple
+                  color="primary"
+                  type="submit"
+                  className="mr-1 mb-1"
+                >
+                  Submit
+                </Button.Ripple>
+              </Col>
+            </Row>
+          </Form>
         </CardBody>
       </Card>
     );

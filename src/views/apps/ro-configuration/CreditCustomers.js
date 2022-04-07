@@ -11,7 +11,7 @@ import {
   Breadcrumb,
   BreadcrumbItem,
 } from "reactstrap";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 import { history } from "../../../history";
 // import swal from "sweetalert";
 
@@ -35,8 +35,8 @@ export default class DesignYourOutlet extends Component {
 
   componentDidMount() {
     let { id } = this.props.match.params;
-    axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/getonecreditcustomers/${id}`)
+    axiosConfig
+      .get(`/dealer/getonecreditcustomers/${id}`)
       .then((response) => {
         console.log(response);
         this.setState({
@@ -103,9 +103,9 @@ export default class DesignYourOutlet extends Component {
     let { id } = this.props.match.params;
     // var user = JSON.parse(localStorage.getItem('userData'));
     
-    axios
+    axiosConfig
       .post(
-        `http://3.108.185.7/nodejs/api/dealer/updatecreditcustomers/${id}`, data)
+        `/dealer/updatecreditcustomers/${id}`, data)
         
         .then(response => {
           console.log(response);

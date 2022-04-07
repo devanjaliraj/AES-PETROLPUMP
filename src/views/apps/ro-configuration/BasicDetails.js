@@ -13,7 +13,7 @@ import {
   Breadcrumb,
   BreadcrumbItem,
 } from "reactstrap";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 import { history } from "../../../history";
 // import swal from "sweetalert";
 
@@ -41,7 +41,7 @@ export default class BasicDetails extends Component {
     this.submitHandler = this.submitHandler.bind(this);
   }
   getState = () => {
-    fetch('http://3.108.185.7/nodejs/api/admin/allstate', {
+    fetch('/admin/allstate', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -58,7 +58,7 @@ export default class BasicDetails extends Component {
 
   handleChange = event => {
     this.setState({ state: event.target.value })
-    fetch('http://3.108.185.7/nodejs/api/admin/allcity', {
+    fetch('/admin/allcity', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -77,8 +77,8 @@ export default class BasicDetails extends Component {
   componentDidMount() {
     this.getState()
     // MOC
-    axios
-    .get("http://3.108.185.7/nodejs/api/dealer/allMasterOilCompany")
+    axiosConfig
+    .get("/dealer/allMasterOilCompany")
     .then((response) => {
       console.log(response.data.data);
       this.setState({ mocN: response.data.data });
@@ -88,8 +88,8 @@ export default class BasicDetails extends Component {
     });
 
     let { id } = this.props.match.params;
-    axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/viewonedealershipform/${id}`)
+    axiosConfig
+      .get(`/dealer/viewonedealershipform/${id}`)
       .then(response => {
         console.log(response);
         this.setState({
@@ -115,8 +115,8 @@ export default class BasicDetails extends Component {
   submitHandler = e => {
     e.preventDefault();
     let { id } = this.props.match.params;
-    axios
-      .post(`http://3.108.185.7/nodejs/api/dealer/addeditbasicdealershipform/${id}`, this.state)
+    axiosConfig
+      .post(`/dealer/addeditbasicdealershipform/${id}`, this.state)
       .then(response => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");

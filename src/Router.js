@@ -73,9 +73,35 @@ const StaffAttendanceForm = lazy(() =>
   import("./views/apps/shiftmanagement/StaffAttendenceForm")
 );
 
-// facilitymanagement
-const FacilityManagementList = lazy(() => import("./views/apps/facilitymanagement/FacilityManagement"));
-const MpdManagement = lazy(() => import("./views/apps/facilitymanagement/MpdManagement"));
+//////////////////////////// facilitymanagement  /////////////////////////////
+
+const StampingDataList = lazy(() =>
+  import("./views/apps/facilitymanagement/StampingDataList")
+);
+
+const StampingDataForm = lazy(() =>
+  import("./views/apps/facilitymanagement/StampingDataForm")
+);
+
+const otherEquipmentList = lazy(() =>
+  import("./views/apps/facilitymanagement/OtherEquipmentList")
+);
+const OtherEquipmentForm = lazy(() =>
+  import("./views/apps/facilitymanagement/OtherEquipmentForm")
+);
+const StatutoryCertificateManagementList = lazy(() =>
+  import("./views/apps/facilitymanagement/StatutoryCertificateManagementList")
+);
+const MpdManagement = lazy(() =>
+  import("./views/apps/facilitymanagement/MpdManagement")
+);
+const RaiseConcernToAESList = lazy(() =>
+  import("./views/apps/facilitymanagement/RaiseConcernToAESList")
+);
+
+const RaiseConcernToAESForm = lazy(() =>
+  import("./views/apps/facilitymanagement/RaiseConcernToAESForm")
+);
 
 // my component
 const subplanvideos = lazy(() => import("./views/apps/subplan/SubPlanVideos"));
@@ -323,9 +349,39 @@ class AppRouter extends React.Component {
           <AppRoute path="/app/stockManagement/lubeStockForm/:id" component={LubeStockForm} />
 
 
-          {/* facilityManagement */}
-          <AppRoute path="/app/facilityManagement/facilityManagementList" component={FacilityManagementList}/>
-          <AppRoute path="/app/facilityManagement/MpdManagement" component={MpdManagement} />
+      {/*///////////////////////////////// facilityManagement start //////////////////////////////////////////////////*/}
+      <AppRoute
+            path="/app/facilityManagement/statutoryCertificateManagementList"
+            component={StatutoryCertificateManagementList}
+          />
+          <AppRoute
+            path="/app/facilityManagement/stampingDataList"
+            component={StampingDataList}
+          />
+          <AppRoute
+            path="/app/facilityManagement/stampingDataForm/:id"
+            component={StampingDataForm}
+          />
+          <AppRoute
+            path="/app/facilityManagement/otherEquipmentList"
+            component={otherEquipmentList}
+          />
+          <AppRoute
+            path="/app/facilityManagement/otherEquipmentForm/:id"
+            component={OtherEquipmentForm}
+          />
+          <AppRoute
+            path="/app/facilityManagement/MpdManagement"
+            component={MpdManagement}
+          />
+          <AppRoute
+            path="/app/facilityManagement/raiseConcernToAESList"
+            component={RaiseConcernToAESList}
+          />
+          <AppRoute
+            path="/app/facilityManagement/raiseConcernToAESForm/:id"
+            component={RaiseConcernToAESForm}
+          />
 
           {/* shiftManagement */}
          

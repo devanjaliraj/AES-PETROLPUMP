@@ -135,7 +135,7 @@ class FacilityManagement extends React.Component {
   };
 
   componentDidMount() {
-    axios.get("/api/aggrid/data").then((response) => {
+    axios.get("").then((response) => {
       let rowData = response.data.data;
       JSON.stringify(rowData);
       this.setState({ rowData });

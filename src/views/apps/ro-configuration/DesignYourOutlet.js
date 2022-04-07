@@ -11,7 +11,7 @@ import {
   Breadcrumb,
   BreadcrumbItem,
 } from "reactstrap";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 import { history } from "../../../history";
 // import swal from "sweetalert";
 
@@ -35,8 +35,8 @@ export default class DesignYourOutlet extends Component {
    
     let { id } = this.props.match.params;
     this.setState({ dealerId : id });
-    axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/viewonedealershipform/${id}`)
+    axiosConfig
+      .get(`/dealer/viewonedealershipform/${id}`)
       .then((response) => {
         console.log(response);
         this.setState({
@@ -60,9 +60,9 @@ export default class DesignYourOutlet extends Component {
   submitHandler = (e) => {
     e.preventDefault();
     let { id } = this.props.match.params;
-    axios
+    axiosConfig
       .post(
-        `http://3.108.185.7/nodejs/api/dealer/addeditbasicdealershipform/${id}`,
+        `/dealer/addeditbasicdealershipform/${id}`,
         this.state
       )
       .then((response) => {
