@@ -481,7 +481,7 @@ exact={true}             path="/app/shiftManagement/staffAttendanceForm/:id"
           <AppRoute exact={true} path="/app/setting/bay/bayList" component={bayList} />  
           <AppRoute exact={true} path="/app/setting/bay/addBay" component={addBay} />
 
-         
+          <AppRoute exact={true} path="/email" component={() => <Redirect to="/email/inbox" />}/>
           {/* my componet */}
         
         
@@ -496,7 +496,7 @@ exact={true}             path="/app/shiftManagement/staffAttendanceForm/:id"
           <AppRoute exact={true} path="/app/subplan/addPlan" component={addPlan} />
          
         
-          {/* <AppRoute exact={true} path="/todo"exact component={() => <Redirect to="/todo/all" />}/> */}
+          <AppRoute exact={true} path="/todo" component={() => <Redirect to="/todo/all" />}/>
           {/* <AppRoute exact={true} path="/todo/:filter" component={todo} />
           <AppRoute exact={true} path="/calendar" component={calendar} /> */}
           <AppRoute exact={true} path="/ecommerce/shop" component={shop} />
