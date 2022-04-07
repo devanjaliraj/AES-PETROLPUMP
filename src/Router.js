@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from "react";
-import { Router, Switch, Route } from "react-router-dom";
+import { Router, Switch, Route,HashRouter } from "react-router-dom";
 import { history } from "./history";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
@@ -306,6 +306,7 @@ class AppRouter extends React.Component {
     return (
       // Set the directory path if you are deploying in sub-folder
       <Router history={history}>
+        <HashRouter>
         <Switch>
         {/*<AppRoute exact={true} path="/" component={home} fullLayout /> */}
           <AppRoute exact={true} path="/" component={analyticsDashboard} />
@@ -599,6 +600,7 @@ exact={true}             path="/app/shiftManagement/staffAttendanceForm/:id"
           <AppRoute exact={true} path="/extensions/pagination" component={reactPaginate} />
           <AppRoute  component={error404} fullLayout />
         </Switch>
+        </HashRouter>
       </Router>
     );
   }
