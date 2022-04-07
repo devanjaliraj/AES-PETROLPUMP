@@ -9,7 +9,7 @@ import {
   Button,
   Input,
 } from "reactstrap";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 import { history } from "../../../history";
 
 class DSMClosingSheet extends React.Component {
@@ -33,8 +33,8 @@ class DSMClosingSheet extends React.Component {
     let { id } = this.props.match.params;
 
     // all dsm
-    axios
-      .get("http://3.108.185.7/nodejs/api/dealer/getDsnform")
+    axiosConfig
+      .get("/dealer/getDsnform")
       .then((response) => {
         console.log(response.data.data);
         this.setState({ dsm: response.data.data });
@@ -43,8 +43,8 @@ class DSMClosingSheet extends React.Component {
         console.log(error);
       });
 
-    axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/getonedsmclosing/${id}`)
+    axiosConfig
+      .get(`/dealer/getonedsmclosing/${id}`)
       .then((response) => {
         console.log(response);
         this.setState({
@@ -70,7 +70,7 @@ class DSMClosingSheet extends React.Component {
   submitHandler = (e) => {
     e.preventDefault();
     let { id } = this.props.match.params;
-    axios
+    axiosConfig
       .post(
         `http://3.108.185.7/nodejs/api/dealer/updatedsmclosing/${id}`,
         this.state

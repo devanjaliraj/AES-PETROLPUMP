@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   Card,
-  CardHeader,
+  // CardHeader,
   CardBody,
   Row,
   Col,
@@ -9,7 +10,7 @@ import {
   Button,
   Input,
 } from "reactstrap";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 import { history } from "../../../history";
 class BayManagementForm extends React.Component {
   constructor(props) {
@@ -24,8 +25,8 @@ class BayManagementForm extends React.Component {
     let { id } = this.props.match.params;
 
     // all dsm
-    axios
-      .get("http://3.108.185.7/nodejs/api/dealer/getDsnform")
+    axiosConfig
+      .get("/dealer/getDsnform")
       .then((response) => {
         console.log(response.data.data);
         this.setState({ dsm: response.data.data });
@@ -35,8 +36,8 @@ class BayManagementForm extends React.Component {
       });
 
     // all nozzle
-    axios
-      .get("http://3.108.185.7/nodejs/api/dealer/allnozzle")
+    axiosConfig
+      .get("/dealer/allnozzle")
       .then((response) => {
         console.log(response.data.data);
         this.setState({ nozzles: response.data.data });
@@ -45,8 +46,8 @@ class BayManagementForm extends React.Component {
         console.log(error);
       });
 
-    axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/getonebm/${id}`)
+    axiosConfig
+      .get(`/dealer/getonebm/${id}`)
       .then((response) => {
         console.log(response);
         this.setState({
@@ -66,7 +67,7 @@ class BayManagementForm extends React.Component {
   // submitHandler = (e) => {
   //   e.preventDefault();
   //   let { id } = this.props.match.params;
-  //   axios
+  //   axiosConfig
   //     .post(`http://3.108.185.7/nodejs/api/dealer/updatersp/${id}`, this.state)
   //     .then((response) => {
   //       console.log(response);

@@ -161,7 +161,7 @@ class OtherEquipmentForm extends React.Component {
                 <a
                   href={this.state.Uplaod_Document}
                   download
-                  target="_blank"
+                  target='blank'
                   onClick={(e) => this.download(e)}
                   className="mb-3 p-1 rounded bg-light"
                 >
@@ -201,7 +201,7 @@ class OtherEquipmentForm extends React.Component {
                 <a
                   href={this.state.Upload_Fire_Equipment}
                   download
-                  target="_blank"
+                  target='blank'
                   onClick={(e) => this.download(e)}
                   className="mb-3 p-1 rounded bg-light"
                 >

@@ -5,7 +5,7 @@ import {
   Row,
   Col,
   Form,
-  Label,
+  // Label,
   Input,
   Button,
   Breadcrumb,
@@ -14,7 +14,7 @@ import {
 import axiosConfig from "../../../axiosConfig";
 import { history } from "../../../history";
 // import swal from "sweetalert";
-import Select from "react-select";
+// import Select from "react-select";
 const tankOptions = [];
 export default class EditTankMap extends Component {
   constructor(props) {
@@ -195,15 +195,15 @@ handleChangeTank = (selectedTankOption) => {
 
   render() {
    
-    const {
-        dealerId,
-        // Product,
-        // capacity,
-        // // tank,
-        // // selectedTankOption,
-        // selectedMapTankOption,
-        // selectedMapTankOption1,
-    } = this.state
+    // const {
+    //     dealerId,
+    //     // Product,
+    //     // capacity,
+    //     // // tank,
+    //     // // selectedTankOption,
+    //     // selectedMapTankOption,
+    //     // selectedMapTankOption1,
+    // } = this.state
     return (
       <div>
         <Row>

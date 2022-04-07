@@ -11,13 +11,13 @@ import {
 } from "reactstrap";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2, Eye, Edit } from "react-feather";
+import { ChevronDown, Trash2,  Edit } from "react-feather";
 import axiosConfig from "../../../axiosConfig";
 
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
-import { history } from "../../../history";
+// import { history } from "../../../history";
 
 class StatutoryCertificateManagementList extends React.Component {
   state = {

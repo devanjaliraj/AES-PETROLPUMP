@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
   Card,
   CardHeader,
-  CardTitle,
   CardBody,
   Row,
   Col,
@@ -10,7 +9,7 @@ import {
   Button,
   Input,
 } from "reactstrap";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 import { history } from "../../../history";
 class RetailSellingPrice extends React.Component {
   constructor(props) {
@@ -27,8 +26,8 @@ class RetailSellingPrice extends React.Component {
   }
   componentDidMount() {
     let { id } = this.props.match.params;
-    axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/getonersp/${id}`)
+    axiosConfig
+      .get(`/dealer/getonersp/${id}`)
       .then((response) => {
         console.log(response);
         this.setState({
@@ -52,8 +51,8 @@ class RetailSellingPrice extends React.Component {
   submitHandler = (e) => {
     e.preventDefault();
     let { id } = this.props.match.params;
-    axios
-      .post(`http://3.108.185.7/nodejs/api/dealer/updatersp/${id}`, this.state)
+    axiosConfig
+      .post(`/dealer/updatersp/${id}`, this.state)
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");

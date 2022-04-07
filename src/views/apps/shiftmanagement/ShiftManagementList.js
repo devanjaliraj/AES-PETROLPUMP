@@ -12,7 +12,7 @@ import {
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Eye, Edit } from "react-feather";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 import { history } from "../../../history";
@@ -128,7 +128,7 @@ class ShiftManagementList extends React.Component {
   };
 
   componentDidMount() {
-    axios.get("/api/aggrid/data").then((response) => {
+    axiosConfig.get("/api/aggrid/data").then((response) => {
       let rowData = response.data.data;
       JSON.stringify(rowData);
       this.setState({ rowData });

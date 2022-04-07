@@ -10,7 +10,7 @@ import {
   Button,
   Input,
 } from "reactstrap";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 
 class StaffAttendenceForm extends React.Component {
   constructor(props) {
@@ -25,8 +25,8 @@ class StaffAttendenceForm extends React.Component {
   }
   componentDidMount() {
     let { id } = this.props.match.params;
-    axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/getoneatendence/${id}`)
+    axiosConfig
+      .get(`/dealer/getoneatendence/${id}`)
       .then((response) => {
         console.log(response);
 
@@ -48,9 +48,9 @@ class StaffAttendenceForm extends React.Component {
   submitHandler = (e) => {
     e.preventDefault();
     let { id } = this.props.match.params;
-    axios
+    axiosConfig
       .post(
-        `http://3.108.185.7/nodejs/api/dealer/updateatendence/${id}`,
+        `/dealer/updateatendence/${id}`,
         this.state
       )
       .then((response) => {

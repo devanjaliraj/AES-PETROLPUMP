@@ -3,7 +3,7 @@ import {
   Row,
   Col,
   Button,
-  Spinner,
+  // Spinner,
   Form,
   FormGroup,
   Label,
@@ -13,17 +13,17 @@ import {
   Navbar,
   NavbarToggler,
   Collapse,
-  Nav,
-  NavItem,
-  NavLink,
+  // Nav,
+  // NavItem,
+  // NavLink,
 } from "reactstrap";
-import { Edit2, Settings, Menu, X } from "react-feather";
-import coverImg from "../../../assets/img/profile/user-uploads/cover.jpg";
+import { Edit2,  Menu, X } from "react-feather";
+// import coverImg from "../../../assets/img/profile/user-uploads/cover.jpg";
 import profileImg from "../../../assets/img/profile/user-uploads/user-13.jpg";
 import "../../../assets/scss/pages/users-profile.scss";
 import CheckBoxesVuexy from "../../../components/@vuexy/checkbox/CheckboxesVuexy";
 import { Check } from "react-feather";
-import registerImg from "../../.././assets/img/pages/register.jpg";
+// import registerImg from "../../.././assets/img/pages/register.jpg";
 
 class Profile extends React.Component {
   state = {

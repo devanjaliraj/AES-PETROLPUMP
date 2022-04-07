@@ -1,5 +1,5 @@
 import React from "react";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 import {
   Card,
   CardHeader,
@@ -29,8 +29,8 @@ class LubricantForm extends React.Component {
   }
   componentDidMount() {
     // lube_grade
-    axios
-      .get("http://3.108.185.7/nodejs/api/dealer/alllubestock")
+    axiosConfig
+      .get("/dealer/alllubestock")
       .then((response) => {
         console.log(response.data.data);
         this.setState({ gradeL: response.data.data });
@@ -40,8 +40,8 @@ class LubricantForm extends React.Component {
       });
 
     // Mode of Payment
-    axios
-      .get("http://3.108.185.7/nodejs/api/dealer/allmode")
+    axiosConfig
+      .get("/dealer/allmode")
       .then((response) => {
         console.log(response.data.data);
         this.setState({ mfp: response.data.data });
@@ -51,8 +51,8 @@ class LubricantForm extends React.Component {
       });
 
     let { id } = this.props.match.params;
-    axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/getonelubricantsales/${id}`)
+    axiosConfig
+      .get(`/dealer/getonelubricantsales/${id}`)
       .then((response) => {
         console.log(response);
 
@@ -77,9 +77,9 @@ class LubricantForm extends React.Component {
   submitHandler = (e) => {
     e.preventDefault();
     let { id } = this.props.match.params;
-    axios
+    axiosConfig
       .post(
-        `http://3.108.185.7/nodejs/api/dealer/updatelubricantsales/${id}`,
+        `/dealer/updatelubricantsales/${id}`,
         this.state
       )
       .then((response) => {

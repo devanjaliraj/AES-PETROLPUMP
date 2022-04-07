@@ -9,7 +9,7 @@ import {
   DropdownItem,
   DropdownToggle,
 } from "reactstrap";
-import axios from "axios";
+
 import { history } from "../../../history";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
@@ -144,7 +144,7 @@ class OtherEquipmentList extends React.Component {
     }
       // async runthisfunction(id) {
       //   console.log(id);
-      //   await axios.get(`http://3.108.185.7/nodejs/api/dealer/allequipmentofdealer/${id}`).then((response) => {
+      //   await axiosConfig.get(`http://3.108.185.7/nodejs/api/dealer/allequipmentofdealer/${id}`).then((response) => {
       //     console.log(response);
       //   });
       // }

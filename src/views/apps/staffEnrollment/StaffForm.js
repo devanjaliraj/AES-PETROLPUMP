@@ -1,7 +1,6 @@
 import React from "react";
 import Wizard from "../../../components/@vuexy/wizard/WizardComponent";
 import {
-  Form,
   FormGroup,
   Input,
   Label,

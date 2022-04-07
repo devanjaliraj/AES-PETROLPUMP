@@ -5,8 +5,8 @@ import {
   CardTitle,
   CardBody,
   Label,
-  FormGroup,
-  CustomInput,
+  // FormGroup,
+  // CustomInput,
   Row,
   Form,
   Col,
@@ -15,9 +15,9 @@ import {
   Breadcrumb,
   BreadcrumbItem,
 } from "reactstrap";
-import Select from "react-select";
+// import Select from "react-select";
 import { history } from "../../../history";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 class LubeStockForm extends React.Component {
   constructor(props) {
     super(props);
@@ -39,8 +39,8 @@ class LubeStockForm extends React.Component {
    
     componentDidMount() {
       let { id } = this.props.match.params;
-      axios
-        .get(`  http://3.108.185.7/nodejs/api/dealer/getonelubestock/${id}`)
+      axiosConfig
+        .get(`/dealer/getonelubestock/${id}`)
         .then(response => {
           console.log(response);
           this.setState({
@@ -67,8 +67,8 @@ class LubeStockForm extends React.Component {
     submitHandler = e => {
       e.preventDefault();
       let { id } = this.props.match.params;
-      axios
-        .post(`http://3.108.185.7/nodejs/api/dealer/updatelubestock/${id}`, this.state)
+      axiosConfig
+        .post(`/dealer/updatelubestock/${id}`, this.state)
         .then(response => {
           console.log(response);
           // swal("Success!", "Submitted SuccessFull!", "success");

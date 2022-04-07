@@ -11,8 +11,8 @@ import {
 } from "reactstrap";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2, Eye, Edit } from "react-feather";
-import axios from "axios";
+import { ChevronDown, Trash2, Edit } from "react-feather";
+import axiosConfig from "../../../axiosConfig";
 import { history } from "../../../history";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
@@ -225,8 +225,8 @@ class LubeStockList extends React.Component {
   };
 
   async componentDidMount() {
-    await axios
-    .get("http://3.108.185.7/nodejs/api/dealer/alllubestock").then((response) => {
+    await axiosConfig
+    .get("/api/dealer/alllubestock").then((response) => {
       let rowData = response.data.data;
       JSON.stringify(rowData);
       this.setState({ rowData });
@@ -234,7 +234,7 @@ class LubeStockList extends React.Component {
   }
   async runthisfunction(id) {
     console.log(id);
-    await axios.get(`http://3.108.185.7/nodejs/api/dealer/deletelubestock/${id}`).then((response) => {
+    await axiosConfig.get(`/dealer/deletelubestock/${id}`).then((response) => {
       console.log(response);
     });
   }

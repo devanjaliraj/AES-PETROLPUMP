@@ -9,7 +9,7 @@ import {
   DropdownItem,
   DropdownToggle,
 } from "reactstrap";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 import { history } from "../../../history";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
@@ -220,7 +220,7 @@ class BayManagementList extends React.Component {
   };
 
   componentDidMount() {
-    axios.get("http://3.108.185.7/nodejs/api/dealer/allbm").then((response) => {
+    axiosConfig.get("/dealer/allbm").then((response) => {
       let rowData = response.data.data;
       JSON.stringify(rowData);
       this.setState({ rowData });
@@ -229,8 +229,8 @@ class BayManagementList extends React.Component {
   }
   async runthisfunction(id) {
     console.log(id);
-    await axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/deletebm/${id}`)
+    await axiosConfig
+      .get(`/dealer/deletebm/${id}`)
       .then((response) => {
         console.log(response);
       });

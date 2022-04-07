@@ -5,7 +5,7 @@ import {
   Row,
   Col,
   Form,
-  Label,
+  // Label,
   Input,
   Button,
   FormGroup,
@@ -16,7 +16,7 @@ import {
 import axiosConfig from "../../../axiosConfig";
 import { history } from "../../../history";
 // import swal from "sweetalert";
-import Select from "react-select";
+// import Select from "react-select";
 
 const mpdOptions = [];
 
@@ -153,11 +153,11 @@ handleChangeBAY = (selectedBayOption) => {
 }
   render() {
  
-    const {
-      // dealerId,
-      selectedBayOption,
-      selectedMpdOption,
-    } = this.state
+    // const {
+    //   // dealerId,
+    //   // selectedBayOption,
+    //   // selectedMpdOption,
+    // } = this.state
     return (
       <div>
         <Row>

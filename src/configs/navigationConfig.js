@@ -47,7 +47,7 @@ const navigationConfig = [
     children: [
         {
         id: "roConfigurationList",
-        title: "RO-Configuration List",
+        title: "Basic Detail List",
         type: "item",
         icon: <Icon.Circle size={12} />,
         permissions: ["admin", "editor"],

@@ -12,8 +12,8 @@ import {
 import { AgGridReact } from "ag-grid-react";
 import { history } from "../../../history";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2, Eye, Edit } from "react-feather";
-import axios from "axios";
+import { ChevronDown, Trash2,  Edit } from "react-feather";
+import axiosConfig from "../../../axiosConfig";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 
@@ -182,8 +182,8 @@ class LubricantSales extends React.Component {
 
   componentDidMount() {
     // Mode of Payment
-    axios
-      .get("http://3.108.185.7/nodejs/api/dealer/allmode")
+    axiosConfig
+      .get("/dealer/allmode")
       .then((response) => {
         console.log(response.data.data);
         this.setState({ mfp: response.data.data });
@@ -192,8 +192,8 @@ class LubricantSales extends React.Component {
         console.log(error);
       });
 
-    axios
-      .get("http://3.108.185.7/nodejs/api/dealer/alllubricantsales")
+    axiosConfig
+      .get("/dealer/alllubricantsales")
       .then((response) => {
         let rowData = response.data.data;
         JSON.stringify(rowData);
@@ -202,8 +202,8 @@ class LubricantSales extends React.Component {
   }
   async runthisfunction(id) {
     console.log(id);
-    await axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/deletelubricantsales/${id}`)
+    await axiosConfig
+      .get(`/dealer/deletelubricantsales/${id}`)
       .then((response) => {
         console.log(response);
       });

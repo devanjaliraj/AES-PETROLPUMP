@@ -14,7 +14,7 @@ import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
 import { history } from "../../../history";
 
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 
@@ -174,8 +174,8 @@ class SelesFigureList extends React.Component {
   };
 
   componentDidMount() {
-    axios
-      .get("http://3.108.185.7/nodejs/api/dealer/alllubricantsales")
+    axiosConfig
+      .get("/dealer/alllubricantsales")
       .then((response) => {
         let rowData = response.data.data;
         JSON.stringify(rowData);
@@ -184,8 +184,8 @@ class SelesFigureList extends React.Component {
   }
   async runthisfunction(id) {
     console.log(id);
-    await axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/deletelubricantsales/${id}`)
+    await axiosConfig
+      .get(`/dealer/deletelubricantsales/${id}`)
       .then((response) => {
         console.log(response);
       });
