@@ -309,295 +309,295 @@ class AppRouter extends React.Component {
         <Switch>
         {/*<AppRoute exact={true} path="/" component={home} fullLayout /> */}
           <AppRoute exact={true} path="/" component={analyticsDashboard} />
-          <AppRoute path="/ecommerce-dashboard" component={ecommerceDashboard}/>
+          <AppRoute exact={true} path="/ecommerce-dashboard" component={ecommerceDashboard}/>
           {/* <AppRoute path="/LubricantSales" component={LubricantSales} />
           <AppRoute path="/StaffAttendance" component={StaffAttendance} /> */}
 
           {/* ro-configuration */}
-          <AppRoute path="/app/ro-configuration/outletList" component={outletList}/>
+          <AppRoute exact={true} path="/app/ro-configuration/outletList" component={outletList}/>
          
           {/* <AppRoute path="/app/ro-configuration/addInputBox" component={addInputBox}/> */}
           
-          <AppRoute path="/app/ro-configuration/roConfigurationList" component={RoConfigurationList}/>
-          <AppRoute path="/app/ro-configuration/otherEquipmentList" component={OtherEquipmentList}/>
-          <AppRoute path="/app/ro-configuration/creditCustomersList" component={CreditCustomersList}/>
-          <AppRoute path="/app/ro-configuration/basicDetails/:id" component={BasicDetails}/>
-          <AppRoute path="/app/ro-configuration/roForm" component={roForm} />
-          <AppRoute path="/app/ro-configuration/otherEquipment/:id" component={otherEquipment} />
-          <AppRoute path="/app/ro-configuration/bankForTransaction" component={ bankForTransaction} />
-          <AppRoute path="/app/ro-configuration/editBankForTransaction/:id" component={ editBankForTransaction} />
-          <AppRoute path="/app/ro-configuration/viewBankForTransaction/:id" component={ viewBankForTransaction} />
-          <AppRoute path="/app/ro-configuration/bankForTransactionList" component={ bankForTransactionList} />
-          <AppRoute path="/app/ro-configuration/paymentModeAvalable/:id" component={paymentModeAvalable} />
-          <AppRoute path="/app/ro-configuration/paymentModeList" component={paymentModeList} />
-          <AppRoute path="/app/ro-configuration/designYourOutlet/:id" component={designYourOutlet} />
-          <AppRoute path="/app/ro-configuration/designYourOutletList" component={designYourOutletList} />
-          <AppRoute path="/app/ro-configuration/creditCustomers/:id" component={creditCustomers}/>
-          <AppRoute path="/app/ro-configuration/outletForm/:id"component={outletForm}/>
-          <AppRoute path="/app/ro-configuration/tankMapList"component={tankMapList}/>
-          <AppRoute path="/app/ro-configuration/editTankMap/:id"component={editTankMap}/>
-          <AppRoute path="/app/ro-configuration/nozzleMapList"component={nozzleMapList}/>
-          <AppRoute path="/app/ro-configuration/editNozzleMap/:id"component={editNozzleMap}/>
+          <AppRoute exact={true} path="/app/ro-configuration/roConfigurationList" component={RoConfigurationList}/>
+          <AppRoute exact={true} path="/app/ro-configuration/otherEquipmentList" component={OtherEquipmentList}/>
+          <AppRoute exact={true} path="/app/ro-configuration/creditCustomersList" component={CreditCustomersList}/>
+          <AppRoute exact={true} path="/app/ro-configuration/basicDetails/:id" component={BasicDetails}/>
+          <AppRoute exact={true} path="/app/ro-configuration/roForm" component={roForm} />
+          <AppRoute exact={true} path="/app/ro-configuration/otherEquipment/:id" component={otherEquipment} />
+          <AppRoute exact={true} path="/app/ro-configuration/bankForTransaction" component={ bankForTransaction} />
+          <AppRoute exact={true} path="/app/ro-configuration/editBankForTransaction/:id" component={ editBankForTransaction} />
+          <AppRoute exact={true} path="/app/ro-configuration/viewBankForTransaction/:id" component={ viewBankForTransaction} />
+          <AppRoute exact={true} path="/app/ro-configuration/bankForTransactionList" component={ bankForTransactionList} />
+          <AppRoute exact={true} path="/app/ro-configuration/paymentModeAvalable/:id" component={paymentModeAvalable} />
+          <AppRoute exact={true} path="/app/ro-configuration/paymentModeList" component={paymentModeList} />
+          <AppRoute exact={true} path="/app/ro-configuration/designYourOutlet/:id" component={designYourOutlet} />
+          <AppRoute exact={true} path="/app/ro-configuration/designYourOutletList" component={designYourOutletList} />
+          <AppRoute exact={true} path="/app/ro-configuration/creditCustomers/:id" component={creditCustomers}/>
+          <AppRoute exact={true} path="/app/ro-configuration/outletForm/:id"component={outletForm}/>
+          <AppRoute exact={true} path="/app/ro-configuration/tankMapList"component={tankMapList}/>
+          <AppRoute exact={true} path="/app/ro-configuration/editTankMap/:id"component={editTankMap}/>
+          <AppRoute exact={true} path="/app/ro-configuration/nozzleMapList"component={nozzleMapList}/>
+          <AppRoute exact={true} path="/app/ro-configuration/editNozzleMap/:id"component={editNozzleMap}/>
          
           
           
 
           {/* stockManagement */}
-          <AppRoute path="/app/stockManagement/stockManagementList" component={StockManagementList} />
-          <AppRoute path="/app/stockManagement/fuelStock" component={FuelStock} />
-          <AppRoute path="/app/stockManagement/lubeStockList" component={LubeStockList} />
-          <AppRoute path="/app/stockManagement/lubeStockForm/:id" component={LubeStockForm} />
+          <AppRoute exact={true} path="/app/stockManagement/stockManagementList" component={StockManagementList} />
+          <AppRoute exact={true} path="/app/stockManagement/fuelStock" component={FuelStock} />
+          <AppRoute exact={true} path="/app/stockManagement/lubeStockList" component={LubeStockList} />
+          <AppRoute exact={true} path="/app/stockManagement/lubeStockForm/:id" component={LubeStockForm} />
 
 
       {/*///////////////////////////////// facilityManagement start //////////////////////////////////////////////////*/}
       <AppRoute
-            path="/app/facilityManagement/statutoryCertificateManagementList"
+exact={true}             path="/app/facilityManagement/statutoryCertificateManagementList"
             component={StatutoryCertificateManagementList}
           />
           <AppRoute
-            path="/app/facilityManagement/stampingDataList"
+exact={true}             path="/app/facilityManagement/stampingDataList"
             component={StampingDataList}
           />
           <AppRoute
-            path="/app/facilityManagement/stampingDataForm/:id"
+exact={true}             path="/app/facilityManagement/stampingDataForm/:id"
             component={StampingDataForm}
           />
           <AppRoute
-            path="/app/facilityManagement/otherEquipmentList"
+exact={true}             path="/app/facilityManagement/otherEquipmentList"
             component={otherEquipmentList}
           />
           <AppRoute
-            path="/app/facilityManagement/otherEquipmentForm/:id"
+exact={true}             path="/app/facilityManagement/otherEquipmentForm/:id"
             component={OtherEquipmentForm}
           />
           <AppRoute
-            path="/app/facilityManagement/MpdManagement"
+exact={true}             path="/app/facilityManagement/MpdManagement"
             component={MpdManagement}
           />
           <AppRoute
-            path="/app/facilityManagement/raiseConcernToAESList"
+exact={true}             path="/app/facilityManagement/raiseConcernToAESList"
             component={RaiseConcernToAESList}
           />
           <AppRoute
-            path="/app/facilityManagement/raiseConcernToAESForm/:id"
+exact={true}             path="/app/facilityManagement/raiseConcernToAESForm/:id"
             component={RaiseConcernToAESForm}
           />
 
           {/* shiftManagement */}
          
-          <AppRoute path="/app/shiftmanagement/rsp/addRsp" component={AddRsp} />
-          <AppRoute path="/app/shiftmanagement/rsp/addBm" component={AddBm} />
+          <AppRoute exact={true} path="/app/shiftmanagement/rsp/addRsp" component={AddRsp} />
+          <AppRoute exact={true} path="/app/shiftmanagement/rsp/addBm" component={AddBm} />
           <AppRoute
-            path="/app/shiftmanagement/rsp/addDsmClosing"
+exact={true}             path="/app/shiftmanagement/rsp/addDsmClosing"
             component={AddDsmClosing}
           />
           <AppRoute
-            path="/app/shiftmanagement/retailSellingPriceList"
+exact={true}             path="/app/shiftmanagement/retailSellingPriceList"
             component={RetailSellingPriceList}
           />
           <AppRoute
-            path="/app/shiftmanagement/retailSellingPriceForm/:id"
+exact={true}             path="/app/shiftmanagement/retailSellingPriceForm/:id"
             component={RetailSellingPriceForm}
           />
           <AppRoute
-            path="/app/shiftmanagement/bayManagementList"
+exact={true}             path="/app/shiftmanagement/bayManagementList"
             component={BayManagementList}
           />
           <AppRoute
-            path="/app/shiftmanagement/bayManagementForm/:id"
+exact={true}             path="/app/shiftmanagement/bayManagementForm/:id"
             component={BayManagementForm}
           />
           <AppRoute
-            path="/app/shiftManagement/dSMClosingSheetList"
+exact={true}             path="/app/shiftManagement/dSMClosingSheetList"
             component={DSMClosingSheetList}
           />
           <AppRoute
-            path="/app/shiftManagement/dSMClosingSheetForm/:id"
+exact={true}             path="/app/shiftManagement/dSMClosingSheetForm/:id"
             component={DSMClosingSheetForm}
           />
           <AppRoute
-            path="/app/shiftManagement/salesFigureList"
+exact={true}             path="/app/shiftManagement/salesFigureList"
             component={SalesFigureList}
           />
           <AppRoute
-            path="/app/shiftManagement/salesFigureForm"
+exact={true}             path="/app/shiftManagement/salesFigureForm"
             component={SalesFigureForm}
           />
           <AppRoute
-            path="/app/shiftManagement/creditGivenList"
+exact={true}             path="/app/shiftManagement/creditGivenList"
             component={CreditGivenList}
           />
           <AppRoute
-            path="/app/shiftManagement/creditGivenForm"
+exact={true}             path="/app/shiftManagement/creditGivenForm"
             component={CreditGivenForm}
           />
           <AppRoute
-            path="/app/shiftManagement/lubricantForm/:id"
+exact={true}             path="/app/shiftManagement/lubricantForm/:id"
             component={lubricantForm}
           />
           <AppRoute
-            path="/app/shiftManagement/lubricantSales"
+exact={true}             path="/app/shiftManagement/lubricantSales"
             component={LubricantSales}
           />
           <AppRoute
-            path="/app/shiftManagement/staffAttendanceList"
+exact={true}             path="/app/shiftManagement/staffAttendanceList"
             component={StaffAttendanceList}
           />
           <AppRoute
-            path="/app/shiftManagement/staffAttendanceForm/:id"
+exact={true}             path="/app/shiftManagement/staffAttendanceForm/:id"
             component={StaffAttendanceForm}
           />
           
-          {/* <AppRoute path="/app/shiftManagement/lubricantSales" component={LubricantSales}/> */}
+          {/* <AppRoute exact={true} path="/app/shiftManagement/lubricantSales" component={LubricantSales}/> */}
 
           {/* staffEnrollment */}
-          <AppRoute path="/app/staffEnrollment/staffManagementList" component={staffManagementList}/>
-          <AppRoute path="/app/staffEnrollment/staffManagementDealer" component={staffManagementDealer}/>
-          <AppRoute path="/app/staffEnrollment/AddDMS/:id" component={addDMS}/> 
-          <AppRoute path="/app/staffEnrollment/AddOtherStaff/:id" component={addOtherStaff}/>
-          <AppRoute path="/app/staffEnrollment/OtherStaffList" component={otherStaffList}/>
-          <AppRoute path="/app/staffEnrollment/Manager/:id" component={manager}/>
-          <AppRoute path="/app/staffEnrollment/DMSList" component={dMSList}/>
+          <AppRoute exact={true} path="/app/staffEnrollment/staffManagementList" component={staffManagementList}/>
+          <AppRoute exact={true} path="/app/staffEnrollment/staffManagementDealer" component={staffManagementDealer}/>
+          <AppRoute exact={true} path="/app/staffEnrollment/AddDMS/:id" component={addDMS}/> 
+          <AppRoute exact={true} path="/app/staffEnrollment/AddOtherStaff/:id" component={addOtherStaff}/>
+          <AppRoute exact={true} path="/app/staffEnrollment/OtherStaffList" component={otherStaffList}/>
+          <AppRoute exact={true} path="/app/staffEnrollment/Manager/:id" component={manager}/>
+          <AppRoute exact={true} path="/app/staffEnrollment/DMSList" component={dMSList}/>
           
-          <AppRoute path="/app/staffEnrollment/staffForm" component={staffForm}/>
+          <AppRoute exact={true} path="/app/staffEnrollment/staffForm" component={staffForm}/>
 
           {/* cashManagement */}
-          <AppRoute path="/app/cashManagement/cashManagementList" component={cashManagementList}/>
-          <AppRoute path="/app/cashManagement/cashDealerTable" component={cashDealerTable}/>
+          <AppRoute exact={true} path="/app/cashManagement/cashManagementList" component={cashManagementList}/>
+          <AppRoute exact={true} path="/app/cashManagement/cashDealerTable" component={cashDealerTable}/>
 
           {/* setting */}
-          <AppRoute path="/app/setting/bank/bankList" component={bankList} />
-          <AppRoute path="/app/setting/bank/addBank" component={addBank} />
-          <AppRoute path="/app/setting/bank/editBank/:id" component={editBank} />
-          <AppRoute path="/app/setting/bank/viewBank/:id" component={viewBank} />
+          <AppRoute exact={true} path="/app/setting/bank/bankList" component={bankList} />
+          <AppRoute exact={true} path="/app/setting/bank/addBank" component={addBank} />
+          <AppRoute exact={true} path="/app/setting/bank/editBank/:id" component={editBank} />
+          <AppRoute exact={true} path="/app/setting/bank/viewBank/:id" component={viewBank} />
 
-          <AppRoute path="/app/setting/moc/mOCList" component={mOCList} />
-          <AppRoute path="/app/setting/moc/editMOC" component={editMOC} />
-          <AppRoute path="/app/setting/moc/addMOC" component={addMOC} />
-          <AppRoute path="/app/setting/moc/viewMOC" component={viewMOC} />
-          <AppRoute path="/app/setting/enquiryForm" component={enquiryForm} />
-          <AppRoute path="/app/setting/tank/addTank" component={addTank} />
-          <AppRoute path="/app/setting/tank/tankList" component={tankList} />
-          <AppRoute path="/app/setting/bay/bayList" component={bayList} />  
-          <AppRoute path="/app/setting/bay/addBay" component={addBay} />
+          <AppRoute exact={true} path="/app/setting/moc/mOCList" component={mOCList} />
+          <AppRoute exact={true} path="/app/setting/moc/editMOC" component={editMOC} />
+          <AppRoute exact={true} path="/app/setting/moc/addMOC" component={addMOC} />
+          <AppRoute exact={true} path="/app/setting/moc/viewMOC" component={viewMOC} />
+          <AppRoute exact={true} path="/app/setting/enquiryForm" component={enquiryForm} />
+          <AppRoute exact={true} path="/app/setting/tank/addTank" component={addTank} />
+          <AppRoute exact={true} path="/app/setting/tank/tankList" component={tankList} />
+          <AppRoute exact={true} path="/app/setting/bay/bayList" component={bayList} />  
+          <AppRoute exact={true} path="/app/setting/bay/addBay" component={addBay} />
 
-          <AppRoute path="/email"exact component={() => <Redirect to="/email/inbox" />}/>
+         
           {/* my componet */}
         
         
           
           
-          <AppRoute path="/app/dealer/dealerList" component={dealerList} />
-          <AppRoute path="/app/dealer/editDealer/:id" component={editDealer} />
-          <AppRoute path="/app/dealer/viewDealer/:id" component={viewDealer} />
-          <AppRoute path="/app/training/trainingList" component={trainingList} />
+          <AppRoute exact={true} path="/app/dealer/dealerList" component={dealerList} />
+          <AppRoute exact={true} path="/app/dealer/editDealer/:id" component={editDealer} />
+          <AppRoute exact={true} path="/app/dealer/viewDealer/:id" component={viewDealer} />
+          <AppRoute exact={true} path="/app/training/trainingList" component={trainingList} />
         
-          <AppRoute path="/app/subplan/subplanvideos" component={subplanvideos} />
-          <AppRoute path="/app/subplan/addPlan" component={addPlan} />
+          <AppRoute exact={true} path="/app/subplan/subplanvideos" component={subplanvideos} />
+          <AppRoute exact={true} path="/app/subplan/addPlan" component={addPlan} />
          
         
-          <AppRoute path="/todo"exact component={() => <Redirect to="/todo/all" />}/>
-          {/* <AppRoute path="/todo/:filter" component={todo} />
-          <AppRoute path="/calendar" component={calendar} /> */}
-          <AppRoute path="/ecommerce/shop" component={shop} />
-          <AppRoute path="/ecommerce/product-detail" component={productDetail}/>
-          <AppRoute path="/ecommerce/checkout" component={checkout}permission="admin"/>
-          <AppRoute path="/data-list/list-view" component={listView} />
-          <AppRoute path="/data-list/thumb-view" component={thumbView} />
-          <AppRoute path="/ui-element/grid" component={grid} />
-          <AppRoute path="/ui-element/typography" component={typography} />
-          <AppRoute path="/ui-element/textutilities"component={textutilities}/>
-          <AppRoute path="/ui-element/syntaxhighlighter"component={syntaxhighlighter}/>
-          <AppRoute path="/colors/colors" component={colors} />
-          <AppRoute path="/icons/reactfeather" component={reactfeather} />
-          <AppRoute path="/cards/basic" component={basicCards} />
-          <AppRoute path="/cards/statistics" component={statisticsCards} />
-          <AppRoute path="/cards/analytics" component={analyticsCards} />
-          <AppRoute path="/cards/action" component={actionCards} />
-          <AppRoute path="/components/alerts" component={Alerts} />
-          <AppRoute path="/components/buttons" component={Buttons} />
-          <AppRoute path="/components/breadcrumbs" component={Breadcrumbs} />
-          <AppRoute path="/components/carousel" component={Carousel} />
-          <AppRoute path="/components/collapse" component={Collapse} />
-          <AppRoute path="/components/dropdowns" component={Dropdowns} />
-          <AppRoute path="/components/list-group" component={ListGroup} />
-          <AppRoute path="/components/modals" component={Modals} />
-          <AppRoute path="/components/pagination" component={Pagination} />
-          <AppRoute path="/components/nav-component" component={NavComponent} />
-          <AppRoute path="/components/navbar" component={Navbar} />
-          <AppRoute path="/components/tabs-component" component={Tabs} />
-          <AppRoute path="/components/pills-component" component={TabPills} />
-          <AppRoute path="/components/tooltips" component={Tooltips} />
-          <AppRoute path="/components/popovers" component={Popovers} />
-          <AppRoute path="/components/badges" component={Badge} />
-          <AppRoute path="/components/pill-badges" component={BadgePill} />
-          <AppRoute path="/components/progress" component={Progress} />
-          <AppRoute path="/components/media-objects" component={Media} />
-          <AppRoute path="/components/spinners" component={Spinners} />
-          <AppRoute path="/extra-components/auto-complete"component={AutoComplete}/>
-          <AppRoute path="/extra-components/avatar" component={avatar} />
-          <AppRoute path="/extra-components/chips" component={chips} />
-          <AppRoute path="/extra-components/divider" component={divider} />
-          <AppRoute path="/forms/wizard" component={vuexyWizard} />
-          <AppRoute path="/forms/elements/select" component={select} />
-          <AppRoute path="/forms/elements/switch" component={switchComponent} />
-          <AppRoute path="/forms/elements/checkbox" component={checkbox} />
-          <AppRoute path="/forms/elements/radio" component={radio} />
-          <AppRoute path="/forms/elements/input" component={input} />
-          <AppRoute path="/forms/elements/input-group" component={group} />
-          <AppRoute path="/forms/elements/number-input"component={numberInput}/>
-          <AppRoute path="/forms/elements/textarea" component={textarea} />
-          <AppRoute path="/forms/elements/pickers" component={pickers} />
-          <AppRoute path="/forms/elements/input-mask" component={inputMask} />
-          <AppRoute path="/forms/layout/form-layout" component={layout} />
-          <AppRoute path="/forms/formik" component={formik} />{" "}
-          <AppRoute path="/tables/reactstrap" component={tables} />
-          <AppRoute path="/tables/react-tables" component={ReactTables} />
-          <AppRoute path="/tables/agGrid" component={Aggrid} />
-          <AppRoute path="/tables/data-tables" component={DataTable} />
-          <AppRoute path="/pages/profile" component={profile} />
-          <AppRoute path="/pages/faq" component={faq} />
-          <AppRoute path="/pages/knowledge-base"component={knowledgeBase}exact/>
-          <AppRoute path="/pages/knowledge-base/category"component={knowledgeBaseCategory}exact/>
-          <AppRoute path="/pages/knowledge-base/category/questions"component={knowledgeBaseQuestion}/>
-          <AppRoute path="/pages/search" component={search} />
-          <AppRoute path="/pages/account-settings"component={accountSettings}/>
-          <AppRoute path="/pages/invoice" component={invoice} />
-          <AppRoute path="/misc/coming-soon" component={comingSoon}fullLayout/>
-          <AppRoute path="/misc/error/404" component={error404} fullLayout />
-          <AppRoute path="/pages/login" component={Login} fullLayout />
-          <AppRoute path="/pages/register" component={register} fullLayout />
-          <AppRoute path="/pages/forgot-password" component={forgotPassword}fullLayout/>
-          <AppRoute path="/pages/lock-screen" component={lockScreen}fullLayout/>
-          <AppRoute path="/pages/reset-password" component={resetPassword}fullLayout/>
-          <AppRoute path="/misc/error/500" component={error500} fullLayout />
-          <AppRoute path="/misc/not-authorized" component={authorized}fullLayout/>
-          <AppRoute path="/misc/maintenance" component={maintenance}fullLayout/>
-          <AppRoute path="/app/user/list" component={userList} />
-          <AppRoute path="/app/user/edit" component={userEdit} />
-          <AppRoute path="/app/user/view" component={userView} />
-          <AppRoute path="/charts/apex" component={apex} />
-          <AppRoute path="/charts/chartjs" component={chartjs} />
-          <AppRoute path="/charts/recharts" component={extreme} />
-          <AppRoute path="/maps/leaflet" component={leafletMaps} />
-          <AppRoute path="/extensions/sweet-alert" component={sweetAlert} />
-          <AppRoute path="/extensions/toastr" component={toastr} />
-          <AppRoute path="/extensions/slider" component={rcSlider} />
-          <AppRoute path="/extensions/file-uploader" component={uploader} />
-          <AppRoute path="/extensions/wysiwyg-editor" component={editor} />
-          <AppRoute path="/extensions/drag-and-drop" component={drop} />
-          <AppRoute path="/extensions/tour" component={tour} />
-          <AppRoute path="/extensions/clipboard" component={clipboard} />
-          <AppRoute path="/extensions/context-menu" component={menu} />
-          <AppRoute path="/extensions/swiper" component={swiper} />
-          <AppRoute path="/extensions/access-control" component={accessControl}/>
-          <AppRoute path="/extensions/i18n" component={i18n} />
-          <AppRoute path="/extensions/tree" component={tree} />
-          <AppRoute path="/extensions/import" component={Import} />
-          <AppRoute path="/extensions/export" component={Export} />
-          <AppRoute path="/extensions/export-selected" component={ExportSelected}/>
-          <AppRoute path="/extensions/pagination" component={reactPaginate} />
-          <AppRoute component={error404} fullLayout />
+          {/* <AppRoute exact={true} path="/todo"exact component={() => <Redirect to="/todo/all" />}/> */}
+          {/* <AppRoute exact={true} path="/todo/:filter" component={todo} />
+          <AppRoute exact={true} path="/calendar" component={calendar} /> */}
+          <AppRoute exact={true} path="/ecommerce/shop" component={shop} />
+          <AppRoute exact={true} path="/ecommerce/product-detail" component={productDetail}/>
+          <AppRoute exact={true} path="/ecommerce/checkout" component={checkout}permission="admin"/>
+          <AppRoute exact={true} path="/data-list/list-view" component={listView} />
+          <AppRoute exact={true} path="/data-list/thumb-view" component={thumbView} />
+          <AppRoute exact={true} path="/ui-element/grid" component={grid} />
+          <AppRoute exact={true} path="/ui-element/typography" component={typography} />
+          <AppRoute exact={true} path="/ui-element/textutilities"component={textutilities}/>
+          <AppRoute exact={true} path="/ui-element/syntaxhighlighter"component={syntaxhighlighter}/>
+          <AppRoute exact={true} path="/colors/colors" component={colors} />
+          <AppRoute exact={true} path="/icons/reactfeather" component={reactfeather} />
+          <AppRoute exact={true} path="/cards/basic" component={basicCards} />
+          <AppRoute exact={true} path="/cards/statistics" component={statisticsCards} />
+          <AppRoute exact={true} path="/cards/analytics" component={analyticsCards} />
+          <AppRoute exact={true} path="/cards/action" component={actionCards} />
+          <AppRoute exact={true} path="/components/alerts" component={Alerts} />
+          <AppRoute exact={true} path="/components/buttons" component={Buttons} />
+          <AppRoute exact={true} path="/components/breadcrumbs" component={Breadcrumbs} />
+          <AppRoute exact={true} path="/components/carousel" component={Carousel} />
+          <AppRoute exact={true} path="/components/collapse" component={Collapse} />
+          <AppRoute exact={true} path="/components/dropdowns" component={Dropdowns} />
+          <AppRoute exact={true} path="/components/list-group" component={ListGroup} />
+          <AppRoute exact={true} path="/components/modals" component={Modals} />
+          <AppRoute exact={true} path="/components/pagination" component={Pagination} />
+          <AppRoute exact={true} path="/components/nav-component" component={NavComponent} />
+          <AppRoute exact={true} path="/components/navbar" component={Navbar} />
+          <AppRoute exact={true} path="/components/tabs-component" component={Tabs} />
+          <AppRoute exact={true} path="/components/pills-component" component={TabPills} />
+          <AppRoute exact={true} path="/components/tooltips" component={Tooltips} />
+          <AppRoute exact={true} path="/components/popovers" component={Popovers} />
+          <AppRoute exact={true} path="/components/badges" component={Badge} />
+          <AppRoute exact={true} path="/components/pill-badges" component={BadgePill} />
+          <AppRoute exact={true} path="/components/progress" component={Progress} />
+          <AppRoute exact={true} path="/components/media-objects" component={Media} />
+          <AppRoute exact={true} path="/components/spinners" component={Spinners} />
+          <AppRoute exact={true} path="/extra-components/auto-complete"component={AutoComplete}/>
+          <AppRoute exact={true} path="/extra-components/avatar" component={avatar} />
+          <AppRoute exact={true} path="/extra-components/chips" component={chips} />
+          <AppRoute exact={true} path="/extra-components/divider" component={divider} />
+          <AppRoute exact={true} path="/forms/wizard" component={vuexyWizard} />
+          <AppRoute exact={true} path="/forms/elements/select" component={select} />
+          <AppRoute exact={true} path="/forms/elements/switch" component={switchComponent} />
+          <AppRoute exact={true} path="/forms/elements/checkbox" component={checkbox} />
+          <AppRoute exact={true} path="/forms/elements/radio" component={radio} />
+          <AppRoute exact={true} path="/forms/elements/input" component={input} />
+          <AppRoute exact={true} path="/forms/elements/input-group" component={group} />
+          <AppRoute exact={true} path="/forms/elements/number-input"component={numberInput}/>
+          <AppRoute exact={true} path="/forms/elements/textarea" component={textarea} />
+          <AppRoute exact={true} path="/forms/elements/pickers" component={pickers} />
+          <AppRoute exact={true} path="/forms/elements/input-mask" component={inputMask} />
+          <AppRoute exact={true} path="/forms/layout/form-layout" component={layout} />
+          <AppRoute exact={true} path="/forms/formik" component={formik} />{" "}
+          <AppRoute exact={true} path="/tables/reactstrap" component={tables} />
+          <AppRoute exact={true} path="/tables/react-tables" component={ReactTables} />
+          <AppRoute exact={true} path="/tables/agGrid" component={Aggrid} />
+          <AppRoute exact={true} path="/tables/data-tables" component={DataTable} />
+          <AppRoute exact={true} path="/pages/profile" component={profile} />
+          <AppRoute exact={true} path="/pages/faq" component={faq} />
+          <AppRoute exact={true} path="/pages/knowledge-base"component={knowledgeBase}/>
+          <AppRoute exact={true} path="/pages/knowledge-base/category"component={knowledgeBaseCategory}/>
+          <AppRoute exact={true} path="/pages/knowledge-base/category/questions"component={knowledgeBaseQuestion}/>
+          <AppRoute exact={true} path="/pages/search" component={search} />
+          <AppRoute exact={true} path="/pages/account-settings"component={accountSettings}/>
+          <AppRoute exact={true} path="/pages/invoice" component={invoice} />
+          <AppRoute exact={true} path="/misc/coming-soon" component={comingSoon}fullLayout/>
+          <AppRoute exact={true} path="/misc/error/404" component={error404} fullLayout />
+          <AppRoute exact={true} path="/pages/login" component={Login} fullLayout />
+          <AppRoute exact={true} path="/pages/register" component={register} fullLayout />
+          <AppRoute exact={true} path="/pages/forgot-password" component={forgotPassword}fullLayout/>
+          <AppRoute exact={true} path="/pages/lock-screen" component={lockScreen}fullLayout/>
+          <AppRoute exact={true} path="/pages/reset-password" component={resetPassword}fullLayout/>
+          <AppRoute exact={true} path="/misc/error/500" component={error500} fullLayout />
+          <AppRoute exact={true} path="/misc/not-authorized" component={authorized}fullLayout/>
+          <AppRoute exact={true} path="/misc/maintenance" component={maintenance}fullLayout/>
+          <AppRoute exact={true} path="/app/user/list" component={userList} />
+          <AppRoute exact={true} path="/app/user/edit" component={userEdit} />
+          <AppRoute exact={true} path="/app/user/view" component={userView} />
+          <AppRoute exact={true} path="/charts/apex" component={apex} />
+          <AppRoute exact={true} path="/charts/chartjs" component={chartjs} />
+          <AppRoute exact={true} path="/charts/recharts" component={extreme} />
+          <AppRoute exact={true} path="/maps/leaflet" component={leafletMaps} />
+          <AppRoute exact={true} path="/extensions/sweet-alert" component={sweetAlert} />
+          <AppRoute exact={true} path="/extensions/toastr" component={toastr} />
+          <AppRoute exact={true} path="/extensions/slider" component={rcSlider} />
+          <AppRoute exact={true} path="/extensions/file-uploader" component={uploader} />
+          <AppRoute exact={true} path="/extensions/wysiwyg-editor" component={editor} />
+          <AppRoute exact={true} path="/extensions/drag-and-drop" component={drop} />
+          <AppRoute exact={true} path="/extensions/tour" component={tour} />
+          <AppRoute exact={true} path="/extensions/clipboard" component={clipboard} />
+          <AppRoute exact={true} path="/extensions/context-menu" component={menu} />
+          <AppRoute exact={true} path="/extensions/swiper" component={swiper} />
+          <AppRoute exact={true} path="/extensions/access-control" component={accessControl}/>
+          <AppRoute exact={true} path="/extensions/i18n" component={i18n} />
+          <AppRoute exact={true} path="/extensions/tree" component={tree} />
+          <AppRoute exact={true} path="/extensions/import" component={Import} />
+          <AppRoute exact={true} path="/extensions/export" component={Export} />
+          <AppRoute exact={true} path="/extensions/export-selected" component={ExportSelected}/>
+          <AppRoute exact={true} path="/extensions/pagination" component={reactPaginate} />
+          <AppRoute  component={error404} fullLayout />
         </Switch>
       </Router>
     );
