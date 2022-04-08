@@ -72,7 +72,7 @@ export default class EditTankMap extends Component {
         console.log(response);
 
         // swal("Success!", "Submitted SuccessFull!", "success");
-       this.props.history.push("/app/ro-configuration/tankMapList");
+       this.props.history.push("/#/app/ro-configuration/tankMapList");
     // }
     // else{
     //   alert('Something went wrong in Dealer Shipform Api');
@@ -132,7 +132,7 @@ export default class EditTankMap extends Component {
       else{
         alert('Something went wrong in Dealer Shipform Api');
       }
-      // this.props.history.push("/app/ro-configuration/designYourOutletList");
+      // this.props.history.push("/#/app/ro-configuration/designYourOutletList");
     })
     .catch((error) => {
       console.log(error.response);
@@ -232,7 +232,7 @@ handleChangeTank = (selectedTankOption) => {
             <Col>
               <Button
                 className=" btn btn-danger float-right"
-                onClick={() => history.push("/app/ro-configuration/tankMapList")}
+                onClick={() => history.push("/#/app/ro-configuration/tankMapList")}
               >
                 Back
               </Button>

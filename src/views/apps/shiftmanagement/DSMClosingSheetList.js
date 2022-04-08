@@ -177,7 +177,7 @@ class DSMClosingSheetList extends React.Component {
                 color="blue"
                 onClick={() =>
                   history.push(
-                    `/app/shiftManagement/dSMClosingSheetForm/${params.data._id}`
+                    `/#/app/shiftManagement/dSMClosingSheetForm/${params.data._id}`
                   )
                 }
               />

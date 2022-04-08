@@ -98,7 +98,7 @@ class TankMapList extends React.Component {
                 className="mr-50"
                 size="25px"
                 color="blue"
-                onClick={() => history.push(`/app/ro-configuration/editTankMap/${params.data._id}`)}
+                onClick={() => history.push(`/#/app/ro-configuration/editTankMap/${params.data._id}`)}
               />
               <Trash2
                 className="mr-50"

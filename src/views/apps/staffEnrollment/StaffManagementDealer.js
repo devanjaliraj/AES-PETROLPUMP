@@ -118,13 +118,13 @@ class StaffManagementDealer extends React.Component {
                 className="mr-50"
                 size="25px"
                 color="green"
-                onClick={() => history.push("/app/staffManagement/staffForm")}
+                onClick={() => history.push("/#/app/staffManagement/staffForm")}
               />
               <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
-                // onClick={() => history.push("/app/slider/editSlider/${params.data._id}")}
+                // onClick={() => history.push("/#/app/slider/editSlider/${params.data._id}")}
               />
               <Trash2
                 className="mr-50"

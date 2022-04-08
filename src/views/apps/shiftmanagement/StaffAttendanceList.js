@@ -106,7 +106,7 @@ class StaffAttendance extends React.Component {
                 color="blue"
                 onClick={() =>
                   history.push(
-                    `/app/shiftManagement/staffAttendanceForm/${params.data._id}`
+                    `/#/app/shiftManagement/staffAttendanceForm/${params.data._id}`
                   )
                 }
               />

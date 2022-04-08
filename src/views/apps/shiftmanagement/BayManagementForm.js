@@ -72,7 +72,7 @@ class BayManagementForm extends React.Component {
   //     .then((response) => {
   //       console.log(response);
   //       // swal("Success!", "Submitted SuccessFull!", "success");
-  //       this.props.history.push("/app/shiftmanagement/retailSellingPriceList");
+  //       this.props.history.push("/#/app/shiftmanagement/retailSellingPriceList");
   //     })
   //     .catch((error) => {
   //       console.log(error);
@@ -91,7 +91,7 @@ class BayManagementForm extends React.Component {
             <Button
               className=" btn btn-danger float-right"
               onClick={() =>
-                history.push("/app/shiftmanagement/bayManagementList")
+                history.push("/#/app/shiftmanagement/bayManagementList")
               }
             >
               Back

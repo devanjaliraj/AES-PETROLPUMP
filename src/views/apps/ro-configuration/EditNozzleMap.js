@@ -96,7 +96,7 @@ export default class EditNozzleMap extends Component {
       .then(response => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/app/ro-configuration/nozzleMapList");
+        this.props.history.push("/#/app/ro-configuration/nozzleMapList");
         if(response.status === 200){
           let data = response.data.data;
           if(data.mpd_map.length > 0){
@@ -185,7 +185,7 @@ handleChangeBAY = (selectedBayOption) => {
             <Col>
               <Button
                 className=" btn btn-danger float-right"
-                onClick={() => history.push("/app/ro-configuration/nozzleMapList")}
+                onClick={() => history.push("/#/app/ro-configuration/nozzleMapList")}
               >
                 Back
               </Button>

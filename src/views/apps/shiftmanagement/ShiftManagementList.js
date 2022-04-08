@@ -101,14 +101,14 @@ class ShiftManagementList extends React.Component {
                 size="25px"
                 color="green"
                 onClick={() =>
-                  history.push("/app/shiftManagement/shiftDealerTable")
+                  history.push("/#/app/shiftManagement/shiftDealerTable")
                 }
               />
               <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
-                // onClick={() => history.push("/app/slider/editSlider/${params.data._id}")}
+                // onClick={() => history.push("/#/app/slider/editSlider/${params.data._id}")}
               />
               <Trash2
                 className="mr-50"

@@ -70,7 +70,7 @@ class ReceiptForm extends React.Component {
           <Button
             className=" btn btn-danger float-right"
             // onClick={() =>
-            //   history.push("/app/ro-configuration/List")
+            //   history.push("/#/app/ro-configuration/List")
             // }
           >
             Back

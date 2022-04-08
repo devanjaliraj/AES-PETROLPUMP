@@ -108,7 +108,7 @@ export default class Manager extends Component {
       .post(`http://3.108.185.7/nodejs/api/dealer/updateonemanager/${id}`, data)
       .then((response) => {
         console.log(response);
-        this.props.history.push("/app/staffEnrollment/staffManagementList");
+        this.props.history.push("/#/app/staffEnrollment/staffManagementList");
       })
 
       .catch((error) => {

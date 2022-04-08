@@ -16,6 +16,7 @@ import {
 import axiosConfig from "../../../axiosConfig";
 import { history } from "../../../history";
 // import swal from "sweetalert";
+import { Route } from 'react-router-dom'
 
 export default class BasicDetails extends Component {
   constructor(props) {
@@ -41,7 +42,7 @@ export default class BasicDetails extends Component {
     this.submitHandler = this.submitHandler.bind(this);
   }
   getState = () => {
-    fetch('/admin/allstate', {
+    fetch('http://3.108.185.7/nodejs/api/admin/allstate', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -58,7 +59,7 @@ export default class BasicDetails extends Component {
 
   handleChange = event => {
     this.setState({ state: event.target.value })
-    fetch('/admin/allcity', {
+    fetch('http://3.108.185.7/nodejs/api/admin/allcity', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -161,12 +162,14 @@ export default class BasicDetails extends Component {
               </h1>
             </Col>
             <Col>
+            <Route render={({ history}) => (
               <Button
                 className=" btn btn-danger float-right"
                 onClick={() => history.push("/app/ro-configuration/RoConfigurationList")}
               >
                 Back
               </Button>
+                 )} />
             </Col>
           </Row>
           <CardBody>

@@ -62,7 +62,7 @@ export class AddPlans extends Component {
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/app/subPlan/SubPlanVideos");
+        this.props.history.push("/#/app/subPlan/SubPlanVideos");
       })
       .catch((error) => {
         console.log(error);
@@ -82,7 +82,7 @@ export class AddPlans extends Component {
               <Button
                 className=" btn btn-danger float-right"
                 onClick={() =>
-                  history.push("/app/subplan/SubPlanVideos")
+                  history.push("/#/app/subplan/SubPlanVideos")
                 }
               >
                 Back

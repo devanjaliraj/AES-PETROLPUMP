@@ -210,7 +210,7 @@ class OtherStaffList extends React.Component {
                 color="blue"
                 onClick={() =>
                   history.push(
-                    `/app/staffEnrollment/addOtherStaff/${params.data._id}`
+                    `/#/app/staffEnrollment/addOtherStaff/${params.data._id}`
                   )
                 }
               />

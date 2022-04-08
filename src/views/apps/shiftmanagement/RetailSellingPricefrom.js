@@ -56,7 +56,7 @@ class RetailSellingPrice extends React.Component {
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/app/shiftmanagement/retailSellingPriceList");
+        this.props.history.push("/#/app/shiftmanagement/retailSellingPriceList");
       })
       .catch((error) => {
         console.log(error);
@@ -75,7 +75,7 @@ class RetailSellingPrice extends React.Component {
             <Button
               className=" btn btn-danger float-right"
               onClick={() =>
-                history.push("/apps/shiftmanagement/retailSellingPriceList")
+                history.push("/#/apps/shiftmanagement/retailSellingPriceList")
               }
             >
               Back

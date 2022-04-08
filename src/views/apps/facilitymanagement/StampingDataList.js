@@ -185,7 +185,7 @@ class StampingDataList extends React.Component {
                 color="blue"
                 onClick={() =>
                   history.push(
-                    `/app/facilityManagement/stampingDataForm/${params.data._id}`
+                    `/#/app/facilityManagement/stampingDataForm/${params.data._id}`
                   )
                 }
               />

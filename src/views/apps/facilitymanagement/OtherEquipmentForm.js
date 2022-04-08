@@ -93,7 +93,7 @@ class OtherEquipmentForm extends React.Component {
       .post(`/dealer/updateequipment/${id}`, data)
       .then((response) => {
         console.log(response);
-        this.props.history.push("/app/facilityManagement/otherEquipmentList");
+        this.props.history.push("/#/app/facilityManagement/otherEquipmentList");
       })
 
       .catch((error) => {
@@ -129,7 +129,7 @@ class OtherEquipmentForm extends React.Component {
           <Button
             className=" btn btn-danger float-right"
             onClick={() =>
-              history.push("/app/facilityManagement/otherEquipmentList")
+              history.push("/#/app/facilityManagement/otherEquipmentList")
             }
           >
             Back

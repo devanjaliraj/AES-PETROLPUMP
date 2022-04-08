@@ -153,7 +153,7 @@ class SelesFigureList extends React.Component {
                 size="25px"
                 color="blue"
                 onClick={() =>
-                  history.push("/app/shiftManagement/salesFigureForm")
+                  history.push("/#/app/shiftManagement/salesFigureForm")
                 }
               />
               <Trash2

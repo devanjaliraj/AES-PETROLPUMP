@@ -17,6 +17,7 @@ import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 import { Trash2, Edit } from "react-feather";
 import { history } from "../../../history";
+import { Route } from 'react-router-dom'
 
 class DesignYourOutletList extends React.Component {
   state = {
@@ -268,14 +269,16 @@ class DesignYourOutletList extends React.Component {
                 className="mr-50"
                 size="25px"
                 color="green"
-                onClick={() => history.push(`/app/ro-configuration/DesignYourOutlet/${params.data._id}`)}
+                onClick={() => history.push(`/#/app/ro-configuration/DesignYourOutlet/${params.data._id}`)}
               /> */}
+               <Route render={({ history}) => (
+
               <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
                 onClick={() => history.push(`/app/ro-configuration/DesignYourOutlet/${params.data._id}`)}
-              />
+                /> )} />
               <Trash2
                 className="mr-50"
                 size="25px"

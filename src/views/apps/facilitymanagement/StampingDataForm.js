@@ -135,7 +135,7 @@ class StampingDataForm extends React.Component {
       )
       .then((response) => {
         console.log(response);
-        this.props.history.push("/app/facilityManagement/stampingDataList");
+        this.props.history.push("/#/app/facilityManagement/stampingDataList");
       })
       .catch((error) => {
         console.log(error.response);
@@ -170,7 +170,7 @@ class StampingDataForm extends React.Component {
           <Button
             className=" btn btn-danger float-right"
             onClick={() =>
-              history.push("/app/facilityManagement/stampingDataList")
+              history.push("/#/app/facilityManagement/stampingDataList")
             }
           >
             Back

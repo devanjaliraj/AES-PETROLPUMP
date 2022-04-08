@@ -99,7 +99,7 @@ export default class PaymentModeAvalable extends Component {
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/app/ro-configuration/paymentModeList");
+        this.props.history.push("/#/app/ro-configuration/paymentModeList");
       })
       .catch((error) => {
         console.log(error.response);
@@ -135,7 +135,7 @@ export default class PaymentModeAvalable extends Component {
               <Button
                 className=" btn btn-danger float-right"
                 onClick={() =>
-                history.push("/app/ro-configuration/paymentModeList")}
+                history.push("/#/app/ro-configuration/paymentModeList")}
               >
                 Back
               </Button>

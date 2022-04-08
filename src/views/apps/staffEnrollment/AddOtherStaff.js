@@ -110,7 +110,7 @@ export default class OtherStaff extends Component {
       .post(`/dealer/updateonestaff/${id}`, data)
       .then((response) => {
         console.log(response);
-        this.props.history.push("/app/staffEnrollment/otherStaffList");
+        this.props.history.push("/#/app/staffEnrollment/otherStaffList");
       })
       .catch((error) => {
         console.log(error.response);

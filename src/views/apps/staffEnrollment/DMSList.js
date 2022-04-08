@@ -209,7 +209,7 @@ class DSMList extends React.Component {
                 size="25px"
                 color="blue"
                 onClick={() =>
-                  history.push(`/app/staffEnrollment/addDMS/${params.data._id}`)
+                  history.push(`/#/app/staffEnrollment/addDMS/${params.data._id}`)
                 }
               />
               <Trash2

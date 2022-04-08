@@ -159,7 +159,7 @@ class LubricantSales extends React.Component {
                 color="blue"
                 onClick={() =>
                   history.push(
-                    `/app/shiftManagement/lubricantForm/${params.data._id}`
+                    `/#/app/shiftManagement/lubricantForm/${params.data._id}`
                   )
                 }
               />

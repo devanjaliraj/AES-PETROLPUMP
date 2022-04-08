@@ -210,7 +210,7 @@ class StaffManagementList extends React.Component {
                 size="25px"
                 color="blue"
                 onClick={() =>
-                  history.push(`/app/staffEnrollment/manager/${params.data._id}`
+                  history.push(`/#/app/staffEnrollment/manager/${params.data._id}`
                   )
                 }
               />

@@ -18,6 +18,7 @@ import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import axiosConfig from "../../../axiosConfig";
 
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+import { Route } from 'react-router-dom'
 
 class OtherEquipmentList extends React.Component {
   state = {
@@ -109,16 +110,17 @@ class OtherEquipmentList extends React.Component {
                 className="mr-50"
                 size="25px"
                 color="green"
-                onClick={() => history.push("/app/ro-configuration/roForm")}
+                onClick={() => history.push("/#/app/ro-configuration/roForm")}
               /> */}
-              
+             <Route render={({ history}) => (
               <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
                 
                 onClick={() => history.push(`/app/ro-configuration/otherEquipment/${params.data._id}`)}
-              />
+               /> )} />
+              
               <Trash2
                 className="mr-50"
                 size="25px"

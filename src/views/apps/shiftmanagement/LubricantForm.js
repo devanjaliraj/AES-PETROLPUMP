@@ -85,7 +85,7 @@ class LubricantForm extends React.Component {
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/app/shiftManagement/lubricantSales");
+        this.props.history.push("/#/app/shiftManagement/lubricantSales");
       })
       .catch((error) => {
         console.log(error.response);

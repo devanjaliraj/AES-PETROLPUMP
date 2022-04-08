@@ -78,7 +78,7 @@ class DSMClosingSheet extends React.Component {
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/app/shiftManagement/dSMClosingSheetList");
+        this.props.history.push("/#/app/shiftManagement/dSMClosingSheetList");
       })
       .catch((error) => {
         console.log(error);
@@ -97,7 +97,7 @@ class DSMClosingSheet extends React.Component {
             <Button
               className=" btn btn-danger float-right"
               onClick={() =>
-                history.push("/app/shiftManagement/dSMClosingSheetList")
+                history.push("/#/app/shiftManagement/dSMClosingSheetList")
               }
             >
               Back

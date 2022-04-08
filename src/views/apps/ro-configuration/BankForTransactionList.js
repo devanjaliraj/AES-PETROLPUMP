@@ -19,6 +19,8 @@ import {  Edit,  Trash2, ChevronDown } from "react-feather";
 import { history } from "../../../history";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import "../../../assets/scss/pages/users.scss";
+import { Route } from 'react-router-dom'
+
 class BankForTransactionList extends React.Component {
   state = {
     rowData: [],
@@ -173,12 +175,14 @@ class BankForTransactionList extends React.Component {
                   history.push(`/app/ro-configuration/viewBankForTransaction/${params.data._id}`)
                 }
               /> */}
+               <Route render={({ history}) => (
               <Edit
                 className="mr-50"
                 color="blue"
                 size={20}
                 onClick={() => history.push(`/app/ro-configuration/editBankForTransaction/${params.data._id}`)}
-              />
+                /> )} />
+                )
               <Trash2
                 size={20}
                 color="red"

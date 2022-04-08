@@ -72,7 +72,7 @@ class LubeStockForm extends React.Component {
         .then(response => {
           console.log(response);
           // swal("Success!", "Submitted SuccessFull!", "success");
-          this.props.history.push("/app/stockManagement/lubeStockList");
+          this.props.history.push("/#/app/stockManagement/lubeStockList");
         })
         .catch(error => {
           console.log(error);
@@ -102,7 +102,7 @@ class LubeStockForm extends React.Component {
           <Button
             className=" btn btn-danger float-right"
             onClick={() =>
-              history.push("/app/stockManagement/lubeStockList")
+              history.push("/#/app/stockManagement/lubeStockList")
             }
           >
             Back

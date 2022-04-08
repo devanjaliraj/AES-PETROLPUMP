@@ -63,7 +63,7 @@ export default class EditBankForTransaction extends Component {
       .then(response => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/app/ro-configuration/bankForTransactionList");
+        this.props.history.push("/#/app/ro-configuration/bankForTransactionList");
       })
       .catch(error => {
         console.log(error);
@@ -99,7 +99,7 @@ export default class EditBankForTransaction extends Component {
             <Col>
               <Button
                 className=" btn btn-danger float-right"
-                onClick={() => history.push("/app/ro-configuration/bankForTransactionList")}
+                onClick={() => history.push("/#/app/ro-configuration/bankForTransactionList")}
               >
                 Back
               </Button>

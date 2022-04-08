@@ -71,7 +71,7 @@ class RaiseConcernToAESList extends React.Component {
                 color="blue"
                 onClick={() =>
                   history.push(
-                    `/app/facilityManagement/raiseConcernToAESForm/${params.data._id}`
+                    `/#/app/facilityManagement/raiseConcernToAESForm/${params.data._id}`
                   )
                 }
               />

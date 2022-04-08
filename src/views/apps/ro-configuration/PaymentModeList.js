@@ -114,7 +114,7 @@ class PaymentModeList extends React.Component {
                 className="mr-50"
                 size="25px"
                 color="green"
-                onClick={() => history.push("/app/ro-configuration/roForm")}
+                onClick={() => history.push("/#/app/ro-configuration/roForm")}
               /> */}
 
               <Edit
@@ -123,7 +123,7 @@ class PaymentModeList extends React.Component {
                 color="blue"
                 onClick={() =>
                 history.push(
-                `/app/ro-configuration/paymentModeAvalable/${params.data._id}`
+                `/#/app/ro-configuration/paymentModeAvalable/${params.data._id}`
                   )
                 }
               />

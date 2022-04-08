@@ -305,9 +305,9 @@ class AppRouter extends React.Component {
   render() {
     return (
       // Set the directory path if you are deploying in sub-folder
-      <HashRouter>
+      
       <Router history={history}>
-        
+        <HashRouter>
         <Switch>
         {/*<AppRoute exact={true} path="/" component={home} fullLayout /> */}
           <AppRoute exact={true} path="/" component={analyticsDashboard} />
@@ -601,9 +601,9 @@ exact={true}             path="/app/shiftManagement/staffAttendanceForm/:id"
           <AppRoute exact={true} path="/extensions/pagination" component={reactPaginate} />
           <AppRoute  component={error404} fullLayout />
         </Switch>
-        
+        </HashRouter>
       </Router>
-      </HashRouter>
+      
     );
   }
 }

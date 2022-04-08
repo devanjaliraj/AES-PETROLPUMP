@@ -92,6 +92,9 @@ export default class BankForTransaction extends Component {
               </h1>
             </Col>
             <Col>
+
+            
+            
               <Button
                 className=" btn btn-danger float-right"
                 onClick={() => history.push("/app/ro-configuration/RoConfigurationList")}

@@ -62,7 +62,7 @@ class ViewBankForTransaction extends React.Component {
               <Col>
                 <Button
                   className=" btn btn-danger float-right"
-                  onClick={() => history.push("/app/ro-configuration/bankForTransactionList")}>
+                  onClick={() => history.push("/#/app/ro-configuration/bankForTransactionList")}>
                   Back
                 </Button>
               </Col>

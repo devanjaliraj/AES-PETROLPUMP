@@ -110,7 +110,7 @@ export default class DesignYourOutlet extends Component {
         .then(response => {
           console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/app/ro-configuration/CreditCustomersList");
+        this.props.history.push("/#/app/ro-configuration/CreditCustomersList");
       })
       .catch(error => {
         console.log(error);
@@ -146,7 +146,7 @@ export default class DesignYourOutlet extends Component {
               <Button
                 className=" btn btn-danger float-right"
                 onClick={() =>
-                history.push("/app/ro-configuration/CreditCustomersList")}
+                history.push("/#/app/ro-configuration/CreditCustomersList")}
               >
                 Back
               </Button>

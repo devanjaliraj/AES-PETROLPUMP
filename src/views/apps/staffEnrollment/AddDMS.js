@@ -110,7 +110,7 @@ export default class AddDSM extends Component {
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/app/staffEnrollment/dmsList");
+        this.props.history.push("/#/app/staffEnrollment/dmsList");
       })
       .catch((error) => {
         console.log(error);

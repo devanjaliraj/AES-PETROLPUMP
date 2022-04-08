@@ -97,7 +97,7 @@ export default class DesignYourOutlet extends Component {
               <Button
                 className=" btn btn-danger float-right"
                 onClick={() =>
-                  history.push("/app/ro-configuration/OtherEquipmentList")
+                  history.push("/#/app/ro-configuration/OtherEquipmentList")
                 }
               >
                 Back

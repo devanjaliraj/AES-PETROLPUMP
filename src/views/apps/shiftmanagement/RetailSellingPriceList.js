@@ -162,7 +162,7 @@ class RSP extends React.Component {
                 color="blue"
                 onClick={() =>
                   history.push(
-                    `/app/shiftmanagement/retailSellingPriceForm/${params.data._id}`
+                    `/#/app/shiftmanagement/retailSellingPriceForm/${params.data._id}`
                   )
                 }
               />

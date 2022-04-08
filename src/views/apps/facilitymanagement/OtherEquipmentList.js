@@ -147,7 +147,7 @@ class OtherEquipmentList extends React.Component {
                 color="blue"
                 onClick={() =>
                   history.push(
-                    `/app/facilityManagement/otherEquipmentForm/${params.data._id}`
+                    `/#/app/facilityManagement/otherEquipmentForm/${params.data._id}`
                   )
                 }
               />

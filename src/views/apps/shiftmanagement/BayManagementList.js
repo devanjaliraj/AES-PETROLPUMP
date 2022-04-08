@@ -197,7 +197,7 @@ class BayManagementList extends React.Component {
                 color="blue"
                 onClick={() =>
                   history.push(
-                    `/app/shiftmanagement/bayManagementForm/${params.data._id}`
+                    `/#/app/shiftmanagement/bayManagementForm/${params.data._id}`
                   )
                 }
               />

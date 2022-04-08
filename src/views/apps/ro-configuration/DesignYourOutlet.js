@@ -14,6 +14,7 @@ import {
 import axiosConfig from "../../../axiosConfig";
 import { history } from "../../../history";
 // import swal from "sweetalert";
+import { Route } from 'react-router-dom'
 
 export default class DesignYourOutlet extends Component {
   constructor(props) {
@@ -104,6 +105,7 @@ export default class DesignYourOutlet extends Component {
               </h1>
             </Col>
             <Col>
+            <Route render={({ history}) => (
               <Button
                 className=" btn btn-danger float-right"
                 // onClick={() =>
@@ -112,6 +114,7 @@ export default class DesignYourOutlet extends Component {
               >
                 Back
               </Button>
+               )} />
             </Col>
           </Row>
           <CardBody>
@@ -191,12 +194,12 @@ export default class DesignYourOutlet extends Component {
                   >
                     Update
                   </Button.Ripple>
-                  <Button.Ripple
+                  {/* <Button.Ripple
                     color="primary"
                     className="mr-1 mb-1"
                     onClick={() => history.push(`/app/ro-configuration/editTankMap/`+dealerId)} > 
                     Next
-                  </Button.Ripple>
+                  </Button.Ripple> */}
                 </Col>
               </Row>
             </Form>
