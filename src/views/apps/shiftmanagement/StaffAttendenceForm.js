@@ -55,7 +55,7 @@ class StaffAttendenceForm extends React.Component {
       )
       .then((response) => {
         console.log(response);
-        this.props.history.push("/#/app/shiftManagement/staffAttendanceList");
+        this.props.history.push("/app/shiftManagement/staffAttendanceList");
       })
       .catch((error) => {
         console.log(error);

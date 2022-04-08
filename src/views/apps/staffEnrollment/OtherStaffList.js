@@ -11,11 +11,12 @@ import {
 } from "reactstrap";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2, Eye, Edit } from "react-feather";
-import axios from "axios";
+import { ChevronDown, Trash2, Edit } from "react-feather";
+import axiosConfig from "../../../axiosConfig";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
-import { history } from "../../../history";
+// import { history } from "../../../history";
+import { Route } from 'react-router-dom'
 
 class OtherStaffList extends React.Component {
   state = {
@@ -204,16 +205,17 @@ class OtherStaffList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
+              <Route render={({ history}) => (
               <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
                 onClick={() =>
                   history.push(
-                    `/#/app/staffEnrollment/addOtherStaff/${params.data._id}`
+                    `/app/staffEnrollment/addOtherStaff/${params.data._id}`
                   )
                 }
-              />
+                /> )} />
               <Trash2
                 className="mr-50"
                 size="25px"
@@ -232,7 +234,7 @@ class OtherStaffList extends React.Component {
   };
 
   componentDidMount() {
-    axios
+    axiosConfig
       .get("http://3.108.185.7/nodejs/api/dealer/allstaff")
       .then((response) => {
         let rowData = response.data.data;
@@ -243,7 +245,7 @@ class OtherStaffList extends React.Component {
   }
   async runthisfunction(id) {
     console.log(id);
-    await axios
+    await axiosConfig
       .get(`http://3.108.185.7/nodejs/api/dealer/deletestaff/${id}`)
       .then((response) => {
         console.log(response);

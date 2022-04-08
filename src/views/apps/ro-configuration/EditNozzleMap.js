@@ -19,9 +19,9 @@ import axiosConfig from "../../../axiosConfig";
 // import Select from "react-select";
 import { Route } from 'react-router-dom'
 
-const mpdOptions = [];
+// const mpdOptions = [];
 
-const bayOptions =[];
+// const bayOptions =[];
 export default class EditNozzleMap extends Component {
   constructor(props) {
     super(props);
@@ -43,7 +43,6 @@ export default class EditNozzleMap extends Component {
       this.submitHandler = this.submitHandler.bind(this);
   }
   componentDidMount() {
-    
     axiosConfig
     .get("/dealer/alltankmap")
     .then((response) => {
@@ -65,8 +64,6 @@ export default class EditNozzleMap extends Component {
     });
 
     let { id } = this.props.match.params;
-  
-    this.setState({ dealerId : id });
     axiosConfig
       .get(`/dealer/getonenozzle/${id}`)
       .then(response => {
@@ -82,9 +79,7 @@ export default class EditNozzleMap extends Component {
         console.log(error.response);
     });
 }
-  changeHandler1 = e => {
-    this.setState({ status: e.target.value });
-  };
+ 
 
   changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -98,60 +93,60 @@ export default class EditNozzleMap extends Component {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
         this.props.history.push("/app/ro-configuration/nozzleMapList");
-        if(response.status === 200){
-          let data = response.data.data;
-          if(data.mpd_map.length > 0){
-            data.mpd_map.map((mpd) => {
-             let mpdObj = {
-               value: mpd._id, 
-               label: mpd.mpd_number
-             };
-             mpdOptions.push(mpdObj);
-            })
-           }
-           if(data.bay_map.length > 0){
-            data.bay_map.map((bay) => {
-             let bayObj = {
-               value: bay._id, 
-               label: bay.bay_number
-             };
-             bayOptions.push(bayObj);
-            })
-           }
-           this.setState({
-            bay_map: data.bay_map,
-            mpd: data.mpd,
-            // nozzle_map: data.nozzle_map,
-            tank_map: data.tank_map,
-         });
-        }
+        // if(response.status === 200){
+        //   let data = response.data.data;
+        //   if(data.mpd_map.length > 0){
+        //     data.mpd_map.map((mpd) => {
+        //      let mpdObj = {
+        //        value: mpd._id, 
+        //        label: mpd.mpd_number
+        //      };
+        //      mpdOptions.push(mpdObj);
+        //     })
+        //    }
+        //    if(data.bay_map.length > 0){
+        //     data.bay_map.map((bay) => {
+        //      let bayObj = {
+        //        value: bay._id, 
+        //        label: bay.bay_number
+        //      };
+        //      bayOptions.push(bayObj);
+        //     })
+        //    }
+        //    this.setState({
+        //     bay_map: data.bay_map,
+        //     mpd: data.mpd,
+        //     // nozzle_map: data.nozzle_map,
+        //     tank_map: data.tank_map,
+        //  });
+        // }
       })
       .catch(error => {
         console.log(error.response);
       });
 }
-handleChangeMPD = (selectedMpdOption) => {
-  // let bayArray = []
-  this.setState({ selectedMpdOption }, () =>
-    console.log(`Option selected:`, this.state.selectedMpdOption)
-  );
-  var filteredBay = this.state.mpd_map.filter(function(event){
-    if(event._id === selectedMpdOption.value){
-     return event
-    } 
- });
-}
-handleChangeBAY = (selectedBayOption) => {
-  // let bayArray = []
-  this.setState({ selectedBayOption }, () =>
-    console.log(`Option selected:`, this.state.selectedBayOption)
-  );
-  var filteredBay = this.state.mpd_map.filter(function(event){
-    if(event._id === selectedBayOption.value){
-     return event
-    } 
- });
-}
+// handleChangeMPD = (selectedMpdOption) => {
+//   // let bayArray = []
+//   this.setState({ selectedMpdOption }, () =>
+//     console.log(`Option selected:`, this.state.selectedMpdOption)
+//   );
+//   var filteredBay = this.state.mpd_map.filter(function(event){
+//     if(event._id === selectedMpdOption.value){
+//      return event
+//     } 
+//  });
+// }
+// handleChangeBAY = (selectedBayOption) => {
+//   // let bayArray = []
+//   this.setState({ selectedBayOption }, () =>
+//     console.log(`Option selected:`, this.state.selectedBayOption)
+//   );
+//   var filteredBay = this.state.mpd_map.filter(function(event){
+//     if(event._id === selectedBayOption.value){
+//      return event
+//     } 
+//  });
+// }
   render() {
  
     // const {
@@ -207,7 +202,7 @@ handleChangeBAY = (selectedBayOption) => {
                       type="select"
                       name="tank"
                       value={this.state.tank}
-                      onChange={this.changeHandler1}>
+                      onChange={this.changeHandler}>
                       {this.state.tankN?.map((tankp) => (
                       <option value={tankp._id} key={tankp._id}>
                         {tankp.tank}
@@ -217,10 +212,10 @@ handleChangeBAY = (selectedBayOption) => {
                   </FormGroup>
                 </Col> 
                 <Col lg="6" md="6" sm="6" className="mb-2">
-                <FormGroup>
+                {/* <FormGroup> */}
                 <h5 className="my-1 text-bold-600">Nozzle</h5>
                     {/* <Label>Nozzle</Label> */}
-                    <CustomInput 
+                    {/* <CustomInput 
                       type="select"
                       name="tank"
                       value={this.state.nozzle}
@@ -231,14 +226,14 @@ handleChangeBAY = (selectedBayOption) => {
                       </option>
                       ))}
                     </CustomInput>
-                  </FormGroup>
-                  {/* <Label>nozzle</Label>
+                  </FormGroup> */}
+                  {/* <Label>nozzle</Label> */}
                   <Input
                     type="text"
                     name="nozzle"
                     value={this.state.nozzle}
                     onChange={this.changeHandler}>
-                  </Input> */}
+                  </Input>
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
                 <h5 className="my-1 text-bold-600">Select MPD</h5>

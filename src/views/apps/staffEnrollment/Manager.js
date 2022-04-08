@@ -11,7 +11,7 @@ import {
   BreadcrumbItem,
   Button,
 } from "reactstrap";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 import { Download } from "react-feather";
 
 export default class Manager extends Component {
@@ -44,8 +44,8 @@ export default class Manager extends Component {
   componentDidMount() {
     let { id } = this.props.match.params;
     console.log(id);
-    axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/getonemanager/${id}`)
+    axiosConfig
+      .get(`/dealer/getonemanager/${id}`)
       .then((response) => {
         console.log(response);
         this.setState({
@@ -104,11 +104,11 @@ export default class Manager extends Component {
     }
 
     let { id } = this.props.match.params;
-    axios
-      .post(`http://3.108.185.7/nodejs/api/dealer/updateonemanager/${id}`, data)
+    axiosConfig
+      .post(`/dealer/updateonemanager/${id}`, data)
       .then((response) => {
         console.log(response);
-        this.props.history.push("/#/app/staffEnrollment/staffManagementList");
+        this.props.history.push("/app/staffEnrollment/staffManagementList");
       })
 
       .catch((error) => {

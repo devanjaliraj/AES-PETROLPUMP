@@ -11,7 +11,9 @@ import {
   Input,
 } from "reactstrap";
 import axiosConfig from "../../../axiosConfig";
-import { history } from "../../../history";
+// import { history } from "../../../history";
+import { Route } from 'react-router-dom'
+
 class BayManagementForm extends React.Component {
   constructor(props) {
     super(props);
@@ -72,7 +74,7 @@ class BayManagementForm extends React.Component {
   //     .then((response) => {
   //       console.log(response);
   //       // swal("Success!", "Submitted SuccessFull!", "success");
-  //       this.props.history.push("/#/app/shiftmanagement/retailSellingPriceList");
+  //       this.props.history.push("/app/shiftmanagement/retailSellingPriceList");
   //     })
   //     .catch((error) => {
   //       console.log(error);
@@ -88,14 +90,17 @@ class BayManagementForm extends React.Component {
             </h1>
           </Col>
           <Col>
+               <Route render={({ history}) => (
+                                                                   
             <Button
               className=" btn btn-danger float-right"
               onClick={() =>
-                history.push("/#/app/shiftmanagement/bayManagementList")
+                history.push("/app/shiftmanagement/bayManagementList")
               }
             >
               Back
             </Button>
+            )} />
           </Col>
         </Row>
 

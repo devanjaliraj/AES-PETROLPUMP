@@ -12,10 +12,11 @@ import {
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2,  Edit } from "react-feather";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
-import { history } from "../../../history";
+// import { history } from "../../../history";
+import { Route } from 'react-router-dom'
 
 class DSMList extends React.Component {
   state = {
@@ -204,14 +205,16 @@ class DSMList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
+            <Route render={({ history}) => (
+
               <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
                 onClick={() =>
-                  history.push(`/#/app/staffEnrollment/addDMS/${params.data._id}`)
+                  history.push(`/app/staffEnrollment/addDMS/${params.data._id}`)
                 }
-              />
+              /> )} />
               <Trash2
                 className="mr-50"
                 size="25px"
@@ -230,8 +233,8 @@ class DSMList extends React.Component {
   };
 
   componentDidMount() {
-    axios
-      .get("http://3.108.185.7/nodejs/api/dealer/getDsnform")
+    axiosConfig
+      .get("/dealer/getDsnform")
       .then((response) => {
         let rowData = response.data.data;
         console.log(rowData);
@@ -241,8 +244,8 @@ class DSMList extends React.Component {
   }
   async runthisfunction(id) {
     console.log(id);
-    await axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/deleteDsnform/${id}`)
+    await axiosConfig
+      .get(`/dealer/deleteDsnform/${id}`)
       .then((response) => {
         console.log(response);
       });

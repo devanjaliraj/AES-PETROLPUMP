@@ -16,6 +16,7 @@ import axiosConfig from "../../../axiosConfig";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 import { history } from "../../../history";
+// import { Route } from 'react-router-dom'
 
 class ShiftManagementList extends React.Component {
   state = {
@@ -104,12 +105,14 @@ class ShiftManagementList extends React.Component {
                   history.push("/#/app/shiftManagement/shiftDealerTable")
                 }
               />
+               {/* <Route render={({ history}) => (
+
               <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
-                // onClick={() => history.push("/#/app/slider/editSlider/${params.data._id}")}
-              />
+                 onClick={() => history.push(`/app/slider/editSlider/${params.data._id}`)}
+              />)}/> */}
               <Trash2
                 className="mr-50"
                 size="25px"

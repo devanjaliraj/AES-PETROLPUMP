@@ -10,7 +10,8 @@ import {
   Input,
 } from "reactstrap";
 import axiosConfig from "../../../axiosConfig";
-import { history } from "../../../history";
+// import { history } from "../../../history";
+import { Route } from 'react-router-dom'
 
 class DSMClosingSheet extends React.Component {
   constructor(props) {
@@ -72,13 +73,13 @@ class DSMClosingSheet extends React.Component {
     let { id } = this.props.match.params;
     axiosConfig
       .post(
-        `http://3.108.185.7/nodejs/api/dealer/updatedsmclosing/${id}`,
+        `/dealer/updatedsmclosing/${id}`,
         this.state
       )
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/#/app/shiftManagement/dSMClosingSheetList");
+        this.props.history.push("/app/shiftManagement/dSMClosingSheetList");
       })
       .catch((error) => {
         console.log(error);
@@ -94,14 +95,17 @@ class DSMClosingSheet extends React.Component {
             </h1>
           </Col>
           <Col>
+          <Route render={({ history}) => (
+
             <Button
               className=" btn btn-danger float-right"
               onClick={() =>
-                history.push("/#/app/shiftManagement/dSMClosingSheetList")
+                history.push("/app/shiftManagement/dSMClosingSheetList")
               }
             >
               Back
             </Button>
+            )} />
           </Col>
         </Row>
         <CardBody>

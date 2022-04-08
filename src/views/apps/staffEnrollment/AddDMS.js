@@ -14,6 +14,7 @@ import {
 import axiosConfig from "../../../axiosConfig";
 import { Download } from "react-feather";
 
+
 export default class AddDSM extends Component {
   constructor(props) {
     super(props);
@@ -110,7 +111,7 @@ export default class AddDSM extends Component {
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/#/app/staffEnrollment/dmsList");
+        this.props.history.push("/app/staffEnrollment/dmsList");
       })
       .catch((error) => {
         console.log(error);
@@ -142,7 +143,7 @@ export default class AddDSM extends Component {
       <div>
         <Card>
           <CardHeader>
-            <CardTitle className="text-center">DSM</CardTitle>
+            <CardTitle className="text-center">DSM List</CardTitle>
           </CardHeader>
           <CardBody>
             <Form className="m-1" onSubmit={this.submitHandler}>

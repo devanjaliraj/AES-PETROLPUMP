@@ -12,9 +12,10 @@ import {
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
-import { history } from "../../../history";
+// import { history } from "../../../history";
 
 import axiosConfig from "../../../axiosConfig";
+import { Route } from 'react-router-dom'
 
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 
@@ -143,16 +144,18 @@ class RSP extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
+               <Route render={({ history}) => (
+
               <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
                 onClick={() =>
                   history.push(
-                    `/#/app/shiftmanagement/retailSellingPriceForm/${params.data._id}`
+                    `/app/shiftmanagement/retailSellingPriceForm/${params.data._id}`
                   )
                 }
-              />
+              />)} />
               <Trash2
                 className="mr-50"
                 size="25px"

@@ -10,12 +10,14 @@ import {
   DropdownToggle,
 } from "reactstrap";
 import axiosConfig from "../../../axiosConfig";
-import { history } from "../../../history";
+// import { history } from "../../../history";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+import { Route } from 'react-router-dom'
+
 class BayManagementList extends React.Component {
   state = {
     rowData: null,
@@ -191,16 +193,18 @@ class BayManagementList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
+               <Route render={({ history}) => (
+
               <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
                 onClick={() =>
                   history.push(
-                    `/#/app/shiftmanagement/bayManagementForm/${params.data._id}`
+                    `/app/shiftmanagement/bayManagementForm/${params.data._id}`
                   )
                 }
-              />
+              /> )} />
 
               <Trash2
                 className="mr-50"
