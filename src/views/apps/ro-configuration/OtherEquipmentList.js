@@ -144,12 +144,13 @@ class OtherEquipmentList extends React.Component {
         this.setState({ rowData });
       });
     }
-      // async runthisfunction(id) {
-      //   console.log(id);
-      //   await axiosConfig.get(`http://3.108.185.7/nodejs/api/dealer/allequipmentofdealer/${id}`).then((response) => {
-      //     console.log(response);
-      //   });
-      // }
+      async runthisfunction(id) {
+        console.log(id);
+        await axiosConfig.get(`/admin/deleteequipment/${id}`).then((response) => {
+          console.log(response);
+        });
+      }
+      
 
   onGridReady = (params) => {
     this.gridApi = params.api;

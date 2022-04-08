@@ -21,7 +21,7 @@ class Notification extends React.Component {
     return (
       <Card>
         <CardHeader>
-          <CardTitle>Notification List</CardTitle>
+          <CardTitle>Notification</CardTitle>
         </CardHeader>
         <Table
           responsive

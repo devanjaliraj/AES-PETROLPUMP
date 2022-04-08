@@ -42,6 +42,33 @@ class NozzleMapList extends React.Component {
       //   headerCheckboxSelectionFilteredOnly: true,
       //   headerCheckboxSelection: true,
       // },
+      
+      {
+        headerName: "Dealer Name",
+        field: "dealer_id.dealer_name",
+        width: 140,
+        pinned: window.innerWidth > 992 ? "left" : false,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.dealer_id?.dealer_name}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Email",
+        field: "dealer_id.email",
+        width: 140,
+        pinned: window.innerWidth > 992 ? "left" : false,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.dealer_id?.email}</span>
+            </div>
+          );
+        },
+      },
       {
         headerName: "Nozzle",
         field: "nozzle",

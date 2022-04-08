@@ -45,7 +45,7 @@ const navigationConfig = [
     type: "collapse",
     icon: <Icon.User size={20} />,
     children: [
-        {
+      {
         id: "roConfigurationList",
         title: "Basic Detail List",
         type: "item",
@@ -53,9 +53,6 @@ const navigationConfig = [
         permissions: ["admin", "editor"],
         navLink: "/app/ro-configuration/roConfigurationList",
       },
-   
-    
-    
       {
         id: "designYourOutletList",
         title: "Design Your Outlet",
@@ -80,15 +77,6 @@ const navigationConfig = [
         permissions: ["admin", "editor"],
         navLink: "/app/ro-configuration/nozzleMapList",
       },
-    
-      {
-        id: "bankForTransactionList",
-        title: "Bank For Transaction List",
-        type: "item",
-        icon: <Icon.Circle size={12} />,
-        permissions: ["admin", "editor"],
-        navLink: "/app/ro-configuration/bankForTransactionList",
-      },
       {
         id: "paymentModeList",
         title: "payment Mode List ",
@@ -97,14 +85,6 @@ const navigationConfig = [
         permissions: ["admin", "editor"],
         navLink: "/app/ro-configuration/paymentModeList",
       },
-      // {
-      //   id: "creditCustomers",
-      //   title: "Credit Customers",
-      //   type: "item",
-      //   icon: <Icon.Circle size={12} />,
-      //   permissions: ["admin", "editor"],
-      //   navLink: "/app/ro-configuration/creditCustomers",
-      // },
       {
         id: "creditCustomersList",
         title: "Credit Customers List",
@@ -114,6 +94,14 @@ const navigationConfig = [
         navLink: "/app/ro-configuration/creditCustomersList",
       },
       {
+        id: "bankForTransactionList",
+        title: "Bank For Transaction List",
+        type: "item",
+        icon: <Icon.Circle size={12} />,
+        permissions: ["admin", "editor"],
+        navLink: "/app/ro-configuration/bankForTransactionList",
+      },
+      {
         id: "otherEquipmentList",
         title: "Other Equipment List",
         type: "item",
@@ -121,7 +109,6 @@ const navigationConfig = [
         permissions: ["admin", "editor"],
         navLink: "/app/ro-configuration/otherEquipmentList",
       },
-
     ],
   },
   {
@@ -132,7 +119,7 @@ const navigationConfig = [
       children: [
    {
     id: "staffManagementList",
-    title: "Staff Management List",
+    title: " Managers/Cashiers List",
     type: "item",
     icon: <Icon.Circle size={12} />,
     permissions: ["admin", "editor"],
@@ -140,7 +127,7 @@ const navigationConfig = [
     },
     {
       id: "dMSList",
-      title: "DSM List",
+      title: "DSM/DSW List",
       type: "item",
       icon: <Icon.Circle size={12} />,
       permissions: ["admin", "editor"],
@@ -156,12 +143,87 @@ const navigationConfig = [
     },
   ],
   },
+  // shiftManagement
+ {
+  id: "shiftManagement",
+  title: "Shift Management",
+  type: "collapse",
+  icon: <Icon.User size={20} />,
+  children: [
+    {
+      id: "retailSellingPriceList",
+      title: "Retail Selling Price List",
+      type: "item",
+      icon: <Icon.Circle size={12} />,
+      permissions: ["admin", "editor"],
+      navLink: "/app/shiftmanagement/retailSellingPriceList",
+    },
+    {
+      id: "bayManagementList",
+      title: "Bay Management List",
+      type: "item",
+      icon: <Icon.Circle size={12} />,
+      permissions: ["admin", "editor"],
+      navLink: "/app/shiftmanagement/bayManagementList",
+    },
+    {
+      id: "dSMClosingSheetList",
+      title: "DSM Closing Sheet List",
+      type: "item",
+      icon: <Icon.Circle size={12} />,
+      permissions: ["admin", "editor"],
+      navLink: "/app/shiftManagement/dSMClosingSheetList",
+    },
+    {
+      id: "salesFigureList",
+      title: "Sales Figures List",
+      type: "item",
+      icon: <Icon.Circle size={12} />,
+      permissions: ["admin", "editor"],
+      navLink: "/app/shiftManagement/salesFigureList",
+    },
+    {
+      id: "creditGivenList",
+      title: "Credit Given to List",
+      type: "item",
+      icon: <Icon.Circle size={12} />,
+      permissions: ["admin", "editor"],
+      navLink: "/app/shiftManagement/creditGivenList",
+    },
+
+    {
+      id: "lubricantSales",
+      title: "Lubricant Sales",
+      type: "item",
+      icon: <Icon.Circle size={12} />,
+      permissions: ["admin", "editor"],
+      navLink: "/app/shiftManagement/lubricantSales",
+    },
+
+    {
+      id: "staffAttendanceList",
+      title: "Staff Attendance List",
+      type: "item",
+      icon: <Icon.Circle size={12} />,
+      permissions: ["admin", "editor"],
+      navLink: "/app/shiftManagement/staffAttendanceList",
+    },
+  ],
+},
   {
     id: "cashManagement",
     title: "Cash Management",
     type: "collapse",
     icon: <Icon.User size={20} />,
     children: [
+      {
+        id: "status",
+        title: "Status",
+        type: "item",
+        icon: <Icon.Circle size={12} />,
+        permissions: ["admin", "editor"],
+        navLink: "/app/cashManagement/status",
+      },
       {
         id: "cashManagementList",
         title: "Cash Management List",
@@ -178,14 +240,7 @@ const navigationConfig = [
         permissions: ["admin", "editor"],
         navLink: "/app/cashManagement/cashDealerTable",
       },
-      {
-        id: "status",
-        title: "Status",
-        type: "item",
-        icon: <Icon.Circle size={12} />,
-        permissions: ["admin", "editor"],
-        navLink: "/app/cashManagement/status",
-      },
+   
       // {
       //   id: "cashDealerTable",
       //   title: "Status",
@@ -221,30 +276,39 @@ const navigationConfig = [
     ],
   },
   {
-    id: "subplan",
-    title: "Credit Managent ",
+    id: "stockManagement",
+    title: "Stock Management",
     type: "collapse",
     icon: <Icon.User size={20} />,
     children: [
+    
       {
-        id: "subplanvideos",
-        title: "Subscription plan videos",
+        id: "fuelStock",
+        title: "Fuel Stock",
         type: "item",
         icon: <Icon.Circle size={12} />,
         permissions: ["admin", "editor"],
-        navLink: "/app/subplan/subplanvideos",
+        navLink: "/app/stockManagement/fuelStock",
       },
       {
-        id: "addPlan",
-        title: "Add plan videos",
+        id: "lubeStockList",
+        title: "Lube Stock List",
         type: "item",
         icon: <Icon.Circle size={12} />,
         permissions: ["admin", "editor"],
-        navLink: "/app/subplan/addPlan",
+        navLink: "/app/stockManagement/lubeStockList",
+      },
+      {
+        id: "stockManagementList",
+        title: "Product Receipt List",
+        type: "item",
+        icon: <Icon.Circle size={12} />,
+        permissions: ["admin", "editor"],
+        navLink: "/app/stockManagement/stockManagementList",
       },
     ],
   },
- ///////////////// facilityManagement start ///////////////////
+  ///////////////// facilityManagement start ///////////////////
  {
   id: "facilityManagement",
   title: "Facility Management",
@@ -294,105 +358,33 @@ const navigationConfig = [
   ],
 },
 ///////////////// facilityManagement end ///////////////////
-  {
-    id: "stockManagement",
-    title: "Stock Management",
-    type: "collapse",
-    icon: <Icon.User size={20} />,
-    children: [
-      {
-        id: "stockManagementList",
-        title: "Stock Management List",
-        type: "item",
-        icon: <Icon.Circle size={12} />,
-        permissions: ["admin", "editor"],
-        navLink: "/app/stockManagement/stockManagementList",
-      },
-      {
-        id: "fuelStock",
-        title: "Fuel Stock",
-        type: "item",
-        icon: <Icon.Circle size={12} />,
-        permissions: ["admin", "editor"],
-        navLink: "/app/stockManagement/fuelStock",
-      },
-      {
-        id: "lubeStockList",
-        title: "Lube Stock List",
-        type: "item",
-        icon: <Icon.Circle size={12} />,
-        permissions: ["admin", "editor"],
-        navLink: "/app/stockManagement/lubeStockList",
-      },
-    ],
-  },
- // shiftManagement
- {
-  id: "shiftManagement",
-  title: "Shift Management",
-  type: "collapse",
-  icon: <Icon.User size={20} />,
-  children: [
-    {
-      id: "retailSellingPriceList",
-      title: "Retail Selling Price List",
-      type: "item",
-      icon: <Icon.Circle size={12} />,
-      permissions: ["admin", "editor"],
-      navLink: "/app/shiftmanagement/retailSellingPriceList",
-    },
-    {
-      id: "bayManagementList",
-      title: "Bay Management List",
-      type: "item",
-      icon: <Icon.Circle size={12} />,
-      permissions: ["admin", "editor"],
-      navLink: "/app/shiftmanagement/bayManagementList",
-    },
-    {
-      id: "dSMClosingSheetList",
-      title: "DSM Closing Sheet List",
-      type: "item",
-      icon: <Icon.Circle size={12} />,
-      permissions: ["admin", "editor"],
-      navLink: "/app/shiftManagement/dSMClosingSheetList",
-    },
-    {
-      id: "salesFigureList",
-      title: "Sales Figure List",
-      type: "item",
-      icon: <Icon.Circle size={12} />,
-      permissions: ["admin", "editor"],
-      navLink: "/app/shiftManagement/salesFigureList",
-    },
-    {
-      id: "creditGivenList",
-      title: "Credit Given List",
-      type: "item",
-      icon: <Icon.Circle size={12} />,
-      permissions: ["admin", "editor"],
-      navLink: "/app/shiftManagement/creditGivenList",
-    },
-
-    {
-      id: "lubricantSales",
-      title: "Lubricant Sales",
-      type: "item",
-      icon: <Icon.Circle size={12} />,
-      permissions: ["admin", "editor"],
-      navLink: "/app/shiftManagement/lubricantSales",
-    },
-
-    {
-      id: "staffAttendanceList",
-      title: "Staff Attendance List",
-      type: "item",
-      icon: <Icon.Circle size={12} />,
-      permissions: ["admin", "editor"],
-      navLink: "/app/shiftManagement/staffAttendanceList",
-    },
-  ],
-},
+ 
+ 
+  // {
+  //   id: "subplan",
+  //   title: "Credit Managent ",
+  //   type: "collapse",
+  //   icon: <Icon.User size={20} />,
+  //   children: [
+  //     {
+  //       id: "subplanvideos",
+  //       title: "Subscription plan videos",
+  //       type: "item",
+  //       icon: <Icon.Circle size={12} />,
+  //       permissions: ["admin", "editor"],
+  //       navLink: "/app/subplan/subplanvideos",
+  //     },
+  //     {
+  //       id: "addPlan",
+  //       title: "Add plan videos",
+  //       type: "item",
+  //       icon: <Icon.Circle size={12} />,
+  //       permissions: ["admin", "editor"],
+  //       navLink: "/app/subplan/addPlan",
+  //     },
+  //   ],
+  // },
+ 
   {
     id: "training",
     title: "Notification",
@@ -410,47 +402,47 @@ const navigationConfig = [
     ],
   },
  
-  {
-    id: "setting",
-    title: "Setting",
-    type: "collapse",
-    icon: <Icon.User size={20} />,
-    children: [
-      {
-        id: "enquiryForm",
-        title: "Enquiry Form",
-        type: "item",
-        icon: <Icon.Circle size={12} />,
-        permissions: ["admin", "editor"],
-        navLink: "/app/setting/enquiryForm",
-      },
-      {
-        id: "mOCList",
-        title: "MOC List",
-        type: "item",
-        icon: <Icon.Circle size={12} />,
-        permissions: ["admin", "editor"],
-        navLink: "/app/setting/moc/mOCList",
-      },
-      {
-        id: "tankList",
-        title: "TANK LIST",
-        type: "item",
-        icon: <Icon.Circle size={12} />,
-        permissions: ["admin", "editor"],
-        navLink: "/app/setting/tank/tankList",
-      },
-      {
-        id: "bayList",
-        title: "BAY LIST",
-        type: "item",
-        icon: <Icon.Circle size={12} />,
-        permissions: ["admin", "editor"],
-        navLink: "/app/setting/bay/bayList",
-      },
+  // {
+  //   id: "setting",
+  //   title: "Setting",
+  //   type: "collapse",
+  //   icon: <Icon.User size={20} />,
+  //   children: [
+  //     {
+  //       id: "enquiryForm",
+  //       title: "Enquiry Form",
+  //       type: "item",
+  //       icon: <Icon.Circle size={12} />,
+  //       permissions: ["admin", "editor"],
+  //       navLink: "/app/setting/enquiryForm",
+  //     },
+  //     {
+  //       id: "mOCList",
+  //       title: "MOC List",
+  //       type: "item",
+  //       icon: <Icon.Circle size={12} />,
+  //       permissions: ["admin", "editor"],
+  //       navLink: "/app/setting/moc/mOCList",
+  //     },
+  //     {
+  //       id: "tankList",
+  //       title: "TANK LIST",
+  //       type: "item",
+  //       icon: <Icon.Circle size={12} />,
+  //       permissions: ["admin", "editor"],
+  //       navLink: "/app/setting/tank/tankList",
+  //     },
+  //     {
+  //       id: "bayList",
+  //       title: "BAY LIST",
+  //       type: "item",
+  //       icon: <Icon.Circle size={12} />,
+  //       permissions: ["admin", "editor"],
+  //       navLink: "/app/setting/bay/bayList",
+  //     },
       
-    ],
-  },
+  //   ],
+  // },
 
 ];
 export default navigationConfig;
