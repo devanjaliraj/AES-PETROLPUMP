@@ -12,7 +12,7 @@ import {
   BreadcrumbItem,
 } from "reactstrap";
 import axiosConfig from "../../../axiosConfig";
-import { history } from "../../../history";
+// import { history } from "../../../history";
 // import swal from "sweetalert";
 import { Route } from 'react-router-dom'
 
@@ -77,9 +77,9 @@ export default class DesignYourOutlet extends Component {
   };
 
   render() {
-    const {
-      dealerId
-    } = this.state
+    // const {
+    //   // dealerId
+    // } = this.state
     return (
       <div>
         <Row>
@@ -108,9 +108,9 @@ export default class DesignYourOutlet extends Component {
             <Route render={({ history}) => (
               <Button
                 className=" btn btn-danger float-right"
-                // onClick={() =>
-                //   history.push("/app/ro-configuration/List")
-                // }
+                onClick={() =>
+                  history.push("/app/ro-configuration/DesignYourOutletList")
+                }
               >
                 Back
               </Button>

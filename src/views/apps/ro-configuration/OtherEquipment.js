@@ -12,9 +12,10 @@ import {
   BreadcrumbItem,
 } from "reactstrap";
 import axiosConfig from "../../../axiosConfig";
-import { history } from "../../../history";
+// import { history } from "../../../history";
 // import { data } from "jquery";
 // import swal from "sweetalert";
+import { Route } from 'react-router-dom'
 
 export default class DesignYourOutlet extends Component {
   constructor(props) {
@@ -94,14 +95,17 @@ export default class DesignYourOutlet extends Component {
               </h1>
             </Col>
             <Col>
+            <Route render={({ history}) => (
+
               <Button
                 className=" btn btn-danger float-right"
                 onClick={() =>
-                  history.push("/#/app/ro-configuration/OtherEquipmentList")
+                  history.push("/app/ro-configuration/OtherEquipmentList")
                 }
               >
                 Back
               </Button>
+               )} />
             </Col>
           </Row>
           <CardBody>

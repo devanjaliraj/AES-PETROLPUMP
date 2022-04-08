@@ -14,9 +14,10 @@ import {
   CustomInput,
 } from "reactstrap";
 import axiosConfig from "../../../axiosConfig";
-import { history } from "../../../history";
+// import { history } from "../../../history";
 // import swal from "sweetalert";
 // import Select from "react-select";
+import { Route } from 'react-router-dom'
 
 const mpdOptions = [];
 
@@ -96,7 +97,7 @@ export default class EditNozzleMap extends Component {
       .then(response => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/#/app/ro-configuration/nozzleMapList");
+        this.props.history.push("/app/ro-configuration/nozzleMapList");
         if(response.status === 200){
           let data = response.data.data;
           if(data.mpd_map.length > 0){
@@ -183,12 +184,15 @@ handleChangeBAY = (selectedBayOption) => {
               </h1>
             </Col>
             <Col>
+            <Route render={({ history}) => (
+
               <Button
                 className=" btn btn-danger float-right"
-                onClick={() => history.push("/#/app/ro-configuration/nozzleMapList")}
+                onClick={() => history.push("/app/ro-configuration/nozzleMapList")}
               >
                 Back
               </Button>
+               )} />
             </Col>
           </Row>
           <CardBody>

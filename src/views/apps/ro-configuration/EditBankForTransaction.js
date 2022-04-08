@@ -12,22 +12,23 @@ import {
   BreadcrumbItem,
 } from "reactstrap";
 import axiosConfig from "../../../axiosConfig";
-import { history } from "../../../history";
+// import { history } from "../../../history";
 // import swal from "sweetalert";
+import { Route } from 'react-router-dom'
+
 export default class EditBankForTransaction extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        name_of_bank: "", 
+        name_of_bank:"",
         credit_limit_of_bank: "",
-        intrest_rates: "",
+        intrest_rates:"",
         ifsc_code:"",
         cresit_offer:"",
         account_no:"",
-        document_upload:""
-     
     };
   }
+
   componentDidMount() {
     let { id } = this.props.match.params;
     axiosConfig
@@ -35,22 +36,18 @@ export default class EditBankForTransaction extends Component {
       .then(response => {
         console.log(response);
         this.setState({
-            name_of_bank: response.data.data.name_of_bank,
-            credit_limit_of_bank: response.data.data.credit_limit_of_bank,
-            intrest_rates: response.data.data.intrest_rates,
-            ifsc_code: response.data.data.ifsc_code,
-            cresit_offer: response.data.data.cresit_offer,
-            document_upload: response.data.data.document_upload,
-            account_no: response.data.data.account_no
+          name_of_bank: response.data.data.name_of_bank,
+          credit_limit_of_bank: response.data.data.credit_limit_of_bank,
+          intrest_rates: response.data.data.intrest_rates,
+          ifsc_code: response.data.data.ifsc_code,
+          cresit_offer: response.data.data.cresit_offer,
+          account_no: response.data.data.account_no
         });
       })
       .catch(error => {
         console.log(error);
       });
   }
-  changeHandler1 = e => {
-    this.setState({ status: e.target.value });
-  };
 
   changeHandler = e => {
     this.setState({ [e.target.name]: e.target.value });
@@ -63,12 +60,13 @@ export default class EditBankForTransaction extends Component {
       .then(response => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/#/app/ro-configuration/bankForTransactionList");
+        this.props.history.push("/app/ro-configuration/BankForTransactionList");
       })
       .catch(error => {
         console.log(error);
       });
   };
+
   render() {
     return (
       <div>
@@ -79,12 +77,10 @@ export default class EditBankForTransaction extends Component {
                 <BreadcrumbItem href="/analyticsDashboard" tag="a">
                   Home
                 </BreadcrumbItem>
-                <BreadcrumbItem href="/app/ro-configuration/bankForTransactionList" tag="a">
-                Bank For Transaction List
-                </BreadcrumbItem>
-                <BreadcrumbItem active>Edit Bank
-                For
-                Transaction</BreadcrumbItem>
+                {/* <BreadcrumbItem href="/app/material/materialList" tag="a">
+                  Material List
+                </BreadcrumbItem> */}
+                <BreadcrumbItem active>Edit Bank For Transaction</BreadcrumbItem>
               </Breadcrumb>
             </div>
           </Col>
@@ -93,47 +89,51 @@ export default class EditBankForTransaction extends Component {
           <Row className="m-2">
             <Col>
               <h1 col-sm-6 className="float-left">
-                Edit Bank For Transaction 
+              Edit Bank For Transaction
               </h1>
             </Col>
             <Col>
+
+            
+            <Route render={({ history}) => (
               <Button
                 className=" btn btn-danger float-right"
-                onClick={() => history.push("/#/app/ro-configuration/bankForTransactionList")}
+                onClick={() => history.push("/app/ro-configuration/BankForTransactionList")}
               >
                 Back
               </Button>
+               )} />
             </Col>
           </Row>
           <CardBody>
             <Form className="m-1" onSubmit={this.submitHandler}>
               <Row>
-                <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>Name of Bank</Label>
+              <Col lg="6" md="6" sm="6" className="mb-2">
+                  <Label>Name Of The Bank </Label>
                   <Input
                     type="text"
                     name="name_of_bank"
                     value={this.state.name_of_bank}
-                    onChange={this.changeHandler}>
-                  </Input>
+                    onChange={this.changeHandler}
+                  ></Input>
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>Credit Limit Of Bank</Label>
+                  <Label>Credit Limit For Bank</Label>
                   <Input
-                    type="number"
+                    type="text"
                     name="credit_limit_of_bank"
                     value={this.state.credit_limit_of_bank}
-                    onChange={this.changeHandler}>
-                  </Input>
+                    onChange={this.changeHandler}
+                  ></Input>
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>Intrest Rates</Label>
+                  <Label>Interest Rates</Label>
                   <Input
-                    type="number"
+                    type="text"
                     name="intrest_rates"
                     value={this.state.intrest_rates}
-                    onChange={this.changeHandler}>
-                  </Input>
+                    onChange={this.changeHandler}
+                  ></Input>
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Account No.</Label>
@@ -145,33 +145,34 @@ export default class EditBankForTransaction extends Component {
                   ></Input>
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>IFSC Code</Label>
+                  <Label>IFSC code</Label>
                   <Input
-                    type="number"
+                    type="text"
                     name="ifsc_code"
                     value={this.state.ifsc_code}
-                    onChange={this.changeHandler}>
-                  </Input>
+                    onChange={this.changeHandler}
+                  ></Input>
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>Credit Offer from Bank Valid upto</Label>
+                  <Label>Credit offer from bank vaild upto</Label>
                   <Input
                     type="text"
                     name="cresit_offer"
                     value={this.state.cresit_offer}
-                    onChange={this.changeHandler}>
-                  </Input>
+                    onChange={this.changeHandler}
+                  ></Input>
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>Document upload </Label>
+                  <Label>Document upload</Label>
                   <Input
-                    type="file"
-                    name="document_upload"
-                    // value={this.state.document_upload}
+                    type="text"
+                    name="omc_customer_code"
+                    value={this.state.omc_customer_code}
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
               </Row>
+
               <Row>
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Button.Ripple

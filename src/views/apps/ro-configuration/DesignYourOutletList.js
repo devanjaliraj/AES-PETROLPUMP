@@ -269,7 +269,7 @@ class DesignYourOutletList extends React.Component {
                 className="mr-50"
                 size="25px"
                 color="green"
-                onClick={() => history.push(`/#/app/ro-configuration/DesignYourOutlet/${params.data._id}`)}
+                onClick={() => history.push(`/app/ro-configuration/DesignYourOutlet/${params.data._id}`)}
               /> */}
                <Route render={({ history}) => (
 
@@ -340,7 +340,7 @@ class DesignYourOutletList extends React.Component {
     return (
       <React.Fragment>
         <Breadcrumbs
-          breadCrumbTitle="Dealer List"
+          breadCrumbTitle="Design Your Outlet List"
           // breadCrumbParent="Forms & Tables"
           // breadCrumbActive="Dealer List"
         />

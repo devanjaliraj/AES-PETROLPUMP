@@ -131,7 +131,7 @@ class RoConfiguration extends React.Component {
                 className="mr-50"
                 size="25px"
                 color="green"
-                onClick={() => history.push("/#/app/ro-configuration/roForm")}
+                onClick={() => history.push("/app/ro-configuration/roForm")}
               /> */}
                <Route render={({ history}) => (
               <Edit
@@ -202,7 +202,7 @@ class RoConfiguration extends React.Component {
     return (
       <React.Fragment>
         <Breadcrumbs
-          breadCrumbTitle="Ro Configuration"/>
+          breadCrumbTitle="Basic Detail List"/>
         <Card className="overflow-hidden agGrid-card">
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (

@@ -12,8 +12,9 @@ import {
   BreadcrumbItem,
 } from "reactstrap";
 import axiosConfig from "../../../axiosConfig";
-import { history } from "../../../history";
+// import { history } from "../../../history";
 // import swal from "sweetalert";
+import { Route } from 'react-router-dom'
 
 export default class BankForTransaction extends Component {
   constructor(props) {
@@ -94,13 +95,14 @@ export default class BankForTransaction extends Component {
             <Col>
 
             
-            
+            <Route render={({ history}) => (
               <Button
                 className=" btn btn-danger float-right"
                 onClick={() => history.push("/app/ro-configuration/RoConfigurationList")}
               >
                 Back
               </Button>
+               )} />
             </Col>
           </Row>
           <CardBody>

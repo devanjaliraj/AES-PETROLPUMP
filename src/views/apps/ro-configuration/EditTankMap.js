@@ -14,6 +14,8 @@ import {
 import axiosConfig from "../../../axiosConfig";
 import { history } from "../../../history";
 // import swal from "sweetalert";
+import { Route } from 'react-router-dom'
+
 // import Select from "react-select";
 const tankOptions = [];
 export default class EditTankMap extends Component {
@@ -72,7 +74,7 @@ export default class EditTankMap extends Component {
         console.log(response);
 
         // swal("Success!", "Submitted SuccessFull!", "success");
-       this.props.history.push("/#/app/ro-configuration/tankMapList");
+       this.props.history.push("/app/ro-configuration/tankMapList");
     // }
     // else{
     //   alert('Something went wrong in Dealer Shipform Api');
@@ -132,7 +134,7 @@ export default class EditTankMap extends Component {
       else{
         alert('Something went wrong in Dealer Shipform Api');
       }
-      // this.props.history.push("/#/app/ro-configuration/designYourOutletList");
+      // this.props.history.push("/app/ro-configuration/designYourOutletList");
     })
     .catch((error) => {
       console.log(error.response);
@@ -230,12 +232,15 @@ handleChangeTank = (selectedTankOption) => {
                 Edit Tank Map</h1>
             </Col>
             <Col>
+            <Route render={({ history}) => (
+
               <Button
                 className=" btn btn-danger float-right"
-                onClick={() => history.push("/#/app/ro-configuration/tankMapList")}
+                onClick={() => history.push("/app/ro-configuration/tankMapList")}
               >
                 Back
               </Button>
+               )} />
             </Col>
           </Row>
           <CardBody>

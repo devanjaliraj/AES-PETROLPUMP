@@ -16,7 +16,7 @@ import { ContextLayout } from "../../../utility/context/Layout";
 import { AgGridReact } from "ag-grid-react";
 import {  Edit,  Trash2, ChevronDown } from "react-feather";
 //import classnames from "classnames";
-import { history } from "../../../history";
+// import { history } from "../../../history";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import "../../../assets/scss/pages/users.scss";
 import { Route } from 'react-router-dom'
@@ -179,12 +179,12 @@ class BankForTransactionList extends React.Component {
               <Edit
                 className="mr-50"
                 color="blue"
-                size={20}
+                size="25px"
                 onClick={() => history.push(`/app/ro-configuration/editBankForTransaction/${params.data._id}`)}
                 /> )} />
-                )
+                
               <Trash2
-                size={20}
+                size="25px"
                 color="red"
                 onClick={() => {
                   let selectedData = this.gridApi.getSelectedRows();
@@ -255,7 +255,7 @@ class BankForTransactionList extends React.Component {
               <Row className="m-2">
                 <Col>
                   <h1 sm="6" className="float-left">
-                    Bank List
+                  Bank For Transaction List
                   </h1>
                 </Col>
                 <Col>

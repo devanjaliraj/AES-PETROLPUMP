@@ -8,7 +8,9 @@ import {
   Breadcrumb,
   BreadcrumbItem,
 } from "reactstrap";
-import { history } from "../../../history";
+// import { history } from "../../../history";
+import { Route } from 'react-router-dom'
+
 import "../../../assets/scss/pages/app-ecommerce-shop.scss";
 import axiosConfig from "../../../axiosConfig";
 class ViewBankForTransaction extends React.Component {
@@ -60,11 +62,14 @@ class ViewBankForTransaction extends React.Component {
                 </h1>
               </Col>
               <Col>
+            <Route render={({ history}) => (
+
                 <Button
                   className=" btn btn-danger float-right"
-                  onClick={() => history.push("/#/app/ro-configuration/bankForTransactionList")}>
+                  onClick={() => history.push("/app/ro-configuration/bankForTransactionList")}>
                   Back
                 </Button>
+                   )} />
               </Col>
             </Row>
             <CardBody className="pb-0">

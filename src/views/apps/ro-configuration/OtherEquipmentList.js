@@ -10,7 +10,7 @@ import {
   DropdownToggle,
 } from "reactstrap";
 
-import { history } from "../../../history";
+// import { history } from "../../../history";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
@@ -110,7 +110,7 @@ class OtherEquipmentList extends React.Component {
                 className="mr-50"
                 size="25px"
                 color="green"
-                onClick={() => history.push("/#/app/ro-configuration/roForm")}
+                onClick={() => history.push("/app/ro-configuration/roForm")}
               /> */}
              <Route render={({ history}) => (
               <Edit

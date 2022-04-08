@@ -165,13 +165,13 @@ class OutletList extends React.Component {
                 className="mr-50"
                 size="25px"
                 color="green"
-                onClick={() => history.push("/#/app/ro-configuration/roForm")}
+                onClick={() => history.push("/app/ro-configuration/roForm")}
               /> */}
               <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
-                onClick={() => history.push(`/#/app/ro-configuration/outletForm/${params.data._id}`)}
+                onClick={() => history.push(`/app/ro-configuration/outletForm/${params.data._id}`)}
               />
               <Trash2
                 className="mr-50"

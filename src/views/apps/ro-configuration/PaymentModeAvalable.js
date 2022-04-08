@@ -14,8 +14,9 @@ import {
   BreadcrumbItem,
 } from "reactstrap";
 import axiosConfig from "../../../axiosConfig";
-import { history } from "../../../history";
+// import { history } from "../../../history";
 // import swal from "sweetalert";
+import { Route } from 'react-router-dom'
 
 export default class PaymentModeAvalable extends Component {
   constructor(props) {
@@ -99,7 +100,7 @@ export default class PaymentModeAvalable extends Component {
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/#/app/ro-configuration/paymentModeList");
+        this.props.history.push("/app/ro-configuration/paymentModeList");
       })
       .catch((error) => {
         console.log(error.response);
@@ -132,13 +133,16 @@ export default class PaymentModeAvalable extends Component {
               </h1>
             </Col>
             <Col>
+            <Route render={({ history}) => (
+
               <Button
                 className=" btn btn-danger float-right"
                 onClick={() =>
-                history.push("/#/app/ro-configuration/paymentModeList")}
+                history.push("/app/ro-configuration/paymentModeList")}
               >
                 Back
               </Button>
+               )} />
             </Col>
           </Row>
           <CardBody>
