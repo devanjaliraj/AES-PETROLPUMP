@@ -212,7 +212,7 @@ class RSP extends React.Component {
     return (
       <React.Fragment>
         <Breadcrumbs
-          breadCrumbTitle="RSP List"
+          breadCrumbTitle="Credit Given List"
           // breadCrumbParent="Forms & Tables"
           // breadCrumbActive="Shift Management"
         />

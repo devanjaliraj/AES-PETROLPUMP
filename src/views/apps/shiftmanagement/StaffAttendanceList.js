@@ -175,7 +175,7 @@ class StaffAttendance extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs breadCrumbTitle="Lubricants Sale List" />
+        <Breadcrumbs breadCrumbTitle="Staff Attendance List" />
         <Card className="overflow-hidden agGrid-card">
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (

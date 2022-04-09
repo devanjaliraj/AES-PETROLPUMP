@@ -269,7 +269,7 @@ class StatutoryCertificateManagementList extends React.Component {
     return (
       <React.Fragment>
         <Breadcrumbs
-          breadCrumbTitle="Facility Management"
+          breadCrumbTitle="Statutory Certificate Management List"
           // breadCrumbParent="Forms & Tables"
           // breadCrumbActive="Facility Management"
         />

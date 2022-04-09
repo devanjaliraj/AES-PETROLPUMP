@@ -207,7 +207,7 @@ class OtherEquipmentList extends React.Component {
     return (
       <React.Fragment>
         <Breadcrumbs
-          breadCrumbTitle="RSP List"
+          breadCrumbTitle="Other Equipment List"
           // breadCrumbParent="Forms & Tables"
           // breadCrumbActive="Shift Management"
         />

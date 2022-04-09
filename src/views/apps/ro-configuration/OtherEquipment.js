@@ -17,7 +17,7 @@ import axiosConfig from "../../../axiosConfig";
 // import swal from "sweetalert";
 import { Route } from 'react-router-dom'
 
-export default class DesignYourOutlet extends Component {
+export default class OtherEquipment extends Component {
   constructor(props) {
     super(props);
     this.state = {

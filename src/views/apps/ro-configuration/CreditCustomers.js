@@ -15,6 +15,7 @@ import axiosConfig from "../../../axiosConfig";
 // import { history } from "../../../history";
 // import swal from "sweetalert";
 import { Route } from 'react-router-dom'
+import { Download } from "react-feather";
 
 export default class DesignYourOutlet extends Component {
   constructor(props) {
@@ -115,6 +116,26 @@ export default class DesignYourOutlet extends Component {
       })
       .catch(error => {
         console.log(error);
+      });
+  };
+  download = e => {
+    console.log(e.target.href);
+    fetch(e.target.href, {
+      method: "GET",
+      headers: {}
+    })
+      .then(response => {
+        response.arrayBuffer().then(function(buffer) {
+          const url = window.URL.createObjectURL(new Blob([buffer]));
+          const link = document.createElement("a");
+          link.href = url;
+          link.setAttribute("download", "image"); //or any other extension
+          document.body.appendChild(link);
+          link.click();
+        });
+      })
+      .catch(err => {
+        console.log(err);
       });
   };
 
@@ -243,11 +264,21 @@ export default class DesignYourOutlet extends Component {
                
                 <Col lg="6" md="0" sm="6" className="mb-2">
                   <Label>Document Upload</Label>
-                  <img
+                  {/* <img
                     src={this.state.document_upload}
                     name="document_upload"
                     className="w-25 ml-5 h-50"
-                  />
+                  /> */}
+                               <a
+                      href={this.state.document_upload}
+                      download
+                      target='blank'
+                      onClick={e => this.download(e)}
+                    >
+                      {/* <i className="fa fa-download" /> */}
+                      <Download className="mr-50" size="25px" color="blue" />
+                      download document upload 
+                </a>
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Document Upload</Label>
