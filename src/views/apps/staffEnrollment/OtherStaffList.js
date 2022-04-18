@@ -182,7 +182,7 @@ class OtherStaffList extends React.Component {
       {
         headerName: "Status",
         field: "status",
-        filter: true,
+        // filter: true,
         width: 150,
         cellRendererFramework: (params) => {
           return params.value === "Active" ? (

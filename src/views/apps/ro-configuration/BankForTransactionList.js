@@ -14,12 +14,11 @@ import {
 import axiosConfig from "../../../axiosConfig";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { AgGridReact } from "ag-grid-react";
-import {  Edit,  Trash2, ChevronDown } from "react-feather";
-//import classnames from "classnames";
+import { Edit, Trash2, ChevronDown } from "react-feather";
 // import { history } from "../../../history";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import "../../../assets/scss/pages/users.scss";
-import { Route } from 'react-router-dom'
+import { Route } from "react-router-dom";
 
 class BankForTransactionList extends React.Component {
   state = {
@@ -60,8 +59,6 @@ class BankForTransactionList extends React.Component {
           );
         },
       },
-     
-    
       {
         headerName: "Name Of Bank ",
         field: "name_of_bank",
@@ -175,14 +172,20 @@ class BankForTransactionList extends React.Component {
                   history.push(`/app/ro-configuration/viewBankForTransaction/${params.data._id}`)
                 }
               /> */}
-               <Route render={({ history}) => (
-              <Edit
-                className="mr-50"
-                color="blue"
-                size="25px"
-                onClick={() => history.push(`/app/ro-configuration/editBankForTransaction/${params.data._id}`)}
-                /> )} />
-                
+              <Route
+                render={({ history }) => (
+                  <Edit
+                    className="mr-50"
+                    color="blue"
+                    size="25px"
+                    onClick={() =>
+                      history.push(
+                        `/app/ro-configuration/editBankForTransaction/${params.data._id}`
+                      )
+                    }
+                  />
+                )}
+              />
               <Trash2
                 size="25px"
                 color="red"
@@ -247,15 +250,13 @@ class BankForTransactionList extends React.Component {
       console.log(rowData),
       (
         <Row className="app-user-list">
-          <Col sm="12">
-            
-          </Col>
+          <Col sm="12"></Col>
           <Col sm="12">
             <Card>
               <Row className="m-2">
                 <Col>
                   <h1 sm="6" className="float-left">
-                  Bank For Transaction List
+                    Bank For Transaction List
                   </h1>
                 </Col>
                 <Col>
@@ -366,5 +367,4 @@ class BankForTransactionList extends React.Component {
     );
   }
 }
-
 export default BankForTransactionList;

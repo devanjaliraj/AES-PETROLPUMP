@@ -1,4 +1,4 @@
-  import React from "react";
+import React from "react";
 import {
   Card,
   CardBody,
@@ -9,21 +9,19 @@ import {
   DropdownItem,
   DropdownToggle,
 } from "reactstrap";
-
 // import { history } from "../../../history";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import axiosConfig from "../../../axiosConfig";
-
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
-import { Route } from 'react-router-dom'
+import { Route } from "react-router-dom";
 
 class OtherEquipmentList extends React.Component {
   state = {
     rowData: [],
-    alldealerData: [],  
+    alldealerData: [],
     paginationPageSize: 20,
     currenPageSize: "",
     getPageSize: "",
@@ -96,7 +94,6 @@ class OtherEquipmentList extends React.Component {
           );
         },
       },
-     
       {
         headerName: "Actions",
         field: "sortorder",
@@ -112,15 +109,20 @@ class OtherEquipmentList extends React.Component {
                 color="green"
                 onClick={() => history.push("/app/ro-configuration/roForm")}
               /> */}
-             <Route render={({ history}) => (
-              <Edit
-                className="mr-50"
-                size="25px"
-                color="blue"
-                
-                onClick={() => history.push(`/app/ro-configuration/otherEquipment/${params.data._id}`)}
-               /> )} />
-              
+              <Route
+                render={({ history }) => (
+                  <Edit
+                    className="mr-50"
+                    size="25px"
+                    color="blue"
+                    onClick={() =>
+                      history.push(
+                        `/app/ro-configuration/otherEquipment/${params.data._id}`
+                      )
+                    }
+                  />
+                )}
+              />
               <Trash2
                 className="mr-50"
                 size="25px"
@@ -137,20 +139,18 @@ class OtherEquipmentList extends React.Component {
       },
     ],
   };
-  
-    async componentDidMount() {
-      await axiosConfig.get("/admin/allequipment").then((response) => {
-        let rowData = response.data.data;
-        this.setState({ rowData });
-      });
-    }
-      async runthisfunction(id) {
-        console.log(id);
-        await axiosConfig.get(`/admin/deleteequipment/${id}`).then((response) => {
-          console.log(response);
-        });
-      }
-      
+  async componentDidMount() {
+    await axiosConfig.get("/admin/allequipment").then((response) => {
+      let rowData = response.data.data;
+      this.setState({ rowData });
+    });
+  }
+  async runthisfunction(id) {
+    console.log(id);
+    await axiosConfig.get(`/admin/deleteequipment/${id}`).then((response) => {
+      console.log(response);
+    });
+  }
 
   onGridReady = (params) => {
     this.gridApi = params.api;

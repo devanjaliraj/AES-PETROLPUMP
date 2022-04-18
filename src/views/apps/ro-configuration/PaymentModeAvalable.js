@@ -16,8 +16,7 @@ import {
 import axiosConfig from "../../../axiosConfig";
 // import { history } from "../../../history";
 // import swal from "sweetalert";
-import { Route } from 'react-router-dom'
-
+import { Route } from "react-router-dom";
 export default class PaymentModeAvalable extends Component {
   constructor(props) {
     super(props);
@@ -25,18 +24,15 @@ export default class PaymentModeAvalable extends Component {
       select_mode: "",
       select_bank: "",
       settlement_day: "",
-      
     };
     this.state = {
       bankC: [],
-      modeC:[],
+      modeC: [],
     };
     this.submitHandler = this.submitHandler.bind(this);
   }
 
   componentDidMount() {
-
-
     // //Payment
     // axiosConfig
     // .get("/dealer/allpayment")
@@ -49,25 +45,25 @@ export default class PaymentModeAvalable extends Component {
     // });
     //mode
     axiosConfig
-    .get("/dealer/allmode")
-    .then((response) => {
-      console.log(response.data.data);
-      this.setState({ modeC: response.data.data });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+      .get("/dealer/allmode")
+      .then((response) => {
+        console.log(response.data.data);
+        this.setState({ modeC: response.data.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
-     //Bank
-     axiosConfig
-     .get("/dealer/allbank")
-     .then((response) => {
-       console.log(response.data.data);
-       this.setState({ bankC: response.data.data });
-     })
-     .catch((error) => {
-       console.log(error);
-     });
+    //Bank
+    axiosConfig
+      .get("/dealer/allbank")
+      .then((response) => {
+        console.log(response.data.data);
+        this.setState({ bankC: response.data.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
     let { id } = this.props.match.params;
     axiosConfig
@@ -78,7 +74,6 @@ export default class PaymentModeAvalable extends Component {
           select_mode: response.data.data.select_mode,
           select_bank: response.data.data.select_bank,
           settlement_day: response.data.data.settlement_day,
-         
         });
       })
       .catch((error) => {
@@ -93,10 +88,7 @@ export default class PaymentModeAvalable extends Component {
     e.preventDefault();
     let { id } = this.props.match.params;
     axiosConfig
-      .post(
-        `/dealer/updateonepayment/${id}`,
-        this.state
-      )
+      .post(`/dealer/updateonepayment/${id}`, this.state)
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
@@ -120,7 +112,9 @@ export default class PaymentModeAvalable extends Component {
                 {/* <BreadcrumbItem href="/app/material/materialList" tag="a">
                       Material List
                     </BreadcrumbItem> */}
-                <BreadcrumbItem active>Edit Payment Mode Avalable</BreadcrumbItem>
+                <BreadcrumbItem active>
+                  Edit Payment Mode Avalable
+                </BreadcrumbItem>
               </Breadcrumb>
             </div>
           </Col>
@@ -133,72 +127,54 @@ export default class PaymentModeAvalable extends Component {
               </h1>
             </Col>
             <Col>
-            <Route render={({ history}) => (
-
-              <Button
-                className=" btn btn-danger float-right"
-                onClick={() =>
-                history.push("/app/ro-configuration/paymentModeList")}
-              >
-                Back
-              </Button>
-               )} />
+              <Route
+                render={({ history }) => (
+                  <Button
+                    className=" btn btn-danger float-right"
+                    onClick={() =>
+                      history.push("/app/ro-configuration/paymentModeList")
+                    }
+                  >
+                    Back
+                  </Button>
+                )}
+              />
             </Col>
           </Row>
           <CardBody>
             <Form className="m-1" onSubmit={this.submitHandler}>
-              
               <Col lg="6" md="6" sm="12">
                 <FormGroup>
                   <Label>Select Mode </Label>
-                  <CustomInput 
+                  <CustomInput
                     type="select"
                     name="select_mode"
                     value={this.state.select_mode}
-                    onChange={this.changeHandler}>
-                      {this.state.modeC?.map((modep) => (
+                    onChange={this.changeHandler}
+                  >
+                    {this.state.modeC?.map((modep) => (
                       <option value={modep._id} key={modep._id}>
                         {modep.mode}
                       </option>
                     ))}
-                   
                   </CustomInput>
                 </FormGroup>
               </Col>
               <Col lg="6" md="6" sm="6" className="mb-2">
-              <Label>Select Bank</Label>
-                  <CustomInput
-                    type="select"
-                    name="select_bank"
-                    value={this.state.select_bank}
-                    onChange={this.changeHandler}
-                  >
-                    {this.state.bankC?.map((bankp) => (
-                      <option value={bankp._id} key={bankp._id}>
-                        {bankp.name_of_bank}
-                      </option>
-                    ))}
-                  </CustomInput>
-                </Col>
-              {/* <Col md="6" sm="12">
-                <FormGroup>
-                  <Label>Select Bank</Label>
-                  <CustomInput
-                    type="select" 
-                    name="select_bank"
-                    value={this.state.select_bank}
-                    onChange={this.changeHandler}>
-                    <option>Bank 1</option>
-                    <option>Bank 2</option>
-                    <option>Bank 3</option>
-                    <option>Bank 4</option>
-                    <option>Bank 5</option>
-                    <option>Bank 6</option>
-                    <option>Bank 7</option>
-                  </CustomInput>
-                </FormGroup>
-              </Col> */}
-
+                <Label>Select Bank</Label>
+                <CustomInput
+                  type="select"
+                  name="select_bank"
+                  value={this.state.select_bank}
+                  onChange={this.changeHandler}
+                >
+                  {this.state.bankC?.map((bankp) => (
+                    <option value={bankp._id} key={bankp._id}>
+                      {bankp.name_of_bank}
+                    </option>
+                  ))}
+                </CustomInput>
+              </Col>
               <Col lg="6" md="6" sm="6" className="mb-2">
                 <Label>Settlment In Day</Label>
                 <Input
@@ -221,7 +197,7 @@ export default class PaymentModeAvalable extends Component {
                     type="submit"
                     className="mr-1 mb-1"
                   >
-                   Update
+                    Update
                   </Button.Ripple>
                 </Col>
               </Row>

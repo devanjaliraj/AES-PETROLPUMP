@@ -15,6 +15,7 @@ import {
 import fgImg from "../../../assets/img/pages/forgot-password.png"
 import { history } from "../../../history"
 import "../../../assets/scss/pages/authentication.scss"
+import { Route } from 'react-router-dom'
 
 class ForgotPassword extends React.Component {
   render() {
@@ -53,6 +54,7 @@ class ForgotPassword extends React.Component {
                         <Label>Email</Label>
                       </FormGroup>
                       <div className="float-md-left d-block mb-1">
+                      <Route render={({ history}) => (
                         <Button.Ripple
                           color="primary"
                           outline
@@ -60,7 +62,7 @@ class ForgotPassword extends React.Component {
                           onClick={() => history.push("/pages/login")}
                         >
                           Back to Login
-                        </Button.Ripple>
+                        </Button.Ripple> )} />
                       </div>
                       <div className="float-md-right d-block mb-1">
                         <Button.Ripple

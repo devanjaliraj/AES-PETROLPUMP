@@ -14,119 +14,115 @@ import {
   BreadcrumbItem,
 } from "reactstrap";
 import axiosConfig from "../../../axiosConfig";
-// import { history } from "../../../history";
 // import swal from "sweetalert";
-import { Route } from 'react-router-dom'
+import { Route } from "react-router-dom";
 
 export default class BasicDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        dealer_name:"",
-        mobile: "",
-        email:"",
-        master_oil_company:"",
-        location:"",
-        omc_customer_code:"",
-        district:"",
-        districts:[],
-        state:"",
-        userverified:""
+      dealer_name: "",
+      mobile: "",
+      email: "",
+      master_oil_company: "",
+      location: "",
+      omc_customer_code: "",
+      district: "",
+      districts: [],
+      state: "",
+      userverified: "",
     };
     this.state = {
       mocN: [],
       instate: [],
-      city:[]
-     
+      city: [],
     };
     this.submitHandler = this.submitHandler.bind(this);
   }
   getState = () => {
-    fetch('http://3.108.185.7/nodejs/api/admin/allstate', {
-      method: 'POST',
+    fetch("http://3.108.185.7/nodejs/api/admin/allstate", {
+      method: "POST",
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify()
-    }).then((res) => res.json())
-    .then((json) => {
-      this.setState({ instate: json.data })
-      console.log("state", json)
-    });
-    
-  }
+      body: JSON.stringify(),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        this.setState({ instate: json.data });
+        console.log("state", json);
+      });
+  };
 
-  handleChange = event => {
-    this.setState({ state: event.target.value })
-    fetch('http://3.108.185.7/nodejs/api/admin/allcity', {
-      method: 'POST',
+  handleChange = (event) => {
+    this.setState({ state: event.target.value });
+    fetch("http://3.108.185.7/nodejs/api/admin/allcity", {
+      method: "POST",
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        state: event.target.value
-      })
-    }).then((res) => res.json())
-    .then((json) => {
-      this.setState({ city: json.data[0].districts })
-    });
-    
-  }
+        state: event.target.value,
+      }),
+    })
+      .then((res) => res.json())
+      .then((json) => {
+        this.setState({ city: json.data[0].districts });
+      });
+  };
 
   componentDidMount() {
-    this.getState()
+    this.getState();
     // MOC
     axiosConfig
-    .get("/dealer/allMasterOilCompany")
-    .then((response) => {
-      console.log(response.data.data);
-      this.setState({ mocN: response.data.data });
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+      .get("/dealer/allMasterOilCompany")
+      .then((response) => {
+        console.log(response.data.data);
+        this.setState({ mocN: response.data.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
     let { id } = this.props.match.params;
     axiosConfig
       .get(`/dealer/viewonedealershipform/${id}`)
-      .then(response => {
+      .then((response) => {
         console.log(response);
         this.setState({
-            dealer_name: response.data.data.dealer_name,
-            mobile: response.data.data.mobile,
-            email: response.data.data.email,
-            master_oil_company: response.data.data.master_oil_company,
-            location: response.data.data.location,
-            omc_customer_code: response.data.data.omc_customer_code,
-            state: response.data.data.state,
-            district: response.data.data.district,
-            districts: response.data.data.districts,
+          dealer_name: response.data.data.dealer_name,
+          mobile: response.data.data.mobile,
+          email: response.data.data.email,
+          master_oil_company: response.data.data.master_oil_company,
+          location: response.data.data.location,
+          omc_customer_code: response.data.data.omc_customer_code,
+          state: response.data.data.state,
+          district: response.data.data.district,
+          districts: response.data.data.districts,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   }
 
-  changeHandler = e => {
+  changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
-  submitHandler = e => {
+  submitHandler = (e) => {
     e.preventDefault();
     let { id } = this.props.match.params;
     axiosConfig
       .post(`/dealer/addeditbasicdealershipform/${id}`, this.state)
-      .then(response => {
+      .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
         this.props.history.push("/app/ro-configuration/RoConfigurationList");
       })
 
- 
- 
-      .catch(error => {
+      .catch((error) => {
         console.log(error.response);
       });
   };
@@ -135,7 +131,6 @@ export default class BasicDetails extends Component {
   };
 
   render() {
-    // const { addTodo, list } = this.props;
     let { instate, city } = this.state;
     return (
       <div>
@@ -158,24 +153,28 @@ export default class BasicDetails extends Component {
           <Row className="m-2">
             <Col>
               <h1 col-sm-6 className="float-left">
-              Edit Basic Details
+                Edit Basic Details
               </h1>
             </Col>
             <Col>
-            <Route render={({ history}) => (
-              <Button
-                className=" btn btn-danger float-right"
-                onClick={() => history.push("/app/ro-configuration/RoConfigurationList")}
-              >
-                Back
-              </Button>
-                 )} />
+              <Route
+                render={({ history }) => (
+                  <Button
+                    className=" btn btn-danger float-right"
+                    onClick={() =>
+                      history.push("/app/ro-configuration/RoConfigurationList")
+                    }
+                  >
+                    Back
+                  </Button>
+                )}
+              />
             </Col>
           </Row>
           <CardBody>
             <Form className="m-1" onSubmit={this.submitHandler}>
               <Row>
-              <Col lg="6" md="6" sm="6" className="mb-2">
+                <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Name Of Dealer</Label>
                   <Input
                     type="text"
@@ -202,24 +201,24 @@ export default class BasicDetails extends Component {
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-            
+
                 <Col md="6" sm="12">
-                <FormGroup>
-                   <Label>Master Oil Company</Label>
-                  <CustomInput 
-                    type="select"
-                    name="master_oil_company"
-                    value={this.state.master_oil_company}
-                    onChange={this.changeHandler}>
-                       {this.state.mocN?.map((mocp) => (
-                      <option value={mocp._id} key={mocp._id}>
-                        {mocp.name}
-                      </option>
-                    ))}
-                   
-                  </CustomInput>
-                </FormGroup>
-              </Col>
+                  <FormGroup>
+                    <Label>Master Oil Company</Label>
+                    <CustomInput
+                      type="select"
+                      name="master_oil_company"
+                      value={this.state.master_oil_company}
+                      onChange={this.changeHandler}
+                    >
+                      {this.state.mocN?.map((mocp) => (
+                        <option value={mocp._id} key={mocp._id}>
+                          {mocp.name}
+                        </option>
+                      ))}
+                    </CustomInput>
+                  </FormGroup>
+                </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Location</Label>
                   <Input
@@ -238,41 +237,35 @@ export default class BasicDetails extends Component {
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-              
-              <Col md="6" sm="12">
-               
-                <Label>State</Label>
-                <CustomInput
-                  type="select" name="state" value={this.state.state} onChange={this.handleChange}>            
-           {instate.map((item) => {
-              return <option value={item.state} >{item.state}</option>
-            })}
-          </CustomInput>
-                  {/* <CustomInput 
+
+                <Col md="6" sm="12">
+                  <Label>State</Label>
+                  <CustomInput
                     type="select"
                     name="state"
                     value={this.state.state}
-                    onChange={this.changeHandler}>
-                       {this.state.cityS?.map((cityp) => (
-                      <option value={cityp._id} key={cityp._id}>
-                        {cityp.state}
-                      </option>
-                    ))}
-                  </CustomInput> */}
-                
-              </Col>
-              
+                    onChange={this.handleChange}
+                  >
+                    {instate.map((item) => {
+                      return <option value={item.state}>{item.state}</option>;
+                    })}
+                  </CustomInput>
+                </Col>
+
                 <Col md="6" sm="12">
-               
-                <Label>District </Label>
-                 
-                <CustomInput
-                  type="select" name="district" value={this.state.district} onChange={this.changeHandler}>
-            {city.map((item) => {
-              return <option value={item} >{item}</option>
-            })}
-          </CustomInput>
-          {/* <Col lg="6" md="6" sm="6" className="mb-2 mt-1">
+                  <Label>District </Label>
+
+                  <CustomInput
+                    type="select"
+                    name="district"
+                    value={this.state.district}
+                    onChange={this.changeHandler}
+                  >
+                    {city.map((item) => {
+                      return <option value={item}>{item}</option>;
+                    })}
+                  </CustomInput>
+                  {/* <Col lg="6" md="6" sm="6" className="mb-2 mt-1">
                   <Label className="mb-1">Status</Label>
                   <div
                     className="form-label-group"
@@ -296,9 +289,7 @@ export default class BasicDetails extends Component {
                     <span style={{ marginRight: "3px" }}>Inactive</span>
                   </div>
                 </Col> */}
-              </Col>
-        
-              
+                </Col>
               </Row>
 
               <Row>

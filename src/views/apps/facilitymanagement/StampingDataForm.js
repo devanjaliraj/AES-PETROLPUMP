@@ -13,7 +13,8 @@ import {
 } from "reactstrap";
 import axiosConfig from "../../../axiosConfig";
 import { Download } from "react-feather";
-import { history } from "../../../history";
+// import { history } from "../../../history";
+import { Route } from 'react-router-dom'
 
 class StampingDataForm extends React.Component {
   constructor(props) {
@@ -135,7 +136,7 @@ class StampingDataForm extends React.Component {
       )
       .then((response) => {
         console.log(response);
-        this.props.history.push("/#/app/facilityManagement/stampingDataList");
+        this.props.history.push("/app/facilityManagement/stampingDataList");
       })
       .catch((error) => {
         console.log(error.response);
@@ -167,14 +168,16 @@ class StampingDataForm extends React.Component {
       <Card>
         <CardHeader>
           <CardTitle>Stamping Date</CardTitle>
+          <Route render={({ history}) => (
+
           <Button
             className=" btn btn-danger float-right"
             onClick={() =>
-              history.push("/#/app/facilityManagement/stampingDataList")
+              history.push("/app/facilityManagement/stampingDataList")
             }
           >
             Back
-          </Button>
+          </Button>)}/>
         </CardHeader>
         <CardBody>
           <Form className="m-1" onSubmit={this.submitHandler}>

@@ -12,8 +12,10 @@ import {
   Input,
 } from "reactstrap";
 import { Download } from "react-feather";
-import { history } from "../../../history";
+// import { history } from "../../../history";
 import axiosConfig from "../../../axiosConfig";
+import { Route } from 'react-router-dom'
+
 class OtherEquipmentForm extends React.Component {
   constructor(props) {
     super(props);
@@ -93,7 +95,7 @@ class OtherEquipmentForm extends React.Component {
       .post(`/dealer/updateequipment/${id}`, data)
       .then((response) => {
         console.log(response);
-        this.props.history.push("/#/app/facilityManagement/otherEquipmentList");
+        this.props.history.push("/app/facilityManagement/otherEquipmentList");
       })
 
       .catch((error) => {
@@ -126,14 +128,16 @@ class OtherEquipmentForm extends React.Component {
       <Card>
         <CardHeader>
           <CardTitle>Other Equipment</CardTitle>
+          <Route render={({ history}) => (
+
           <Button
             className=" btn btn-danger float-right"
             onClick={() =>
-              history.push("/#/app/facilityManagement/otherEquipmentList")
+              history.push("/app/facilityManagement/otherEquipmentList")
             }
           >
             Back
-          </Button>
+          </Button>)}/>
         </CardHeader>
         <CardBody>
           <Form className="m-1" onSubmit={this.submitHandler}>

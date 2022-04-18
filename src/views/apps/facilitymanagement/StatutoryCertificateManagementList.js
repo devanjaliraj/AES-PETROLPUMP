@@ -13,6 +13,7 @@ import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2,  Edit } from "react-feather";
 import axiosConfig from "../../../axiosConfig";
+import { Route } from 'react-router-dom'
 
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 
@@ -198,12 +199,14 @@ class StatutoryCertificateManagementList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
+          <Route render={({ history}) => (
+
               <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
-                // onClick={() => history.push("/#/app/slider/editSlider/${params.data._id}")}
-              />
+                // onClick={() => history.push("/app/slider/editSlider/${params.data._id}")}
+              />)}/>
               <Trash2
                 className="mr-50"
                 size="25px"

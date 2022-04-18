@@ -9,20 +9,17 @@ import {
   DropdownItem,
   DropdownToggle,
 } from "reactstrap";
+import axiosConfig from "../../../axiosConfig";
+// import { history } from "../../../history";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2, Edit } from "react-feather";
-import axiosConfig from "../../../axiosConfig";
-import { Route } from 'react-router-dom'
-
+import { ChevronDown, Eye } from "react-feather";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
-// import { history } from "../../../history";
-
-class StampingDataList extends React.Component {
+import { Route } from "react-router-dom";
+class DealerListForNozzle extends React.Component {
   state = {
-    rowData: null,
+    rowData: [],
     paginationPageSize: 20,
     currenPageSize: "",
     getPageSize: "",
@@ -34,165 +31,126 @@ class StampingDataList extends React.Component {
     },
     columnDefs: [
       {
-        headerName: "MPD",
-        field: "mpd_map.mpd_number",
+        headerName: "Dealer Name",
+        field: "dealer_name",
         width: 140,
+        pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              {params.data.mpd_map?.map((mpd) => (
-                <span>{mpd?.mpd_number}</span>
-              ))}
+              <span>{params.data.dealer_name}</span>
             </div>
           );
         },
       },
-
+      {
+        headerName: "Mobile",
+        field: "mobile",
+        width: 140,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.mobile}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Email",
+        field: "email",
+        width: 140,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.email}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Master Oil Company",
+        field: "master_oil_company.name",
+        width: 140,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.master_oil_company?.name}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "State",
+        field: "state",
+        width: 140,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.state}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "District",
+        field: "district",
+        width: 140,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.district}</span>
+            </div>
+          );
+        },
+      },
       // {
-      //   headerName: "Tank ",
-      //   field: "tank_map.tank_number",
-      //   width: 140,
+      //   headerName: "Status",
+      //   field: "userverified",
+      //   // filter: true,
+      //   width: 150,
       //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         {params.data.tank_map?.map((tank) => (
-      //           <span>{tank?.tank_number}</span>
-      //         ))}
+      //     return params.value === "Active" ? (
+      //       <div className="badge badge-pill badge-success">
+      //         {params.data.userverified}
       //       </div>
-      //     );
+      //     ) : params.value === "Inactive" ? (
+      //       <div className="badge badge-pill badge-warning">
+      //         {params.data.userverified}
+      //       </div>
+      //     ) : null;
       //   },
       // },
-
-      // {
-      //   headerName: "Nozzel",
-      //   field: "nozzel.nozzle_map.nozzle_number",
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         <span>{params.data.nozzel.nozzle_map?.nozzle_number}</span>
-      //       </div>
-      //     );
-      //   },
-      //   width: 250,
-      // },
-      // {
-      //   headerName: "Product",
-      //   field: "Product.tank_map.tank_number",
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         <span>{params.data.Product.tank_map?.tank_number}</span>
-      //       </div>
-      //     );
-      //   },
-      //   width: 250,
-      // },
-      {
-        headerName: "Last Stamping Date",
-        field: "Last_Stamping_Date",
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.Last_Stamping_Date}</span>
-            </div>
-          );
-        },
-        width: 150,
-      },
-      {
-        headerName: "Due Date",
-        field: "Due_Date",
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.Due_Date}</span>
-            </div>
-          );
-        },
-        width: 150,
-      },
-      {
-        headerName: "K Factor",
-        field: "K_Factor",
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.K_Factor}</span>
-            </div>
-          );
-        },
-        width: 125,
-      },
-      {
-        headerName: "Upload Certificate",
-        field: "Upload_Certificate",
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.Upload_Certificate}</span>
-            </div>
-          );
-        },
-        width: 140,
-      },
-      {
-        headerName: "Upload Service Report",
-        field: "Upload_Service_Report",
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.Upload_Service_Report}</span>
-            </div>
-          );
-        },
-        width: 140,
-      },
-      {
-        headerName: "Last Service Date",
-        field: "Last_Service_Date",
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.Last_Service_Date}</span>
-            </div>
-          );
-        },
-        width: 140,
-      },
-      {
-        headerName: "Last Service Report",
-        field: "Last_Service_Report",
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.Last_Service_Report}</span>
-            </div>
-          );
-        },
-        width: 140,
-      },
-
       {
         headerName: "Actions",
         field: "sortorder",
-        width: 150,
-        pinned: window.innerWidth > 992 ? "right" : false,
+        width: 300,
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-          <Route render={({ history}) => (
-
-              <Edit
+              {/* <Route render={({ history}) => (
+              <Button
                 className="mr-50"
                 size="25px"
-                color="blue"
-                onClick={() =>
-                  history.push(
-                    `/app/facilityManagement/stampingDataForm/${params.data._id}`
-                  )
-                }
-              />)}/>
-              <Trash2
+                color="green"
+                onClick={() => history.push(`/app/ro-configuration/nozzleList/${params.data._id}`)}
+              >NOZZLE</Button>)} /> */}
+
+              <Route
+                render={({ history }) => (
+                  <Eye
+                    className="mr-50"
+                    size="25px"
+                    color="blue"
+                    onClick={() =>
+                      history.push(
+                        `/app/ro-configuration/paymentModeList/${params.data._id}`
+                      )
+                    }
+                  />
+                )}
+              />
+
+              {/* <Trash2
                 className="mr-50"
                 size="25px"
                 color="red"
@@ -201,39 +159,27 @@ class StampingDataList extends React.Component {
                   this.runthisfunction(params.data._id);
                   this.gridApi.updateRowData({ remove: selectedData });
                 }}
-              />
+              /> */}
             </div>
           );
         },
       },
     ],
   };
-  componentDidMount() {
-    // axiosConfig
-    //   .get("http://3.108.185.7/nodejs/api/dealer/alldealers")
-    //   .then((response) => {
-    //     console.log(response.data.data);
-    //     this.setState({ mfp: response.data.data });
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-    axiosConfig
-      .get("/dealer/allStampingdata")
-      .then((response) => {
-        let rowData = response.data.data;
-        JSON.stringify(rowData);
-        this.setState({ rowData });
-      });
+  async componentDidMount() {
+    await axiosConfig.get("/dealer/alldealers").then((response) => {
+      const rowData = response.data.data;
+      console.log(rowData);
+      this.setState({ rowData });
+    });
   }
-  async runthisfunction(id) {
-    console.log(id);
-    await axiosConfig
-      .get(`/dealer/deleteStampingdata/${id}`)
-      .then((response) => {
-        console.log(response);
-      });
-  }
+  //   async runthisfunction(id) {
+  //     console.log(id);
+  //     await axiosConfig.get(`/dealer/deletedealershipform/${id}`).then((response) => {
+  //       console.log(response);
+  //     });
+  //   }
+
   onGridReady = (params) => {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
@@ -262,11 +208,7 @@ class StampingDataList extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs
-          breadCrumbTitle="Stamping Data List"
-          // breadCrumbParent="Forms & Tables"
-          // breadCrumbActive="Facility Management"
-        />
+        <Breadcrumbs breadCrumbTitle="Basic Detail List" />
         <Card className="overflow-hidden agGrid-card">
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
@@ -345,7 +287,7 @@ class StampingDataList extends React.Component {
                       onGridReady={this.onGridReady}
                       colResizeDefault={"shift"}
                       animateRows={true}
-                      floatingFilter={false}
+                      floatingFilter={true}
                       pagination={true}
                       paginationPageSize={this.state.paginationPageSize}
                       pivotPanelShow="always"
@@ -361,4 +303,4 @@ class StampingDataList extends React.Component {
     );
   }
 }
-export default StampingDataList;
+export default DealerListForNozzle;

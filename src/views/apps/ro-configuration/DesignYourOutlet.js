@@ -14,8 +14,7 @@ import {
 import axiosConfig from "../../../axiosConfig";
 // import { history } from "../../../history";
 // import swal from "sweetalert";
-import { Route } from 'react-router-dom'
-
+import { Route } from "react-router-dom";
 export default class DesignYourOutlet extends Component {
   constructor(props) {
     super(props);
@@ -27,15 +26,12 @@ export default class DesignYourOutlet extends Component {
       total_no_air_machine: "",
       puc_machine: "",
       any_other_facility: "",
-      dealerId : ''
+      dealerId: "",
     };
   }
-
   componentDidMount() {
-    
-   
     let { id } = this.props.match.params;
-    this.setState({ dealerId : id });
+    this.setState({ dealerId: id });
     axiosConfig
       .get(`/dealer/viewonedealershipform/${id}`)
       .then((response) => {
@@ -54,7 +50,6 @@ export default class DesignYourOutlet extends Component {
         console.log(error.response);
       });
   }
-
   changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -62,10 +57,7 @@ export default class DesignYourOutlet extends Component {
     e.preventDefault();
     let { id } = this.props.match.params;
     axiosConfig
-      .post(
-        `/dealer/addeditbasicdealershipform/${id}`,
-        this.state
-      )
+      .post(`/dealer/addeditbasicdealershipform/${id}`, this.state)
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
@@ -105,16 +97,18 @@ export default class DesignYourOutlet extends Component {
               </h1>
             </Col>
             <Col>
-            <Route render={({ history}) => (
-              <Button
-                className=" btn btn-danger float-right"
-                onClick={() =>
-                  history.push("/app/ro-configuration/DesignYourOutletList")
-                }
-              >
-                Back
-              </Button>
-               )} />
+              <Route
+                render={({ history }) => (
+                  <Button
+                    className=" btn btn-danger float-right"
+                    onClick={() =>
+                      history.push("/app/ro-configuration/DesignYourOutletList")
+                    }
+                  >
+                    Back
+                  </Button>
+                )}
+              />
             </Col>
           </Row>
           <CardBody>
@@ -122,7 +116,7 @@ export default class DesignYourOutlet extends Component {
               <Row>
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Total no. of MPD </Label>
-                  
+
                   <Input
                     type="text"
                     name="total_no_mpd"
@@ -194,12 +188,6 @@ export default class DesignYourOutlet extends Component {
                   >
                     Update
                   </Button.Ripple>
-                  {/* <Button.Ripple
-                    color="primary"
-                    className="mr-1 mb-1"
-                    onClick={() => history.push(`/app/ro-configuration/editTankMap/`+dealerId)} > 
-                    Next
-                  </Button.Ripple> */}
                 </Col>
               </Row>
             </Form>

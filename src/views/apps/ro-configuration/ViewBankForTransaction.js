@@ -9,7 +9,7 @@ import {
   BreadcrumbItem,
 } from "reactstrap";
 // import { history } from "../../../history";
-import { Route } from 'react-router-dom'
+import { Route } from "react-router-dom";
 
 import "../../../assets/scss/pages/app-ecommerce-shop.scss";
 import axiosConfig from "../../../axiosConfig";
@@ -20,17 +20,16 @@ class ViewBankForTransaction extends React.Component {
       data: {},
     };
   }
-
   componentDidMount() {
     let { id } = this.props.match.params;
     axiosConfig
       .get(`/dealer/getonebank/${id}`)
-      .then(response => {
+      .then((response) => {
         // console.log(response.data);
         console.log(response.data.data);
         this.setState({ data: response.data.data });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   }
@@ -46,10 +45,15 @@ class ViewBankForTransaction extends React.Component {
                   <BreadcrumbItem href="/analyticsDashboard" tag="a">
                     Home
                   </BreadcrumbItem>
-                  <BreadcrumbItem href="/app/ro-configuration/bankForTransactionList" tag="a">
-                  Bank For Transaction List
+                  <BreadcrumbItem
+                    href="/app/ro-configuration/bankForTransactionList"
+                    tag="a"
+                  >
+                    Bank For Transaction List
                   </BreadcrumbItem>
-                  <BreadcrumbItem active>View Bank For Transaction</BreadcrumbItem>
+                  <BreadcrumbItem active>
+                    View Bank For Transaction
+                  </BreadcrumbItem>
                 </Breadcrumb>
               </div>
             </Col>
@@ -62,14 +66,20 @@ class ViewBankForTransaction extends React.Component {
                 </h1>
               </Col>
               <Col>
-            <Route render={({ history}) => (
-
-                <Button
-                  className=" btn btn-danger float-right"
-                  onClick={() => history.push("/app/ro-configuration/bankForTransactionList")}>
-                  Back
-                </Button>
-                   )} />
+                <Route
+                  render={({ history }) => (
+                    <Button
+                      className=" btn btn-danger float-right"
+                      onClick={() =>
+                        history.push(
+                          "/app/ro-configuration/bankForTransactionList"
+                        )
+                      }
+                    >
+                      Back
+                    </Button>
+                  )}
+                />
               </Col>
             </Row>
             <CardBody className="pb-0">

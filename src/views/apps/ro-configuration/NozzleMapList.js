@@ -15,7 +15,7 @@ import { ChevronDown } from "react-feather";
 import axiosConfig from "../../../axiosConfig";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
-import { Trash2, Edit } from "react-feather";
+import { Trash2, Edit, Eye } from "react-feather";
 // import { history } from "../../../history";
 import { Route } from 'react-router-dom'
 
@@ -127,14 +127,16 @@ class NozzleMapList extends React.Component {
         pinned: window.innerWidth > 992 ? "right" : false,
 
         cellRendererFramework: (params) => {
+          console.log('@@@@id@@@@@@@@@@',params)
           return (
             <div className="actions cursor-pointer">
-              {/* <Eye
+              <Route render={({ history}) => (
+              <Eye
                 className="mr-50"
                 size="25px"
                 color="green"
-                onClick={() => history.push(`/app/ro-configuration/DesignYourOutlet/${params.data._id}`)}
-              /> */}
+                onClick={() => history.push(`/app/ro-configuration/NozzleList/${params.data.dealer_id._id}`)}
+              /> )} />
                <Route render={({ history}) => (
 
               <Edit

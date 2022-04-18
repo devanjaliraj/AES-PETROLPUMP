@@ -15,7 +15,7 @@ import axiosConfig from "../../../axiosConfig";
 // import { history } from "../../../history";
 // import { data } from "jquery";
 // import swal from "sweetalert";
-import { Route } from 'react-router-dom'
+import { Route } from "react-router-dom";
 
 export default class OtherEquipment extends Component {
   constructor(props) {
@@ -25,16 +25,12 @@ export default class OtherEquipment extends Component {
       nature: "",
       manufacturer: "",
       purchased_on: "",
-    
     };
   }
-
   componentDidMount() {
     let { id } = this.props.match.params;
     axiosConfig
-      .get(
-        `/admin/viewoneequipment/${id}`,
-      )
+      .get(`/admin/viewoneequipment/${id}`)
       .then((response) => {
         console.log(response);
         this.setState({
@@ -49,25 +45,23 @@ export default class OtherEquipment extends Component {
       });
   }
 
-    changeHandler = (e) => {
-      this.setState({ [e.target.name]: e.target.value });
-    };
-    submitHandler = (e) => {
-      e.preventDefault();
-      let { id } = this.props.match.params;
-      axiosConfig
-        .post(`/admin/editequipment/${id}`,
-          this.state
-        )
-        .then((response) => {
-          console.log(response);
-          // swal("Success!", "Submitted SuccessFull!", "success");
-          this.props.history.push("/app/ro-configuration/OtherEquipmentList");
-        })
-        .catch((error) => {
-          console.log(error.response);
-        });
-    };
+  changeHandler = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+  submitHandler = (e) => {
+    e.preventDefault();
+    let { id } = this.props.match.params;
+    axiosConfig
+      .post(`/admin/editequipment/${id}`, this.state)
+      .then((response) => {
+        console.log(response);
+        // swal("Success!", "Submitted SuccessFull!", "success");
+        this.props.history.push("/app/ro-configuration/OtherEquipmentList");
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+  };
 
   render() {
     return (
@@ -95,17 +89,18 @@ export default class OtherEquipment extends Component {
               </h1>
             </Col>
             <Col>
-            <Route render={({ history}) => (
-
-              <Button
-                className=" btn btn-danger float-right"
-                onClick={() =>
-                  history.push("/app/ro-configuration/OtherEquipmentList")
-                }
-              >
-                Back
-              </Button>
-               )} />
+              <Route
+                render={({ history }) => (
+                  <Button
+                    className=" btn btn-danger float-right"
+                    onClick={() =>
+                      history.push("/app/ro-configuration/OtherEquipmentList")
+                    }
+                  >
+                    Back
+                  </Button>
+                )}
+              />
             </Col>
           </Row>
           <CardBody>
@@ -138,16 +133,6 @@ export default class OtherEquipment extends Component {
                   onChange={this.changeHandler}
                 ></Input>
               </Col>
-              {/* <Col lg="6" md="6" sm="6" className="mb-2">
-                <Label>Dealer</Label>
-                <Input
-                  type="text"
-                  name="dealer_name"
-                  value={this.state.dealer}
-                  onChange={this.changeHandler}
-                ></Input>
-              </Col> */}
-
               <Row>
                 <Col
                   lg="6"

@@ -115,6 +115,7 @@ export default class DesignYourOutlet extends Component {
         this.props.history.push("/app/ro-configuration/CreditCustomersList");
       })
       .catch(error => {
+          //  swal("Error!", "You clicked the button!", "error");
         console.log(error);
       });
   };

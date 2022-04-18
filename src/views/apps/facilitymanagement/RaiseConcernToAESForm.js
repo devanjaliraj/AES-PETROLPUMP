@@ -11,7 +11,8 @@ import {
   Input,
 } from "reactstrap";
 import axiosConfig from "../../../axiosConfig";
-import { history } from "../../../history";
+// import { history } from "../../../history";
+import { Route } from 'react-router-dom'
 
 const concernOption = [
   "Service Request",
@@ -60,7 +61,7 @@ class RaiseConcernToAESForm extends React.Component {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
         this.props.history.push(
-          "/#/app/facilityManagement/raiseConcernToAESList"
+          "/app/facilityManagement/raiseConcernToAESList"
         );
       })
       .catch((error) => {
@@ -73,14 +74,15 @@ class RaiseConcernToAESForm extends React.Component {
       <Card>
         <CardHeader>
           <CardTitle>Raise Form</CardTitle>
+          <Route render={({ history}) => (
           <Button
             className=" btn btn-danger float-right"
             onClick={() =>
-              history.push("/#/app/facilityManagement/raiseConcernToAESList")
+              history.push("/app/facilityManagement/raiseConcernToAESList")
             }
           >
             Back
-          </Button>
+          </Button>)}/>
         </CardHeader>
         <CardBody>
           <Form className="m-1" onSubmit={this.submitHandler}>

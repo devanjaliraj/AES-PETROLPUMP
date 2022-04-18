@@ -1,12 +1,6 @@
 import React from "react";
-import { Card, 
-         CardHeader, 
-         CardTitle, 
-         CardBody, 
-         Breadcrumb } from "reactstrap";
+import { Card, CardHeader, CardTitle, CardBody } from "reactstrap";
 import ReactTable from "react-table";
-import { AgGridReact } from "ag-grid-react";
-
 import { makeData } from "../../tables/react-tables/TableData";
 import "react-table/react-table.css";
 import "../../../assets/scss/plugins/extensions/react-tables.scss";

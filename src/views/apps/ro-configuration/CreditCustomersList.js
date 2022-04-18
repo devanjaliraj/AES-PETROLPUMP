@@ -16,8 +16,7 @@ import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
-import { Route } from 'react-router-dom'
-
+import { Route } from "react-router-dom";
 class CreditCustomersList extends React.Component {
   state = {
     rowData: [],
@@ -203,14 +202,20 @@ class CreditCustomersList extends React.Component {
                 color="green"
                 onClick={() => history.push("/app/ro-configuration/roForm")}
               /> */}
-               <Route render={({ history}) => (
-              
-              <Edit
-                className="mr-50"
-                size="25px"
-                color="blue"
-                onClick={() => history.push(`/app/ro-configuration/creditCustomers/${params.data._id}`)}
-                /> )} />
+              <Route
+                render={({ history }) => (
+                  <Edit
+                    className="mr-50"
+                    size="25px"
+                    color="blue"
+                    onClick={() =>
+                      history.push(
+                        `/app/ro-configuration/creditCustomers/${params.data._id}`
+                      )
+                    }
+                  />
+                )}
+              />
               <Trash2
                 className="mr-50"
                 size="25px"
@@ -228,19 +233,19 @@ class CreditCustomersList extends React.Component {
     ],
   };
   async componentDidMount() {
-    await axiosConfig
-      .get("/dealer/allcreditcustomer")
-      .then((response) => {
-        const rowData = response.data.data;
-        console.log(rowData);
-        this.setState({ rowData });
-      });
+    await axiosConfig.get("/dealer/allcreditcustomer").then((response) => {
+      const rowData = response.data.data;
+      console.log(rowData);
+      this.setState({ rowData });
+    });
   }
   async runthisfunction(id) {
     console.log(id);
-    await axiosConfig.get(`/dealer/deletecreditcustomers/${id}`).then((response) => {
-      console.log(response);
-    });
+    await axiosConfig
+      .get(`/dealer/deletecreditcustomers/${id}`)
+      .then((response) => {
+        console.log(response);
+      });
   }
   onGridReady = (params) => {
     this.gridApi = params.api;
@@ -268,8 +273,7 @@ class CreditCustomersList extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs
-          breadCrumbTitle="Credit Customers List"/>
+        <Breadcrumbs breadCrumbTitle="Credit Customers List" />
         <Card className="overflow-hidden agGrid-card">
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (

@@ -1,4 +1,3 @@
-
 import React from "react";
 import {
   Card,
@@ -43,7 +42,6 @@ class OutletList extends React.Component {
           );
         },
       },
-   
       {
         headerName: "Email",
         field: "email",
@@ -65,7 +63,7 @@ class OutletList extends React.Component {
           return (
             <div className="d-flex align-items-center cursor-pointer">
               {params.data.tank_map?.map((tank) => (
-              <span>{tank?.tank_number}</span>
+                <span>{tank?.tank_number}</span>
               ))}
             </div>
           );
@@ -79,13 +77,12 @@ class OutletList extends React.Component {
           return (
             <div className="d-flex align-items-center cursor-pointer">
               {params.data.tank_map?.map((tank) => (
-              <span>{tank?.product_map}</span>
+                <span>{tank?.product_map}</span>
               ))}
             </div>
           );
         },
       },
-   
       {
         headerName: "Tank ",
         field: "tank_map.capacity_litre",
@@ -94,14 +91,12 @@ class OutletList extends React.Component {
           return (
             <div className="d-flex align-items-center cursor-pointer">
               {params.data.tank_map?.map((tank) => (
-              <span>{tank?.capacity_litre}</span>
+                <span>{tank?.capacity_litre}</span>
               ))}
             </div>
           );
         },
       },
-  
-
       // {
       //   headerName: "Tank ",
       //   field: "tank_map.capacity_litre",
@@ -171,7 +166,11 @@ class OutletList extends React.Component {
                 className="mr-50"
                 size="25px"
                 color="blue"
-                onClick={() => history.push(`/app/ro-configuration/outletForm/${params.data._id}`)}
+                onClick={() =>
+                  history.push(
+                    `/app/ro-configuration/outletForm/${params.data._id}`
+                  )
+                }
               />
               <Trash2
                 className="mr-50"
@@ -190,19 +189,19 @@ class OutletList extends React.Component {
     ],
   };
   async componentDidMount() {
-    await axiosConfig
-      .get("/dealer/alldealers")
-      .then((response) => {
-        const rowData = response.data.data;
-        console.log(rowData);
-        this.setState({ rowData });
-      });
-    }
+    await axiosConfig.get("/dealer/alldealers").then((response) => {
+      const rowData = response.data.data;
+      console.log(rowData);
+      this.setState({ rowData });
+    });
+  }
   async runthisfunction(id) {
     console.log(id);
-    await axiosConfig.get(`/dealer/deletedealershipform/${id}`).then((response) => {
-      console.log(response);
-    });
+    await axiosConfig
+      .get(`/dealer/deletedealershipform/${id}`)
+      .then((response) => {
+        console.log(response);
+      });
   }
 
   onGridReady = (params) => {
@@ -233,8 +232,7 @@ class OutletList extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs
-          breadCrumbTitle="Ro Configuration"/>
+        <Breadcrumbs breadCrumbTitle="Ro Configuration" />
         <Card className="overflow-hidden agGrid-card">
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (

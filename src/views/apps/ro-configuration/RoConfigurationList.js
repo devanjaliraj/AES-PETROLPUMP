@@ -16,7 +16,7 @@ import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
-import { Route } from 'react-router-dom'
+import { Route } from "react-router-dom";
 class RoConfiguration extends React.Component {
   state = {
     rowData: [],
@@ -123,24 +123,42 @@ class RoConfiguration extends React.Component {
       {
         headerName: "Actions",
         field: "sortorder",
-        width: 140,
+        width: 300,
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              {/* <Eye
-                className="mr-50"
-                size="25px"
-                color="green"
-                onClick={() => history.push("/app/ro-configuration/roForm")}
-              /> */}
-               <Route render={({ history}) => (
-              <Edit
-                className="mr-50"
-                size="25px"
-                color="blue"
-                onClick={() => history.push(`/app/ro-configuration/basicDetails/${params.data._id}`)}
-                /> )} />
-                
+              <Route
+                render={({ history }) => (
+                  <Button
+                    className="mr-50"
+                    size="25px"
+                    color="green"
+                    onClick={() =>
+                      history.push(
+                        `/app/ro-configuration/nozzleList/${params.data._id}`
+                      )
+                    }
+                  >
+                    NOZZLE
+                  </Button>
+                )}
+              />
+
+              <Route
+                render={({ history }) => (
+                  <Edit
+                    className="mr-50"
+                    size="25px"
+                    color="blue"
+                    onClick={() =>
+                      history.push(
+                        `/app/ro-configuration/basicDetails/${params.data._id}`
+                      )
+                    }
+                  />
+                )}
+              />
+
               <Trash2
                 className="mr-50"
                 size="25px"
@@ -158,19 +176,19 @@ class RoConfiguration extends React.Component {
     ],
   };
   async componentDidMount() {
-    await axiosConfig
-      .get("/dealer/alldealers")
-      .then((response) => {
-        const rowData = response.data.data;
-        console.log(rowData);
-        this.setState({ rowData });
-      });
-    }
+    await axiosConfig.get("/dealer/alldealers").then((response) => {
+      const rowData = response.data.data;
+      console.log(rowData);
+      this.setState({ rowData });
+    });
+  }
   async runthisfunction(id) {
     console.log(id);
-    await axiosConfig.get(`/dealer/deletedealershipform/${id}`).then((response) => {
-      console.log(response);
-    });
+    await axiosConfig
+      .get(`/dealer/deletedealershipform/${id}`)
+      .then((response) => {
+        console.log(response);
+      });
   }
 
   onGridReady = (params) => {
@@ -201,8 +219,7 @@ class RoConfiguration extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs
-          breadCrumbTitle="Basic Detail List"/>
+        <Breadcrumbs breadCrumbTitle="Basic Detail List" />
         <Card className="overflow-hidden agGrid-card">
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (

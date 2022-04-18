@@ -14,18 +14,18 @@ import {
 import axiosConfig from "../../../axiosConfig";
 // import { history } from "../../../history";
 // import swal from "sweetalert";
-import { Route } from 'react-router-dom'
+import { Route } from "react-router-dom";
 
 export default class EditBankForTransaction extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        name_of_bank:"",
-        credit_limit_of_bank: "",
-        intrest_rates:"",
-        ifsc_code:"",
-        cresit_offer:"",
-        account_no:"",
+      name_of_bank: "",
+      credit_limit_of_bank: "",
+      intrest_rates: "",
+      ifsc_code: "",
+      cresit_offer: "",
+      account_no: "",
     };
   }
 
@@ -33,7 +33,7 @@ export default class EditBankForTransaction extends Component {
     let { id } = this.props.match.params;
     axiosConfig
       .get(`/dealer/getonebank/${id}`)
-      .then(response => {
+      .then((response) => {
         console.log(response);
         this.setState({
           name_of_bank: response.data.data.name_of_bank,
@@ -41,28 +41,28 @@ export default class EditBankForTransaction extends Component {
           intrest_rates: response.data.data.intrest_rates,
           ifsc_code: response.data.data.ifsc_code,
           cresit_offer: response.data.data.cresit_offer,
-          account_no: response.data.data.account_no
+          account_no: response.data.data.account_no,
         });
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   }
 
-  changeHandler = e => {
+  changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
-  submitHandler = e => {
+  submitHandler = (e) => {
     e.preventDefault();
     let { id } = this.props.match.params;
     axiosConfig
       .post(`/dealer/updateonebank/${id}`, this.state)
-      .then(response => {
+      .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
         this.props.history.push("/app/ro-configuration/BankForTransactionList");
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
   };
@@ -80,7 +80,9 @@ export default class EditBankForTransaction extends Component {
                 {/* <BreadcrumbItem href="/app/material/materialList" tag="a">
                   Material List
                 </BreadcrumbItem> */}
-                <BreadcrumbItem active>Edit Bank For Transaction</BreadcrumbItem>
+                <BreadcrumbItem active>
+                  Edit Bank For Transaction
+                </BreadcrumbItem>
               </Breadcrumb>
             </div>
           </Col>
@@ -89,26 +91,30 @@ export default class EditBankForTransaction extends Component {
           <Row className="m-2">
             <Col>
               <h1 col-sm-6 className="float-left">
-              Edit Bank For Transaction
+                Edit Bank For Transaction
               </h1>
             </Col>
             <Col>
-
-            
-            <Route render={({ history}) => (
-              <Button
-                className=" btn btn-danger float-right"
-                onClick={() => history.push("/app/ro-configuration/BankForTransactionList")}
-              >
-                Back
-              </Button>
-               )} />
+              <Route
+                render={({ history }) => (
+                  <Button
+                    className=" btn btn-danger float-right"
+                    onClick={() =>
+                      history.push(
+                        "/app/ro-configuration/BankForTransactionList"
+                      )
+                    }
+                  >
+                    Back
+                  </Button>
+                )}
+              />
             </Col>
           </Row>
           <CardBody>
             <Form className="m-1" onSubmit={this.submitHandler}>
               <Row>
-              <Col lg="6" md="6" sm="6" className="mb-2">
+                <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Name Of The Bank </Label>
                   <Input
                     type="text"

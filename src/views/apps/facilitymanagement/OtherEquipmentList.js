@@ -13,11 +13,12 @@ import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
 import axiosConfig from "../../../axiosConfig";
+import { Route } from 'react-router-dom'
 
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
-import { history } from "../../../history";
+// import { history } from "../../../history";
 
 class OtherEquipmentList extends React.Component {
   state = {
@@ -141,16 +142,18 @@ class OtherEquipmentList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
+          <Route render={({ history}) => (
+
               <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
                 onClick={() =>
                   history.push(
-                    `/#/app/facilityManagement/otherEquipmentForm/${params.data._id}`
+                    `/app/facilityManagement/otherEquipmentForm/${params.data._id}`
                   )
                 }
-              />
+              />)}/>
               <Trash2
                 className="mr-50"
                 size="25px"

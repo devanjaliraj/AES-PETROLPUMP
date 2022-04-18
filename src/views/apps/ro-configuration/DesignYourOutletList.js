@@ -16,8 +16,8 @@ import axiosConfig from "../../../axiosConfig";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 import { Trash2, Edit } from "react-feather";
-import { history } from "../../../history";
-import { Route } from 'react-router-dom'
+// import { history } from "../../../history";
+import { Route } from "react-router-dom";
 
 class DesignYourOutletList extends React.Component {
   state = {
@@ -153,109 +153,6 @@ class DesignYourOutletList extends React.Component {
           );
         },
       },
-      // {
-      //   headerName: "Tank ",
-      //   field: "tank_map.product_map",
-      //   width: 140,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         {/* {params.data.tank_map?.map((tank) => (
-      //         <span>{tank?.product_map}</span>
-      //         ))} */}
-
-      //       {
-      //           params.data.tank_map.filter(parameter => parameter.tank_number.includes(params.data.total_no_tanks))
-      //             .map(parameter => {
-      //               const { product_map,tank_number } = parameter;
-      //               return (
-      //                 <span>{product_map}</span>
-      //               )
-      //           })
-      //       }
-
-      //       </div>
-      //     );
-      //   },
-      // },
-      // {
-      //   headerName: "Tank ",
-      //   field: "tank_map.capacity_litre",
-      //   width: 140,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         {/* {params.data.tank_map?.map((tank) => (
-      //         <span>{tank?.capacity_litre}</span>
-      //         ))} */}
-
-      //         {
-      //           params.data.tank_map.filter(parameter => parameter.tank_number.includes(params.data.total_no_tanks))
-      //             .map(parameter => {
-      //               const { capacity_litre,tank_number } = parameter;
-      //               return (
-      //                 <span>{capacity_litre}</span>
-      //               )
-      //           })
-      //         }
-
-      //       </div>
-      //     );
-      //   },
-      // },
-      // {
-      //   headerName: "MPD ",
-      //   field: "mpd_map.bay_map",
-      //   width: 140,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         {/* {params.data.mpd_map?.map((mpd) => (
-      //         <span>{mpd?.bay_map}</span>
-      //         ))} */}
-
-      //         {
-      //           params.data.mpd_map.filter(parameter => parameter.mpd_number.includes(params.data.total_no_mpd))
-      //             .map(parameter => {
-      //               const { bay_map,mpd_number } = parameter;
-      //               return (
-      //                 <span>{bay_map+' '}</span>
-      //               )
-      //           })
-      //         }
-      //         {/* const { capacity_litre,tank_number } = parameter;
-      //               return (
-      //                 <span>{capacity_litre}</span>
-      //               ) */}
-      //       </div>
-      //     );
-      //   },
-      // },
-      // {
-      //   headerName: "BAY ",
-      //   field: "bay_map.nozzle_map",
-      //   width: 140,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         {/* {params.data.bay_map?.map((bay) => (
-      //         <span>{bay?.nozzle_map}</span>
-      //         ))} */}
-
-      //         {
-      //           params.data.bay_map.filter(parameter => parameter.bay_number.includes(params.data.total_no_bay))
-      //             .map(parameter => {
-      //               const { nozzle_map,bay_number } = parameter;
-      //               return (
-      //                 <span>{nozzle_map+' '}</span>
-      //               )
-      //           })
-      //         }
-
-      //       </div>
-      //     );
-      //   },
-      // },
       {
         headerName: "Actions",
         field: "sortorder",
@@ -271,14 +168,20 @@ class DesignYourOutletList extends React.Component {
                 color="green"
                 onClick={() => history.push(`/app/ro-configuration/DesignYourOutlet/${params.data._id}`)}
               /> */}
-               <Route render={({ history}) => (
-
-              <Edit
-                className="mr-50"
-                size="25px"
-                color="blue"
-                onClick={() => history.push(`/app/ro-configuration/DesignYourOutlet/${params.data._id}`)}
-                /> )} />
+              <Route
+                render={({ history }) => (
+                  <Edit
+                    className="mr-50"
+                    size="25px"
+                    color="blue"
+                    onClick={() =>
+                      history.push(
+                        `/app/ro-configuration/DesignYourOutlet/${params.data._id}`
+                      )
+                    }
+                  />
+                )}
+              />
               <Trash2
                 className="mr-50"
                 size="25px"
@@ -296,19 +199,19 @@ class DesignYourOutletList extends React.Component {
     ],
   };
   async componentDidMount() {
-    await axiosConfig
-      .get("/dealer/alldealers")
-      .then((response) => {
-        const rowData = response.data.data;
-        console.log(rowData);
-        this.setState({ rowData });
-      });
+    await axiosConfig.get("/dealer/alldealers").then((response) => {
+      const rowData = response.data.data;
+      console.log(rowData);
+      this.setState({ rowData });
+    });
   }
   async runthisfunction(id) {
     console.log(id);
-    await axiosConfig.get(`/dealer/deletedealershipform/${id}`).then((response) => {
-      console.log(response);
-    });
+    await axiosConfig
+      .get(`/dealer/deletedealershipform/${id}`)
+      .then((response) => {
+        console.log(response);
+      });
   }
 
   onGridReady = (params) => {

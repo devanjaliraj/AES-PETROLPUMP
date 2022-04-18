@@ -17,7 +17,8 @@ import axios from "axios";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
-import { history } from "../../../history";
+// import { history } from "../../../history";
+import { Route } from 'react-router-dom'
 
 class FacilityManagement extends React.Component {
   state = {
@@ -108,15 +109,17 @@ class FacilityManagement extends React.Component {
                 size="25px"
                 color="green"
                 // onClick={() =>
-                //   history.push("/#/app/cashManagement/cashDealerTable")
+                //   history.push("/app/cashManagement/cashDealerTable")
                 // }
               />
+          <Route render={({ history}) => (
+
               <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
-                // onClick={() => history.push("/#/app/slider/editSlider/${params.data._id}")}
-              />
+                // onClick={() => history.push("/app/slider/editSlider/${params.data._id}")}
+              />)}/>
               <Trash2
                 className="mr-50"
                 size="25px"
