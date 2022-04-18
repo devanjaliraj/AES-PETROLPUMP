@@ -123,7 +123,7 @@ const editDealer = lazy(() => import("./views/apps/dealer/EditDealer"));
 const viewDealer = lazy(() => import("./views/apps/dealer/ViewDealer"));
 const trainingList = lazy(() => import("./views/apps/training/TrainingList"));
 
-// ro-configuration
+//////////////////////////////////////////// ro-configuration --- start //////////////////////////////////////////
 const outletList = lazy(() =>
   import("./views/apps/ro-configuration/OutletList")
 );
@@ -147,19 +147,23 @@ const nozzleList = lazy(() =>
   import("./views/apps/ro-configuration/NozzleList")
 );
 const tankList = lazy(() => import("./views/apps/ro-configuration/TankList"));
+///////// ro-configration (Dealer Lists)  ///////////
 const DealerListForTank = lazy(() =>
   import("./views/apps/ro-configuration/DealerListForTank")
 );
-
 const DealerListForNozzle = lazy(() =>
   import("./views/apps/ro-configuration/DealerListForNozzle")
 );
 const DealerListForPaymentMode = lazy(() =>
   import("./views/apps/ro-configuration/DealerListForPaymentMode")
 );
-
-// const addInputBox =lazy(()=>import("./views/apps/ro-configuration/AddInputBox"));
-
+const DealerListForCreditCus = lazy(() =>
+  import("./views/apps/ro-configuration/DealerListForCreditCus")
+);
+const DealerListforBankofTrans = lazy(() =>
+  import("./views/apps/ro-configuration/DealerListforBankofTrans")
+);
+// ro-configration (Dealer Lists)   //////////
 const otherEquipment = lazy(() =>
   import("./views/apps/ro-configuration/OtherEquipment")
 );
@@ -175,15 +179,15 @@ const designYourOutlet = lazy(() =>
 const designYourOutletList = lazy(() =>
   import("./views/apps/ro-configuration/DesignYourOutletList")
 );
-const bankForTransaction = lazy(() =>
-  import("./views/apps/ro-configuration/BankForTransaction")
-);
+// const bankForTransaction = lazy(() =>
+//   import("./views/apps/ro-configuration/BankForTransaction")
+// );
 const bankForTransactionList = lazy(() =>
   import("./views/apps/ro-configuration/BankForTransactionList")
 );
-const viewBankForTransaction = lazy(() =>
-  import("./views/apps/ro-configuration/ViewBankForTransaction")
-);
+// const viewBankForTransaction = lazy(() =>
+//   import("./views/apps/ro-configuration/ViewBankForTransaction")
+// );
 const editBankForTransaction = lazy(() =>
   import("./views/apps/ro-configuration/EditBankForTransaction")
 );
@@ -199,11 +203,16 @@ const BasicDetails = lazy(() =>
 const OtherEquipmentList = lazy(() =>
   import("./views/apps/ro-configuration/OtherEquipmentList")
 );
-const creditCustomers = lazy(() =>
-  import("./views/apps/ro-configuration/CreditCustomers")
+const DealerListForOtherEquip = lazy(() =>
+  import("./views/apps/ro-configuration/DealerListForOtherEquip")
+);
+const creditCustomersForm = lazy(() =>
+  import("./views/apps/ro-configuration/CreditCustomersForm")
 );
 
-// staffEnrollment
+//////////////////////////////////////////// ro-configuration -- end //////////////////////////////////////////
+
+////////////////////////// staffEnrollment --- start ////////////
 const staffManagementList = lazy(() =>
   import("./views/apps/staffEnrollment/StaffManagementList")
 );
@@ -473,15 +482,12 @@ class AppRouter extends React.Component {
               path="/ecommerce-dashboard"
               component={ecommerceDashboard}
             />
-            {/* <AppRoute path="/LubricantSales" component={LubricantSales} />
-          <AppRoute path="/StaffAttendance" component={StaffAttendance} /> */}
-            {/* ro-configuration */}
+            {/* //////////////////////////////////  ro-configuration -- start ///////////////*/}
             <AppRoute
               exact={true}
               path="/app/ro-configuration/outletList"
               component={outletList}
             />
-            {/* <AppRoute path="/app/ro-configuration/addInputBox" component={addInputBox}/> */}
             <AppRoute
               exact={true}
               path="/app/ro-configuration/roConfigurationList"
@@ -489,12 +495,17 @@ class AppRouter extends React.Component {
             />
             <AppRoute
               exact={true}
-              path="/app/ro-configuration/otherEquipmentList"
+              path="/app/ro-configuration/otherEquipmentList/:id"
               component={OtherEquipmentList}
             />
             <AppRoute
               exact={true}
-              path="/app/ro-configuration/creditCustomersList"
+              path="/app/ro-configuration/dealerListForOtherEquip"
+              component={DealerListForOtherEquip}
+            />
+            <AppRoute
+              exact={true}
+              path="/app/ro-configuration/creditCustomersList/:id"
               component={CreditCustomersList}
             />
             <AppRoute
@@ -512,24 +523,24 @@ class AppRouter extends React.Component {
               path="/app/ro-configuration/otherEquipment/:id"
               component={otherEquipment}
             />
-            <AppRoute
+            {/* <AppRoute
               exact={true}
               path="/app/ro-configuration/bankForTransaction"
               component={bankForTransaction}
-            />
+            /> */}
             <AppRoute
               exact={true}
               path="/app/ro-configuration/editBankForTransaction/:id"
               component={editBankForTransaction}
             />
-            <AppRoute
+            {/* <AppRoute
               exact={true}
               path="/app/ro-configuration/viewBankForTransaction/:id"
               component={viewBankForTransaction}
-            />
+            /> */}
             <AppRoute
               exact={true}
-              path="/app/ro-configuration/bankForTransactionList"
+              path="/app/ro-configuration/bankForTransactionList/:id"
               component={bankForTransactionList}
             />
             <AppRoute
@@ -554,8 +565,13 @@ class AppRouter extends React.Component {
             />
             <AppRoute
               exact={true}
-              path="/app/ro-configuration/creditCustomers/:id"
-              component={creditCustomers}
+              path="/app/ro-configuration/creditCustomersForm/:id"
+              component={creditCustomersForm}
+            />
+            <AppRoute
+              exact={true}
+              path="/app/ro-configuration/dealerListForCreditCus"
+              component={DealerListForCreditCus}
             />
             <AppRoute
               exact={true}
@@ -612,6 +628,12 @@ class AppRouter extends React.Component {
               path="/app/ro-configuration/dealerListForPaymentMode"
               component={DealerListForPaymentMode}
             />
+            <AppRoute
+              exact={true}
+              path="/app/ro-configuration/dealerListforBankofTrans"
+              component={DealerListforBankofTrans}
+            />
+            {/*//////////////////////////////////  ro-configuration -- end /////////////////////*/}
             {/* stockManagement */}
             <AppRoute
               exact={true}

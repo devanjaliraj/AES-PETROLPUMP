@@ -36,7 +36,7 @@ class BankForTransactionList extends React.Component {
       {
         headerName: "Dealer Name",
         field: "dealer_name1.dealer_name",
-        width: 150,
+        width: 200,
         pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
@@ -49,8 +49,7 @@ class BankForTransactionList extends React.Component {
       {
         headerName: "Email",
         field: "dealer_name1.email",
-        width: 150,
-        pinned: window.innerWidth > 992 ? "left" : false,
+        width: 200,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -63,7 +62,7 @@ class BankForTransactionList extends React.Component {
         headerName: "Name Of Bank ",
         field: "name_of_bank",
         filter: true,
-        width: 100,
+        width: 200,
         cellRendererFramework: (params) => {
           return (
             <div>
@@ -73,10 +72,24 @@ class BankForTransactionList extends React.Component {
         },
       },
       {
+        headerName: "Account no",
+        field: "account_no",
+        filter: true,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div>
+              <span>{params.data.account_no}</span>
+            </div>
+          );
+        },
+      },
+
+      {
         headerName: "Credit limit of bank",
         field: "credit_limit_of_bank",
         filter: true,
-        width: 100,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -89,7 +102,7 @@ class BankForTransactionList extends React.Component {
         headerName: "Intrest Rates",
         field: "intrest_rates",
         filter: true,
-        width: 100,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div>
@@ -102,7 +115,7 @@ class BankForTransactionList extends React.Component {
         headerName: "IFSC Code",
         field: "ifsc_code",
         filter: true,
-        width: 100,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div>
@@ -115,7 +128,7 @@ class BankForTransactionList extends React.Component {
         headerName: "Credit Offer from Bank Valid upto ",
         field: "cresit_offer",
         filter: true,
-        width: 100,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div>
@@ -128,7 +141,7 @@ class BankForTransactionList extends React.Component {
         headerName: "Documents upload",
         field: "document_upload",
         filter: true,
-        width: 100,
+        width: 200,
         cellRendererFramework: (params) => {
           return (
             <div>
@@ -157,21 +170,13 @@ class BankForTransactionList extends React.Component {
       {
         headerName: "Actions",
         field: "sortorder",
-        // field: "transactions",
+
         width: 150,
         pinned: window.innerWidth > 992 ? "right" : false,
 
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              {/* <Eye
-                className="mr-50"
-                color="green"
-                size={20}
-                onClick={() =>
-                  history.push(`/app/ro-configuration/viewBankForTransaction/${params.data._id}`)
-                }
-              /> */}
               <Route
                 render={({ history }) => (
                   <Edit
@@ -203,7 +208,8 @@ class BankForTransactionList extends React.Component {
   };
 
   async componentDidMount() {
-    await axiosConfig.get(`/dealer/allbank`).then((response) => {
+    let { id } = this.props.match.params;
+    await axiosConfig.get(`/dealer/allbankApp/${id}`).then((response) => {
       const rowData = response.data.data;
       console.log(rowData);
       this.setState({ rowData });

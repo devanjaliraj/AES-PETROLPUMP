@@ -33,32 +33,6 @@ class OtherEquipmentList extends React.Component {
     },
     columnDefs: [
       {
-        headerName: "Dealer Name",
-        field: "dealer.dealer_name",
-        width: 150,
-        pinned: window.innerWidth > 992 ? "left" : false,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dealer?.dealer_name}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Email",
-        field: "dealer.email",
-        width: 150,
-        pinned: window.innerWidth > 992 ? "left" : false,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dealer?.email}</span>
-            </div>
-          );
-        },
-      },
-      {
         headerName: "Nature",
         field: "nature",
         width: 180,
@@ -263,7 +237,7 @@ class OtherEquipmentList extends React.Component {
                       onGridReady={this.onGridReady}
                       colResizeDefault={"shift"}
                       animateRows={true}
-                      floatingFilter={true}
+                      floatingFilter={false}
                       pagination={true}
                       paginationPageSize={this.state.paginationPageSize}
                       pivotPanelShow="always"

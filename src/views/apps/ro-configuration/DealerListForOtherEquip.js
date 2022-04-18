@@ -13,11 +13,11 @@ import axiosConfig from "../../../axiosConfig";
 // import { history } from "../../../history";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2, Edit } from "react-feather";
+import { ChevronDown, Eye } from "react-feather";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 import { Route } from "react-router-dom";
-class CreditCustomersList extends React.Component {
+class DealerListForOtherEquip extends React.Component {
   state = {
     rowData: [],
     paginationPageSize: 20,
@@ -31,22 +31,22 @@ class CreditCustomersList extends React.Component {
     },
     columnDefs: [
       {
-        headerName: "Name of Customer",
-        field: "name_of_customer",
-        width: 150,
+        headerName: "Dealer Name",
+        field: "dealer_name",
+        width: 200,
         pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.name_of_customer}</span>
+              <span>{params.data.dealer_name}</span>
             </div>
           );
         },
       },
       {
-        headerName: "mobile",
+        headerName: "Mobile",
         field: "mobile",
-        width: 100,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -56,144 +56,92 @@ class CreditCustomersList extends React.Component {
         },
       },
       {
-        headerName: "Credit Limit",
-        field: "credit_limit",
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.credit_limit}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Credit Term Lube",
-        field: "credit_term_lube",
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.credit_term_lube}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Credit Term Fuel",
-        field: "credit_term_lube",
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.credit_term_lube}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Address",
-        field: "addres",
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.addres}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Local Id",
-        field: "local_id",
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.local_id}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Document Upload",
-        field: "document_upload",
+        headerName: "Email",
+        field: "email",
         width: 180,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.document_upload}</span>
+              <span>{params.data.email}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Vehicle no.",
-        field: "vehicle_no",
-        width: 100,
+        headerName: "Master Oil Company",
+        field: "master_oil_company.name",
+        width: 200,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.vehicle_no}</span>
+              <span>{params.data.master_oil_company?.name}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Local Guarantor Name",
-        field: "local_guarantor_name",
+        headerName: "State",
+        field: "state",
         width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.local_guarantor_name}</span>
+              <span>{params.data.state}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Local Guarantor no.",
-        field: "local_guarantor_no",
-        width: 100,
+        headerName: "District",
+        field: "district",
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.local_guarantor_no}</span>
+              <span>{params.data.district}</span>
             </div>
           );
         },
       },
+      // {
+      //   headerName: "Status",
+      //   field: "userverified",
+      //   // filter: true,
+      //   width: 150,
+      //   cellRendererFramework: (params) => {
+      //     return params.value === "Active" ? (
+      //       <div className="badge badge-pill badge-success">
+      //         {params.data.userverified}
+      //       </div>
+      //     ) : params.value === "Inactive" ? (
+      //       <div className="badge badge-pill badge-warning">
+      //         {params.data.userverified}
+      //       </div>
+      //     ) : null;
+      //   },
+      // },
       {
         headerName: "Actions",
         field: "sortorder",
-        width: 100,
+        width: 120,
         pinned: window.innerWidth > 992 ? "right" : false,
+
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
               <Route
                 render={({ history }) => (
-                  <Edit
+                  <Eye
                     className="mr-50"
                     size="25px"
                     color="blue"
                     onClick={() =>
                       history.push(
-                        `/app/ro-configuration/creditCustomersForm/${params.data._id}`
+                        `/app/ro-configuration/otherEquipmentList/${params.data._id}`
                       )
                     }
                   />
                 )}
-              />
-              <Trash2
-                className="mr-50"
-                size="25px"
-                color="red"
-                onClick={() => {
-                  let selectedData = this.gridApi.getSelectedRows();
-                  this.runthisfunction(params.data._id);
-                  this.gridApi.updateRowData({ remove: selectedData });
-                }}
               />
             </div>
           );
@@ -202,24 +150,13 @@ class CreditCustomersList extends React.Component {
     ],
   };
   async componentDidMount() {
-    let { id } = this.props.match.params;
-    console.log(id);
-    await axiosConfig
-      .get(`/dealer/allcreditcustomerApp/${id}`)
-      .then((response) => {
-        const rowData = response.data.data;
-        console.log(rowData);
-        this.setState({ rowData });
-      });
+    await axiosConfig.get("/dealer/alldealers").then((response) => {
+      const rowData = response.data.data;
+      console.log(rowData);
+      this.setState({ rowData });
+    });
   }
-  async runthisfunction(id) {
-    console.log(id);
-    await axiosConfig
-      .get(`/dealer/deletecreditcustomers/${id}`)
-      .then((response) => {
-        console.log(response);
-      });
-  }
+
   onGridReady = (params) => {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
@@ -229,6 +166,7 @@ class CreditCustomersList extends React.Component {
       totalPages: this.gridApi.paginationGetTotalPages(),
     });
   };
+
   updateSearchQuery = (val) => {
     this.gridApi.setQuickFilter(val);
   };
@@ -242,11 +180,12 @@ class CreditCustomersList extends React.Component {
       });
     }
   };
+
   render() {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs breadCrumbTitle="Credit Customers List" />
+        <Breadcrumbs breadCrumbTitle="Dealer Details List " />
         <Card className="overflow-hidden agGrid-card">
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
@@ -299,7 +238,7 @@ class CreditCustomersList extends React.Component {
                   <div className="d-flex flex-wrap justify-content-between mb-1">
                     <div className="table-input mr-1">
                       <Input
-                        placeholder="Vehicle no./name"
+                        placeholder="search..."
                         onChange={(e) => this.updateSearchQuery(e.target.value)}
                         value={this.state.value}
                       />
@@ -341,4 +280,4 @@ class CreditCustomersList extends React.Component {
     );
   }
 }
-export default CreditCustomersList;
+export default DealerListForOtherEquip;

@@ -14,13 +14,14 @@ import {
 import axiosConfig from "../../../axiosConfig";
 // import { history } from "../../../history";
 // import swal from "sweetalert";
-import { Route } from 'react-router-dom'
+import { Route } from "react-router-dom";
 import { Download } from "react-feather";
 
-export default class DesignYourOutlet extends Component {
+export default class CreditCustomersForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      dealer_name1: "",
       name_of_customer: "",
       mobile: "",
       credit_limit: "",
@@ -29,8 +30,8 @@ export default class DesignYourOutlet extends Component {
       local_id: "",
       vehicle_no: "",
       local_guarantor_name: "",
-      local_guarantor_no:"",
-	    document_upload	:	"",
+      local_guarantor_no: "",
+      document_upload: "",
       selectedFile: null,
     };
   }
@@ -42,6 +43,7 @@ export default class DesignYourOutlet extends Component {
       .then((response) => {
         console.log(response);
         this.setState({
+          dealer_name1: response.data.data.dealer_name1,
           name_of_customer: response.data.data.name_of_customer,
           mobile: response.data.data.mobile,
           credit_limit: response.data.data.credit_limit,
@@ -58,20 +60,20 @@ export default class DesignYourOutlet extends Component {
         console.log(error);
       });
   }
-    //Image Submit Handler
-    onChangeHandler = (event) => {
-      this.setState({ selectedFile: event.target.files[0] });
-      this.setState({ selectedName: event.target.files[0].name });
-      console.log(event.target.files[0]);
-  };
-    changeHandler1 = (e) => {
-      this.setState({ status: e.target.value });
-    };
-    changeHandler = (e) => {
-      this.setState({ [e.target.name]: e.target.value });
-    };
 
-  
+  //Image Submit Handler
+  onChangeHandler = (event) => {
+    this.setState({ selectedFile: event.target.files[0] });
+    this.setState({ selectedName: event.target.files[0].name });
+    console.log(event.target.files[0]);
+  };
+  changeHandler1 = (e) => {
+    this.setState({ status: e.target.value });
+  };
+  changeHandler = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
   submitHandler = (e) => {
     e.preventDefault();
     console.log(this.state);
@@ -104,38 +106,39 @@ export default class DesignYourOutlet extends Component {
 
     let { id } = this.props.match.params;
     // var user = JSON.parse(localStorage.getItem('userData'));
-    
+
     axiosConfig
-      .post(
-        `/dealer/updatecreditcustomers/${id}`, data)
-        
-        .then(response => {
-          console.log(response);
-        // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/app/ro-configuration/CreditCustomersList");
+      .post(`/dealer/updatecreditcustomers/${id}`, data)
+
+      .then((response) => {
+        console.log(response);
+
+        this.props.history.push(
+          `/app/ro-configuration/creditCustomersList/${this.state.dealer_name1._id}`
+        );
       })
-      .catch(error => {
-          //  swal("Error!", "You clicked the button!", "error");
+      .catch((error) => {
+        //  swal("Error!", "You clicked the button!", "error");
         console.log(error);
       });
   };
-  download = e => {
+  download = (e) => {
     console.log(e.target.href);
     fetch(e.target.href, {
       method: "GET",
-      headers: {}
+      headers: {},
     })
-      .then(response => {
-        response.arrayBuffer().then(function(buffer) {
+      .then((response) => {
+        response.arrayBuffer().then(function (buffer) {
           const url = window.URL.createObjectURL(new Blob([buffer]));
           const link = document.createElement("a");
           link.href = url;
-          link.setAttribute("download", "image"); //or any other extension
+          link.setAttribute("download", "image.png"); //or any other extension
           document.body.appendChild(link);
           link.click();
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
@@ -166,16 +169,20 @@ export default class DesignYourOutlet extends Component {
               </h1>
             </Col>
             <Col>
-            <Route render={({ history}) => (
-
-              <Button
-                className=" btn btn-danger float-right"
-                onClick={() =>
-                history.push("/app/ro-configuration/CreditCustomersList")}
-              >
-                Back
-              </Button>
-               )} />
+              <Route
+                render={({ history }) => (
+                  <Button
+                    className=" btn btn-danger float-right"
+                    onClick={() =>
+                      history.push(
+                        `/app/ro-configuration/creditCustomersList/${this.state.dealer_name1._id}`
+                      )
+                    }
+                  >
+                    Back
+                  </Button>
+                )}
+              />
             </Col>
           </Row>
           <CardBody>
@@ -262,7 +269,7 @@ export default class DesignYourOutlet extends Component {
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-               
+
                 <Col lg="6" md="0" sm="6" className="mb-2">
                   <Label>Document Upload</Label>
                   {/* <img
@@ -270,18 +277,18 @@ export default class DesignYourOutlet extends Component {
                     name="document_upload"
                     className="w-25 ml-5 h-50"
                   /> */}
-                               <a
-                      href={this.state.document_upload}
-                      download
-                      target='blank'
-                      onClick={e => this.download(e)}
-                    >
-                      {/* <i className="fa fa-download" /> */}
-                      <Download className="mr-50" size="25px" color="blue" />
-                      download document upload 
-                </a>
+                  <a
+                    href={this.state.document_upload}
+                    download
+                    target="blank"
+                    onClick={(e) => this.download(e)}
+                  >
+                    {/* <i className="fa fa-download" /> */}
+                    <Download className="mr-50" size="25px" color="blue" />
+                    download document upload
+                  </a>
                 </Col>
-                <Col lg="6" md="6" sm="6" className="mb-2">
+                {/* <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Document Upload</Label>
                   <Input
                     type="file"
@@ -289,13 +296,7 @@ export default class DesignYourOutlet extends Component {
                     onChange={this.onChangeHandler}
                     name="document_upload"
                   />
-                </Col>
-
-
-
-
-
-               
+                </Col> */}
               </Row>
               <Row>
                 <Col lg="6" md="6" sm="6" className="mb-2">

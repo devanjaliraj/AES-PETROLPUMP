@@ -33,7 +33,7 @@ class DealerListForNozzle extends React.Component {
       {
         headerName: "Dealer Name",
         field: "dealer_name",
-        width: 140,
+        width: 200,
         pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
@@ -46,7 +46,7 @@ class DealerListForNozzle extends React.Component {
       {
         headerName: "Mobile",
         field: "mobile",
-        width: 140,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -58,7 +58,7 @@ class DealerListForNozzle extends React.Component {
       {
         headerName: "Email",
         field: "email",
-        width: 140,
+        width: 180,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -70,7 +70,7 @@ class DealerListForNozzle extends React.Component {
       {
         headerName: "Master Oil Company",
         field: "master_oil_company.name",
-        width: 140,
+        width: 200,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -82,7 +82,7 @@ class DealerListForNozzle extends React.Component {
       {
         headerName: "State",
         field: "state",
-        width: 140,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -94,7 +94,7 @@ class DealerListForNozzle extends React.Component {
       {
         headerName: "District",
         field: "district",
-        width: 140,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -123,7 +123,9 @@ class DealerListForNozzle extends React.Component {
       {
         headerName: "Actions",
         field: "sortorder",
-        width: 300,
+        width: 120,
+        pinned: window.innerWidth > 992 ? "right" : false,
+
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
@@ -149,17 +151,6 @@ class DealerListForNozzle extends React.Component {
                   />
                 )}
               />
-
-              {/* <Trash2
-                className="mr-50"
-                size="25px"
-                color="red"
-                onClick={() => {
-                  let selectedData = this.gridApi.getSelectedRows();
-                  this.runthisfunction(params.data._id);
-                  this.gridApi.updateRowData({ remove: selectedData });
-                }}
-              /> */}
             </div>
           );
         },
