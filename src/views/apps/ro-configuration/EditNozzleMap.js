@@ -76,7 +76,7 @@ export default class EditNozzleMap extends Component {
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push(`/app/ro-configuration/NozzleList/${id}`);
+        this.props.history.push(`/app/ro-configuration/NozzleList`);
       })
       .catch((error) => {
         console.log(error.response);
