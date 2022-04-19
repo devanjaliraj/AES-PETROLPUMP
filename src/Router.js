@@ -33,12 +33,15 @@ const LubeStockForm = lazy(() =>
   import("./views/apps/stockmanagement/LubeStockForm")
 );
 
-// shiftmanagement
-/////////////////////////////// shiftmanagement///////////////////////////
+/////////////////////////////// shiftmanagement -- start ///////////////////////////
 const AddRsp = lazy(() => import("./views/apps/shiftmanagement/rsp/AddRsp"));
 const AddBm = lazy(() => import("./views/apps/shiftmanagement/rsp/AddBm"));
 const AddDsmClosing = lazy(() =>
   import("./views/apps/shiftmanagement/rsp/AddDsmCS")
+);
+
+const DealerListInRSP = lazy(() =>
+  import("./views/apps/shiftmanagement/DealerListInRSP")
 );
 const RetailSellingPriceList = lazy(() =>
   import("./views/apps/shiftmanagement/RetailSellingPriceList")
@@ -47,6 +50,9 @@ const RetailSellingPriceForm = lazy(() =>
   import("./views/apps/shiftmanagement/RetailSellingPricefrom")
 );
 
+const DealerListForBayMang = lazy(() =>
+  import("./views/apps/shiftmanagement/DealerListForBayMang")
+);
 const BayManagementList = lazy(() =>
   import("./views/apps/shiftmanagement/BayManagementList")
 );
@@ -58,6 +64,12 @@ const DSMClosingSheetList = lazy(() =>
 );
 const DSMClosingSheetForm = lazy(() =>
   import("./views/apps/shiftmanagement/DSMClosingSheetForm")
+);
+const CashCollection = lazy(() =>
+  import("./views/apps/shiftmanagement/CashCollection")
+);
+const CashCollectionForm = lazy(() =>
+  import("./views/apps/shiftmanagement/CashCollectionForm")
 );
 const SalesFigureList = lazy(() =>
   import("./views/apps/shiftmanagement/SalesFigureList")
@@ -84,6 +96,7 @@ const StaffAttendanceList = lazy(() =>
 const StaffAttendanceForm = lazy(() =>
   import("./views/apps/shiftmanagement/StaffAttendenceForm")
 );
+/////////////////////////////// shiftmanagement -- start ///////////////////////////
 
 //////////////////////////// facilitymanagement  /////////////////////////////
 
@@ -696,94 +709,90 @@ class AppRouter extends React.Component {
               path="/app/facilityManagement/raiseConcernToAESForm/:id"
               component={RaiseConcernToAESForm}
             />
-            {/* shiftManagement */}
+            {/*///////////////////////////////  shiftManagement --start  //////////////////////////*/}
             <AppRoute
-              exact={true}
               path="/app/shiftmanagement/rsp/addRsp"
               component={AddRsp}
             />
+            <AppRoute path="/app/shiftmanagement/rsp/addBm" component={AddBm} />
             <AppRoute
-              exact={true}
-              path="/app/shiftmanagement/rsp/addBm"
-              component={AddBm}
-            />
-            <AppRoute
-              exact={true}
               path="/app/shiftmanagement/rsp/addDsmClosing"
               component={AddDsmClosing}
             />
             <AppRoute
-              exact={true}
-              path="/app/shiftmanagement/retailSellingPriceList"
+              path="/app/shiftmanagement/dealerListInRSP"
+              component={DealerListInRSP}
+            />
+            <AppRoute
+              path="/app/shiftmanagement/retailSellingPriceList/:id"
               component={RetailSellingPriceList}
             />
             <AppRoute
-              exact={true}
               path="/app/shiftmanagement/retailSellingPriceForm/:id"
               component={RetailSellingPriceForm}
             />
             <AppRoute
-              exact={true}
-              path="/app/shiftmanagement/bayManagementList"
+              path="/app/shiftmanagement/dealerListForBayMang"
+              component={DealerListForBayMang}
+            />
+            <AppRoute
+              path="/app/shiftmanagement/bayManagementList/:id"
               component={BayManagementList}
             />
             <AppRoute
-              exact={true}
               path="/app/shiftmanagement/bayManagementForm/:id"
               component={BayManagementForm}
             />
             <AppRoute
-              exact={true}
               path="/app/shiftManagement/dSMClosingSheetList"
               component={DSMClosingSheetList}
             />
             <AppRoute
-              exact={true}
               path="/app/shiftManagement/dSMClosingSheetForm/:id"
               component={DSMClosingSheetForm}
             />
             <AppRoute
-              exact={true}
+              path="/app/shiftManagement/cashCollection"
+              component={CashCollection}
+            />
+            <AppRoute
+              path="/app/shiftManagement/cashCollectionForm/:id"
+              component={CashCollectionForm}
+            />
+            <AppRoute
               path="/app/shiftManagement/salesFigureList"
               component={SalesFigureList}
             />
             <AppRoute
-              exact={true}
               path="/app/shiftManagement/salesFigureForm"
               component={SalesFigureForm}
             />
             <AppRoute
-              exact={true}
               path="/app/shiftManagement/creditGivenList"
               component={CreditGivenList}
             />
             <AppRoute
-              exact={true}
-              path="/app/shiftManagement/creditGivenForm"
+              path="/app/shiftManagement/creditGivenForm/:id"
               component={CreditGivenForm}
             />
             <AppRoute
-              exact={true}
               path="/app/shiftManagement/lubricantForm/:id"
               component={lubricantForm}
             />
             <AppRoute
-              exact={true}
               path="/app/shiftManagement/lubricantSales"
               component={LubricantSales}
             />
             <AppRoute
-              exact={true}
               path="/app/shiftManagement/staffAttendanceList"
               component={StaffAttendanceList}
             />
             <AppRoute
-              exact={true}
               path="/app/shiftManagement/staffAttendanceForm/:id"
               component={StaffAttendanceForm}
             />
-            {/* <AppRoute exact={true} path="/app/shiftManagement/lubricantSales" component={LubricantSales}/> */}
-            {/* staffEnrollment */}
+            {/*///////////////////////////////  shiftManagement --end  //////////////////////////*/}
+            {/*//////////////////////////////////////   staffEnrollment --start    //////////////////////////////*/}
             <AppRoute
               exact={true}
               path="/app/staffEnrollment/staffManagementList"
@@ -824,6 +833,7 @@ class AppRouter extends React.Component {
               path="/app/staffEnrollment/staffForm"
               component={staffForm}
             />
+            {/*//////////////////////////////////////   staffEnrollment --end    //////////////////////////////*/}
             {/* cashManagement */}
             <AppRoute
               exact={true}

@@ -14,7 +14,7 @@ import {
 import axios from "axios";
 import { ContextLayout } from "../../../../utility/context/Layout";
 import { AgGridReact } from "ag-grid-react";
-import {  Edit, Eye, Trash2, ChevronDown } from "react-feather";
+import { Edit, Trash2, ChevronDown } from "react-feather";
 //import classnames from "classnames";
 import { history } from "../../../../history";
 import "../../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
@@ -55,8 +55,7 @@ class MOSList extends React.Component {
           );
         },
       },
-      
-  
+
       // {
       //   headerName: "Status",
       //   field: "status",
@@ -94,7 +93,9 @@ class MOSList extends React.Component {
                 className="mr-50"
                 color="blue"
                 size={20}
-                onClick={() => history.push(`/app/setting/moc/editMOC/${params.data._id}`)}
+                onClick={() =>
+                  history.push(`/app/setting/moc/editMOC/${params.data._id}`)
+                }
               />
               <Trash2
                 size={20}
@@ -113,22 +114,26 @@ class MOSList extends React.Component {
   };
 
   async componentDidMount() {
-    await axios.get(`http://3.108.185.7/nodejs/api/dealer/allMasterOilCompany`).then((response) => {
-      const rowData = response.data.data;
-      console.log(rowData);
-      this.setState({ rowData });
-    });
+    await axios
+      .get(`http://3.108.185.7/nodejs/api/dealer/allMasterOilCompany`)
+      .then((response) => {
+        const rowData = response.data.data;
+        console.log(rowData);
+        this.setState({ rowData });
+      });
   }
   async runthisfunction(id) {
     console.log(id);
-    await axios.get(`http://3.108.185.7/nodejs/api/dealer/deletebank/${id}`).then(
-      (response) => {
-        console.log(response);
-      },
-      (error) => {
-        console.log(error);
-      }
-    );
+    await axios
+      .get(`http://3.108.185.7/nodejs/api/dealer/deletebank/${id}`)
+      .then(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
   }
   onGridReady = (params) => {
     this.gridApi = params.api;
@@ -160,9 +165,7 @@ class MOSList extends React.Component {
       console.log(rowData),
       (
         <Row className="app-user-list">
-          <Col sm="12">
-            
-          </Col>
+          <Col sm="12"></Col>
           <Col sm="12">
             <Card>
               <Row className="m-2">
@@ -176,7 +179,7 @@ class MOSList extends React.Component {
                     className=" btn btn-danger float-right"
                     onClick={() => history.push("/app/setting/moc/addMOC")}
                   >
-                   ADD MOC 
+                    ADD MOC
                   </Button>
                 </Col>
               </Row>

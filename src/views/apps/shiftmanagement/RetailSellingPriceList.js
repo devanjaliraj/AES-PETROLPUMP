@@ -1,6 +1,8 @@
 import React from "react";
 import {
   Card,
+  Row,
+  Col,
   CardBody,
   Input,
   Button,
@@ -12,14 +14,12 @@ import {
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
-// import { history } from "../../../history";
-import { Route } from 'react-router-dom'
-
 import axiosConfig from "../../../axiosConfig";
+import { Route } from "react-router-dom";
 
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 
-import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+// import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 
 class RSP extends React.Component {
   state = {
@@ -35,34 +35,9 @@ class RSP extends React.Component {
     },
     columnDefs: [
       {
-        headerName: "Dealer Name",
-        field: "dealer_Id.dealer_name",
-        width: 200,
-        pinned: window.innerWidth > 992 ? "left" : false,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dealer_Id?.dealer_name}</span>
-            </div>
-          );
-        },
-      },
-
-      {
-        headerName: "Email",
-        field: "dealer_Id.email",
-        width: 200,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dealer_Id?.email}</span>
-            </div>
-          );
-        },
-      },
-      {
         headerName: " Date",
         field: "date",
+        pinned: window.innerWidth > 992 ? "left" : false,
         width: 175,
         cellRendererFramework: (params) => {
           return (
@@ -133,7 +108,7 @@ class RSP extends React.Component {
             </div>
           );
         },
-        width: 250,
+        width: 180,
       },
       {
         headerName: "Hsd/Rsp",
@@ -146,7 +121,7 @@ class RSP extends React.Component {
             </div>
           );
         },
-        width: 200,
+        width: 150,
       },
 
       {
@@ -157,18 +132,20 @@ class RSP extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-               <Route render={({ history}) => (
-
-              <Edit
-                className="mr-50"
-                size="25px"
-                color="blue"
-                onClick={() =>
-                  history.push(
-                    `/app/shiftmanagement/retailSellingPriceForm/${params.data._id}`
-                  )
-                }
-              />)}/>
+              <Route
+                render={({ history }) => (
+                  <Edit
+                    className="mr-50"
+                    size="25px"
+                    color="blue"
+                    onClick={() =>
+                      history.push(
+                        `/app/shiftmanagement/retailSellingPriceForm/${params.data._id}`
+                      )
+                    }
+                  />
+                )}
+              />
               <Trash2
                 className="mr-50"
                 size="25px"
@@ -187,21 +164,17 @@ class RSP extends React.Component {
   };
 
   componentDidMount() {
-    axiosConfig
-      .get("/dealer/allrsp")
-      .then((response) => {
-        let rowData = response.data.data;
-        JSON.stringify(rowData);
-        this.setState({ rowData });
-      });
+    let { id } = this.props.match.params;
+    axiosConfig.get(`/dealer/allbmApp/${id}`).then((response) => {
+      let rowData = response.data.data;
+      JSON.stringify(rowData);
+      this.setState({ rowData });
+    });
   }
   async runthisfunction(id) {
-    console.log(id);
-    await axiosConfig
-      .get(`/dealer/deletersp/${id}`)
-      .then((response) => {
-        console.log(response);
-      });
+    await axiosConfig.get(`/dealer/deletersp/${id}`).then((response) => {
+      console.log(response);
+    });
   }
 
   onGridReady = (params) => {
@@ -232,12 +205,14 @@ class RSP extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs
-          breadCrumbTitle="RSP List"
-          // breadCrumbParent="Forms & Tables"
-          // breadCrumbActive="Shift Management"
-        />
         <Card className="overflow-hidden agGrid-card">
+          <Row className="m-1">
+            <Col>
+              <h1 col-sm-6 className="float-left">
+                List of Dealers for RSP
+              </h1>
+            </Col>
+          </Row>
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">

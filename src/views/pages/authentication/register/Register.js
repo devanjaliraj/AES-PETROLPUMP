@@ -8,11 +8,11 @@ import {
   Col,
   Nav,
   NavItem,
-  NavLink,
+  // NavLink,
   TabContent,
   TabPane,
 } from "reactstrap";
-import classnames from "classnames";
+// import classnames from "classnames";
 import RegisterFirebase from "./RegisterFirebase";
 import RegisterAuth0 from "./RegisterAuth0";
 import RegisterJWT from "./RegisterJWT";

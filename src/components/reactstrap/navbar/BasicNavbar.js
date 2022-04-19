@@ -1,10 +1,10 @@
-import React from "react"
+import React from "react";
 import {
   Navbar,
   UncontrolledDropdown,
   Badge,
   Media,
-  UncontrolledTooltip,
+  // UncontrolledTooltip,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
@@ -16,9 +16,9 @@ import {
   TabPane,
   Nav,
   NavItem,
-  NavLink
-} from "reactstrap"
-import classnames from "classnames"
+  NavLink,
+} from "reactstrap";
+import classnames from "classnames";
 import {
   Eye,
   Code,
@@ -26,8 +26,8 @@ import {
   CheckSquare,
   MessageSquare,
   Mail,
-  Calendar,
-  Star,
+  // Calendar,
+  // Star,
   Search,
   Bell,
   PlusSquare,
@@ -37,24 +37,24 @@ import {
   File,
   Power,
   User,
-  Heart
-} from "react-feather"
-import { navbarBasic } from "./NavbarSourceCode"
-import userImg from "../../../assets/img/portrait/small/avatar-s-11.jpg"
-import PerfectScrollbar from "react-perfect-scrollbar"
+  Heart,
+} from "react-feather";
+import { navbarBasic } from "./NavbarSourceCode";
+import userImg from "../../../assets/img/portrait/small/avatar-s-11.jpg";
+import PerfectScrollbar from "react-perfect-scrollbar";
 
-import ReactCountryFlag from "react-country-flag"
+import ReactCountryFlag from "react-country-flag";
 
 class NavbarBasic extends React.Component {
   state = {
-    activeTab: "1"
-  }
+    activeTab: "1",
+  };
 
-  toggleTab = tab => {
+  toggleTab = (tab) => {
     if (this.state.activeTab !== tab) {
-      this.setState({ activeTab: tab })
+      this.setState({ activeTab: tab });
     }
-  }
+  };
 
   render() {
     return (
@@ -67,10 +67,10 @@ class NavbarBasic extends React.Component {
                 <NavItem>
                   <NavLink
                     className={classnames({
-                      active: this.state.activeTab === "1"
+                      active: this.state.activeTab === "1",
                     })}
                     onClick={() => {
-                      this.toggleTab("1")
+                      this.toggleTab("1");
                     }}
                   >
                     <Eye size={15} />
@@ -79,10 +79,10 @@ class NavbarBasic extends React.Component {
                 <NavItem>
                   <NavLink
                     className={classnames({
-                      active: this.state.activeTab === "2"
+                      active: this.state.activeTab === "2",
                     })}
                     onClick={() => {
-                      this.toggleTab("2")
+                      this.toggleTab("2");
                     }}
                   >
                     <Code size={15} />
@@ -228,7 +228,7 @@ class NavbarBasic extends React.Component {
                               <PerfectScrollbar
                                 className="media-list overflow-hidden position-relative"
                                 options={{
-                                  wheelPropagation: false
+                                  wheelPropagation: false,
                                 }}
                               >
                                 <div className="d-flex justify-content-between">
@@ -461,7 +461,7 @@ class NavbarBasic extends React.Component {
           </CardBody>
         </Card>
       </React.Fragment>
-    )
+    );
   }
 }
-export default NavbarBasic
+export default NavbarBasic;

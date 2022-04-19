@@ -15,7 +15,7 @@ import { ChevronDown, Trash2, Eye, Edit } from "react-feather";
 import axios from "axios";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
-import { history } from "../../../history";
+// import { history } from "../../../history";
 
 class StockManagementList extends React.Component {
   state = {

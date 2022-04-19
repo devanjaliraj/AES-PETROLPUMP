@@ -10,14 +10,14 @@ import {
   DropdownToggle,
 } from "reactstrap";
 import axiosConfig from "../../../axiosConfig";
+import { Route } from "react-router-dom";
+
 // import { history } from "../../../history";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
-import { Route } from 'react-router-dom'
-
 class BayManagementList extends React.Component {
   state = {
     rowData: null,
@@ -30,6 +30,7 @@ class BayManagementList extends React.Component {
       resizable: true,
       suppressMenu: true,
     },
+
     columnDefs: [
       {
         headerName: "DSM_Name",
@@ -45,7 +46,6 @@ class BayManagementList extends React.Component {
           );
         },
       },
-
       {
         headerName: "Date",
         field: "date",
@@ -107,7 +107,7 @@ class BayManagementList extends React.Component {
         },
       },
       {
-        headerName: "Closing Entry MS",
+        headerName: "Closing Sales MS",
         field: "closing_Entry_MS",
         width: 180,
         cellRendererFramework: (params) => {
@@ -120,7 +120,7 @@ class BayManagementList extends React.Component {
       },
 
       {
-        headerName: "closing Entry HSD",
+        headerName: "Closing Sales HSD",
         field: "closing_Entry_HSD",
         filter: false,
         width: 200,
@@ -193,18 +193,20 @@ class BayManagementList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-               <Route render={({ history}) => (
-
-              <Edit
-                className="mr-50"
-                size="25px"
-                color="blue"
-                onClick={() =>
-                  history.push(
-                    `/app/shiftmanagement/bayManagementForm/${params.data._id}`
-                  )
-                }
-              /> )} />
+              <Route
+                render={({ history }) => (
+                  <Edit
+                    className="mr-50"
+                    size="25px"
+                    color="blue"
+                    onClick={() =>
+                      history.push(
+                        `/app/shiftmanagement/bayManagementForm/${params.data.dealer_Id._id}`
+                      )
+                    }
+                  />
+                )}
+              />
 
               <Trash2
                 className="mr-50"
@@ -224,7 +226,9 @@ class BayManagementList extends React.Component {
   };
 
   componentDidMount() {
-    axiosConfig.get("/dealer/allbm").then((response) => {
+    let { id } = this.props.match.params;
+
+    axiosConfig.get(`/dealer/allbmApp/${id}`).then((response) => {
       let rowData = response.data.data;
       JSON.stringify(rowData);
       this.setState({ rowData });
@@ -233,11 +237,9 @@ class BayManagementList extends React.Component {
   }
   async runthisfunction(id) {
     console.log(id);
-    await axiosConfig
-      .get(`/dealer/deletebm/${id}`)
-      .then((response) => {
-        console.log(response);
-      });
+    await axiosConfig.get(`/dealer/deletebm/${id}`).then((response) => {
+      console.log(response);
+    });
   }
   onGridReady = (params) => {
     this.gridApi = params.api;

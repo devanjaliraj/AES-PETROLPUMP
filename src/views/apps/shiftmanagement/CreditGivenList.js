@@ -12,10 +12,9 @@ import {
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
-// import { history } from "../../../history";
+import { history } from "../../../history";
 
-import axiosConfig from "../../../axiosConfig";
-import { Route } from 'react-router-dom'
+import axios from "axios";
 
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 
@@ -34,20 +33,44 @@ class RSP extends React.Component {
       suppressMenu: true,
     },
     columnDefs: [
-      // {
-      //   headerName: "Dealer Name",
-      //   field: "dealer_name",
-      //   width: 250,
-      //   pinned: window.innerWidth > 992 ? "left" : false,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         <span>{params.data.dealer_name}</span>
-      //       </div>
-      //     );
-      //   },
-      // },
+      {
+        headerName: "Dealer Name",
+        field: "dealer_Id.dealer_name",
+        width: 200,
+        pinned: window.innerWidth > 992 ? "left" : false,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.dealer_Id?.dealer_name}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Name of Customer",
+        field: "name_of_customer.name_of_customer",
+        width: 200,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.name_of_customer?.name_of_customer}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Dsm Name",
+        field: "dsm_name.dsm_name",
 
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.dsm_name?.dsm_name}</span>
+            </div>
+          );
+        },
+        width: 150,
+      },
       {
         headerName: " Date",
         field: "date",
@@ -60,102 +83,116 @@ class RSP extends React.Component {
           );
         },
       },
+
       {
-        headerName: " MS/Opening Dip ",
-        field: "opneing_dip1",
+        headerName: "Vehicle No",
+        field: "vehicle_no",
         width: 250,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.opneing_dip1}</span>
+              <span>{params.data.vehicle_no}</span>
             </div>
           );
         },
       },
 
       {
-        headerName: "MS/Opening Litres",
-        field: "opneing_liter1.closing_Entry",
+        headerName: "Credit for",
+        field: "credit_for",
         width: 250,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.opneing_liter1?.closing_Entry}</span>
+              <span>{params.data.credit_for}</span>
             </div>
           );
         },
       },
       {
-        headerName: "MS/Rsp Entry",
-        field: "rsp1",
+        headerName: "Opening Balance",
+        field: "opening_balance",
         width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.rsp1}</span>
+              <span>{params.data.opening_balance}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Hsd/Opening Dip",
-        field: "opneing_dip2",
+        headerName: "Credit Limit",
+        field: "credit_limit",
 
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.opneing_dip2}</span>
-            </div>
-          );
-        },
-        width: 150,
-      },
-      {
-        headerName: "Hsd/Opening Litres",
-        field: "opneing_liter2.closing_Entry",
-
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.opneing_liter2?.closing_Entry}</span>
+              <span>{params.data.credit_limit}</span>
             </div>
           );
         },
         width: 150,
       },
       {
-        headerName: "Hsd/Rsp Entry",
-        field: "rsp2",
+        headerName: "payment_overdue_as_on_date",
+        field: "payment_overdue_as_on_date",
 
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.rsp2}</span>
+              <span>{params.data.payment_overdue_as_on_date}</span>
+            </div>
+          );
+        },
+        width: 150,
+      },
+      {
+        headerName: "credit_given_today_amount",
+        field: "credit_given_today_amount",
+
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.credit_given_today_amount}</span>
             </div>
           );
         },
         width: 150,
       },
 
+      {
+        headerName: "Credit Setalment",
+        field: "credit_setalment",
+
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.credit_setalment}</span>
+            </div>
+          );
+        },
+        width: 150,
+      },
       {
         headerName: "Actions",
         field: "sortorder",
         width: 150,
+        pinned: window.innerWidth > 992 ? "right" : false,
+
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-               <Route render={({ history}) => (
-
               <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
                 onClick={() =>
                   history.push(
-                    `/app/shiftmanagement/retailSellingPriceForm/${params.data._id}`
+                    `/app/shiftManagement/creditGivenForm/${params.data._id}`
                   )
                 }
-              />)} />
+              />
               <Trash2
                 className="mr-50"
                 size="25px"
@@ -174,15 +211,22 @@ class RSP extends React.Component {
   };
 
   componentDidMount() {
-    axiosConfig
-      .get("/dealer/allrsp")
+    axios
+      .get("http://3.108.185.7/nodejs/api/dealer/allcreditgiven")
       .then((response) => {
         let rowData = response.data.data;
         JSON.stringify(rowData);
         this.setState({ rowData });
       });
   }
-
+  async runthisfunction(id) {
+    console.log(id);
+    await axios
+      .get(`http://3.108.185.7/nodejs/api/dealer/deletecreditgiven/${id}`)
+      .then((response) => {
+        console.log(response);
+      });
+  }
   onGridReady = (params) => {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
@@ -212,7 +256,7 @@ class RSP extends React.Component {
     return (
       <React.Fragment>
         <Breadcrumbs
-          breadCrumbTitle="Credit Given List"
+          breadCrumbTitle="RSP List"
           // breadCrumbParent="Forms & Tables"
           // breadCrumbActive="Shift Management"
         />
@@ -294,7 +338,7 @@ class RSP extends React.Component {
                       onGridReady={this.onGridReady}
                       colResizeDefault={"shift"}
                       animateRows={true}
-                      floatingFilter={true}
+                      floatingFilter={false}
                       pagination={true}
                       paginationPageSize={this.state.paginationPageSize}
                       pivotPanelShow="always"

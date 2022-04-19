@@ -9,9 +9,9 @@ import {
   DropdownToggle,
 } from "reactstrap";
 import * as Icon from "react-feather";
-import { Link } from "react-router-dom";
-import classnames from "classnames";
-import AutoComplete from "../../../components/@vuexy/autoComplete/AutoCompleteComponent";
+// import { Link } from "react-router-dom";
+// import classnames from "classnames";
+// import AutoComplete from "../../../components/@vuexy/autoComplete/AutoCompleteComponent";
 import { history } from "../../../history";
 import { connect } from "react-redux";
 import {
@@ -149,10 +149,10 @@ class NavbarBookmarks extends React.PureComponent {
 
   render() {
     let {
-      bookmarks: { extraStarred, suggestions },
+      bookmarks: { extraStarred },
       sidebarVisibility,
-      updateStarred,
-      handleAppOverlay,
+      // updateStarred,
+      // handleAppOverlay,
     } = this.props;
 
     const renderExtraStarred =

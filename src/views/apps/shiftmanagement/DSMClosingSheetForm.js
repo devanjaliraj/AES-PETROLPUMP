@@ -9,9 +9,8 @@ import {
   Button,
   Input,
 } from "reactstrap";
-import axiosConfig from "../../../axiosConfig";
-// import { history } from "../../../history";
-import { Route } from 'react-router-dom'
+import axios from "axios";
+import { history } from "../../../history";
 
 class DSMClosingSheet extends React.Component {
   constructor(props) {
@@ -34,8 +33,8 @@ class DSMClosingSheet extends React.Component {
     let { id } = this.props.match.params;
 
     // all dsm
-    axiosConfig
-      .get("/dealer/getDsnform")
+    axios
+      .get("http://3.108.185.7/nodejs/api/dealer/getDsnform")
       .then((response) => {
         console.log(response.data.data);
         this.setState({ dsm: response.data.data });
@@ -44,8 +43,8 @@ class DSMClosingSheet extends React.Component {
         console.log(error);
       });
 
-    axiosConfig
-      .get(`/dealer/getonedsmclosing/${id}`)
+    axios
+      .get(`http://3.108.185.7/nodejs/api/dealer/getonedsmclosing/${id}`)
       .then((response) => {
         console.log(response);
         this.setState({
@@ -71,9 +70,9 @@ class DSMClosingSheet extends React.Component {
   submitHandler = (e) => {
     e.preventDefault();
     let { id } = this.props.match.params;
-    axiosConfig
+    axios
       .post(
-        `/dealer/updatedsmclosing/${id}`,
+        `http://3.108.185.7/nodejs/api/dealer/updatedsmclosing/${id}`,
         this.state
       )
       .then((response) => {
@@ -95,8 +94,6 @@ class DSMClosingSheet extends React.Component {
             </h1>
           </Col>
           <Col>
-          <Route render={({ history}) => (
-
             <Button
               className=" btn btn-danger float-right"
               onClick={() =>
@@ -105,7 +102,6 @@ class DSMClosingSheet extends React.Component {
             >
               Back
             </Button>
-            )} />
           </Col>
         </Row>
         <CardBody>

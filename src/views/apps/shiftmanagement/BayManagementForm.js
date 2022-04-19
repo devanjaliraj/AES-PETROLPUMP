@@ -1,8 +1,7 @@
-// import React, { useState, useEffect } from "react";
 import React from "react";
 import {
   Card,
-  // CardHeader,
+  CustomInput,
   CardBody,
   Row,
   Col,
@@ -11,9 +10,7 @@ import {
   Input,
 } from "reactstrap";
 import axiosConfig from "../../../axiosConfig";
-// import { history } from "../../../history";
-import { Route } from 'react-router-dom'
-
+import { Route } from "react-router-dom";
 class BayManagementForm extends React.Component {
   constructor(props) {
     super(props);
@@ -28,39 +25,41 @@ class BayManagementForm extends React.Component {
 
     // all dsm
     axiosConfig
-      .get("/dealer/getDsnform")
+      .get(`/dealer/allbmApp/${id}`)
       .then((response) => {
         console.log(response.data.data);
-        this.setState({ dsm: response.data.data });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    // all nozzle
-    axiosConfig
-      .get("/dealer/allnozzle")
-      .then((response) => {
-        console.log(response.data.data);
-        this.setState({ nozzles: response.data.data });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
-    axiosConfig
-      .get(`/dealer/getonebm/${id}`)
-      .then((response) => {
-        console.log(response);
         this.setState({
-          dsm_name: response.data.data.dsm_name,
-          nozzel: response.data.data.nozzel,
-          closing_Entry: response.data.data.closing_Entry,
+          dsm: response.data.data,
+          nozzles: response.data.data,
+          closing_Entry: response.data.data,
         });
       })
       .catch((error) => {
-        console.log(error.response);
+        console.log(error);
       });
+
+    // // all nozzle
+    // axios
+    //   .get("http://3.108.185.7/nodejs/api/dealer/allnozzle")
+    //   .then((response) => {
+    //     console.log(response.data.data);
+    //     this.setState({ nozzles: response.data.data });
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+
+    // axios
+    //   .get(`http://3.108.185.7/nodejs/api/dealer/getonebm/${id}`)
+    //   .then((response) => {
+    //     console.log(response);
+    //     this.setState({
+    //       closing_Entry: response.data.data.closing_Entry,
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     console.log(error.response);
+    //   });
   }
 
   changeHandler = (e) => {
@@ -69,7 +68,7 @@ class BayManagementForm extends React.Component {
   // submitHandler = (e) => {
   //   e.preventDefault();
   //   let { id } = this.props.match.params;
-  //   axiosConfig
+  //   axios
   //     .post(`http://3.108.185.7/nodejs/api/dealer/updatersp/${id}`, this.state)
   //     .then((response) => {
   //       console.log(response);
@@ -86,21 +85,22 @@ class BayManagementForm extends React.Component {
         <Row className="m-1">
           <Col>
             <h1 col-sm-6 className="float-left">
-              Update BayManagementForm
+              Update BayManagement Form
             </h1>
           </Col>
           <Col>
-               <Route render={({ history}) => (
-                                                                   
-            <Button
-              className=" btn btn-danger float-right"
-              onClick={() =>
-                history.push("/app/shiftmanagement/bayManagementList")
-              }
-            >
-              Back
-            </Button>
-            )} />
+            <Route
+              render={({ history }) => (
+                <Button
+                  className=" btn btn-danger float-right"
+                  onClick={() =>
+                    history.push("/app/shiftmanagement/bayManagementList")
+                  }
+                >
+                  Back
+                </Button>
+              )}
+            />
           </Col>
         </Row>
 
@@ -109,7 +109,7 @@ class BayManagementForm extends React.Component {
             <Row>
               <Col md="6" sm="12">
                 <h5 className="my-1 text-bold-600">Choose DSM Name</h5>
-                <Input
+                <CustomInput
                   type="select"
                   name="dsm_name"
                   value={this.state.dsm_name}
@@ -117,10 +117,10 @@ class BayManagementForm extends React.Component {
                 >
                   {this.state.dsm?.map((mocp) => (
                     <option value={mocp._id} key={mocp._id}>
-                      {mocp.dsm_name}
+                      {mocp.dsm__Id.dsm_name}
                     </option>
                   ))}
-                </Input>
+                </CustomInput>
               </Col>
               <Col md="6" sm="12">
                 <h5 className="my-1 text-bold-600">Choose Nozzle</h5>
@@ -132,7 +132,7 @@ class BayManagementForm extends React.Component {
                 >
                   {this.state.nozzles?.map((mocp) => (
                     <option value={mocp._id} key={mocp._id}>
-                      {mocp.nozzle}
+                      {mocp.nozzel.nozzle}
                     </option>
                   ))}
                 </Input>
@@ -149,11 +149,7 @@ class BayManagementForm extends React.Component {
             </Row>
 
             <Col lg="12" md="12" sm="12" className="mb-5">
-              <Button.Ripple
-                color="primary"
-                type="submit"
-                className="mr-1 mb-1"
-              >
+              <Button.Ripple color="primary" type="submit" className="mt-2">
                 Submit
               </Button.Ripple>
             </Col>

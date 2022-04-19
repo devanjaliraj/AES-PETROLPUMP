@@ -13,11 +13,10 @@ import { AgGridReact } from "ag-grid-react";
 import { history } from "../../../history";
 
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2,  Edit } from "react-feather";
-import axiosConfig from "../../../axiosConfig";
+import { ChevronDown, Trash2, Edit } from "react-feather";
+import axios from "axios";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
-import { Route } from 'react-router-dom'
 
 class StaffAttendance extends React.Component {
   state = {
@@ -101,8 +100,6 @@ class StaffAttendance extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-          <Route render={({ history}) => (
-              
               <Edit
                 className="mr-50"
                 size="25px"
@@ -112,14 +109,14 @@ class StaffAttendance extends React.Component {
                     `/app/shiftManagement/staffAttendanceForm/${params.data._id}`
                   )
                 }
-              />)}/>
+              />
               <Trash2
                 className="mr-50"
                 size="25px"
                 color="red"
                 onClick={() =>
                   history.push(
-                    `/dealer/deleteatendence/${params.data._id}`
+                    `http://3.108.185.7/nodejs/api/dealer/deleteatendence/${params.data._id}`
                   )
                 }
               />
@@ -131,8 +128,8 @@ class StaffAttendance extends React.Component {
   };
 
   componentDidMount() {
-    axiosConfig
-      .get("/dealer/allatendence")
+    axios
+      .get("http://3.108.185.7/nodejs/api/dealer/allatendence")
       .then((response) => {
         let rowData = response.data.data;
         JSON.stringify(rowData);
@@ -141,7 +138,7 @@ class StaffAttendance extends React.Component {
   }
   // async runthisfunction(id) {
   //   console.log(id);
-  //   await axiosConfig
+  //   await axios
   //     .get(`http://3.108.185.7/nodejs/api/dealer/deletelubricantsales/${id}`)
   //     .then((response) => {
   //       console.log(response);
@@ -175,7 +172,7 @@ class StaffAttendance extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs breadCrumbTitle="Staff Attendance List" />
+        <Breadcrumbs breadCrumbTitle="Lubricants Sale List" />
         <Card className="overflow-hidden agGrid-card">
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (

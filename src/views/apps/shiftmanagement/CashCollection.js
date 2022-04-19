@@ -9,15 +9,14 @@ import {
   DropdownItem,
   DropdownToggle,
 } from "reactstrap";
+import axios from "axios";
+import { history } from "../../../history";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2, Eye, Edit } from "react-feather";
-import axios from "axios";
+import { ChevronDown, Trash2, Edit } from "react-feather";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
-import { history } from "../../../history";
-
-class ShiftManagementList extends React.Component {
+class CashCollection extends React.Component {
   state = {
     rowData: null,
     paginationPageSize: 20,
@@ -31,85 +30,164 @@ class ShiftManagementList extends React.Component {
     },
     columnDefs: [
       {
-        headerName: "Dealer's Name",
-        field: "firstname",
-        width: 175,
+        headerName: "DSM Name",
+        field: "dsm_Id.dsm_name",
         filter: false,
-        checkboxSelection: false,
-        headerCheckboxSelectionFilteredOnly: false,
-        headerCheckboxSelection: false,
+        pinned: window.innerWidth > 992 ? "left" : false,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.dsm_Id?.dsm_name}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Date",
+        field: "date",
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.date}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Total",
+        field: "total",
+        width: 180,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.total}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Cash handed over to",
+        field: "cash_handed_over_to.maneger_name",
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.cash_handed_over_to?.maneger_name}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Upi Cash",
+        field: "upi_Cash",
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.upi_Cash}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Credit Cash",
+        field: "credit_cash",
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.credit_cash}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Debit Cash",
+        field: "debit_cash",
+        width: 160,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.debit_cash}</span>
+            </div>
+          );
+        },
       },
 
       {
-        headerName: "Email",
-        field: "email",
+        headerName: "Credit",
+        field: "credit",
         filter: false,
-        width: 250,
-        pinned: window.innerWidth > 992 ? "left" : false,
+        width: 200,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.credit}</span>
+            </div>
+          );
+        },
       },
       {
-        headerName: "Company",
-        field: "company",
+        headerName: "Cash use ",
+        field: "cash_use",
         filter: false,
-        width: 250,
+        width: 180,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.cash_use}</span>
+            </div>
+          );
+        },
       },
       {
-        headerName: "City",
-        field: "city",
+        headerName: "Final Cash",
+        field: "final_cash",
         filter: false,
-        width: 150,
+        width: 180,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.final_cash}</span>
+            </div>
+          );
+        },
       },
       {
-        headerName: "Country",
-        field: "country",
+        headerName: "Cash Difference",
+        field: "cash_difference",
         filter: false,
-        width: 150,
+        width: 180,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.cash_difference}</span>
+            </div>
+          );
+        },
       },
-      {
-        headerName: "State",
-        field: "state",
-        filter: false,
-        width: 125,
-      },
-      {
-        headerName: "Zip",
-        field: "zip",
-        filter: "agNumberColumnFilter",
-        width: 140,
-      },
-      {
-        headerName: "Mobille No.",
-        field: "number",
-        filter: "agNumberColumnFilter",
-        width: 140,
-      },
-      {
-        headerName: "Subscription Plan Name",
-        field: "Subscription Plan Name",
-        filter: "agNumberColumnFilter",
-        width: 140,
-      },
+
       {
         headerName: "Actions",
         field: "sortorder",
         width: 150,
+        pinned: window.innerWidth > 992 ? "right" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              <Eye
-                className="mr-50"
-                size="25px"
-                color="green"
-                onClick={() =>
-                  history.push("/app/shiftManagement/shiftDealerTable")
-                }
-              />
               <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
-                // onClick={() => history.push("/app/slider/editSlider/${params.data._id}")}
+                onClick={() =>
+                  history.push(
+                    `/app/shiftManagement/cashCollectionForm/${params.data._id}`
+                  )
+                }
               />
+
               <Trash2
                 className="mr-50"
                 size="25px"
@@ -126,15 +204,24 @@ class ShiftManagementList extends React.Component {
       },
     ],
   };
-
   componentDidMount() {
-    axios.get("/api/aggrid/data").then((response) => {
-      let rowData = response.data.data;
-      JSON.stringify(rowData);
-      this.setState({ rowData });
-    });
+    axios
+      .get("http://3.108.185.7/nodejs/api/dealer/allcashcollected")
+      .then((response) => {
+        let rowData = response.data.data;
+        JSON.stringify(rowData);
+        this.setState({ rowData });
+        console.log(rowData);
+      });
   }
-
+  async runthisfunction(id) {
+    console.log(id);
+    await axios
+      .get(`http://3.108.185.7/nodejs/api/dealer/deletecashcollected/${id}`)
+      .then((response) => {
+        console.log(response);
+      });
+  }
   onGridReady = (params) => {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
@@ -163,11 +250,7 @@ class ShiftManagementList extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs
-          breadCrumbTitle="Shift Management"
-          // breadCrumbParent="Forms & Tables"
-          // breadCrumbActive="Shift Management"
-        />
+        <Breadcrumbs breadCrumbTitle="Lubricants Sale List" />
         <Card className="overflow-hidden agGrid-card">
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
@@ -246,7 +329,7 @@ class ShiftManagementList extends React.Component {
                       onGridReady={this.onGridReady}
                       colResizeDefault={"shift"}
                       animateRows={true}
-                      floatingFilter={true}
+                      floatingFilter={false}
                       pagination={true}
                       paginationPageSize={this.state.paginationPageSize}
                       pivotPanelShow="always"
@@ -262,4 +345,4 @@ class ShiftManagementList extends React.Component {
     );
   }
 }
-export default ShiftManagementList;
+export default CashCollection;

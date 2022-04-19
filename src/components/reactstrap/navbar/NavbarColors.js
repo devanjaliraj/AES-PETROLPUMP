@@ -1,4 +1,4 @@
-import React from "react"
+import React from "react";
 import {
   Navbar,
   Badge,
@@ -10,36 +10,36 @@ import {
   Nav,
   NavItem,
   NavLink,
-  Card
-} from "reactstrap"
-import classnames from "classnames"
+  Card,
+} from "reactstrap";
+import classnames from "classnames";
 import {
   Eye,
   Code,
   Menu,
-  CheckSquare,
-  MessageSquare,
-  Mail,
-  Calendar,
-  Star,
+  // CheckSquare,
+  // MessageSquare,
+  // Mail,
+  // Calendar,
+  // Star,
   Search,
-  Bell
-} from "react-feather"
-import { navbarColors } from "./NavbarSourceCode"
-import userImg from "../../../assets/img/portrait/small/avatar-s-11.jpg"
+  Bell,
+} from "react-feather";
+import { navbarColors } from "./NavbarSourceCode";
+import userImg from "../../../assets/img/portrait/small/avatar-s-11.jpg";
 
-import ReactCountryFlag from "react-country-flag"
+import ReactCountryFlag from "react-country-flag";
 
 class NavbarColors extends React.Component {
   state = {
-    activeTab: "1"
-  }
+    activeTab: "1",
+  };
 
-  toggleTab = tab => {
+  toggleTab = (tab) => {
     if (this.state.activeTab !== tab) {
-      this.setState({ activeTab: tab })
+      this.setState({ activeTab: tab });
     }
-  }
+  };
 
   render() {
     return (
@@ -52,10 +52,10 @@ class NavbarColors extends React.Component {
                 <NavItem>
                   <NavLink
                     className={classnames({
-                      active: this.state.activeTab === "1"
+                      active: this.state.activeTab === "1",
                     })}
                     onClick={() => {
-                      this.toggleTab("1")
+                      this.toggleTab("1");
                     }}
                   >
                     <Eye size={15} />
@@ -64,10 +64,10 @@ class NavbarColors extends React.Component {
                 <NavItem>
                   <NavLink
                     className={classnames({
-                      active: this.state.activeTab === "2"
+                      active: this.state.activeTab === "2",
                     })}
                     onClick={() => {
-                      this.toggleTab("2")
+                      this.toggleTab("2");
                     }}
                   >
                     <Code size={15} />
@@ -590,7 +590,7 @@ class NavbarColors extends React.Component {
           </CardBody>
         </Card>
       </React.Fragment>
-    )
+    );
   }
 }
-export default NavbarColors
+export default NavbarColors;

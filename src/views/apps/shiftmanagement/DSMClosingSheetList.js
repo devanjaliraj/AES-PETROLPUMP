@@ -12,14 +12,13 @@ import {
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
-// import { history } from "../../../history";
+import { history } from "../../../history";
 
-import axiosConfig from "../../../axiosConfig";
+import axios from "axios";
 
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
-import { Route } from 'react-router-dom'
 
 class DSMClosingSheetList extends React.Component {
   state = {
@@ -172,18 +171,16 @@ class DSMClosingSheetList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-               <Route render={({ history}) => (
-
               <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
                 onClick={() =>
                   history.push(
-                `/app/shiftManagement/dSMClosingSheetForm/${params.data._id}`
+                    `/app/shiftManagement/dSMClosingSheetForm/${params.data._id}`
                   )
                 }
-              />)}/>
+              />
               <Trash2
                 className="mr-50"
                 size="25px"
@@ -202,8 +199,8 @@ class DSMClosingSheetList extends React.Component {
   };
 
   componentDidMount() {
-    axiosConfig
-      .get("/dealer/alldsmclosing")
+    axios
+      .get("http://3.108.185.7/nodejs/api/dealer/alldsmclosing")
       .then((response) => {
         let rowData = response.data.data;
         JSON.stringify(rowData);
@@ -212,8 +209,8 @@ class DSMClosingSheetList extends React.Component {
   }
   async runthisfunction(id) {
     console.log(id);
-    await axiosConfig
-      .get(`/dealer/deletedsmclosing/${id}`)
+    await axios
+      .get(`http://3.108.185.7/nodejs/api/dealer/deletedsmclosing/${id}`)
       .then((response) => {
         console.log(response);
       });
@@ -330,7 +327,7 @@ class DSMClosingSheetList extends React.Component {
                       onGridReady={this.onGridReady}
                       colResizeDefault={"shift"}
                       animateRows={true}
-                      floatingFilter={true}
+                      floatingFilter={false}
                       pagination={true}
                       paginationPageSize={this.state.paginationPageSize}
                       pivotPanelShow="always"

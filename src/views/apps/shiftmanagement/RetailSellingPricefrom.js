@@ -2,6 +2,7 @@ import React from "react";
 import {
   Card,
   CardHeader,
+  // CardTitle,
   CardBody,
   Row,
   Col,
@@ -10,9 +11,7 @@ import {
   Input,
 } from "reactstrap";
 import axiosConfig from "../../../axiosConfig";
-// import { history } from "../../../history";
-import { Route } from 'react-router-dom'
-
+import { Route } from "react-router-dom";
 class RetailSellingPrice extends React.Component {
   constructor(props) {
     super(props);
@@ -74,17 +73,18 @@ class RetailSellingPrice extends React.Component {
             </h1>
           </Col>
           <Col>
-          <Route render={({ history}) => (
-
-            <Button
-              className=" btn btn-danger float-right"
-              onClick={() =>
-                history.push("/apps/shiftmanagement/retailSellingPriceList")
-              }
-            >
-              Back
-            </Button>
-          )}/>
+            <Route
+              render={({ history }) => (
+                <Button
+                  className=" btn btn-danger float-right"
+                  onClick={() =>
+                    history.push("/apps/shiftmanagement/retailSellingPriceList")
+                  }
+                >
+                  Back
+                </Button>
+              )}
+            />
           </Col>
         </Row>
 

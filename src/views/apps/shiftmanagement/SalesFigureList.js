@@ -12,10 +12,9 @@ import {
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
-// import { history } from "../../../history";
-import { Route } from 'react-router-dom'
+import { history } from "../../../history";
 
-import axiosConfig from "../../../axiosConfig";
+import axios from "axios";
 
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 
@@ -149,8 +148,6 @@ class SelesFigureList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-               <Route render={({ history}) => (
-
               <Edit
                 className="mr-50"
                 size="25px"
@@ -158,7 +155,7 @@ class SelesFigureList extends React.Component {
                 onClick={() =>
                   history.push("/app/shiftManagement/salesFigureForm")
                 }
-              />)}/>
+              />
               <Trash2
                 className="mr-50"
                 size="25px"
@@ -177,8 +174,8 @@ class SelesFigureList extends React.Component {
   };
 
   componentDidMount() {
-    axiosConfig
-      .get("/dealer/alllubricantsales")
+    axios
+      .get("http://3.108.185.7/nodejs/api/dealer/alllubricantsales")
       .then((response) => {
         let rowData = response.data.data;
         JSON.stringify(rowData);
@@ -187,8 +184,8 @@ class SelesFigureList extends React.Component {
   }
   async runthisfunction(id) {
     console.log(id);
-    await axiosConfig
-      .get(`/dealer/deletelubricantsales/${id}`)
+    await axios
+      .get(`http://3.108.185.7/nodejs/api/dealer/deletelubricantsales/${id}`)
       .then((response) => {
         console.log(response);
       });

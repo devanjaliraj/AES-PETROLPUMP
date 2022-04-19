@@ -151,21 +151,22 @@ const navigationConfig = [
     icon: <Icon.User size={20} />,
     children: [
       {
-        id: "retailSellingPriceList",
-        title: "Retail Selling Price List",
+        id: "dealerListInRSP",
+        title: "Retail Selling Price",
         type: "item",
         icon: <Icon.Circle size={12} />,
         permissions: ["admin", "editor"],
-        navLink: "/app/shiftmanagement/retailSellingPriceList",
+        navLink: "/app/shiftmanagement/dealerListInRSP",
       },
       {
-        id: "bayManagementList",
-        title: "Bay Management List",
+        id: "dealerListForBayMang",
+        title: "Bay Management",
         type: "item",
         icon: <Icon.Circle size={12} />,
         permissions: ["admin", "editor"],
-        navLink: "/app/shiftmanagement/bayManagementList",
+        navLink: "/app/shiftmanagement/dealerListForBayMang",
       },
+
       {
         id: "dSMClosingSheetList",
         title: "DSM Closing Sheet List",
@@ -175,8 +176,16 @@ const navigationConfig = [
         navLink: "/app/shiftManagement/dSMClosingSheetList",
       },
       {
+        id: "cashCollection",
+        title: "Cash Collection",
+        type: "item",
+        icon: <Icon.Circle size={12} />,
+        permissions: ["admin", "editor"],
+        navLink: "/app/shiftManagement/cashCollection",
+      },
+      {
         id: "salesFigureList",
-        title: "Sales Figures List",
+        title: "Sales Figure List",
         type: "item",
         icon: <Icon.Circle size={12} />,
         permissions: ["admin", "editor"],
@@ -184,7 +193,7 @@ const navigationConfig = [
       },
       {
         id: "creditGivenList",
-        title: "Credit Given to List",
+        title: "Credit Given List",
         type: "item",
         icon: <Icon.Circle size={12} />,
         permissions: ["admin", "editor"],
@@ -199,7 +208,6 @@ const navigationConfig = [
         permissions: ["admin", "editor"],
         navLink: "/app/shiftManagement/lubricantSales",
       },
-
       {
         id: "staffAttendanceList",
         title: "Staff Attendance List",
