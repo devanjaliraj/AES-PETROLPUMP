@@ -1,6 +1,8 @@
 import React from "react";
 import {
   Card,
+  Row,
+  Col,
   CardBody,
   Input,
   Button,
@@ -10,13 +12,12 @@ import {
   DropdownToggle,
 } from "reactstrap";
 import axios from "axios";
-import { history } from "../../../history";
+import { Route } from "react-router-dom";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
-class CashCollection extends React.Component {
+class CashCollectionList extends React.Component {
   state = {
     rowData: null,
     paginationPageSize: 20,
@@ -177,17 +178,20 @@ class CashCollection extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              <Edit
-                className="mr-50"
-                size="25px"
-                color="blue"
-                onClick={() =>
-                  history.push(
-                    `/app/shiftManagement/cashCollectionForm/${params.data._id}`
-                  )
-                }
+              <Route
+                render={({ history }) => (
+                  <Edit
+                    className="mr-50"
+                    size="25px"
+                    color="blue"
+                    onClick={() =>
+                      history.push(
+                        `/app/shiftManagement/cashCollectionForm/${params.data._id}`
+                      )
+                    }
+                  />
+                )}
               />
-
               <Trash2
                 className="mr-50"
                 size="25px"
@@ -250,8 +254,15 @@ class CashCollection extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs breadCrumbTitle="Lubricants Sale List" />
         <Card className="overflow-hidden agGrid-card">
+          <Row className="m-1">
+            <Col>
+              <h1 col-sm-6 className="float-left">
+                Cash Collection List
+              </h1>
+            </Col>
+          </Row>
+
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">
@@ -345,4 +356,4 @@ class CashCollection extends React.Component {
     );
   }
 }
-export default CashCollection;
+export default CashCollectionList;

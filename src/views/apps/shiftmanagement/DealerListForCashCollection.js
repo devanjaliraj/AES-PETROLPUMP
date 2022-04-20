@@ -18,7 +18,7 @@ import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Eye } from "react-feather";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 // import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
-class DealerListForBayMang extends React.Component {
+class DealerListForCashCollection extends React.Component {
   state = {
     rowData: [],
     paginationPageSize: 20,
@@ -120,7 +120,7 @@ class DealerListForBayMang extends React.Component {
                     color="green"
                     onClick={() =>
                       history.push(
-                        `/app/shiftmanagement/bayManagementList/${params.data._id}`
+                        `/app/shiftManagement/cashCollectionList/${params.data._id}`
                       )
                     }
                   />
@@ -172,7 +172,7 @@ class DealerListForBayMang extends React.Component {
           <Row className="m-1">
             <Col>
               <h1 col-sm-6 className="float-left">
-                List of Dealers for RSP
+                List of Dealers for Cash Collection
               </h1>
             </Col>
           </Row>
@@ -269,4 +269,4 @@ class DealerListForBayMang extends React.Component {
     );
   }
 }
-export default DealerListForBayMang;
+export default DealerListForCashCollection;

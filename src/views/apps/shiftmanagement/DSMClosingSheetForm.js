@@ -9,15 +9,15 @@ import {
   Button,
   Input,
 } from "reactstrap";
-import axios from "axios";
-import { history } from "../../../history";
+import axiosConfig from "../../../axiosConfig";
+import { Route } from "react-router-dom";
 
 class DSMClosingSheet extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       dsm: [],
-      // dealer_name1: "",
+      dealer_name1: "",
       // date: "",
       ms_sales: "",
       ms_testing: "",
@@ -33,8 +33,8 @@ class DSMClosingSheet extends React.Component {
     let { id } = this.props.match.params;
 
     // all dsm
-    axios
-      .get("http://3.108.185.7/nodejs/api/dealer/getDsnform")
+    axiosConfig
+      .get("/dealer/getDsnform")
       .then((response) => {
         console.log(response.data.data);
         this.setState({ dsm: response.data.data });
@@ -43,12 +43,12 @@ class DSMClosingSheet extends React.Component {
         console.log(error);
       });
 
-    axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/getonedsmclosing/${id}`)
+    axiosConfig
+      .get(`/dealer/getonedsmclosing/${id}`)
       .then((response) => {
         console.log(response);
         this.setState({
-          // date: response.data.data.date,
+          dealer_name1: response.data.data.dealer_name1,
           dsm_name: response.data.data.dsm_name,
           ms_sales: response.data.data.ms_sales,
           ms_testing: response.data.data.ms_testing,
@@ -70,15 +70,14 @@ class DSMClosingSheet extends React.Component {
   submitHandler = (e) => {
     e.preventDefault();
     let { id } = this.props.match.params;
-    axios
-      .post(
-        `http://3.108.185.7/nodejs/api/dealer/updatedsmclosing/${id}`,
-        this.state
-      )
+    axiosConfig
+      .post(`/dealer/updatedsmclosing/${id}`, this.state)
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/app/shiftManagement/dSMClosingSheetList");
+        this.props.history.push(
+          `/app/shiftManagement/dSMClosingSheetList/${this.state.dealer_name1._id}`
+        );
       })
       .catch((error) => {
         console.log(error);
@@ -94,14 +93,20 @@ class DSMClosingSheet extends React.Component {
             </h1>
           </Col>
           <Col>
-            <Button
-              className=" btn btn-danger float-right"
-              onClick={() =>
-                history.push("/app/shiftManagement/dSMClosingSheetList")
-              }
-            >
-              Back
-            </Button>
+            <Route
+              render={({ history }) => (
+                <Button
+                  className=" btn btn-danger float-right"
+                  onClick={() =>
+                    history.push(
+                      `/app/shiftManagement/dSMClosingSheetList/${this.state.dealer_name1._id}`
+                    )
+                  }
+                >
+                  Back
+                </Button>
+              )}
+            />
           </Col>
         </Row>
         <CardBody>
@@ -131,6 +136,7 @@ class DSMClosingSheet extends React.Component {
                   onChange={this.changeHandler}
                 ></Input>
               </Col>
+
               <Col md="6" sm="12">
                 <h5 className="my-1 text-bold-600">Ms Testing</h5>
                 <Input

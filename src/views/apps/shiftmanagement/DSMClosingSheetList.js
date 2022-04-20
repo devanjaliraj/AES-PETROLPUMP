@@ -12,9 +12,8 @@ import {
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
-import { history } from "../../../history";
-
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
+import { Route } from "react-router-dom";
 
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 
@@ -171,15 +170,19 @@ class DSMClosingSheetList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              <Edit
-                className="mr-50"
-                size="25px"
-                color="blue"
-                onClick={() =>
-                  history.push(
-                    `/app/shiftManagement/dSMClosingSheetForm/${params.data._id}`
-                  )
-                }
+              <Route
+                render={({ history }) => (
+                  <Edit
+                    className="mr-50"
+                    size="25px"
+                    color="blue"
+                    onClick={() =>
+                      history.push(
+                        `/app/shiftManagement/dSMClosingSheetForm/${params.data._id}`
+                      )
+                    }
+                  />
+                )}
               />
               <Trash2
                 className="mr-50"
@@ -199,21 +202,18 @@ class DSMClosingSheetList extends React.Component {
   };
 
   componentDidMount() {
-    axios
-      .get("http://3.108.185.7/nodejs/api/dealer/alldsmclosing")
-      .then((response) => {
-        let rowData = response.data.data;
-        JSON.stringify(rowData);
-        this.setState({ rowData });
-      });
+    let { id } = this.props.match.params;
+    axiosConfig.get(`/dealer/alldsmclosingApp/${id}`).then((response) => {
+      let rowData = response.data.data;
+      JSON.stringify(rowData);
+      this.setState({ rowData });
+    });
   }
   async runthisfunction(id) {
     console.log(id);
-    await axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/deletedsmclosing/${id}`)
-      .then((response) => {
-        console.log(response);
-      });
+    await axiosConfig.get(`/dealer/deletedsmclosing/${id}`).then((response) => {
+      console.log(response);
+    });
   }
 
   onGridReady = (params) => {

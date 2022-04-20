@@ -168,20 +168,20 @@ const navigationConfig = [
       },
 
       {
-        id: "dSMClosingSheetList",
-        title: "DSM Closing Sheet List",
+        id: "dealerListForDSMClosing",
+        title: "DSM Closing Sheet",
         type: "item",
         icon: <Icon.Circle size={12} />,
         permissions: ["admin", "editor"],
-        navLink: "/app/shiftManagement/dSMClosingSheetList",
+        navLink: "/app/shiftManagement/dealerListForDSMClosing",
       },
       {
-        id: "cashCollection",
+        id: "dealerListForCashCollection",
         title: "Cash Collection",
         type: "item",
         icon: <Icon.Circle size={12} />,
         permissions: ["admin", "editor"],
-        navLink: "/app/shiftManagement/cashCollection",
+        navLink: "/app/shiftManagement/dealerListForCashCollection",
       },
       {
         id: "salesFigureList",

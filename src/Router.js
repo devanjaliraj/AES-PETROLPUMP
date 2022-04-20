@@ -59,14 +59,20 @@ const BayManagementList = lazy(() =>
 const BayManagementForm = lazy(() =>
   import("./views/apps/shiftmanagement/BayManagementForm")
 );
+const DealerListForDSMClosing = lazy(() =>
+  import("./views/apps/shiftmanagement/DealerListForDSMClosing")
+);
 const DSMClosingSheetList = lazy(() =>
   import("./views/apps/shiftmanagement/DSMClosingSheetList")
 );
 const DSMClosingSheetForm = lazy(() =>
   import("./views/apps/shiftmanagement/DSMClosingSheetForm")
 );
-const CashCollection = lazy(() =>
-  import("./views/apps/shiftmanagement/CashCollection")
+const DealerListForCashCollection = lazy(() =>
+  import("./views/apps/shiftmanagement/DealerListForCashCollection")
+);
+const CashCollectionList = lazy(() =>
+  import("./views/apps/shiftmanagement/CashCollectionList")
 );
 const CashCollectionForm = lazy(() =>
   import("./views/apps/shiftmanagement/CashCollectionForm")
@@ -744,7 +750,11 @@ class AppRouter extends React.Component {
               component={BayManagementForm}
             />
             <AppRoute
-              path="/app/shiftManagement/dSMClosingSheetList"
+              path="/app/shiftManagement/dealerListForDSMClosing"
+              component={DealerListForDSMClosing}
+            />
+            <AppRoute
+              path="/app/shiftManagement/dSMClosingSheetList/:id"
               component={DSMClosingSheetList}
             />
             <AppRoute
@@ -752,8 +762,12 @@ class AppRouter extends React.Component {
               component={DSMClosingSheetForm}
             />
             <AppRoute
-              path="/app/shiftManagement/cashCollection"
-              component={CashCollection}
+              path="/app/shiftManagement/dealerListForCashCollection"
+              component={DealerListForCashCollection}
+            />
+            <AppRoute
+              path="/app/shiftManagement/cashCollectionList/:id"
+              component={CashCollectionList}
             />
             <AppRoute
               path="/app/shiftManagement/cashCollectionForm/:id"
