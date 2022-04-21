@@ -16,6 +16,7 @@ class RetailSellingPrice extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      dealer_Id: "",
       date: "",
       opneing_dip1: "",
       opneing_liter1: "",
@@ -32,6 +33,7 @@ class RetailSellingPrice extends React.Component {
       .then((response) => {
         console.log(response);
         this.setState({
+          dealer_Id: response.data.data.dealer_Id,
           date: response.data.data.date,
           opneing_dip1: response.data.data.opneing_dip1,
           opneing_liter1: response.data.data.opneing_liter1,
@@ -57,7 +59,9 @@ class RetailSellingPrice extends React.Component {
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/app/shiftmanagement/retailSellingPriceList");
+        this.props.history.push(
+          `/app/shiftmanagement/retailSellingPriceList/${this.state.dealer_Id._id}`
+        );
       })
       .catch((error) => {
         console.log(error);
@@ -78,7 +82,9 @@ class RetailSellingPrice extends React.Component {
                 <Button
                   className=" btn btn-danger float-right"
                   onClick={() =>
-                    history.push("/apps/shiftmanagement/retailSellingPriceList")
+                    history.push(
+                      `/app/shiftmanagement/retailSellingPriceList/${this.state.dealer_Id._id}`
+                    )
                   }
                 >
                   Back

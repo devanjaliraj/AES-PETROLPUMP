@@ -165,7 +165,7 @@ class RSP extends React.Component {
 
   componentDidMount() {
     let { id } = this.props.match.params;
-    axiosConfig.get(`/dealer/allbmApp/${id}`).then((response) => {
+    axiosConfig.get(`/dealer/allrspApp/${id}`).then((response) => {
       let rowData = response.data.data;
       JSON.stringify(rowData);
       this.setState({ rowData });

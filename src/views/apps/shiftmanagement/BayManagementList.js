@@ -10,7 +10,7 @@ import {
   DropdownToggle,
 } from "reactstrap";
 import axiosConfig from "../../../axiosConfig";
-import { Route } from "react-router-dom";
+// import { Route } from "react-router-dom";
 
 // import { history } from "../../../history";
 import { AgGridReact } from "ag-grid-react";
@@ -193,7 +193,7 @@ class BayManagementList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              <Route
+              {/* <Route
                 render={({ history }) => (
                   <Edit
                     className="mr-50"
@@ -201,12 +201,12 @@ class BayManagementList extends React.Component {
                     color="blue"
                     onClick={() =>
                       history.push(
-                        `/app/shiftmanagement/bayManagementForm/${params.data.dealer_Id._id}`
+                        `/app/shiftmanagement/bayManagementForm/${params.data._id}`
                       )
                     }
                   />
                 )}
-              />
+              /> */}
 
               <Trash2
                 className="mr-50"

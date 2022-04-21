@@ -15,7 +15,8 @@ class BayManagementForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      dsm_name: "",
+      dealer_Id: "",
+      dsm__Id: "",
       nozzel: "",
       closing_Entry: "",
     };
@@ -24,19 +25,19 @@ class BayManagementForm extends React.Component {
     let { id } = this.props.match.params;
 
     // all dsm
-    axiosConfig
-      .get(`/dealer/allbmApp/${id}`)
-      .then((response) => {
-        console.log(response.data.data);
-        this.setState({
-          dsm: response.data.data,
-          nozzles: response.data.data,
-          closing_Entry: response.data.data,
-        });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // axiosConfig
+    //   .get(`/dealer/allbmApp/${id}`)
+    //   .then((response) => {
+    //     console.log(response.data.data);
+    //     this.setState({
+    //       dsm: response.data.data,
+    //       nozzles: response.data.data,
+    //       closing_Entry: response.data.data,
+    //     });
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
 
     // // all nozzle
     // axios
@@ -109,6 +110,12 @@ class BayManagementForm extends React.Component {
             <Row>
               <Col md="6" sm="12">
                 <h5 className="my-1 text-bold-600">Choose DSM Name</h5>
+                <Input
+                  type="number"
+                  name="closing_Entry"
+                  value={this.state.closing_Entry}
+                  onChange={this.changeHandler}
+                ></Input>
                 <CustomInput
                   type="select"
                   name="dsm_name"
