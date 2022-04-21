@@ -77,11 +77,17 @@ const CashCollectionList = lazy(() =>
 const CashCollectionForm = lazy(() =>
   import("./views/apps/shiftmanagement/CashCollectionForm")
 );
+const DealerListForSalesFigure = lazy(() =>
+  import("./views/apps/shiftmanagement/DealerListForSalesFigure")
+);
 const SalesFigureList = lazy(() =>
   import("./views/apps/shiftmanagement/SalesFigureList")
 );
 const SalesFigureForm = lazy(() =>
   import("./views/apps/shiftmanagement/SalesFigureForm")
+);
+const DealerListForCreditGivento = lazy(() =>
+  import("./views/apps/shiftmanagement/DealerListForCreditGivento")
 );
 const CreditGivenList = lazy(() =>
   import("./views/apps/shiftmanagement/CreditGivenList")
@@ -774,7 +780,11 @@ class AppRouter extends React.Component {
               component={CashCollectionForm}
             />
             <AppRoute
-              path="/app/shiftManagement/salesFigureList"
+              path="/app/shiftManagement/dealerListForSalesFigure"
+              component={DealerListForSalesFigure}
+            />
+            <AppRoute
+              path="/app/shiftManagement/salesFigureList/:id"
               component={SalesFigureList}
             />
             <AppRoute
@@ -782,7 +792,11 @@ class AppRouter extends React.Component {
               component={SalesFigureForm}
             />
             <AppRoute
-              path="/app/shiftManagement/creditGivenList"
+              path="/app/shiftManagement/dealerListForCreditGivento"
+              component={DealerListForCreditGivento}
+            />
+            <AppRoute
+              path="/app/shiftManagement/creditGivenList/:id"
               component={CreditGivenList}
             />
             <AppRoute

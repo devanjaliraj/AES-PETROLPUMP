@@ -15,7 +15,7 @@ import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
 import axiosConfig from "../../../axiosConfig";
-import { Route } from "react-router-dom";
+// import { Route } from "react-router-dom";
 
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 
@@ -132,7 +132,7 @@ class RSP extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              <Route
+              {/* <Route
                 render={({ history }) => (
                   <Edit
                     className="mr-50"
@@ -145,7 +145,7 @@ class RSP extends React.Component {
                     }
                   />
                 )}
-              />
+              /> */}
               <Trash2
                 className="mr-50"
                 size="25px"
@@ -209,7 +209,7 @@ class RSP extends React.Component {
           <Row className="m-1">
             <Col>
               <h1 col-sm-6 className="float-left">
-                List of Dealers for RSP
+                List of RSP
               </h1>
             </Col>
           </Row>

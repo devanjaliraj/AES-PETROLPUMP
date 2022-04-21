@@ -12,10 +12,10 @@ import {
   DropdownToggle,
 } from "reactstrap";
 import axios from "axios";
-import { Route } from "react-router-dom";
+// import { Route } from "react-router-dom";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2, Edit } from "react-feather";
+import { ChevronDown, Trash2 } from "react-feather";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 class CashCollectionList extends React.Component {
   state = {
@@ -178,7 +178,7 @@ class CashCollectionList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              <Route
+              {/* <Route
                 render={({ history }) => (
                   <Edit
                     className="mr-50"
@@ -191,7 +191,7 @@ class CashCollectionList extends React.Component {
                     }
                   />
                 )}
-              />
+              /> */}
               <Trash2
                 className="mr-50"
                 size="25px"

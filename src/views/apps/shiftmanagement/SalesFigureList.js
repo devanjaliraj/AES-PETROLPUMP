@@ -35,23 +35,9 @@ class SelesFigureList extends React.Component {
     },
     columnDefs: [
       {
-        headerName: "Dealer Name",
-        field: "dealer_name",
-        width: 250,
-        pinned: window.innerWidth > 992 ? "left" : false,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dealer_name}</span>
-            </div>
-          );
-        },
-      },
-
-      {
         headerName: " Date",
         field: "date",
-
+        pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -145,17 +131,19 @@ class SelesFigureList extends React.Component {
         headerName: "Actions",
         field: "sortorder",
         width: 150,
+        pinned: window.innerWidth > 992 ? "right" : false,
+
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              <Edit
+              {/* <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
                 onClick={() =>
                   history.push("/app/shiftManagement/salesFigureForm")
                 }
-              />
+              /> */}
               <Trash2
                 className="mr-50"
                 size="25px"

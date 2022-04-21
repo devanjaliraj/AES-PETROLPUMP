@@ -184,20 +184,20 @@ const navigationConfig = [
         navLink: "/app/shiftManagement/dealerListForCashCollection",
       },
       {
-        id: "salesFigureList",
-        title: "Sales Figure List",
+        id: "dealerListForSalesFigure",
+        title: "Sales Figure",
         type: "item",
         icon: <Icon.Circle size={12} />,
         permissions: ["admin", "editor"],
-        navLink: "/app/shiftManagement/salesFigureList",
+        navLink: "/app/shiftManagement/dealerListForSalesFigure",
       },
       {
-        id: "creditGivenList",
-        title: "Credit Given List",
+        id: "dealerListForCreditGivento",
+        title: "Credit Given To",
         type: "item",
         icon: <Icon.Circle size={12} />,
         permissions: ["admin", "editor"],
-        navLink: "/app/shiftManagement/creditGivenList",
+        navLink: "/app/shiftManagement/dealerListForCreditGivento",
       },
 
       {

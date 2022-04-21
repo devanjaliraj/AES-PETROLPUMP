@@ -172,7 +172,7 @@ class DealerListForBayMang extends React.Component {
           <Row className="m-1">
             <Col>
               <h1 col-sm-6 className="float-left">
-                List of Dealers for RSP
+                List of Dealers for Bay Managment
               </h1>
             </Col>
           </Row>
