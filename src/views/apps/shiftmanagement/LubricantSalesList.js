@@ -1,6 +1,8 @@
 import React from "react";
 import {
   Card,
+  Row,
+  Col,
   CardBody,
   Input,
   Button,
@@ -10,14 +12,17 @@ import {
   DropdownToggle,
 } from "reactstrap";
 import { AgGridReact } from "ag-grid-react";
-import { history } from "../../../history";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2, Edit } from "react-feather";
-import axios from "axios";
-import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+import { ChevronDown, Trash2 } from "react-feather";
+// import { history } from "../../../history";
 
-class LubricantSales extends React.Component {
+import axiosConfig from "../../../axiosConfig";
+
+import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
+
+// import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+
+class DealerListForLubricantSales extends React.Component {
   state = {
     rowData: null,
     paginationPageSize: 20,
@@ -30,36 +35,11 @@ class LubricantSales extends React.Component {
       suppressMenu: true,
     },
     columnDefs: [
-      // {
-      //   headerName: "Dealer Name",
-      //   field: "dealer_name1.dealer_name",
-      //   filter: false,
-      //   width: 200,
-      //   pinned: window.innerWidth > 992 ? "left" : false,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         <span>{params.data.dealer_name1?.dealer_name}</span>
-      //       </div>
-      //     );
-      //   },
-      // },
-      // {
-      //   headerName: "Email",
-      //   field: "dealer_name1.email",
-      //   width: 200,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         <span>{params.data.dealer_name1?.email}</span>
-      //       </div>
-      //     );
-      //   },
-      // },
       {
         headerName: "Date",
         field: "date",
-        width: 100,
+        width: 150,
+        pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -71,7 +51,7 @@ class LubricantSales extends React.Component {
       {
         headerName: "Lube Grade",
         field: "lube_grade.grade",
-        width: 100,
+        width: 140,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -81,21 +61,22 @@ class LubricantSales extends React.Component {
         },
       },
       {
-        headerName: "Pieces Avail",
-        field: "total_pieces_available.no_of_pieces",
-        width: 160,
+        headerName: "Pieces Available",
+        field: "total_pieces_available",
+
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.total_pieces_available?.no_of_pieces}</span>
+              <span>{params.data.total_pieces_available}</span>
             </div>
           );
         },
+        width: 150,
       },
       {
-        headerName: "Sold prices",
+        headerName: "No of Pieces Sold",
         field: "no_of_pieces_sold",
-        width: 160,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -104,10 +85,11 @@ class LubricantSales extends React.Component {
           );
         },
       },
+
       {
-        headerName: "Selling price",
+        headerName: "Selling Price",
         field: "selling_price",
-        width: 160,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -118,23 +100,20 @@ class LubricantSales extends React.Component {
       },
 
       {
-        headerName: "Name of DSM ",
+        headerName: "Dsm Name",
         field: "dsm.dsm_name",
-        filter: false,
-        width: 200,
+        width: 170,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dsm?.dsm_name}</span>
+              <span>{params.data.dsm.dsm_name}</span>
             </div>
           );
         },
       },
-
       {
-        headerName: "Payment Mode",
+        headerName: "Mode of payment",
         field: "mode_of_pyament.mode",
-        filter: false,
         width: 150,
         cellRendererFramework: (params) => {
           return (
@@ -145,24 +124,92 @@ class LubricantSales extends React.Component {
         },
       },
       {
+        headerName: "Discount",
+        field: "discount",
+
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.discount}</span>
+            </div>
+          );
+        },
+        width: 150,
+      },
+      {
+        headerName: "Total Sales",
+        field: "total_sales",
+
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.total_sales}</span>
+            </div>
+          );
+        },
+        width: 150,
+      },
+      {
+        headerName: "name_of_credit_customer",
+        field: "name_of_credit_customer.name_of_customer",
+
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>
+                {params.data.name_of_credit_customer?.name_of_customer}
+              </span>
+            </div>
+          );
+        },
+        width: 150,
+      },
+
+      {
+        headerName: "Vehicle no of Credit Customer",
+        field: "name_of_credit_customer.vehicle_no",
+
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.name_of_credit_customer?.vehicle_no}</span>
+            </div>
+          );
+        },
+        width: 150,
+      },
+      {
+        headerName: "Total Amount",
+        field: "total_amount",
+
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.total_amount}</span>
+            </div>
+          );
+        },
+        width: 150,
+      },
+      {
         headerName: "Actions",
         field: "sortorder",
-        width: 120,
+        width: 150,
         pinned: window.innerWidth > 992 ? "right" : false,
 
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              <Edit
+              {/* <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
                 onClick={() =>
                   history.push(
-                    `/app/shiftManagement/lubricantForm/${params.data._id}`
+                    `/app/shiftManagement/creditGivenForm/${params.data._id}`
                   )
                 }
-              />
+              /> */}
               <Trash2
                 className="mr-50"
                 size="25px"
@@ -181,29 +228,18 @@ class LubricantSales extends React.Component {
   };
 
   componentDidMount() {
-    // Mode of Payment
-    axios
-      .get("http://3.108.185.7/nodejs/api/dealer/allmode")
-      .then((response) => {
-        console.log(response.data.data);
-        this.setState({ mfp: response.data.data });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    let { id } = this.props.match.params;
 
-    axios
-      .get("http://3.108.185.7/nodejs/api/dealer/alllubricantsales")
-      .then((response) => {
-        let rowData = response.data.data;
-        JSON.stringify(rowData);
-        this.setState({ rowData });
-      });
+    axiosConfig.get(`/dealer/alllubricantsalesApp/${id}`).then((response) => {
+      let rowData = response.data.data;
+      JSON.stringify(rowData);
+      this.setState({ rowData });
+    });
   }
   async runthisfunction(id) {
     console.log(id);
-    await axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/deletelubricantsales/${id}`)
+    await axiosConfig
+      .get(`/dealer/deletelubricantsales/${id}`)
       .then((response) => {
         console.log(response);
       });
@@ -236,8 +272,14 @@ class LubricantSales extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs breadCrumbTitle="Lubricants Sale List" />
         <Card className="overflow-hidden agGrid-card">
+          <Row className="m-1">
+            <Col>
+              <h1 col-sm-6 className="float-left">
+                List of Lubricant Sales
+              </h1>
+            </Col>
+          </Row>
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">
@@ -331,4 +373,4 @@ class LubricantSales extends React.Component {
     );
   }
 }
-export default LubricantSales;
+export default DealerListForLubricantSales;

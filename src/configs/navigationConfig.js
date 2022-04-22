@@ -51,7 +51,7 @@ const navigationConfig = [
         type: "item",
         icon: <Icon.Circle size={12} />,
         permissions: ["admin", "editor"],
-        navLink: "/app/ro-configuration/roConfigurationList",
+        navLink: "/app/ro-configuration/basicDetailsList",
       },
       {
         id: "designYourOutletList",
@@ -201,12 +201,12 @@ const navigationConfig = [
       },
 
       {
-        id: "lubricantSales",
+        id: "dealerListForLubricantSales",
         title: "Lubricant Sales",
         type: "item",
         icon: <Icon.Circle size={12} />,
         permissions: ["admin", "editor"],
-        navLink: "/app/shiftManagement/lubricantSales",
+        navLink: "/app/shiftManagement/dealerListForLubricantSales",
       },
       {
         id: "staffAttendanceList",

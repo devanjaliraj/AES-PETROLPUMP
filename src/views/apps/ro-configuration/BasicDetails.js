@@ -10,14 +10,12 @@ import {
   Label,
   Input,
   Button,
-  Breadcrumb,
-  BreadcrumbItem,
 } from "reactstrap";
 import axiosConfig from "../../../axiosConfig";
 // import swal from "sweetalert";
 import { Route } from "react-router-dom";
 
-export default class BasicDetails extends Component {
+export default class BasicDetailForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -134,21 +132,6 @@ export default class BasicDetails extends Component {
     let { instate, city } = this.state;
     return (
       <div>
-        <Row>
-          <Col sm="12">
-            <div>
-              <Breadcrumb listTag="div">
-                <BreadcrumbItem href="/analyticsDashboard" tag="a">
-                  Home
-                </BreadcrumbItem>
-                {/* <BreadcrumbItem href="/app/material/materialList" tag="a">
-                  Material List
-                </BreadcrumbItem> */}
-                <BreadcrumbItem active>Edit Basic Details</BreadcrumbItem>
-              </Breadcrumb>
-            </div>
-          </Col>
-        </Row>
         <Card>
           <Row className="m-2">
             <Col>
@@ -162,7 +145,7 @@ export default class BasicDetails extends Component {
                   <Button
                     className=" btn btn-danger float-right"
                     onClick={() =>
-                      history.push("/app/ro-configuration/RoConfigurationList")
+                      history.push("/app/ro-configuration/basicDetailsList")
                     }
                   >
                     Back

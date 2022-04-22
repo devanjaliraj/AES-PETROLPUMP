@@ -9,7 +9,7 @@ import {
   Button,
   Input,
 } from "reactstrap";
-import axiosConfig from "../../../axiosConfig";
+// import axiosConfig from "../../../axiosConfig";
 import { Route } from "react-router-dom";
 class BayManagementForm extends React.Component {
   constructor(props) {
@@ -22,8 +22,7 @@ class BayManagementForm extends React.Component {
     };
   }
   componentDidMount() {
-    let { id } = this.props.match.params;
-
+    // let { id } = this.props.match.params;
     // all dsm
     // axiosConfig
     //   .get(`/dealer/allbmApp/${id}`)
@@ -38,7 +37,6 @@ class BayManagementForm extends React.Component {
     //   .catch((error) => {
     //     console.log(error);
     //   });
-
     // // all nozzle
     // axios
     //   .get("http://3.108.185.7/nodejs/api/dealer/allnozzle")
@@ -49,7 +47,6 @@ class BayManagementForm extends React.Component {
     //   .catch((error) => {
     //     console.log(error);
     //   });
-
     // axios
     //   .get(`http://3.108.185.7/nodejs/api/dealer/getonebm/${id}`)
     //   .then((response) => {

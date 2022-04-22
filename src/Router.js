@@ -95,7 +95,10 @@ const CreditGivenList = lazy(() =>
 const CreditGivenForm = lazy(() =>
   import("./views/apps/shiftmanagement/CreditGivenForm")
 );
-const LubricantSales = lazy(() =>
+const DealerListForLubricantSales = lazy(() =>
+  import("./views/apps/shiftmanagement/DealerListForLubricantSales")
+);
+const LubricantSalesList = lazy(() =>
   import("./views/apps/shiftmanagement/LubricantSalesList")
 );
 
@@ -152,7 +155,7 @@ const trainingList = lazy(() => import("./views/apps/training/TrainingList"));
 const outletList = lazy(() =>
   import("./views/apps/ro-configuration/OutletList")
 );
-const roForm = lazy(() => import("./views/apps/ro-configuration/RoForm"));
+// const roForm = lazy(() => import("./views/apps/ro-configuration/RoForm"));
 const outletForm = lazy(() =>
   import("./views/apps/ro-configuration/OutletForm")
 );
@@ -219,8 +222,8 @@ const editBankForTransaction = lazy(() =>
 const CreditCustomersList = lazy(() =>
   import("./views/apps/ro-configuration/CreditCustomersList")
 );
-const RoConfigurationList = lazy(() =>
-  import("./views/apps/ro-configuration/RoConfigurationList")
+const BasicDetailsList = lazy(() =>
+  import("./views/apps/ro-configuration/BasicDetailsList")
 );
 const BasicDetails = lazy(() =>
   import("./views/apps/ro-configuration/BasicDetails")
@@ -515,8 +518,8 @@ class AppRouter extends React.Component {
             />
             <AppRoute
               exact={true}
-              path="/app/ro-configuration/roConfigurationList"
-              component={RoConfigurationList}
+              path="/app/ro-configuration/basicDetailsList"
+              component={BasicDetailsList}
             />
             <AppRoute
               exact={true}
@@ -538,11 +541,11 @@ class AppRouter extends React.Component {
               path="/app/ro-configuration/basicDetails/:id"
               component={BasicDetails}
             />
-            <AppRoute
+            {/* <AppRoute
               exact={true}
               path="/app/ro-configuration/roForm"
               component={roForm}
-            />
+            /> */}
             <AppRoute
               exact={true}
               path="/app/ro-configuration/otherEquipment/:id"
@@ -808,8 +811,12 @@ class AppRouter extends React.Component {
               component={lubricantForm}
             />
             <AppRoute
-              path="/app/shiftManagement/lubricantSales"
-              component={LubricantSales}
+              path="/app/shiftManagement/dealerListForLubricantSales"
+              component={DealerListForLubricantSales}
+            />
+            <AppRoute
+              path="/app/shiftManagement/lubricantSalesList/:id"
+              component={LubricantSalesList}
             />
             <AppRoute
               path="/app/shiftManagement/staffAttendanceList"

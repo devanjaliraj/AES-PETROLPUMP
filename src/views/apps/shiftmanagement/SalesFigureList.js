@@ -1,6 +1,8 @@
 import React from "react";
 import {
   Card,
+  Row,
+  Col,
   CardBody,
   Input,
   Button,
@@ -11,14 +13,14 @@ import {
 } from "reactstrap";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2, Edit } from "react-feather";
-import { history } from "../../../history";
+import { ChevronDown, Trash2 } from "react-feather";
+// import { history } from "../../../history";
 
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 
-import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+// import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 
 class SelesFigureList extends React.Component {
   state = {
@@ -48,13 +50,12 @@ class SelesFigureList extends React.Component {
         width: 175,
       },
       {
-        headerName: " MS/Opening Dip ",
-        field: "nozzle_map",
-
+        headerName: "Tank",
+        field: "tank.tank",
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.nozzle_map}</span>
+              <span>{params.data.tank?.tank}</span>
             </div>
           );
         },
@@ -62,65 +63,150 @@ class SelesFigureList extends React.Component {
       },
 
       {
-        headerName: "MS/Opening Litres",
-        field: "openingdip",
+        headerName: "Meter Sales",
+        field: "meter_sales",
 
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dealer_name}</span>
+              <span>{params.data.meter_sales}</span>
             </div>
           );
         },
         width: 250,
       },
       {
-        headerName: "MS/Rsp Entry",
-        field: "opneing_liter1",
+        headerName: "Testing",
+        field: "testing",
 
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.opneing_liter1}</span>
+              <span>{params.data.testing}</span>
             </div>
           );
         },
         width: 150,
       },
       {
-        headerName: "Hsd/Opening Dip",
-        field: "RSP",
+        headerName: "Net Sales",
+        field: "net_sales",
 
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dealer_name}</span>
+              <span>{params.data.net_sales}</span>
             </div>
           );
         },
         width: 150,
       },
       {
-        headerName: "Hsd/Opening Litres",
-        field: "RSP",
-
+        headerName: "Tank Receipt",
+        field: "tank_receipt",
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dealer_name}</span>
+              <span>{params.data.tank_receipt}</span>
             </div>
           );
         },
         width: 150,
       },
       {
-        headerName: "Hsd/Rsp Entry",
-        field: "RSP",
+        headerName: "Loss Booked",
+        field: "loss_booked",
 
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dealer_name}</span>
+              <span>{params.data.loss_booked}</span>
+            </div>
+          );
+        },
+        width: 150,
+      },
+      {
+        headerName: "Total Expected Stock",
+        field: "total_expected_stock",
+
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.total_expected_stock}</span>
+            </div>
+          );
+        },
+        width: 150,
+      },
+      {
+        headerName: "Actual Closing Stock",
+        field: "actual_closing_stock",
+
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.actual_closing_stock}</span>
+            </div>
+          );
+        },
+        width: 150,
+      },
+      {
+        headerName: "Loss Gain",
+        field: "loss_gain",
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.loss_gain}</span>
+            </div>
+          );
+        },
+        width: 150,
+      },
+      {
+        headerName: "MS Closing",
+        field: "ms_closing",
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.ms_closing}</span>
+            </div>
+          );
+        },
+        width: 150,
+      },
+      {
+        headerName: "HSD Closing",
+        field: "hsd_closing",
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.hsd_closing}</span>
+            </div>
+          );
+        },
+        width: 150,
+      },
+      {
+        headerName: "MS Actual Closing",
+        field: "msactual_closing",
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.msactual_closing}</span>
+            </div>
+          );
+        },
+        width: 150,
+      },
+      {
+        headerName: "HSD Actual Closing",
+        field: "hsdactual_closing",
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.hsdactual_closing}</span>
             </div>
           );
         },
@@ -162,18 +248,17 @@ class SelesFigureList extends React.Component {
   };
 
   componentDidMount() {
-    axios
-      .get("http://3.108.185.7/nodejs/api/dealer/alllubricantsales")
-      .then((response) => {
-        let rowData = response.data.data;
-        JSON.stringify(rowData);
-        this.setState({ rowData });
-      });
+    let { id } = this.props.match.params;
+    axiosConfig.get(`/dealer/allSalesfiguresApp/${id}`).then((response) => {
+      let rowData = response.data.data;
+      JSON.stringify(rowData);
+      this.setState({ rowData });
+    });
   }
   async runthisfunction(id) {
     console.log(id);
-    await axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/deletelubricantsales/${id}`)
+    await axiosConfig
+      .get(`/dealer/deletelubricantsales/${id}`)
       .then((response) => {
         console.log(response);
       });
@@ -207,12 +292,14 @@ class SelesFigureList extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs
-          breadCrumbTitle="Seles Figure List"
-          // breadCrumbParent="Forms & Tables"
-          // breadCrumbActive="Shift Management"
-        />
         <Card className="overflow-hidden agGrid-card">
+          <Row className="m-1">
+            <Col>
+              <h1 col-sm-6 className="float-left">
+                List of Sales Figures
+              </h1>
+            </Col>
+          </Row>
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">
@@ -290,7 +377,7 @@ class SelesFigureList extends React.Component {
                       onGridReady={this.onGridReady}
                       colResizeDefault={"shift"}
                       animateRows={true}
-                      floatingFilter={true}
+                      floatingFilter={false}
                       pagination={true}
                       paginationPageSize={this.state.paginationPageSize}
                       pivotPanelShow="always"
