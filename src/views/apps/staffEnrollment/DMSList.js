@@ -11,12 +11,12 @@ import {
 } from "reactstrap";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2,  Edit } from "react-feather";
+import { ChevronDown, Trash2, Edit } from "react-feather";
 import axiosConfig from "../../../axiosConfig";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 // import { history } from "../../../history";
-import { Route } from 'react-router-dom'
+import { Route } from "react-router-dom";
 
 class DSMList extends React.Component {
   state = {
@@ -177,8 +177,6 @@ class DSMList extends React.Component {
         },
       },
 
-      //////////////////////////////////////////////
-
       {
         headerName: "Status",
         field: "status",
@@ -201,20 +199,23 @@ class DSMList extends React.Component {
         field: "sortorder",
         width: 150,
         pinned: window.innerWidth > 992 ? "right" : false,
-
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-            <Route render={({ history}) => (
-
-              <Edit
-                className="mr-50"
-                size="25px"
-                color="blue"
-                onClick={() =>
-                  history.push(`/app/staffEnrollment/addDMS/${params.data._id}`)
-                }
-              /> )} />
+              <Route
+                render={({ history }) => (
+                  <Edit
+                    className="mr-50"
+                    size="25px"
+                    color="blue"
+                    onClick={() =>
+                      history.push(
+                        `/app/staffEnrollment/addDMS/${params.data._id}`
+                      )
+                    }
+                  />
+                )}
+              />
               <Trash2
                 className="mr-50"
                 size="25px"
@@ -233,22 +234,19 @@ class DSMList extends React.Component {
   };
 
   componentDidMount() {
-    axiosConfig
-      .get("/dealer/getDsnform")
-      .then((response) => {
-        let rowData = response.data.data;
-        console.log(rowData);
-        JSON.stringify(rowData);
-        this.setState({ rowData });
-      });
+    let { id } = this.props.match.params;
+    axiosConfig.get(`/dealer/getDsnformApp/${id}`).then((response) => {
+      let rowData = response.data.data;
+      console.log(rowData);
+      JSON.stringify(rowData);
+      this.setState({ rowData });
+    });
   }
   async runthisfunction(id) {
     console.log(id);
-    await axiosConfig
-      .get(`/dealer/deleteDsnform/${id}`)
-      .then((response) => {
-        console.log(response);
-      });
+    await axiosConfig.get(`/dealer/deleteDsnform/${id}`).then((response) => {
+      console.log(response);
+    });
   }
 
   onGridReady = (params) => {

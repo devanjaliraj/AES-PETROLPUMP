@@ -7,17 +7,16 @@ import {
   Form,
   Label,
   Input,
-  Breadcrumb,
-  BreadcrumbItem,
   Button,
 } from "reactstrap";
 import axiosConfig from "../../../axiosConfig";
 import { Download } from "react-feather";
-
+import { Route } from "react-router-dom";
 export default class Manager extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      dealer_id: "",
       addres: "",
       adhar_number: "",
       adharimg: "",
@@ -32,7 +31,7 @@ export default class Manager extends Component {
       salary_decieded: "",
       status: "",
       selectedFile: null,
-     selectedName: "",
+      selectedName: "",
     };
   }
   onChangeHandler = (event) => {
@@ -49,6 +48,7 @@ export default class Manager extends Component {
       .then((response) => {
         console.log(response);
         this.setState({
+          dealer_id: response.data.data.dealer_id,
           maneger_name: response.data.data.maneger_name,
           addres: response.data.data.addres,
           mobile: response.data.data.mobile,
@@ -80,7 +80,7 @@ export default class Manager extends Component {
     console.log(this.props.match.params, this.state);
     const data = new FormData();
     data.append("maneger_name", this.state.maneger_name);
-    
+
     data.append("addres", this.state.addres);
     data.append("mobile", this.state.mobile);
     data.append("joining_date", this.state.joining_date.toString());
@@ -93,8 +93,11 @@ export default class Manager extends Component {
     if (this.state.selectedFile !== null) {
       data.append("adharimg", this.state.selectedFile, this.state.selectedName);
       data.append("panImg", this.state.selectedFile, this.state.selectedName);
-      data.append("photograh", this.state.selectedFile, this.state.selectedName);
-
+      data.append(
+        "photograh",
+        this.state.selectedFile,
+        this.state.selectedName
+      );
     }
     for (var value of data.values()) {
       console.log(value);
@@ -102,13 +105,14 @@ export default class Manager extends Component {
     for (var key of data.keys()) {
       console.log(key);
     }
-
     let { id } = this.props.match.params;
     axiosConfig
       .post(`/dealer/updateonemanager/${id}`, data)
       .then((response) => {
         console.log(response);
-        this.props.history.push("/app/staffEnrollment/staffManagementList");
+        this.props.history.push(
+          `/app/staffEnrollment/managerList/${this.state.dealer_id._id}`
+        );
       })
 
       .catch((error) => {
@@ -116,14 +120,14 @@ export default class Manager extends Component {
       });
   };
 
-   download = e => {
+  download = (e) => {
     console.log(e.target.href);
     fetch(e.target.href, {
       method: "GET",
-      headers: {}
+      headers: {},
     })
-      .then(response => {
-        response.arrayBuffer().then(function(buffer) {
+      .then((response) => {
+        response.arrayBuffer().then(function (buffer) {
           const url = window.URL.createObjectURL(new Blob([buffer]));
           const link = document.createElement("a");
           link.href = url;
@@ -132,7 +136,7 @@ export default class Manager extends Component {
           link.click();
         });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   };
@@ -140,20 +144,30 @@ export default class Manager extends Component {
   render() {
     return (
       <div>
-        <Row>
-          <Col sm="12">
-            <div>
-              <Breadcrumb listTag="div">
-                <BreadcrumbItem href="/analyticsDashboard" tag="a">
-                  Home
-                </BreadcrumbItem>
-
-                <BreadcrumbItem active>Update Manager</BreadcrumbItem>
-              </Breadcrumb>
-            </div>
-          </Col>
-        </Row>
         <Card>
+          <Row className="m-1">
+            <Col>
+              <h1 col-sm-6 className="float-left">
+                Update Retail Selling Price
+              </h1>
+            </Col>
+            <Col>
+              <Route
+                render={({ history }) => (
+                  <Button
+                    className=" btn btn-danger float-right"
+                    onClick={() =>
+                      history.push(
+                        `/app/staffEnrollment/managerList/${this.state.dealer_id._id}`
+                      )
+                    }
+                  >
+                    Back
+                  </Button>
+                )}
+              />
+            </Col>
+          </Row>
           <CardBody>
             <Form className="m-1" onSubmit={this.submitHandler}>
               <Row>
@@ -196,16 +210,15 @@ export default class Manager extends Component {
                     className="w-25 ml-5 h-50"
                   /> */}
                   <a
-                      href={this.state.photograh}
-                      download
-                      target='blank'
-                      onClick={e => this.download(e)}
-                    >
-                       <Download className="mr-50" size="25px" color="blue" />
-                      download Photograph
-                </a>
+                    href={this.state.photograh}
+                    download
+                    target="blank"
+                    onClick={(e) => this.download(e)}
+                  >
+                    <Download className="mr-50" size="25px" color="blue" />
+                    download Photograph
+                  </a>
                 </Col>
-                
 
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Mobile</Label>
@@ -245,15 +258,15 @@ export default class Manager extends Component {
                     name="photograh"
                     className="w-25 ml-5 h-50"
                   /> */}
-                         <a
-                      href={this.state.adharimg}
-                      download 
-                      target='blank'
-                      onClick={e => this.download(e)}
-                    >
-                      <Download className="mr-50" size="25px" color="blue" />
-                      download Adhar Image
-                </a>
+                  <a
+                    href={this.state.adharimg}
+                    download
+                    target="blank"
+                    onClick={(e) => this.download(e)}
+                  >
+                    <Download className="mr-50" size="25px" color="blue" />
+                    download Adhar Image
+                  </a>
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Pan Number</Label>
@@ -268,24 +281,28 @@ export default class Manager extends Component {
                 </Col>
 
                 <Col lg="6" md="0" sm="6" className="mb-2">
-                  {/* <Label>Pan Image</Label>
-                  <img
-                    src={this.state.panImg}
+                  <Label>Pan Image</Label>
+
+                  <Input
+                    disabled
+                    type="text"
                     name="panImg"
-                    className="w-25 ml-5 h-50"
-                  /> */}
-                    <a
-                      href={this.state.panImg}
-                      download
-                      target='blank'
-                      onClick={e => this.download(e)}
-                    >
-                      {/* <i className="fa fa-download" /> */}
-                      <Download className="mr-50" size="25px" color="blue" />
-                      download Pan Image
-                </a>
+                    value={this.state.panImg}
+                    onChange={this.changeHandler}
+                  />
+
+                  {/* <a
+                    href={this.state.panImg}
+                    download
+                    target="blank"
+                    onClick={(e) => this.download(e)}
+                  >
+                    <i className="fa fa-download" />
+                    <Download className="mr-50" size="25px" color="blue" />
+                    download Pan Image
+                  </a> */}
                 </Col>
-              
+
                 {/* <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Pan Url</Label>
                   <Input

@@ -13,8 +13,9 @@ import { AgGridReact } from "ag-grid-react";
 import { history } from "../../../history";
 
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2, Edit } from "react-feather";
-import axios from "axios";
+import { ChevronDown, Trash2 } from "react-feather";
+import axiosConfig from "../../../axiosConfig";
+
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 
@@ -100,7 +101,7 @@ class StaffAttendance extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              <Edit
+              {/* <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
@@ -109,7 +110,7 @@ class StaffAttendance extends React.Component {
                     `/app/shiftManagement/staffAttendanceForm/${params.data._id}`
                   )
                 }
-              />
+              /> */}
               <Trash2
                 className="mr-50"
                 size="25px"
@@ -128,22 +129,19 @@ class StaffAttendance extends React.Component {
   };
 
   componentDidMount() {
-    axios
-      .get("http://3.108.185.7/nodejs/api/dealer/allatendence")
-      .then((response) => {
-        let rowData = response.data.data;
-        JSON.stringify(rowData);
-        this.setState({ rowData });
-      });
+    let { id } = this.props.match.params;
+    axiosConfig.get(`/dealer/allatendenceApp/${id}`).then((response) => {
+      let rowData = response.data.data;
+      JSON.stringify(rowData);
+      this.setState({ rowData });
+    });
   }
-  // async runthisfunction(id) {
-  //   console.log(id);
-  //   await axios
-  //     .get(`http://3.108.185.7/nodejs/api/dealer/deletelubricantsales/${id}`)
-  //     .then((response) => {
-  //       console.log(response);
-  //     });
-  // }
+  async runthisfunction(id) {
+    console.log(id);
+    await axiosConfig.get(`/dealer/deleteatendence/${id}`).then((response) => {
+      console.log(response);
+    });
+  }
   onGridReady = (params) => {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;

@@ -21,17 +21,31 @@ const productDetail = lazy(() =>
 );
 const shop = lazy(() => import("./views/apps/ecommerce/shop/Shop"));
 
-// stockmanagement
-const StockManagementList = lazy(() =>
-  import("./views/apps/stockmanagement/StockManagementList")
+////////////////////////////////////  stockmanagement -- start //////////////////////////////////
+
+const DealerListForFuelStock = lazy(() =>
+  import("./views/apps/stockmanagement/DealerListForFuelStock")
+);
+const FuelStockList = lazy(() =>
+  import("./views/apps/stockmanagement/FuelStockList")
 );
 const FuelStock = lazy(() => import("./views/apps/stockmanagement/FuelStock"));
+const DealerListForLubeStock = lazy(() =>
+  import("./views/apps/stockmanagement/DealerListForLubeStock")
+);
 const LubeStockList = lazy(() =>
   import("./views/apps/stockmanagement/LubeStockList")
 );
 const LubeStockForm = lazy(() =>
   import("./views/apps/stockmanagement/LubeStockForm")
 );
+const DealerListForProductReceipt = lazy(() =>
+  import("./views/apps/stockmanagement/DealerListForProductReceipt")
+);
+const ProductReceiptList = lazy(() =>
+  import("./views/apps/stockmanagement/ProductReceiptList")
+);
+////////////////////////////////////  stockmanagement -- start //////////////////////////////////
 
 /////////////////////////////// shiftmanagement -- start ///////////////////////////
 const AddRsp = lazy(() => import("./views/apps/shiftmanagement/rsp/AddRsp"));
@@ -105,9 +119,13 @@ const LubricantSalesList = lazy(() =>
 const lubricantForm = lazy(() =>
   import("./views/apps/shiftmanagement/LubricantForm")
 );
+const DealerListForStaffAttendence = lazy(() =>
+  import("./views/apps/shiftmanagement/DealerListForStaffAttendence")
+);
 const StaffAttendanceList = lazy(() =>
   import("./views/apps/shiftmanagement/StaffAttendanceList")
 );
+
 const StaffAttendanceForm = lazy(() =>
   import("./views/apps/shiftmanagement/StaffAttendenceForm")
 );
@@ -241,11 +259,14 @@ const creditCustomersForm = lazy(() =>
 //////////////////////////////////////////// ro-configuration -- end //////////////////////////////////////////
 
 ////////////////////////// staffEnrollment --- start ////////////
-const staffManagementList = lazy(() =>
-  import("./views/apps/staffEnrollment/StaffManagementList")
+const DealerListForManager = lazy(() =>
+  import("./views/apps/staffEnrollment/DealerListForManager")
 );
-const staffManagementDealer = lazy(() =>
-  import("./views/apps/staffEnrollment/StaffManagementDealer")
+const ManagerList = lazy(() =>
+  import("./views/apps/staffEnrollment/ManagerList")
+);
+const DealerListForDSM = lazy(() =>
+  import("./views/apps/staffEnrollment/DealerListForDSM")
 );
 const staffForm = lazy(() => import("./views/apps/staffEnrollment/StaffForm"));
 const manager = lazy(() => import("./views/apps/staffEnrollment/Manager"));
@@ -254,7 +275,10 @@ const dMSList = lazy(() => import("./views/apps/staffEnrollment/DMSList"));
 const addOtherStaff = lazy(() =>
   import("./views/apps/staffEnrollment/AddOtherStaff")
 );
-const otherStaffList = lazy(() =>
+const DealerListForOtherStaff = lazy(() =>
+  import("./views/apps/staffEnrollment/DealerListForOtherStaff")
+);
+const OtherStaffList = lazy(() =>
   import("./views/apps/staffEnrollment/OtherStaffList")
 );
 
@@ -662,11 +686,16 @@ class AppRouter extends React.Component {
               component={DealerListforBankofTrans}
             />
             {/*//////////////////////////////////  ro-configuration -- end /////////////////////*/}
-            {/* stockManagement */}
+            {/*////////////////////////////////////  stockManagement -- start   /////////////////////////////*/}
             <AppRoute
               exact={true}
-              path="/app/stockManagement/stockManagementList"
-              component={StockManagementList}
+              path="/app/stockManagement/dealerListForFuelStock"
+              component={DealerListForFuelStock}
+            />
+            <AppRoute
+              exact={true}
+              path="/app/stockManagement/fuelStockList/:id"
+              component={FuelStockList}
             />
             <AppRoute
               exact={true}
@@ -675,13 +704,28 @@ class AppRouter extends React.Component {
             />
             <AppRoute
               exact={true}
-              path="/app/stockManagement/lubeStockList"
+              path="/app/stockManagement/dealerListForLubeStock"
+              component={DealerListForLubeStock}
+            />
+            <AppRoute
+              exact={true}
+              path="/app/stockManagement/lubeStockList/:id"
               component={LubeStockList}
             />
             <AppRoute
               exact={true}
               path="/app/stockManagement/lubeStockForm/:id"
               component={LubeStockForm}
+            />
+            <AppRoute
+              exact={true}
+              path="/app/stockManagement/dealerListForProductReceipt"
+              component={DealerListForProductReceipt}
+            />
+            <AppRoute
+              exact={true}
+              path="/app/stockManagement/productReceiptList/:id"
+              component={ProductReceiptList}
             />
             {/*///////////////////////////////// facilityManagement start //////////////////////////////////////////////////*/}
             <AppRoute
@@ -819,7 +863,11 @@ class AppRouter extends React.Component {
               component={LubricantSalesList}
             />
             <AppRoute
-              path="/app/shiftManagement/staffAttendanceList"
+              path="/app/shiftManagement/dealerListForStaffAttendence"
+              component={DealerListForStaffAttendence}
+            />
+            <AppRoute
+              path="/app/shiftManagement/staffAttendanceList/:id"
               component={StaffAttendanceList}
             />
             <AppRoute
@@ -830,13 +878,18 @@ class AppRouter extends React.Component {
             {/*//////////////////////////////////////   staffEnrollment --start    //////////////////////////////*/}
             <AppRoute
               exact={true}
-              path="/app/staffEnrollment/staffManagementList"
-              component={staffManagementList}
+              path="/app/staffEnrollment/dealerListForManager"
+              component={DealerListForManager}
             />
             <AppRoute
               exact={true}
-              path="/app/staffEnrollment/staffManagementDealer"
-              component={staffManagementDealer}
+              path="/app/staffEnrollment/managerList/:id"
+              component={ManagerList}
+            />
+            <AppRoute
+              exact={true}
+              path="/app/staffEnrollment/dealerListForDSM"
+              component={DealerListForDSM}
             />
             <AppRoute
               exact={true}
@@ -850,8 +903,13 @@ class AppRouter extends React.Component {
             />
             <AppRoute
               exact={true}
-              path="/app/staffEnrollment/OtherStaffList"
-              component={otherStaffList}
+              path="/app/staffEnrollment/dealerListForOtherStaff"
+              component={DealerListForOtherStaff}
+            />
+            <AppRoute
+              exact={true}
+              path="/app/staffEnrollment/otherStaffList/:id"
+              component={OtherStaffList}
             />
             <AppRoute
               exact={true}
@@ -860,7 +918,7 @@ class AppRouter extends React.Component {
             />
             <AppRoute
               exact={true}
-              path="/app/staffEnrollment/DMSList"
+              path="/app/staffEnrollment/DMSList/:id"
               component={dMSList}
             />
             <AppRoute
@@ -869,7 +927,7 @@ class AppRouter extends React.Component {
               component={staffForm}
             />
             {/*//////////////////////////////////////   staffEnrollment --end    //////////////////////////////*/}
-            {/* cashManagement */}
+            {/*///////////////////////  cashManagement -- start ////////////////////////////*/}
             <AppRoute
               exact={true}
               path="/app/cashManagement/cashManagementList"

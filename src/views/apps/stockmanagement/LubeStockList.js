@@ -11,9 +11,8 @@ import {
 } from "reactstrap";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2, Edit } from "react-feather";
+import { ChevronDown, Trash2 } from "react-feather";
 import axiosConfig from "../../../axiosConfig";
-import { history } from "../../../history";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 
@@ -31,32 +30,19 @@ class LubeStockList extends React.Component {
     },
     columnDefs: [
       {
-        headerName: "Dealer Name",
-        field: "dealer_name1.dealer_name",
+        headerName: "Date",
+        field: "date",
         width: 120,
         pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dealer_name1?.dealer_name}</span>
+              <span>{params.data.date}</span>
             </div>
           );
         },
       },
-      {
-        headerName: "Email",
-        field: "dealer_name1.email",
-        width: 120,
-        pinned: window.innerWidth > 992 ? "left" : false,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dealer_name1?.email}</span>
-            </div>
-          );
-        },
-      },
-    
+
       {
         headerName: "Grade",
         field: "grade",
@@ -96,7 +82,7 @@ class LubeStockList extends React.Component {
           );
         },
       },
-    
+
       {
         headerName: "Purchase Price",
         field: "purchase_price",
@@ -191,6 +177,7 @@ class LubeStockList extends React.Component {
       {
         headerName: "Actions",
         field: "sortorder",
+        pinned: window.innerWidth > 992 ? "right" : false,
         width: 100,
         cellRendererFramework: (params) => {
           return (
@@ -201,12 +188,12 @@ class LubeStockList extends React.Component {
                 color="green"
                 onClick={() => history.push("/#/app/stockManagement/lubeStockForm")}
               /> */}
-              <Edit
+              {/* <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
                 onClick={() => history.push(`/#/app/stockManagement/lubeStockForm/${params.data._id}`)}
-              />
+              /> */}
               <Trash2
                 className="mr-50"
                 size="25px"
@@ -225,8 +212,9 @@ class LubeStockList extends React.Component {
   };
 
   async componentDidMount() {
-    await axiosConfig
-    .get("/api/dealer/alllubestock").then((response) => {
+    let { id } = this.props.match.params;
+
+    await axiosConfig.get(`/dealer/alllubestockApp/${id}`).then((response) => {
       let rowData = response.data.data;
       JSON.stringify(rowData);
       this.setState({ rowData });
@@ -350,7 +338,7 @@ class LubeStockList extends React.Component {
                       onGridReady={this.onGridReady}
                       colResizeDefault={"shift"}
                       animateRows={true}
-                      floatingFilter={true}
+                      floatingFilter={false}
                       pagination={true}
                       paginationPageSize={this.state.paginationPageSize}
                       pivotPanelShow="always"

@@ -227,7 +227,7 @@ class TankList extends React.Component {
                         onGridReady={this.onGridReady}
                         colResizeDefault={"shift"}
                         animateRows={true}
-                        floatingFilter={true}
+                        floatingFilter={false}
                         pagination={true}
                         paginationPageSize={this.state.paginationPageSize}
                         pivotPanelShow="always"
