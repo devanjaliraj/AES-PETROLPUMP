@@ -45,6 +45,9 @@ const DealerListForProductReceipt = lazy(() =>
 const ProductReceiptList = lazy(() =>
   import("./views/apps/stockmanagement/ProductReceiptList")
 );
+const ReceiptForm = lazy(() =>
+  import("./views/apps/stockmanagement/ReceiptForm")
+);
 ////////////////////////////////////  stockmanagement -- start //////////////////////////////////
 
 /////////////////////////////// shiftmanagement -- start ///////////////////////////
@@ -283,11 +286,32 @@ const OtherStaffList = lazy(() =>
 );
 
 // cashmanagement
-const cashDealerTable = lazy(() =>
-  import("./views/apps/cashmanagement/CashDealerTable")
+const DealerListForStatus = lazy(() =>
+  import("./views/apps/cashmanagement/DealerListForStatus")
 );
-const cashManagementList = lazy(() =>
-  import("./views/apps/cashmanagement/CashManagementList")
+const DealerListForExpenses = lazy(() =>
+  import("./views/apps/cashmanagement/DealerListForExpenses")
+);
+const ExpensesList = lazy(() =>
+  import("./views/apps/cashmanagement/ExpensesList")
+);
+const DealerListForOnlinePayment = lazy(() =>
+  import("./views/apps/cashmanagement/DealerListForOnlinePayment")
+);
+const OnlinePaymentList = lazy(() =>
+  import("./views/apps/cashmanagement/OnlinePaymentList")
+);
+const DealerListForBankDeposite = lazy(() =>
+  import("./views/apps/cashmanagement/DealerListForBankDeposite")
+);
+const BankDepositeList = lazy(() =>
+  import("./views/apps/cashmanagement/BankDepositeList")
+);
+const DealerListForCreditManagement = lazy(() =>
+  import("./views/apps/cashmanagement/DealerListForCreditManagement")
+);
+const CreditManagementList = lazy(() =>
+  import("./views/apps/cashmanagement/CreditManagementList")
 );
 
 // setting
@@ -727,6 +751,11 @@ class AppRouter extends React.Component {
               path="/app/stockManagement/productReceiptList/:id"
               component={ProductReceiptList}
             />
+            <AppRoute
+              exact={true}
+              path="/app/stockManagement/receiptForm/:id"
+              component={ReceiptForm}
+            />
             {/*///////////////////////////////// facilityManagement start //////////////////////////////////////////////////*/}
             <AppRoute
               exact={true}
@@ -930,14 +959,50 @@ class AppRouter extends React.Component {
             {/*///////////////////////  cashManagement -- start ////////////////////////////*/}
             <AppRoute
               exact={true}
-              path="/app/cashManagement/cashManagementList"
-              component={cashManagementList}
+              path="/app/cashManagement/dealerListForStatus"
+              component={DealerListForStatus}
             />
             <AppRoute
               exact={true}
-              path="/app/cashManagement/cashDealerTable"
-              component={cashDealerTable}
+              path="/app/cashManagement/dealerListForExpenses"
+              component={DealerListForExpenses}
             />
+            <AppRoute
+              exact={true}
+              path="/app/cashManagement/expensesList/:id"
+              component={ExpensesList}
+            />
+            <AppRoute
+              exact={true}
+              path="/app/cashManagement/dealerListForOnlinePayment"
+              component={DealerListForOnlinePayment}
+            />
+            <AppRoute
+              exact={true}
+              path="/app/cashManagement/onlinePaymentList/:id"
+              component={OnlinePaymentList}
+            />
+            <AppRoute
+              exact={true}
+              path="/app/cashManagement/dealerListForBankDeposite"
+              component={DealerListForBankDeposite}
+            />
+            <AppRoute
+              exact={true}
+              path="/app/cashManagement/bankDepositeList/:id"
+              component={BankDepositeList}
+            />
+            <AppRoute
+              exact={true}
+              path="/app/cashManagement/dealerListForCreditManagement"
+              component={DealerListForCreditManagement}
+            />
+            <AppRoute
+              exact={true}
+              path="/app/cashManagement/creditManagementList/:id"
+              component={CreditManagementList}
+            />
+            {/*///////////////////////  cashManagement -- end ////////////////////////////*/}
             {/* setting */}
             <AppRoute
               exact={true}

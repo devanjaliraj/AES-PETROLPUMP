@@ -1,6 +1,8 @@
 import React from "react";
 import {
   Card,
+  Row,
+  Col,
   CardBody,
   Input,
   Button,
@@ -17,7 +19,7 @@ import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 // import { history } from "../../../history";
 
-class FuelStockList extends React.Component {
+class CreditManagementList extends React.Component {
   state = {
     rowData: [],
     paginationPageSize: 20,
@@ -31,185 +33,133 @@ class FuelStockList extends React.Component {
     },
     columnDefs: [
       {
-        headerName: "Date",
-        field: "date",
-        width: 120,
+        headerName: "Name of Customer",
+        field: "name_of_customer.name_of_customer",
+        width: 150,
         pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.date}</span>
+              <span>{params.data.name_of_customer.name_of_customer}</span>
             </div>
           );
         },
       },
 
       {
-        headerName: "Grade",
-        field: "tank.tank",
+        headerName: "Vehicle No.",
+        field: "vehicle_no",
         filter: false,
-        width: 100,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.tank.tank}</span>
+              <span>{params.data.vehicle_no}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Meter Sales",
-        field: "meter_sales",
+        headerName: "Credit for",
+        field: "credit_for",
         filter: false,
-        width: 100,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.meter_sales}</span>
+              <span>{params.data.credit_for}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Testing",
-        field: "testing",
+        headerName: "Credit Available",
+        field: "credit_available",
         filter: false,
-        width: 100,
+        width: 200,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.testing}</span>
-            </div>
-          );
-        },
-      },
-
-      {
-        headerName: "Net Sales",
-        field: "net_sales",
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.net_sales}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Tank Receipt",
-        field: "tank_receipt",
-        filter: false,
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.tank_receipt}</span>
+              <span>{params.data.credit_available}</span>
             </div>
           );
         },
       },
 
       {
-        headerName: "Loss Booked",
-        field: "loss_booked",
-        filter: false,
-        width: 100,
+        headerName: "Credit Limit",
+        field: "credit_limit",
+        width: 200,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.loss_booked}</span>
+              <span>{params.data.credit_limit}</span>
             </div>
           );
         },
       },
       {
-        headerName: "total_expected_stock",
-        field: "total_expected_stock",
+        headerName: "Payment Overdue as on date",
+        field: "payment_overdue_as_on_date",
         filter: false,
-        width: 100,
+        width: 200,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.total_expected_stock}</span>
+              <span>{params.data.payment_overdue_as_on_date}</span>
+            </div>
+          );
+        },
+      },
+
+      {
+        headerName: "Credit Given Today Amount",
+        field: "credit_given_today_amount",
+        filter: false,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.credit_given_today_amount}</span>
             </div>
           );
         },
       },
       {
-        headerName: "actual_closing_stock",
-        field: "actual_closing_stock",
+        headerName: "DSM Name",
+        field: "dsm_name.dsm_name",
         filter: false,
-        width: 100,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.actual_closing_stock}</span>
+              <span>{params.data.dsm_name.dsm_name}</span>
             </div>
           );
         },
       },
       {
-        headerName: "loss_gain",
-        field: "loss_gain",
+        headerName: "Credit Setalment",
+        field: "credit_setalment",
         filter: false,
-        width: 100,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.loss_gain}</span>
+              <span>{params.data.credit_setalment}</span>
             </div>
           );
         },
       },
       {
-        headerName: "ms_closing",
-        field: "ms_closing",
+        headerName: "Credit Today",
+        field: "creditToday",
         filter: false,
-        width: 100,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.ms_closing}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "hsd_closing",
-        field: "hsd_closing",
-        filter: false,
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.hsd_closing}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "msactual_closing",
-        field: "msactual_closing",
-        filter: false,
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.msactual_closing}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "hsdactual_closing",
-        field: "hsdactual_closing",
-        filter: false,
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.hsdactual_closing}</span>
+              <span>{params.data.creditToday}</span>
             </div>
           );
         },
@@ -253,7 +203,7 @@ class FuelStockList extends React.Component {
 
   componentDidMount() {
     let { id } = this.props.match.params;
-    axiosConfig.get(`/dealer/allFuelstockApp/${id}`).then((response) => {
+    axiosConfig.get(`/dealer/allcreditManagmentApp/${id}`).then((response) => {
       let rowData = response.data.data;
       JSON.stringify(rowData);
       this.setState({ rowData });
@@ -262,9 +212,11 @@ class FuelStockList extends React.Component {
 
   async runthisfunction(id) {
     console.log(id);
-    await axiosConfig.get(`/dealer/deleteFuelstock/${id}`).then((response) => {
-      console.log(response);
-    });
+    await axiosConfig
+      .get(`/dealer/deleteonlinepyment/${id}`)
+      .then((response) => {
+        console.log(response);
+      });
   }
 
   onGridReady = (params) => {
@@ -295,12 +247,15 @@ class FuelStockList extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs
-          breadCrumbTitle="Fuel Stock List"
-          // breadCrumbParent="Forms & Tables"
-          // breadCrumbActive="Stock Management"
-        />
         <Card className="overflow-hidden agGrid-card">
+          <Row className="m-1">
+            <Col>
+              <h1 col-sm-6 className="float-left">
+                Credit Management List
+              </h1>
+            </Col>
+          </Row>
+
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">
@@ -394,4 +349,4 @@ class FuelStockList extends React.Component {
     );
   }
 }
-export default FuelStockList;
+export default CreditManagementList;

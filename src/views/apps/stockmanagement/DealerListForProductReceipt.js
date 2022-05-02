@@ -172,7 +172,7 @@ class DealerListForProductReceipt extends React.Component {
           <Row className="m-1">
             <Col>
               <h1 col-sm-6 className="float-left">
-                List of Dealers for Staff Attendence
+                List of Dealers for Product Receipt
               </h1>
             </Col>
           </Row>

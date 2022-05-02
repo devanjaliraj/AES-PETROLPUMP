@@ -1,6 +1,8 @@
 import React from "react";
 import {
   Card,
+  Row,
+  Col,
   CardBody,
   Input,
   Button,
@@ -17,7 +19,7 @@ import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 // import { history } from "../../../history";
 
-class FuelStockList extends React.Component {
+class OnlinePaymentList extends React.Component {
   state = {
     rowData: [],
     paginationPageSize: 20,
@@ -33,7 +35,7 @@ class FuelStockList extends React.Component {
       {
         headerName: "Date",
         field: "date",
-        width: 120,
+        width: 150,
         pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
@@ -45,171 +47,82 @@ class FuelStockList extends React.Component {
       },
 
       {
-        headerName: "Grade",
-        field: "tank.tank",
+        headerName: "Payment Mode",
+        field: "paymentmode.mode",
         filter: false,
-        width: 100,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.tank.tank}</span>
+              <span>{params.data.paymentmode.mode}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Meter Sales",
-        field: "meter_sales",
+        headerName: "TID No.",
+        field: "tidno",
         filter: false,
-        width: 100,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.meter_sales}</span>
+              <span>{params.data.tidno}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Testing",
-        field: "testing",
+        headerName: "Settlement Amount",
+        field: "settlement_amount",
         filter: false,
-        width: 100,
+        width: 200,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.testing}</span>
-            </div>
-          );
-        },
-      },
-
-      {
-        headerName: "Net Sales",
-        field: "net_sales",
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.net_sales}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Tank Receipt",
-        field: "tank_receipt",
-        filter: false,
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.tank_receipt}</span>
+              <span>{params.data.settlement_amount}</span>
             </div>
           );
         },
       },
 
       {
-        headerName: "Loss Booked",
-        field: "loss_booked",
-        filter: false,
-        width: 100,
+        headerName: "Settlement Amount as per Shift Management",
+        field: "Settlement_Amount_as_per_shift_management",
+        width: 200,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.loss_booked}</span>
+              <span>
+                {params.data.Settlement_Amount_as_per_shift_management}
+              </span>
             </div>
           );
         },
       },
       {
-        headerName: "total_expected_stock",
-        field: "total_expected_stock",
+        headerName: "Difference",
+        field: "difference",
         filter: false,
-        width: 100,
+        width: 200,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.total_expected_stock}</span>
+              <span>{params.data.difference}</span>
             </div>
           );
         },
       },
+
       {
-        headerName: "actual_closing_stock",
-        field: "actual_closing_stock",
+        headerName: "Reasons",
+        field: "Reasons",
         filter: false,
-        width: 100,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.actual_closing_stock}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "loss_gain",
-        field: "loss_gain",
-        filter: false,
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.loss_gain}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "ms_closing",
-        field: "ms_closing",
-        filter: false,
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.ms_closing}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "hsd_closing",
-        field: "hsd_closing",
-        filter: false,
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.hsd_closing}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "msactual_closing",
-        field: "msactual_closing",
-        filter: false,
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.msactual_closing}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "hsdactual_closing",
-        field: "hsdactual_closing",
-        filter: false,
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.hsdactual_closing}</span>
+              <span>{params.data.Reasons}</span>
             </div>
           );
         },
@@ -253,7 +166,7 @@ class FuelStockList extends React.Component {
 
   componentDidMount() {
     let { id } = this.props.match.params;
-    axiosConfig.get(`/dealer/allFuelstockApp/${id}`).then((response) => {
+    axiosConfig.get(`/dealer/allonlinepymentMApp/${id}`).then((response) => {
       let rowData = response.data.data;
       JSON.stringify(rowData);
       this.setState({ rowData });
@@ -262,9 +175,11 @@ class FuelStockList extends React.Component {
 
   async runthisfunction(id) {
     console.log(id);
-    await axiosConfig.get(`/dealer/deleteFuelstock/${id}`).then((response) => {
-      console.log(response);
-    });
+    await axiosConfig
+      .get(`/dealer/deleteonlinepyment/${id}`)
+      .then((response) => {
+        console.log(response);
+      });
   }
 
   onGridReady = (params) => {
@@ -295,12 +210,14 @@ class FuelStockList extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs
-          breadCrumbTitle="Fuel Stock List"
-          // breadCrumbParent="Forms & Tables"
-          // breadCrumbActive="Stock Management"
-        />
         <Card className="overflow-hidden agGrid-card">
+          <Row className="m-1">
+            <Col>
+              <h1 col-sm-6 className="float-left">
+                Online Payment List
+              </h1>
+            </Col>
+          </Row>
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">
@@ -394,4 +311,4 @@ class FuelStockList extends React.Component {
     );
   }
 }
-export default FuelStockList;
+export default OnlinePaymentList;

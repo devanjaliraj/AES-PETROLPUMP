@@ -1,6 +1,8 @@
 import React from "react";
 import {
   Card,
+  Row,
+  Col,
   CardBody,
   Input,
   Button,
@@ -9,19 +11,16 @@ import {
   DropdownItem,
   DropdownToggle,
 } from "reactstrap";
+import axiosConfig from "../../../axiosConfig";
+import { Route } from "react-router-dom";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2, Eye, Edit } from "react-feather";
-import axios from "axios";
-
+import { ChevronDown, Eye } from "react-feather";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-
-import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
-import { history } from "../../../history";
-
-class CashManagementList extends React.Component {
+// import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+class DealerListForBankDeposite extends React.Component {
   state = {
-    rowData: null,
+    rowData: [],
     paginationPageSize: 20,
     currenPageSize: "",
     getPageSize: "",
@@ -33,99 +32,99 @@ class CashManagementList extends React.Component {
     },
     columnDefs: [
       {
-        headerName: "Dealer's Name",
-        field: "firstname",
-        width: 175,
-        filter: false,
-        checkboxSelection: false,
-        headerCheckboxSelectionFilteredOnly: false,
-        headerCheckboxSelection: false,
+        headerName: "Dealer Name",
+        field: "dealer_name",
+        width: 250,
+        pinned: window.innerWidth > 992 ? "left" : false,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.dealer_name}</span>
+            </div>
+          );
+        },
       },
-      // {
-      //   headerName: "Last Name",
-      //   field: "lastname",
-      //   filter: false,
-      //   width: 175,
-      // },
+      {
+        headerName: "Mobile",
+        field: "mobile",
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.mobile}</span>
+            </div>
+          );
+        },
+      },
       {
         headerName: "Email",
         field: "email",
-        filter: false,
         width: 250,
-        pinned: window.innerWidth > 992 ? "left" : false,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.email}</span>
+            </div>
+          );
+        },
       },
       {
-        headerName: "Company",
-        field: "company",
-        filter: false,
-        width: 250,
-      },
-      {
-        headerName: "City",
-        field: "city",
-        filter: false,
-        width: 150,
-      },
-      {
-        headerName: "Country",
-        field: "country",
-        filter: false,
-        width: 150,
+        headerName: "Master Oil Company",
+        field: "master_oil_company.name",
+        width: 180,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.master_oil_company?.name}</span>
+            </div>
+          );
+        },
       },
       {
         headerName: "State",
         field: "state",
-        filter: false,
         width: 125,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.state}</span>
+            </div>
+          );
+        },
       },
       {
-        headerName: "Zip",
-        field: "zip",
-        filter: "agNumberColumnFilter",
-        width: 140,
-      },
-      {
-        headerName: "Mobille No.",
-        field: "number",
-        filter: "agNumberColumnFilter",
-        width: 140,
-      },
-      {
-        headerName: "Subscription Plan Name",
-        field: "Subscription Plan Name",
-        filter: "agNumberColumnFilter",
-        width: 140,
+        headerName: "District",
+        field: "district",
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.district}</span>
+            </div>
+          );
+        },
       },
       {
         headerName: "Actions",
         field: "sortorder",
-        width: 150,
+        width: 110,
+        pinned: window.innerWidth > 992 ? "right" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              <Eye
-                className="mr-50"
-                size="25px"
-                color="green"
-                onClick={() =>
-                  history.push("/#/app/cashManagement/cashDealerTable")
-                }
-              />
-              <Edit
-                className="mr-50"
-                size="25px"
-                color="blue"
-                // onClick={() => history.push("/#/app/slider/editSlider/${params.data._id}")}
-              />
-              <Trash2
-                className="mr-50"
-                size="25px"
-                color="red"
-                onClick={() => {
-                  let selectedData = this.gridApi.getSelectedRows();
-                  this.runthisfunction(params.data._id);
-                  this.gridApi.updateRowData({ remove: selectedData });
-                }}
+              <Route
+                render={({ history }) => (
+                  <Eye
+                    className="mr-30"
+                    size="25px"
+                    color="green"
+                    onClick={() =>
+                      history.push(
+                        `/app/cashManagement/bankDepositeList/${params.data._id}`
+                      )
+                    }
+                  />
+                )}
               />
             </div>
           );
@@ -133,11 +132,10 @@ class CashManagementList extends React.Component {
       },
     ],
   };
-
-  componentDidMount() {
-    axios.get("/api/aggrid/data").then((response) => {
-      let rowData = response.data.data;
-      JSON.stringify(rowData);
+  async componentDidMount() {
+    await axiosConfig.get("/dealer/alldealers").then((response) => {
+      const rowData = response.data.data;
+      console.log(rowData);
       this.setState({ rowData });
     });
   }
@@ -170,12 +168,14 @@ class CashManagementList extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs
-          breadCrumbTitle="Cash Management"
-          // breadCrumbParent="Forms & Tables"
-          // breadCrumbActive="Cash Management"
-        />
         <Card className="overflow-hidden agGrid-card">
+          <Row className="m-1">
+            <Col>
+              <h1 col-sm-6 className="float-left">
+                List of Dealers for Bank Deposite
+              </h1>
+            </Col>
+          </Row>
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">
@@ -253,7 +253,7 @@ class CashManagementList extends React.Component {
                       onGridReady={this.onGridReady}
                       colResizeDefault={"shift"}
                       animateRows={true}
-                      floatingFilter={true}
+                      floatingFilter={false}
                       pagination={true}
                       paginationPageSize={this.state.paginationPageSize}
                       pivotPanelShow="always"
@@ -269,4 +269,4 @@ class CashManagementList extends React.Component {
     );
   }
 }
-export default CashManagementList;
+export default DealerListForBankDeposite;

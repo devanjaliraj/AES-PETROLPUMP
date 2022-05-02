@@ -21,7 +21,7 @@ const colourOptions = [
   { value: "Difference", label: "Difference" },
 ];
 
-class Status extends React.Component {
+class StatusForm extends React.Component {
   render() {
     return (
       <Card>
@@ -181,4 +181,4 @@ class Status extends React.Component {
     );
   }
 }
-export default Status;
+export default StatusForm;

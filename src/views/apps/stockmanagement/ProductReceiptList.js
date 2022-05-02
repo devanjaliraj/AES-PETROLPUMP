@@ -3,6 +3,8 @@ import {
   Card,
   CardBody,
   Input,
+  Row,
+  Col,
   Button,
   UncontrolledDropdown,
   DropdownMenu,
@@ -10,12 +12,12 @@ import {
   DropdownToggle,
 } from "reactstrap";
 import { AgGridReact } from "ag-grid-react";
+import { Route } from "react-router-dom";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2 } from "react-feather";
+import { ChevronDown, Trash2, Edit } from "react-feather";
 import axiosConfig from "../../../axiosConfig";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
-// import { history } from "../../../history";
+import { history } from "../../../history";
 
 class ProductReceiptList extends React.Component {
   state = {
@@ -46,170 +48,326 @@ class ProductReceiptList extends React.Component {
 
       {
         headerName: "Grade",
-        field: "tank.tank",
+        field: "Invoice_No",
         filter: false,
         width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.tank.tank}</span>
+              <span>{params.data.Invoice_No}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Meter Sales",
-        field: "meter_sales",
+        headerName: "Tank_Lorry_No",
+        field: "Tank_Lorry_No",
         filter: false,
         width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.meter_sales}</span>
+              <span>{params.data.Tank_Lorry_No}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Testing",
-        field: "testing",
+        headerName: "Total_Invoice_Value",
+        field: "Total_Invoice_Value",
         filter: false,
         width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.testing}</span>
-            </div>
-          );
-        },
-      },
-
-      {
-        headerName: "Net Sales",
-        field: "net_sales",
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.net_sales}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Tank Receipt",
-        field: "tank_receipt",
-        filter: false,
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.tank_receipt}</span>
+              <span>{params.data.Total_Invoice_Value}</span>
             </div>
           );
         },
       },
 
       {
-        headerName: "Loss Booked",
-        field: "loss_booked",
-        filter: false,
+        headerName: "VAT_MS",
+        field: "VAT_MS",
         width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.loss_booked}</span>
+              <span>{params.data.VAT_MS}</span>
             </div>
           );
         },
       },
       {
-        headerName: "total_expected_stock",
-        field: "total_expected_stock",
+        headerName: "VAT_HSD",
+        field: "VAT_HSD",
         filter: false,
         width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.total_expected_stock}</span>
+              <span>{params.data.VAT_HSD}</span>
+            </div>
+          );
+        },
+      },
+
+      {
+        headerName: "TCS_LFR_MS",
+        field: "TCS_LFR_MS",
+        filter: false,
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.TCS_LFR_MS}</span>
             </div>
           );
         },
       },
       {
-        headerName: "actual_closing_stock",
-        field: "actual_closing_stock",
+        headerName: "TCS_LFR_HSD",
+        field: "TCS_LFR_HSD",
         filter: false,
         width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.actual_closing_stock}</span>
+              <span>{params.data.TCS_LFR_HSD}</span>
             </div>
           );
         },
       },
       {
-        headerName: "loss_gain",
-        field: "loss_gain",
+        headerName: "Champer_details",
+        field: "Champer_details",
         filter: false,
         width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.loss_gain}</span>
+              <span>{params.data.Champer_details}</span>
             </div>
           );
         },
       },
       {
-        headerName: "ms_closing",
-        field: "ms_closing",
+        headerName: "Product",
+        field: "Product",
         filter: false,
         width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.ms_closing}</span>
+              <span>{params.data.Product}</span>
             </div>
           );
         },
       },
       {
-        headerName: "hsd_closing",
-        field: "hsd_closing",
+        headerName: "Capacity",
+        field: "Capacity",
         filter: false,
         width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.hsd_closing}</span>
+              <span>{params.data.Capacity}</span>
             </div>
           );
         },
       },
       {
-        headerName: "msactual_closing",
-        field: "msactual_closing",
+        headerName: "Density_As_per_Invoice",
+        field: "Density_As_per_Invoice",
         filter: false,
         width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.msactual_closing}</span>
+              <span>{params.data.Density_As_per_Invoice}</span>
             </div>
           );
         },
       },
       {
-        headerName: "hsdactual_closing",
-        field: "hsdactual_closing",
+        headerName: "Density_Room_temp_obs",
+        field: "Density_Room_temp_obs",
         filter: false,
         width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.hsdactual_closing}</span>
+              <span>{params.data.Density_Room_temp_obs}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Room_Temp",
+        field: "Room_Temp",
+        filter: false,
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.Room_Temp}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Density_Observed_at_15_c",
+        field: "Density_Observed_at_15_c",
+        filter: false,
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.Density_Observed_at_15_c}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Difference",
+        field: "Difference",
+        filter: false,
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.Difference}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "PL_as_per_Invoice",
+        field: "PL_as_per_Invoice",
+        filter: false,
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.PL_as_per_Invoice}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "DL_as_per_Invoice",
+        field: "DL_as_per_Invoice",
+        filter: false,
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.DL_as_per_Invoice}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "X",
+        field: "X",
+        filter: false,
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.X}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Y",
+        field: "Y",
+        filter: false,
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.Y}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Pl_Observed",
+        field: "Pl_Observed",
+        filter: false,
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.Pl_Observed}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "DL_Observed",
+        field: "DL_Observed",
+        filter: false,
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.DL_Observed}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "X_obs",
+        field: "X_obs",
+        filter: false,
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.X_obs}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Y_obs",
+        field: "Y_obs",
+        filter: false,
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.Y_obs}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Loss_to_be_booked",
+        field: "Loss_to_be_booked",
+        filter: false,
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.Loss_to_be_booked}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Upload_of_signed_copy_of_Invoice",
+        field: "Upload_of_signed_copy_of_Invoice",
+        filter: false,
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.Upload_of_signed_copy_of_Invoice}</span>
             </div>
           );
         },
@@ -228,12 +386,20 @@ class ProductReceiptList extends React.Component {
                 color="green"
                 onClick={() => history.push("/#/app/stockManagement/lubeStockForm")}
               /> */}
-              {/* <Edit
-                className="mr-50"
-                size="25px"
-                color="blue"
-                onClick={() => history.push(`/#/app/stockManagement/lubeStockForm/${params.data._id}`)}
-              /> */}
+              <Route
+                render={({ history }) => (
+                  <Edit
+                    className="mr-50"
+                    size="25px"
+                    color="blue"
+                    onClick={() =>
+                      history.push(
+                        `/app/stockManagement/receiptForm/${params.data._id}`
+                      )
+                    }
+                  />
+                )}
+              />
               <Trash2
                 className="mr-50"
                 size="25px"
@@ -253,7 +419,7 @@ class ProductReceiptList extends React.Component {
 
   componentDidMount() {
     let { id } = this.props.match.params;
-    axiosConfig.get(`/dealer/allFuelstockApp/${id}`).then((response) => {
+    axiosConfig.get(`/dealer/allReceiptApp/${id}`).then((response) => {
       let rowData = response.data.data;
       JSON.stringify(rowData);
       this.setState({ rowData });
@@ -262,7 +428,7 @@ class ProductReceiptList extends React.Component {
 
   async runthisfunction(id) {
     console.log(id);
-    await axiosConfig.get(`/dealer/deleteFuelstock/${id}`).then((response) => {
+    await axiosConfig.get(`/dealer/deleteReceipt/${id}`).then((response) => {
       console.log(response);
     });
   }
@@ -295,12 +461,14 @@ class ProductReceiptList extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs
-          breadCrumbTitle="Stock Management"
-          // breadCrumbParent="Forms & Tables"
-          // breadCrumbActive="Stock Management"
-        />
         <Card className="overflow-hidden agGrid-card">
+          <Row className="m-1">
+            <Col>
+              <h1 col-sm-6 className="float-left">
+                List of Dealers for Product Receipt
+              </h1>
+            </Col>
+          </Row>
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">
