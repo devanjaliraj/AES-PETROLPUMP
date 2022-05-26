@@ -12,14 +12,12 @@ import {
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
-import axios from "axios";
-
-import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-
-// import { history } from "../../../history";
+import axiosConfig from "../../../axiosConfig";
 import { Route } from 'react-router-dom'
-
-class RaiseConcernToAESList extends React.Component {
+import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
+import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+// import { history } from "../../../history";
+class CreditFromBankManagementList extends React.Component {
   state = {
     rowData: null,
     paginationPageSize: 20,
@@ -32,48 +30,97 @@ class RaiseConcernToAESList extends React.Component {
       suppressMenu: true,
     },
     columnDefs: [
+      // {
+      //   headerName: "Equipment",
+      //   field: "Equipment.nature",
+      //   width: 250,
+      //   pinned: window.innerWidth > 992 ? "left" : false,
+      //   cellRendererFramework: (params) => {
+      //     return (
+      //       <div className="d-flex align-items-center cursor-pointer">
+      //         <span>{params.data.Equipment?.nature}</span>
+      //       </div>
+      //     );
+      //   },
+      // },
+
       {
-        headerName: "Concern",
-        field: "concern",
-        width: 500,
+        headerName: "Sanctioned Amount",
+        field: "Sanctioned_Amount",
+        width: 175,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.concern}</span>
+              <span>{params.data.Sanctioned_Amount}</span>
             </div>
           );
         },
       },
-
       {
-        headerName: "Remark",
-        field: "remark",
+        headerName: "Uplaod Document",
+        field: "Uplaod_Document",
+        width: 250,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.remark}</span>
+              <span>{params.data.Uplaod_Document}</span>
             </div>
           );
         },
-        width: 505,
       },
-
+      {
+        headerName: "Remarks",
+        field: "Remarks",
+        width: 250,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.Remarks}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Interest Rate",
+        field: "Interest_Rate",
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.Interest_Rate}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Type of Loan",
+        field: "Type_of_Loan",
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.Type_of_Loan}</span>
+            </div>
+          );
+        },
+      },
       {
         headerName: "Actions",
         field: "sortorder",
-        width: 150,
         pinned: window.innerWidth > 992 ? "right" : false,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              <Route render={({ history}) => (
+          <Route render={({ history}) => (
+
               <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
                 onClick={() =>
                   history.push(
-                    `/app/facilityManagement/raiseConcernToAESForm/${params.data._id}`
+                    `/app/facilityManagement/CreditFromBankManagementForm/${params.data._id}`
                   )
                 }
               />)}/>
@@ -95,25 +142,25 @@ class RaiseConcernToAESList extends React.Component {
   };
 
   componentDidMount() {
+    
     let { id } = this.props.match.params;
-
-    axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/allraiseConcernApp/${id}`)
+    axiosConfig
+      .get(`/dealer/allCreditBankFMApp/${id}`)
       .then((response) => {
         let rowData = response.data.data;
         JSON.stringify(rowData);
         this.setState({ rowData });
       });
   }
-
   async runthisfunction(id) {
     console.log(id);
-    await axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/deleteraiseConcern/${id}`)
+    await axiosConfig
+      .get(`/dealer/deleteCreditBankFM/${id}`)
       .then((response) => {
         console.log(response);
       });
   }
+
   onGridReady = (params) => {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
@@ -142,11 +189,15 @@ class RaiseConcernToAESList extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
+        <Breadcrumbs
+          breadCrumbTitle="Other Equipment List"
+          // breadCrumbParent="Forms & Tables"
+          // breadCrumbActive="Shift Management"
+        />
         <Card className="overflow-hidden agGrid-card">
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">
-                <h1>Raise Concern To AES List</h1>
                 <div className="d-flex flex-wrap justify-content-between align-items-center">
                   <div className="mb-1">
                     <UncontrolledDropdown className="p-1 ag-dropdown">
@@ -221,7 +272,7 @@ class RaiseConcernToAESList extends React.Component {
                       onGridReady={this.onGridReady}
                       colResizeDefault={"shift"}
                       animateRows={true}
-                      floatingFilter={false}
+                      floatingFilter={true}
                       pagination={true}
                       paginationPageSize={this.state.paginationPageSize}
                       pivotPanelShow="always"
@@ -237,4 +288,4 @@ class RaiseConcernToAESList extends React.Component {
     );
   }
 }
-export default RaiseConcernToAESList;
+export default CreditFromBankManagementList;

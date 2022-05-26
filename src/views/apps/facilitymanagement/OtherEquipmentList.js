@@ -172,12 +172,22 @@ class OtherEquipmentList extends React.Component {
   };
 
   componentDidMount() {
+    
+    let { id } = this.props.match.params;
     axiosConfig
-      .get("/dealer/allequipment")
+      .get(`/dealer/allouther_documentApp/${id}`)
       .then((response) => {
         let rowData = response.data.data;
         JSON.stringify(rowData);
         this.setState({ rowData });
+      });
+  }
+  async runthisfunction(id) {
+    console.log(id);
+    await axiosConfig
+      .get(`/dealer/deleteouther_document/${id}`)
+      .then((response) => {
+        console.log(response);
       });
   }
 

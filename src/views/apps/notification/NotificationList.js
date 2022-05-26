@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Col,Row,
   Card,
   CardBody,
   Input,
@@ -9,19 +10,18 @@ import {
   DropdownItem,
   DropdownToggle,
 } from "reactstrap";
+import { Route } from "react-router-dom";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
-import axios from "axios";
-
+ import axios from "axios";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-
+import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 // import { history } from "../../../history";
-import { Route } from 'react-router-dom'
 
-class RaiseConcernToAESList extends React.Component {
+class NotificationList extends React.Component {
   state = {
-    rowData: null,
+    rowData: [],
     paginationPageSize: 20,
     currenPageSize: "",
     getPageSize: "",
@@ -31,89 +31,144 @@ class RaiseConcernToAESList extends React.Component {
       resizable: true,
       suppressMenu: true,
     },
+
+
     columnDefs: [
+      // {
+      //   headerName: "Sno",
+      //   field: "sno",
+      //   width: 175,
+      //   filter: true,
+      //   checkboxSelection: true,
+      //   headerCheckboxSelectionFilteredOnly: true,
+      //   headerCheckboxSelection: true,
+      // },email, location, state, district
       {
-        headerName: "Concern",
-        field: "concern",
-        width: 500,
+        headerName: "Dealer Name",
+        field: "dealer.dealer_name",
+        filter: true,
+        width: 250,
+        pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.concern}</span>
+              <span>{params.data.dealer?.dealer_name}</span>
             </div>
           );
         },
       },
-
       {
-        headerName: "Remark",
-        field: "remark",
+        headerName: "Mobile",
+        field: "dealer.mobile",
+        filter: true,
+        width: 250,
+        pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.remark}</span>
+              <span>{params.data.dealer?.mobile}</span>
             </div>
           );
         },
-        width: 505,
       },
-
       {
-        headerName: "Actions",
-        field: "sortorder",
-        width: 150,
-        pinned: window.innerWidth > 992 ? "right" : false,
+        headerName: "Email",
+        field: "dealer.email",
+        filter: true,
+        width: 250,
+        pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
-            <div className="actions cursor-pointer">
-              <Route render={({ history}) => (
-              <Edit
-                className="mr-50"
-                size="25px"
-                color="blue"
-                onClick={() =>
-                  history.push(
-                    `/app/facilityManagement/raiseConcernToAESForm/${params.data._id}`
-                  )
-                }
-              />)}/>
-              <Trash2
-                className="mr-50"
-                size="25px"
-                color="red"
-                onClick={() => {
-                  let selectedData = this.gridApi.getSelectedRows();
-                  this.runthisfunction(params.data._id);
-                  this.gridApi.updateRowData({ remove: selectedData });
-                }}
-              />
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.dealer?.email}</span>
             </div>
           );
         },
       },
+      {
+        headerName: "State",
+        field: "dealer.state",
+        filter: true,
+        width: 250,
+        pinned: window.innerWidth > 992 ? "left" : false,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.dealer?.state}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "District",
+        field: "dealer.district",
+        filter: true,
+        width: 250,
+        pinned: window.innerWidth > 992 ? "left" : false,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.dealer?.district}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Location",
+        field: "dealer.location",
+        filter: true,
+        width: 250,
+        pinned: window.innerWidth > 992 ? "left" : false,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.dealer?.location}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Descripiton",
+        field: "desc",
+        filter: true,
+        width: 250,
+        pinned: window.innerWidth > 992 ? "left" : false,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.desc}</span>
+            </div>
+          );
+        },
+      },
+   
     ],
   };
-
   componentDidMount() {
-    let { id } = this.props.match.params;
-
-    axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/allraiseConcernApp/${id}`)
+   
+  
+    // let { id } = this.props.match.params;
+    axios 
+      .get(`http://3.108.185.7/nodejs/api/admin/allnotification/`)
       .then((response) => {
         let rowData = response.data.data;
         JSON.stringify(rowData);
         this.setState({ rowData });
+      })
+      .catch((error) => {
+        console.log(error.response);
       });
+    
   }
 
-  async runthisfunction(id) {
-    console.log(id);
-    await axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/deleteraiseConcern/${id}`)
-      .then((response) => {
-        console.log(response);
-      });
-  }
+  // async componentDidMount() {
+  //   await axios.get("http://3.108.185.7/nodejs/api/admin/allplan").then((response) => {
+  //     const rowData = response.data.data;
+  //     console.log(rowData);
+  //     this.setState({ rowData });
+  //   });
+  // }
+
   onGridReady = (params) => {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
@@ -142,11 +197,39 @@ class RaiseConcernToAESList extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
+        <Breadcrumbs
+          breadCrumbTitle="Notification"
+          breadCrumbParent="Forms & Tables"
+          breadCrumbActive="Notification List"
+        />
+
         <Card className="overflow-hidden agGrid-card">
+        <Row className="m-2">
+                <Col>
+                  <h1 sm="6" className="float-left">
+                    Notification List
+                  </h1>
+                </Col>
+                <Col>
+                <Route
+                render={({ history }) => (
+                  <Button
+                    className=" btn btn-danger float-right"
+                    onClick={() =>
+                      history.push("/app/notification/Addnotification")}
+                  >
+                    Add Notification
+                    </Button>
+                )}
+              />
+
+            </Col>
+          </Row>
+
+
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">
-                <h1>Raise Concern To AES List</h1>
                 <div className="d-flex flex-wrap justify-content-between align-items-center">
                   <div className="mb-1">
                     <UncontrolledDropdown className="p-1 ag-dropdown">
@@ -221,7 +304,7 @@ class RaiseConcernToAESList extends React.Component {
                       onGridReady={this.onGridReady}
                       colResizeDefault={"shift"}
                       animateRows={true}
-                      floatingFilter={false}
+                      floatingFilter={true}
                       pagination={true}
                       paginationPageSize={this.state.paginationPageSize}
                       pivotPanelShow="always"
@@ -237,4 +320,6 @@ class RaiseConcernToAESList extends React.Component {
     );
   }
 }
-export default RaiseConcernToAESList;
+export default NotificationList;
+
+

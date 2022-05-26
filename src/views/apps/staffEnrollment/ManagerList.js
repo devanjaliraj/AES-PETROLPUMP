@@ -4,6 +4,7 @@ import {
   CardBody,
   Input,
   Button,
+  
   UncontrolledDropdown,
   DropdownMenu,
   DropdownItem,
@@ -15,6 +16,7 @@ import { ChevronDown, Trash2, Edit } from "react-feather";
 import axiosConfig from "../../../axiosConfig";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+
 // import { history } from "../../../history";
 import { Route } from "react-router-dom";
 
@@ -176,7 +178,70 @@ class ManagerList extends React.Component {
           );
         },
       },
+      {
+        headerName: "Shift Managment",
+        field: "shiftManagment",
+        filter: true,
+        editable: false,
+        width: 120,
+        cellRenderer: (params) => {
+          return `<input type='checkbox' ${
+            params.data.shiftManagment ? "checked" : ""
+          } />`;
+        },
+      },
+      {
+        headerName: "Stock Managment",
+        field: "stockManagment",
+        filter: true,
+        editable: false,
+        width: 120,
+        cellRenderer: (params) => {
+          return `<input type='checkbox' ${
+            params.data.stockManagment ? "checked" : ""
+          } />`;
+        },
+      },
 
+      {
+        headerName: "Cash Managment",
+        field: "cashManagment",
+        filter: true,
+        editable: false,
+        width: 120,
+        cellRenderer: (params) => {
+          return `<input type='checkbox' ${
+            params.data.cashManagment ? "checked" : ""
+          } />`;
+        },
+      },
+ 
+      {
+        headerName: "Facility Managment",
+        field: "facilityManagment",
+        filter: true,
+        editable: false,
+        width: 120,
+        cellRenderer: (params) => {
+          return `<input type='checkbox' ${
+            params.data.facilityManagment ? "checked" : ""
+          } />`;
+        },
+      },
+      {
+        headerName: "Ro-Configuration",
+        field: "roconfiguration",
+        filter: true,
+        editable: false,
+        width: 120,
+        cellRenderer: (params) => {
+          return `<input type='checkbox' ${
+            params.data.roconfiguration ? "checked" : ""
+          } />`;
+        },
+      },
+   
+      
       {
         headerName: "Status",
         field: "status",

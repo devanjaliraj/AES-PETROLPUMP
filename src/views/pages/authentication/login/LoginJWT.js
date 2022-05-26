@@ -8,35 +8,68 @@ import { connect } from "react-redux";
 import { history } from "../../../../history";
 import axios from "axios";
 import { Route } from 'react-router-dom'
+//import swal from 'sweetalert';
 
 class LoginJWT extends React.Component {
   state = {
     email: "",
+    mobile:"1111111111",
     password: "",
     remember: false
   };
 
+  handlechange = (e) => {
+    e.preventDefault();
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  // validateEmailPhone = (text) => {
+  //   if (/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(text)) {
+  //     return true;
+  //   }
+  //   else if (/^[6789][0-9]{9}$/.test(text)) {
+  //     return true;
+  //   }
+  //   return false;
+  // };
+
   handleLogin = (e) => {
     e.preventDefault();
-    this.props.loginWithJWT(this.state);
-    axios.post("http://3.108.185.7/nodejs/api/user/login", this.state,{
+    const {email,mobile,password} = this.state;
+    //var isValid = this.validateEmailPhone(email)
+    var payload = {
+      email : email,
+      mobile : mobile,
+      password : password,
+    }
+    axios
+    .post("http://3.108.185.7/nodejs/api/user/login", payload,{
       headers: {
         "Content-Type":"application/json"
       },
     })
     .then((response) => { 
-      console.log('@@@@@',response.data.data);
-      localStorage.setItem("token", response.data.data._id);
-      localStorage.setItem("userData", JSON.stringify(response.data.data.email));
-      history.push("/#/");
-      window.location.reload()
-      //window.location.replace("/#/");
+      // console.log(response.data.user);
+      console.log(response.data);
+      if(response.data.status === 200){
+        localStorage.setItem("auth", response.data.data?._id);
+        //history.push("/#/");
+        window.location.replace("/#/");
+      }else if(response.data.status === 401){
+        alert(response.data.message)
+      }
+      //history.push("/");
       
     })
     .catch((error) => {
+
       console.log(error.response);
+      //swal("error!", "Invalied! Please enter valied Phone No. or Password", "error");
+
     });
-  };
+};
+
+  
   render() {
     return (
       <React.Fragment>
@@ -45,9 +78,11 @@ class LoginJWT extends React.Component {
             <FormGroup className="form-label-group position-relative has-icon-left">
               <Input
                 type="email"
+                name="email"
                 placeholder="Email"
                 value={this.state.email}
-                onChange={(e) => this.setState({ email: e.target.value })}
+                //onChange={(e) => this.setState({ email: e.target.value })}
+                onChange={this.handlechange}
                 required
               />
               <div className="form-control-position">
@@ -58,9 +93,10 @@ class LoginJWT extends React.Component {
             <FormGroup className="form-label-group position-relative has-icon-left">
               <Input
                 type="password"
+                name="password"
                 placeholder="Password"
                 value={this.state.password}
-                onChange={(e) => this.setState({ password: e.target.value })}
+                onChange={this.handlechange}
                 required
               />
               <div className="form-control-position">
@@ -95,7 +131,6 @@ class LoginJWT extends React.Component {
               <Button.Ripple color="primary" type="submit">
                 Login
               </Button.Ripple>
-
 
 
                )}/>

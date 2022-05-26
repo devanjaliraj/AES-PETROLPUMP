@@ -11,7 +11,7 @@ import {
 } from "reactstrap";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2, Edit } from "react-feather";
+import { ChevronDown, Eye, Trash2, Edit } from "react-feather";
 import axiosConfig from "../../../axiosConfig";
 import { Route } from 'react-router-dom'
 
@@ -181,7 +181,20 @@ class StampingDataList extends React.Component {
           return (
             <div className="actions cursor-pointer">
           <Route render={({ history}) => (
-
+    <Eye
+    className="mr-50"
+    size="25px"
+    color="green"
+    onClick={() =>
+      history.push(
+        `/app/facilityManagement/stampingDataList/${params.data.dealer_id._id}`
+      )
+    }
+  />
+)}
+/>
+<Route
+                  render={({ history }) => (
               <Edit
                 className="mr-50"
                 size="25px"
@@ -218,18 +231,24 @@ class StampingDataList extends React.Component {
     //   .catch((error) => {
     //     console.log(error);
     //   });
-    axiosConfig
-      .get("/dealer/allStampingdata")
+  
+    let { id } = this.props.match.params;
+    axiosConfig 
+      .get(`/dealer/allStampingdataApp/${id}`)
       .then((response) => {
         let rowData = response.data.data;
         JSON.stringify(rowData);
         this.setState({ rowData });
+      })
+      .catch((error) => {
+        console.log(error.response);
       });
+    
   }
   async runthisfunction(id) {
     console.log(id);
     await axiosConfig
-      .get(`/dealer/deleteStampingdata/${id}`)
+      .get(`/dealer/allequipmentApp/${id}`)
       .then((response) => {
         console.log(response);
       });

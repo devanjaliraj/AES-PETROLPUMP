@@ -9,17 +9,16 @@ import {
   DropdownItem,
   DropdownToggle,
 } from "reactstrap";
-import { AgGridReact } from "ag-grid-react";
-import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2, Edit } from "react-feather";
-import axios from "axios";
-
-import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
+import axiosConfig from "../../../axiosConfig";
+// import { Route } from "react-router-dom";
 
 // import { history } from "../../../history";
-import { Route } from 'react-router-dom'
-
-class RaiseConcernToAESList extends React.Component {
+import { AgGridReact } from "ag-grid-react";
+import { ContextLayout } from "../../../utility/context/Layout";
+import { ChevronDown, Trash2 } from "react-feather";
+import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
+import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+class PESOLicense extends React.Component {
   state = {
     rowData: null,
     paginationPageSize: 20,
@@ -31,33 +30,161 @@ class RaiseConcernToAESList extends React.Component {
       resizable: true,
       suppressMenu: true,
     },
+
     columnDefs: [
       {
-        headerName: "Concern",
-        field: "concern",
-        width: 500,
+        headerName: "DSM_Name",
+        field: "dsm__Id.dsm_name",
+        filter: false,
+        pinned: window.innerWidth > 992 ? "left" : false,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.concern}</span>
+              <span>{params.data.dsm__Id?.dsm_name}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Date",
+        field: "date",
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.date}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Nozzle",
+        field: "nozzel.nozzle",
+        width: 100,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.nozzel?.nozzle}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Product",
+        field: "product",
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.product}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Closing Entry",
+        field: "closing_Entry",
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.closing_Entry}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Opening total",
+        field: "opening_total",
+        width: 160,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.opening_total}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Closing Sales MS",
+        field: "closing_Entry_MS",
+        width: 180,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.closing_Entry_MS}</span>
             </div>
           );
         },
       },
 
       {
-        headerName: "Remark",
-        field: "remark",
+        headerName: "Closing Sales HSD",
+        field: "closing_Entry_HSD",
+        filter: false,
+        width: 200,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.remark}</span>
+              <span>{params.data.closing_Entry_HSD}</span>
             </div>
           );
         },
-        width: 505,
       },
 
+      {
+        headerName: "Closing Total MS",
+        field: "closing_total_MS",
+        filter: false,
+        width: 180,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.closing_total_MS}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Closing Total HSD",
+        field: "closing_total_HSD",
+        filter: false,
+        width: 180,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.closing_total_HSD}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Sum MS",
+        field: "sumMS",
+        filter: false,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.sumMS}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Sum HSD",
+        field: "sumHSD",
+        filter: false,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.sumHSD}</span>
+            </div>
+          );
+        },
+      },
       {
         headerName: "Actions",
         field: "sortorder",
@@ -66,17 +193,21 @@ class RaiseConcernToAESList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              <Route render={({ history}) => (
-              <Edit
-                className="mr-50"
-                size="25px"
-                color="blue"
-                onClick={() =>
-                  history.push(
-                    `/app/facilityManagement/raiseConcernToAESForm/${params.data._id}`
-                  )
-                }
-              />)}/>
+              {/* <Route
+                render={({ history }) => (
+                  <Edit
+                    className="mr-50"
+                    size="25px"
+                    color="blue"
+                    onClick={() =>
+                      history.push(
+                        `/app/shiftmanagement/bayManagementForm/${params.data._id}`
+                      )
+                    }
+                  />
+                )}
+              /> */}
+
               <Trash2
                 className="mr-50"
                 size="25px"
@@ -97,22 +228,18 @@ class RaiseConcernToAESList extends React.Component {
   componentDidMount() {
     let { id } = this.props.match.params;
 
-    axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/allraiseConcernApp/${id}`)
-      .then((response) => {
-        let rowData = response.data.data;
-        JSON.stringify(rowData);
-        this.setState({ rowData });
-      });
+    axiosConfig.get(`/dealer/allbmApp/${id}`).then((response) => {
+      let rowData = response.data.data;
+      JSON.stringify(rowData);
+      this.setState({ rowData });
+      console.log(rowData);
+    });
   }
-
   async runthisfunction(id) {
     console.log(id);
-    await axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/deleteraiseConcern/${id}`)
-      .then((response) => {
-        console.log(response);
-      });
+    await axiosConfig.get(`/dealer/deletebm/${id}`).then((response) => {
+      console.log(response);
+    });
   }
   onGridReady = (params) => {
     this.gridApi = params.api;
@@ -142,11 +269,11 @@ class RaiseConcernToAESList extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
+        <Breadcrumbs breadCrumbTitle="Bay Management List" />
         <Card className="overflow-hidden agGrid-card">
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">
-                <h1>Raise Concern To AES List</h1>
                 <div className="d-flex flex-wrap justify-content-between align-items-center">
                   <div className="mb-1">
                     <UncontrolledDropdown className="p-1 ag-dropdown">
@@ -237,4 +364,4 @@ class RaiseConcernToAESList extends React.Component {
     );
   }
 }
-export default RaiseConcernToAESList;
+export default PESOLicense;

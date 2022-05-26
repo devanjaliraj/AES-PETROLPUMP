@@ -12,10 +12,17 @@ import {
 import axiosConfig from "../../../axiosConfig";
 import { Download } from "react-feather";
 import { Route } from "react-router-dom";
+
 export default class Manager extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      shiftManagment : false,
+      stockManagment : false,
+      cashManagment : false,
+      facilityManagment : false,
+      roconfiguration : false,
+     
       dealer_id: "",
       addres: "",
       adhar_number: "",
@@ -29,6 +36,7 @@ export default class Manager extends Component {
       photograh: "",
       salary_date: "",
       salary_decieded: "",
+     
       status: "",
       selectedFile: null,
       selectedName: "",
@@ -61,6 +69,7 @@ export default class Manager extends Component {
           date_of_brith: response.data.data.date_of_brith.split(","),
           salary_decieded: response.data.data.salary_decieded,
           salary_date: response.data.data.salary_date.split(","),
+         
           status: response.data.data.status,
         });
       })
@@ -68,9 +77,13 @@ export default class Manager extends Component {
         console.log(error);
       });
   }
+
+
+  
   changeHandler1 = (e) => {
     this.setState({ status: e.target.value });
   };
+
 
   changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -89,6 +102,8 @@ export default class Manager extends Component {
     data.append("date_of_brith", this.state.date_of_brith.toString());
     data.append("salary_decieded", this.state.salary_decieded);
     data.append("salary_date", this.state.salary_date.toString());
+   
+    
     data.append("status", this.state.status);
     if (this.state.selectedFile !== null) {
       data.append("adharimg", this.state.selectedFile, this.state.selectedName);
@@ -356,6 +371,67 @@ export default class Manager extends Component {
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
+                <Col lg="3" md="3" sm="6" className="m-1">
+                      <div>
+                        <input
+                          checked={this.state.shiftManagment}
+                          onChange={this.changeHandler}
+                          type="checkbox"
+                          name="shiftManagment"
+                        />{" "}
+                       Shift Managment
+                      </div>
+                    </Col>
+                   
+                <Col lg="3" md="3" sm="6" className="m-1">
+                      <div>
+                        <input
+                          checked={this.state.stockManagment}
+                          onChange={this.changeHandler}
+                          type="checkbox"
+                          name="stockManagment"
+                        />{" "}
+                       Stock Managment
+                      </div>
+                    </Col>
+                
+                <Col lg="3" md="3" sm="6" className="m-1">
+                      <div>
+                        <input
+                          checked={this.state.cashManagment}
+                          onChange={this.changeHandler}
+                          type="checkbox"
+                          name="cashManagment"
+                        />{" "}
+                       Cash Managment
+                      </div>
+                    </Col>
+                    
+                    <Col lg="3" md="3" sm="6" className="m-1">
+                      <div>
+                        <input
+                          checked={this.state.facilityManagment}
+                          onChange={this.changeHandler}
+                          type="checkbox"
+                          name="facilityManagment"
+                        />{" "}
+                       Facility Managment
+                      </div>
+                    </Col>
+                    <Col lg="3" md="3" sm="6" className="m-1">
+                      <div>
+                        <input
+                          checked={this.state.roconfiguration}
+                          onChange={this.changeHandler}
+                          type="checkbox"
+                          name="roconfiguration"
+                        />{" "}
+                      Ro-Configuration
+
+                      </div>
+                    </Col>
+       
+
                 <Col lg="6" md="6" sm="6" className="mb-2 mt-1">
                   <Label className="mb-1">Status</Label>
                   <div

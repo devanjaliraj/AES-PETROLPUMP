@@ -16,9 +16,58 @@ import fgImg from "../../../assets/img/pages/forgot-password.png"
 import { history } from "../../../history"
 import "../../../assets/scss/pages/authentication.scss"
 import { Route } from 'react-router-dom'
+import axios from "axios";
 
 class ForgotPassword extends React.Component {
+  state = {
+    mobile:"",
+    errorValidation:'please enter correct mobile number',
+    isError:false
+  };
+
+  handlechange = (e) => {
+    e.preventDefault();
+    this.setState({ isError: false });
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+   validatePhone = (text) => {
+   if (/^[6789][0-9]{9}$/.test(text)) {
+      return true;
+    }
+    return false;
+  };
+
+  handleOtp = async (e) => {
+    e.preventDefault();
+    const {mobile} = this.state;
+    var isValid = await this.validatePhone(mobile)
+    if(isValid === false){
+      this.setState({ isError: true });
+      
+       return true;
+    }
+    var payload = {
+      mobile : mobile
+    }
+    axios
+    .post("http://3.108.185.7/nodejs/api/dealer/signupsendotp", payload)
+    .then((response) => { 
+      console.log(response.data);
+      if(response.data.status === 'success'){
+        console.log(response.data.otp);
+        // localStorage.setItem("auth", response.data.data?._id);
+        // window.location.replace("/#/");
+      }
+      
+    })
+    .catch((error) => {
+      console.log(error.response);
+    });
+};
+
   render() {
+    const {isError,errorValidation} = this.state;
     return (
       <Row className="m-0 justify-content-center">
         <Col
@@ -50,8 +99,11 @@ class ForgotPassword extends React.Component {
                   <CardBody className="pt-1 pb-0">
                     <Form>
                       <FormGroup className="form-label-group">
-                        <Input type="text" placeholder="Email" required />
-                        <Label>Email</Label>
+                        <Input type="number" name="mobile"
+                         value={this.state.mobile}
+                         onChange={this.handlechange} placeholder="Mobile Number" required />
+                        <Label>Mobile Number</Label>
+                        <span style={{color:'red'}}>{isError ? errorValidation: null}</span>
                       </FormGroup>
                       <div className="float-md-left d-block mb-1">
                       <Route render={({ history}) => (
@@ -69,10 +121,7 @@ class ForgotPassword extends React.Component {
                           color="primary"
                           type="submit"
                           className="px-75 btn-block"
-                          onClick={e => {
-                            e.preventDefault()
-                            history.push("/")
-                          }}
+                          onClick={this.handleOtp}
                         >
                           Recover Password
                         </Button.Ripple>

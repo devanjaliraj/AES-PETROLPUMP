@@ -68,42 +68,7 @@ class MpdManagement extends React.Component {
         filter: false,
         width: 250,
       },
-      //   {
-      //     headerName: "Leaves Taken",
-      //     field: "leaves taken",
-      //     filter: false,
-      //     width: 150,
-      //   },
-      //   {
-      //     headerName: "Payment Mode",
-      //     field: "payment mode",
-      //     filter: false,
-      //     width: 150,
-      //   },
-      //   {
-      //     headerName: "DSM/Manager Name",
-      //     field: "DSM/Manager name",
-      //     filter: false,
-      //     width: 125,
-      //   },
-      // {
-      //   headerName: "Zip",
-      //   field: "zip",
-      //   filter: "agNumberColumnFilter",
-      //   width: 140,
-      // },
-      // {
-      //   headerName: "Mobille No.",
-      //   field: "number",
-      //   filter: "agNumberColumnFilter",
-      //   width: 140,
-      // },
-      //   {
-      //     headerName: "Joining Date.",
-      //     field: "Joining Date",
-      //     filter: "agNumberColumnFilter",
-      //     width: 140,
-      //   },
+     
       {
         headerName: "Actions",
         field: "sortorder",

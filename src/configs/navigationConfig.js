@@ -23,22 +23,6 @@ const navigationConfig = [
     type: "groupHeader",
     groupTitle: "Component",
   },
-  // {
-  //   id: "dealer",
-  //   title: "Dealer",
-  //   type: "collapse",
-  //   icon: <Icon.User size={20} />,
-  //   children: [
-  //     {
-  //       id: "dealerList",
-  //       title: "Dealer List",
-  //       type: "item",
-  //       icon: <Icon.Circle size={12} />,
-  //       permissions: ["admin", "editor"],
-  //       navLink: "/app/dealer/dealerList",
-  //     },
-  //   ],
-  // },
   {
     id: "ro-configuration",
     title: "RO-configuration",
@@ -166,7 +150,6 @@ const navigationConfig = [
         permissions: ["admin", "editor"],
         navLink: "/app/shiftmanagement/dealerListForBayMang",
       },
-
       {
         id: "dealerListForDSMClosing",
         title: "DSM Closing Sheet",
@@ -199,7 +182,6 @@ const navigationConfig = [
         permissions: ["admin", "editor"],
         navLink: "/app/shiftManagement/dealerListForCreditGivento",
       },
-
       {
         id: "dealerListForLubricantSales",
         title: "Lubricant Sales",
@@ -225,13 +207,55 @@ const navigationConfig = [
     icon: <Icon.User size={20} />,
     children: [
       {
-        id: "dealerListForStatus",
+        id: "status",
         title: "Status",
+        type: "collapse",
+        icon: <Icon.User size={20} />,
+        children: [
+      {
+        id: "dealerListForMSStock",
+        title: "MS Stock",
         type: "item",
         icon: <Icon.Circle size={12} />,
         permissions: ["admin", "editor"],
-        navLink: "/app/cashManagement/dealerListForStatus",
+        navLink: "/app/cashManagement/status/dealerListForMSStock",
       },
+      {
+        id: "dealerListForHSDStock",
+        title: "HSDStock",
+        type: "item",
+        icon: <Icon.Circle size={12} />,
+        permissions: ["admin", "editor"],
+        navLink: "/app/cashManagement/status/dealerListForHSDStock",
+      },
+      {
+        id: "dealerListForLubricant",
+        title: "Lubricant",
+        type: "item",
+        icon: <Icon.Circle size={12} />,
+        permissions: ["admin", "editor"],
+        navLink: "/app/cashManagement/status/dealerListForLubricant",
+      },
+      {
+        id: "dealerListForPaymentMode",
+        title: "Payment Mode",
+        type: "item",
+        icon: <Icon.Circle size={12} />,
+        permissions: ["admin", "editor"],
+        navLink: "/app/cashManagement/status/dealerListForPaymentMode",
+      },
+      {
+        id: "dealerListForNetProfit",
+        title: "Net Profit",
+        type: "item",
+        icon: <Icon.Circle size={12} />,
+        permissions: ["admin", "editor"],
+        navLink: "/app/cashManagement/status/dealerListForNetProfit",
+      },
+    ],
+  },
+
+  
       {
         id: "dealerListForExpenses",
         title: "Expenses",
@@ -256,7 +280,6 @@ const navigationConfig = [
         permissions: ["admin", "editor"],
         navLink: "/app/cashManagement/dealerListForBankDeposite",
       },
-
       {
         id: "dealerListForCreditManagement",
         title: "Cash Management",
@@ -307,91 +330,206 @@ const navigationConfig = [
     icon: <Icon.User size={20} />,
     children: [
       {
-        id: "stampingDataList",
+        id: "dealerListForStampingData",
         title: "Stamping Data List",
         type: "item",
         icon: <Icon.Circle size={12} />,
         permissions: ["admin", "editor"],
-        navLink: "/app/facilityManagement/stampingDataList",
+        navLink: "/app/facilityManagement/dealerListForStampingData",
       },
       {
-        id: "otherEquipmentList",
-        title: "Other Equipment List",
+        id: "StatutoryCertificateManagement",
+        title: "Statutory Certificate Management",
+        type: "collapse",
+        icon: <Icon.FileMinus size={20} />,
+        children: [
+          {
+              id: "dealerListForlCan",
+              title: "5L Can",
+              type: "item",
+              icon: <Icon.Circle size={12} />,
+              permissions: ["admin", "editor"],
+              navLink: "/app/facilityManagement/statutoryCertificateManagement/dealerListForlCan",
+            },
+            {
+              id: "dealerListForHydrometer",
+              title: "PESO License",
+              type: "item",
+              icon: <Icon.Circle size={12} />,
+              permissions: ["admin", "editor"],
+              navLink: "/app/facilityManagement/statutoryCertificateManagement/dealerListForHydrometer",
+            },
+            {
+              id: "dealerListForHydrometer",
+              title: "Hydrometer",
+              type: "item",
+              icon: <Icon.Circle size={12} />,
+              permissions: ["admin", "editor"],
+              navLink: "/app/facilityManagement/statutoryCertificateManagement/dealerListForHydrometer",
+            },
+            {
+              id: "dealerListForThermometer",
+              title: "Thermometer",
+              type: "item",
+              icon: <Icon.Circle size={12} />,
+              permissions: ["admin", "editor"],
+              navLink: "/app/facilityManagement/statutoryCertificateManagement/dealerListForThermometer",
+            },
+            {
+              id: "dealerListForAirGaugage1",
+              title: "Air Gaugage 1",
+              type: "item",
+              icon: <Icon.Circle size={12} />,
+              permissions: ["admin", "editor"],
+              navLink: "/app/facilityManagement/statutoryCertificateManagement/dealerListForAirGaugage1",
+            },
+            {
+              id: "dealerListForDpsl",
+              title: "DPSL",
+              type: "item",
+              icon: <Icon.Circle size={12} />,
+              permissions: ["admin", "editor"],
+              navLink: "/app/facilityManagement/statutoryCertificateManagement/dealerListForDpsl",
+            },
+            {
+              id: "dealerListForAddOtherDocument",
+              title: "Add Other Document",
+              type: "item",
+              icon: <Icon.Circle size={12} />,
+              permissions: ["admin", "editor"],
+              navLink: "/app/facilityManagement/statutoryCertificateManagement/dealerListForAddOtherDocument",
+            },
+
+          
+        
+      ],
+    },
+    {
+      id: "otherEquipment",
+      title: "Other Equipments",
+      type: "collapse",
+      icon: <Icon.FileMinus size={20} />,
+      children: [
+        {
+      
+        id: "dealerListForDataFromRoConfimation",
+        title: "Data From RO-Confimation",
         type: "item",
         icon: <Icon.Circle size={12} />,
         permissions: ["admin", "editor"],
-        navLink: "/app/facilityManagement/otherEquipmentList",
+        navLink: "/app/facilityManagement/otherEquipment/dealerListForDataFromRoConfimation",
       },
       {
-        id: "statutoryCertificateManagementList",
-        title: "SC Management List",
+      
+        id: "dealerListForFireEquipment",
+        title: "Fire Equipments",
         type: "item",
         icon: <Icon.Circle size={12} />,
         permissions: ["admin", "editor"],
-        navLink: "/app/facilityManagement/statutoryCertificateManagementList",
+        navLink: "/app/facilityManagement/otherEquipment/dealerListForFireEquipment",
       },
+    ],
+  },
+      // {
+      //   id: "dealerListForStatutoryCertificateManagementList",
+      //   title: "SC Management List",
+      //   type: "item",
+      //   icon: <Icon.Circle size={12} />,
+      //   permissions: ["admin", "editor"],
+      //   navLink: "/app/facilityManagement/dealerListForStatutoryCertificateManagementList",
+      // },
       {
-        id: "mpdManagement",
+        id: "dealerListForMpdManagement",
         title: "MPD Management",
         type: "item",
         icon: <Icon.Circle size={12} />,
         permissions: ["admin", "editor"],
-        navLink: "/app/facilityManagement/mpdManagement",
+        navLink: "/app/facilityManagement/dealerListForMpdManagement",
       },
       {
-        id: "raiseConcernToAESList",
+        id: "dealerListForRaiseConcernToAES",
         title: "Raise Concern To AES List",
         type: "item",
         icon: <Icon.Circle size={12} />,
         permissions: ["admin", "editor"],
-        navLink: "/app/facilityManagement/raiseConcernToAESList",
+        navLink: "/app/facilityManagement/dealerListForRaiseConcernToAES",
+      
       },
     ],
   },
   ///////////////// facilityManagement end ///////////////////
-
-  // {
-  //   id: "subplan",
-  //   title: "Credit Managent ",
-  //   type: "collapse",
-  //   icon: <Icon.User size={20} />,
-  //   children: [
-  //     {
-  //       id: "subplanvideos",
-  //       title: "Subscription plan videos",
-  //       type: "item",
-  //       icon: <Icon.Circle size={12} />,
-  //       permissions: ["admin", "editor"],
-  //       navLink: "/app/subplan/subplanvideos",
-  //     },
-  //     {
-  //       id: "addPlan",
-  //       title: "Add plan videos",
-  //       type: "item",
-  //       icon: <Icon.Circle size={12} />,
-  //       permissions: ["admin", "editor"],
-  //       navLink: "/app/subplan/addPlan",
-  //     },
-  //   ],
-  // },
-
   {
-    id: "training",
+    id: "subplan",
+    title: "Credit Managent ",
+    type: "collapse",
+    icon: <Icon.User size={20} />,
+    children: [
+      {
+        id: "subplanvideos",
+        title: "Subscription plan videos",
+        type: "item",
+        icon: <Icon.Circle size={12} />,
+        permissions: ["admin", "editor"],
+        navLink: "/app/subplan/subplanvideos",
+      },
+      {
+        id: "addPlan",
+        title: "Add plan videos",
+        type: "item",
+        icon: <Icon.Circle size={12} />,
+        permissions: ["admin", "editor"],
+        navLink: "/app/subplan/addPlan",
+      },
+    ],
+  },
+  {
+    id: "notification",
     title: "Notification",
     type: "collapse",
     icon: <Icon.User size={20} />,
     children: [
       {
-        id: "trainingList",
+        id: "notificationList",
         title: "Notification List ",
         type: "item",
         icon: <Icon.Circle size={12} />,
         permissions: ["admin", "editor"],
-        navLink: "/app/training/trainingList",
+        navLink: "/app/notification/notificationList",
       },
     ],
   },
-
+      {
+        id: "membership",
+        title: "Membership",
+        type: "collapse",
+        icon: <Icon.User size={20} />,
+        children: [
+      {
+        id: "membershipList",
+        title: "Membership List ",
+        type: "item",
+        icon: <Icon.Circle size={12} />,
+        permissions: ["admin", "editor"],
+        navLink: "/app/membership/membershipList",
+      },
+    ],
+  },
+  {
+    id: "aboutus",
+    title: "About Us ",
+    type: "item",
+    icon: <Icon.User size={20} />,
+    permissions: ["admin", "editor"],
+    navLink: "/app/about/AllaboutUs",
+  },
+  {
+    id: "helpUs",
+    title: "Help Us",
+    type: "item",
+    icon: <Icon.User size={20} />,
+    permissions: ["admin", "editor"],
+    navLink: "/app/helpUs/HelpUs",
+  },
   // {
   //   id: "setting",
   //   title: "Setting",

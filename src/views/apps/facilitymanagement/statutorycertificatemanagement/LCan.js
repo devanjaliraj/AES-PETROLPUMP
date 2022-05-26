@@ -9,17 +9,16 @@ import {
   DropdownItem,
   DropdownToggle,
 } from "reactstrap";
-import { AgGridReact } from "ag-grid-react";
-import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2, Edit } from "react-feather";
-import axios from "axios";
-
-import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
+import axiosConfig from "../../../../axiosConfig";
+// import { Route } from "react-router-dom";
 
 // import { history } from "../../../history";
-import { Route } from 'react-router-dom'
-
-class RaiseConcernToAESList extends React.Component {
+import { AgGridReact } from "ag-grid-react";
+import { ContextLayout } from "../../../../utility/context/Layout";
+import { ChevronDown, Trash2 } from "react-feather";
+import "../../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
+import Breadcrumbs from "../../../../components/@vuexy/breadCrumbs/BreadCrumb";
+class LCan extends React.Component {
   state = {
     rowData: null,
     paginationPageSize: 20,
@@ -31,52 +30,100 @@ class RaiseConcernToAESList extends React.Component {
       resizable: true,
       suppressMenu: true,
     },
+
     columnDefs: [
       {
-        headerName: "Concern",
-        field: "concern",
-        width: 500,
+        headerName: "Due Date of Stamping",
+        field: "Due_Date_of_Stamping",
+        filter: false,
+        // pinned: window.innerWidth > 992 ? "left" : false,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.concern}</span>
+              <span>{params.data.Due_Date_of_Stamping}</span>
             </div>
           );
         },
       },
-
+      // {
+      //   headerName: "Date",
+      //   field: "date",
+      //   width: 150,
+      //   cellRendererFramework: (params) => {
+      //     return (
+      //       <div className="d-flex align-items-center cursor-pointer">
+      //         <span>{params.data.date}</span>
+      //       </div>
+      //     );
+      //   },
+      // },
+      // {
+      //   headerName: "Upload Document",
+      //   field: "Upload_Document",
+      //   filter: false,
+      //   width: 200,
+      //   setColumnVisible: false,
+      //   cellRendererFramework: (params) => {
+      //     return (
+      //       <div className="d-flex align-items-center cursor-pointer">
+      //          {params.data.Upload_Document.map((i) => (
+      //         <img
+      //           className=" rounded-circle  mr-3"
+      //           src={i}
+      //           alt="user avatar"
+      //           height="40"
+      //           width="40"
+      //         />
+      //          ))}
+      //       </div>
+      //     );
+      //   },
+      // },
       {
-        headerName: "Remark",
-        field: "remark",
+        headerName: "Upload Document",
+        field: "Upload_Document",
+        filter: false,
+        width: 200,
+        setColumnVisible: false,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.remark}</span>
+              
+              <img
+                className=" rounded-circle  mr-3"
+                src= {params.data.Upload_Document}
+                alt="user avatar"
+                height="40"
+                width="40"
+              /> 
             </div>
           );
         },
-        width: 505,
       },
-
       {
         headerName: "Actions",
         field: "sortorder",
         width: 150,
-        pinned: window.innerWidth > 992 ? "right" : false,
+        // pinned: window.innerWidth > 992 ? "right" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              <Route render={({ history}) => (
-              <Edit
-                className="mr-50"
-                size="25px"
-                color="blue"
-                onClick={() =>
-                  history.push(
-                    `/app/facilityManagement/raiseConcernToAESForm/${params.data._id}`
-                  )
-                }
-              />)}/>
+              {/* <Route
+                render={({ history }) => (
+                  <Edit
+                    className="mr-50"
+                    size="25px"
+                    color="blue"
+                    onClick={() =>
+                      history.push(
+                        `/app/shiftmanagement/bayManagementForm/${params.data._id}`
+                      )
+                    }
+                  />
+                )}
+              /> */}
+
               <Trash2
                 className="mr-50"
                 size="25px"
@@ -96,23 +143,19 @@ class RaiseConcernToAESList extends React.Component {
 
   componentDidMount() {
     let { id } = this.props.match.params;
-
-    axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/allraiseConcernApp/${id}`)
-      .then((response) => {
-        let rowData = response.data.data;
-        JSON.stringify(rowData);
-        this.setState({ rowData });
-      });
+   
+    axiosConfig.get(`/dealer/allcan5lFMApp/${id}`).then((response) => {
+      let rowData = response.data.data;
+      JSON.stringify(rowData);
+      this.setState({ rowData });
+      console.log(rowData);
+    });
   }
-
   async runthisfunction(id) {
     console.log(id);
-    await axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/deleteraiseConcern/${id}`)
-      .then((response) => {
-        console.log(response);
-      });
+    await axiosConfig.get(`/dealer/deletebm/${id}`).then((response) => {
+      console.log(response);
+    });
   }
   onGridReady = (params) => {
     this.gridApi = params.api;
@@ -142,11 +185,11 @@ class RaiseConcernToAESList extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
+        <Breadcrumbs breadCrumbTitle="5L Can List" />
         <Card className="overflow-hidden agGrid-card">
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">
-                <h1>Raise Concern To AES List</h1>
                 <div className="d-flex flex-wrap justify-content-between align-items-center">
                   <div className="mb-1">
                     <UncontrolledDropdown className="p-1 ag-dropdown">
@@ -237,4 +280,4 @@ class RaiseConcernToAESList extends React.Component {
     );
   }
 }
-export default RaiseConcernToAESList;
+export default LCan;

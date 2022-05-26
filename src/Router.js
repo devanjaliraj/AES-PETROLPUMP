@@ -16,6 +16,18 @@ const ecommerceDashboard = lazy(() =>
   import("./views/dashboard/ecommerce/EcommerceDashboard")
 );
 const checkout = lazy(() => import("./views/apps/ecommerce/cart/Cart"));
+const aboutUs = lazy(() => import("./views/apps/about/AboutUs"));
+const AllaboutUs = lazy(() => import("./views/apps/about/AllaboutUs"));
+
+const helpUs = lazy(() => import("./views/apps/helpUs/HelpUS"));
+const EdithelpusForm = lazy(() => import("./views/apps/helpUs/EdithelpusForm"));
+const ViewHelpUs = lazy(() => import("./views/apps/helpUs/ViewHelpUs"));
+
+const membershipList = lazy(() => import("./views/apps/membership/MembershipList"));
+
+const editMembership = lazy(() => import("./views/apps/membership/EditMembership"));
+const notificationList = lazy(() => import("./views/apps/notification/NotificationList"));
+const addNotification = lazy(() => import("./views/apps/notification/AddNotification"));
 const productDetail = lazy(() =>
   import("./views/apps/ecommerce/detail/Detail")
 );
@@ -132,12 +144,19 @@ const StaffAttendanceList = lazy(() =>
 const StaffAttendanceForm = lazy(() =>
   import("./views/apps/shiftmanagement/StaffAttendenceForm")
 );
+
+const staffnotificationList = lazy(() =>
+  import("./views/apps/shiftmanagement/StaffNotidicationList")
+);
 /////////////////////////////// shiftmanagement -- start ///////////////////////////
 
 //////////////////////////// facilitymanagement  /////////////////////////////
 
 const StampingDataList = lazy(() =>
   import("./views/apps/facilitymanagement/StampingDataList")
+);
+const DealerListForStampingData = lazy(() =>
+import("./views/apps/facilitymanagement/DealerListForStampingData")
 );
 
 const StampingDataForm = lazy(() =>
@@ -147,17 +166,56 @@ const StampingDataForm = lazy(() =>
 const otherEquipmentList = lazy(() =>
   import("./views/apps/facilitymanagement/OtherEquipmentList")
 );
+const dealerListForOtherEquipment = lazy(() =>
+  import("./views/apps/facilitymanagement/DealerListForOtherEquipment")
+);
 const OtherEquipmentForm = lazy(() =>
   import("./views/apps/facilitymanagement/OtherEquipmentForm")
 );
 const StatutoryCertificateManagementList = lazy(() =>
   import("./views/apps/facilitymanagement/StatutoryCertificateManagementList")
 );
+
+const DealerListForlCan = lazy(() =>
+  import("./views/apps/facilitymanagement/statutorycertificatemanagement/DealerListForlCan")
+);
+const LCan = lazy(() =>
+  import("./views/apps/facilitymanagement/statutorycertificatemanagement/LCan")
+);
+const DealerListForAddOtherDocument = lazy(() =>
+  import("./views/apps/facilitymanagement/statutorycertificatemanagement/DealerListForAddOtherDocument")
+);
+const DealerListForAirGaugge1 = lazy(() =>
+  import("./views/apps/facilitymanagement/statutorycertificatemanagement/DealerListForAirGaugge1")
+);
+const DealerListForDPSL = lazy(() =>
+  import("./views/apps/facilitymanagement/statutorycertificatemanagement/DealerListForDPSL")
+);
+const DealerListForHydrometer = lazy(() =>
+  import("./views/apps/facilitymanagement/statutorycertificatemanagement/DealerListForHydrometer")
+);
+const DealerListForPESOLicense = lazy(() =>
+  import("./views/apps/facilitymanagement/statutorycertificatemanagement/DealerListForPESOLicense")
+);
+const DealerListForThermometer = lazy(() =>
+  import("./views/apps/facilitymanagement/statutorycertificatemanagement/Thermometer")
+);
+
+
+const DealerListForStatutoryCertificateManagementList = lazy(() =>
+import("./views/apps/facilitymanagement/DealerListForStatutoryCertificateManagementList")
+);
 const MpdManagement = lazy(() =>
   import("./views/apps/facilitymanagement/MpdManagement")
+);const DealerListForMpdManagement = lazy(() =>
+import("./views/apps/facilitymanagement/DealerListForMpdManagement")
 );
+
 const RaiseConcernToAESList = lazy(() =>
   import("./views/apps/facilitymanagement/RaiseConcernToAESList")
+);
+const DealerListForRaiseConcernToAES = lazy(() =>
+  import("./views/apps/facilitymanagement/DealerListForRaiseConcernToAES")
 );
 
 const RaiseConcernToAESForm = lazy(() =>
@@ -170,7 +228,7 @@ const addPlan = lazy(() => import("./views/apps/subplan/AddPlan"));
 const dealerList = lazy(() => import("./views/apps/dealer/DealerList"));
 const editDealer = lazy(() => import("./views/apps/dealer/EditDealer"));
 const viewDealer = lazy(() => import("./views/apps/dealer/ViewDealer"));
-const trainingList = lazy(() => import("./views/apps/training/TrainingList"));
+
 
 //////////////////////////////////////////// ro-configuration --- start //////////////////////////////////////////
 const outletList = lazy(() =>
@@ -443,6 +501,8 @@ const Aggrid = lazy(() => import("./views/tables/aggrid/Aggrid"));
 const DataTable = lazy(() => import("./views/tables/data-tables/DataTables"));
 const profile = lazy(() => import("./views/pages/profile/Profile"));
 const faq = lazy(() => import("./views/pages/faq/FAQ"));
+
+
 const knowledgeBase = lazy(() =>
   import("./views/pages/knowledge-base/KnowledgeBase")
 );
@@ -537,11 +597,11 @@ const AppRoute = connect(mapStateToProps)(RouteConfig);
 
 class AppRouter extends React.Component {
   componentDidMount() {
-    let data = JSON.parse(localStorage.getItem("userData"));
+    let data = localStorage.getItem("auth");
     if (data === undefined || data === null) {
       //history.push("/#/pages/login")
 
-      window.location.replace("/#/pages/login");
+       window.location.replace("/#/pages/login");
     }
   }
   render() {
@@ -759,14 +819,66 @@ class AppRouter extends React.Component {
             {/*///////////////////////////////// facilityManagement start //////////////////////////////////////////////////*/}
             <AppRoute
               exact={true}
-              path="/app/facilityManagement/statutoryCertificateManagementList"
+              path="/app/facilityManagement/statutoryCertificateManagementList/:id"
               component={StatutoryCertificateManagementList}
-            />
+            /> 
+            <AppRoute
+            exact={true}
+            path="/app/facilityManagement/statutoryCertificateManagement/dealerListForStatutoryCertificateManagementList"
+            component={DealerListForStatutoryCertificateManagementList}
+          />
+   <AppRoute
+            exact={true}
+            path="/app/facilityManagement/statutoryCertificateManagement/dealerListForlCan"
+            component={DealerListForlCan}
+          />
+           <AppRoute
+            exact={true}
+            path="/app/facilityManagement/statutoryCertificateManagement/lCan/:id"
+            component={LCan}
+          />
+             <AppRoute
+            exact={true}
+            path="/app/facilityManagement/statutoryCertificateManagement/dealerListForAddOtherDocument"
+            component={DealerListForAddOtherDocument}
+          />
+             <AppRoute
+            exact={true}
+            path="/app/facilityManagement/statutoryCertificateManagement/dealerListForAirGaugge1"
+            component={DealerListForAirGaugge1}
+          />
+             <AppRoute
+            exact={true}
+            path="/app/facilityManagement/statutoryCertificateManagement/dealerListForDPSL"
+            component={DealerListForDPSL}
+          />
+             <AppRoute
+            exact={true}
+            path="/app/facilityManagement/statutoryCertificateManagement/dealerListForHydrometer"
+            component={DealerListForHydrometer}
+          />
+             <AppRoute
+            exact={true}
+            path="/app/facilityManagement/statutoryCertificateManagement/dealerListForPESOLicense"
+            component={DealerListForPESOLicense}
+          />
+             <AppRoute
+            exact={true}
+            path="/app/facilityManagement/statutoryCertificateManagement/dealerListForThermometer"
+            component={DealerListForThermometer}
+          />
+
             <AppRoute
               exact={true}
-              path="/app/facilityManagement/stampingDataList"
+              path="/app/facilityManagement/stampingDataList/:id"
               component={StampingDataList}
             />
+               <AppRoute
+              exact={true}
+              path="/app/facilityManagement/dealerListForStampingData"
+              component={DealerListForStampingData}
+            />
+           
             <AppRoute
               exact={true}
               path="/app/facilityManagement/stampingDataForm/:id"
@@ -774,9 +886,15 @@ class AppRouter extends React.Component {
             />
             <AppRoute
               exact={true}
-              path="/app/facilityManagement/otherEquipmentList"
+              path="/app/facilityManagement/otherEquipmentList/:id"
               component={otherEquipmentList}
             />
+               <AppRoute
+              exact={true}
+              path="/app/facilityManagement/dealerListForOtherEquipment"
+              component={dealerListForOtherEquipment}
+            />
+            
             <AppRoute
               exact={true}
               path="/app/facilityManagement/otherEquipmentForm/:id"
@@ -784,14 +902,25 @@ class AppRouter extends React.Component {
             />
             <AppRoute
               exact={true}
-              path="/app/facilityManagement/MpdManagement"
+              path="/app/facilityManagement/mpdManagement/:id"
               component={MpdManagement}
+            />
+              <AppRoute
+              exact={true}
+              path="/app/facilityManagement/dealerListForMpdManagement"
+              component={DealerListForMpdManagement}
             />
             <AppRoute
               exact={true}
-              path="/app/facilityManagement/raiseConcernToAESList"
+              path="/app/facilityManagement/raiseConcernToAESList/:id"
               component={RaiseConcernToAESList}
             />
+             <AppRoute
+              exact={true}
+              path="/app/facilityManagement/dealerListForRaiseConcernToAES"
+              component={DealerListForRaiseConcernToAES}
+            />
+            
             <AppRoute
               exact={true}
               path="/app/facilityManagement/raiseConcernToAESForm/:id"
@@ -919,6 +1048,11 @@ class AppRouter extends React.Component {
               exact={true}
               path="/app/staffEnrollment/dealerListForDSM"
               component={DealerListForDSM}
+            />
+            <AppRoute
+              exact={true}
+              path="/app/shiftmanagement/staffnotificationlist"
+              component={staffnotificationList}
             />
             <AppRoute
               exact={true}
@@ -1086,11 +1220,7 @@ class AppRouter extends React.Component {
               path="/app/dealer/viewDealer/:id"
               component={viewDealer}
             />
-            <AppRoute
-              exact={true}
-              path="/app/training/trainingList"
-              component={trainingList}
-            />
+          
             <AppRoute
               exact={true}
               path="/app/subplan/subplanvideos"
@@ -1114,6 +1244,55 @@ class AppRouter extends React.Component {
               path="/ecommerce/product-detail"
               component={productDetail}
             />
+            <AppRoute
+              exact={true}
+              path="/app/about/aboutUs"
+              component={aboutUs}
+            />
+            <AppRoute
+              exact={true}
+              path="/app/about/AllaboutUs"
+              component={AllaboutUs}
+            />
+            <AppRoute
+              exact={true}
+              path="/app/helpUs/HelpUs"
+              component={helpUs}
+            />
+            <AppRoute
+              exact={true}
+              path="/app/helpUs/EdithelpusForm"
+              component={EdithelpusForm}
+            />
+             <AppRoute
+              exact={true}
+              path="/app/helpUs/ViewHelpUs/:id"
+              component={ViewHelpUs}
+            />
+             <AppRoute
+              exact={true}
+              path="/app/membership/MembershipList"
+              component={membershipList}
+            />
+              <AppRoute
+              exact={true}
+              path="/app/membership/EditMembership/:id"
+              component={editMembership}
+            />
+           
+            
+              <AppRoute
+              exact={true}
+              path="/app/notification/NotificationList"
+              component={notificationList}
+            />
+              
+              <AppRoute
+              exact={true}
+              path="/app/notification/AddNotification"
+              component={addNotification}
+            />
+            
             <AppRoute
               exact={true}
               path="/ecommerce/checkout"
@@ -1367,6 +1546,7 @@ class AppRouter extends React.Component {
             />
             <AppRoute exact={true} path="/pages/profile" component={profile} />
             <AppRoute exact={true} path="/pages/faq" component={faq} />
+            
             <AppRoute
               exact={true}
               path="/pages/knowledge-base"

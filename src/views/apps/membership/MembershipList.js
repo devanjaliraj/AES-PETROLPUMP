@@ -4,24 +4,24 @@ import {
   CardBody,
   Input,
   Button,
+  Col,
   UncontrolledDropdown,
   DropdownMenu,
   DropdownItem,
   DropdownToggle,
+  CardTitle,
 } from "reactstrap";
+import axiosConfig from "../../../axiosConfig";
+// import { history } from "../../../history";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
-import axios from "axios";
-
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-
-// import { history } from "../../../history";
-import { Route } from 'react-router-dom'
-
-class RaiseConcernToAESList extends React.Component {
+import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+import { Route } from "react-router-dom";
+class MembershipList extends React.Component {
   state = {
-    rowData: null,
+    rowData: [],
     paginationPageSize: 20,
     currenPageSize: "",
     getPageSize: "",
@@ -33,50 +33,134 @@ class RaiseConcernToAESList extends React.Component {
     },
     columnDefs: [
       {
-        headerName: "Concern",
-        field: "concern",
-        width: 500,
+        headerName: "Email",
+        field: "email",
+        width: 200,
+        pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.concern}</span>
+              <span>{params.data?.dealer_id.email}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Dealer Name",
+        field: "dealer_name",
+        width: 200,
+        pinned: window.innerWidth > 992 ? "left" : false,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.dealer_id.dealer_name}</span>
             </div>
           );
         },
       },
 
       {
-        headerName: "Remark",
-        field: "remark",
+        headerName: "Transaction ID",
+        field: "transaction_id",
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.remark}</span>
+              <span>{params.data.transaction_id}</span>
             </div>
           );
         },
-        width: 505,
+      },
+      {
+        headerName: "Date",
+        field: "date",
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.date}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Expire Date",
+        field: "expdate",
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.expdate}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Amount",
+        field: "amount",
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.amount}</span>
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Plan Id",
+        field: "associated_plan",
+        width: 150,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.planId?.associated_plan}</span>
+            </div>
+          );
+        },
       },
 
+
+
+      {
+        headerName: "Status",
+        field: "status",
+        // filter: true,
+        width: 150,
+        cellRendererFramework: (params) => {
+          return params.value === "Confirm" ? (
+            <div className="badge badge-pill badge-success">
+              {params.data.status}
+            </div>
+          ) : params.value === "Pending" ? (
+            <div className="badge badge-pill badge-warning">
+              {params.data.status}
+            </div>
+          ) : null;
+        },
+      },
       {
         headerName: "Actions",
         field: "sortorder",
         width: 150,
-        pinned: window.innerWidth > 992 ? "right" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              <Route render={({ history}) => (
-              <Edit
-                className="mr-50"
-                size="25px"
-                color="blue"
-                onClick={() =>
-                  history.push(
-                    `/app/facilityManagement/raiseConcernToAESForm/${params.data._id}`
-                  )
-                }
-              />)}/>
+              <Route
+                render={({ history }) => (
+                  <Edit
+                    className="mr-50"
+                    size="25px"
+                    color="blue"
+                    onClick={() =>
+                      history.push(
+                        `/app/membership/EditMembership/${params.data._id}/?&transaction_id=${params.data?.transaction_id}&expdate=${params.data?.expdate}`
+                      )
+                    }
+                  />
+                )}
+              />
+
               <Trash2
                 className="mr-50"
                 size="25px"
@@ -93,27 +177,22 @@ class RaiseConcernToAESList extends React.Component {
       },
     ],
   };
-
-  componentDidMount() {
-    let { id } = this.props.match.params;
-
-    axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/allraiseConcernApp/${id}`)
-      .then((response) => {
-        let rowData = response.data.data;
-        JSON.stringify(rowData);
-        this.setState({ rowData });
-      });
+  async componentDidMount() {
+    await axiosConfig.get("http://3.108.185.7/nodejs/api/dealer/allmembershipplan").then((response) => {
+      const rowData = response.data.data;
+      console.log(rowData);
+      this.setState({ rowData });
+    });
   }
-
   async runthisfunction(id) {
     console.log(id);
-    await axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/deleteraiseConcern/${id}`)
+    await axiosConfig
+      .get(`http://3.108.185.7/nodejs/api/dealer/allmembershipplan/${id}`)
       .then((response) => {
         console.log(response);
       });
   }
+
   onGridReady = (params) => {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
@@ -142,11 +221,16 @@ class RaiseConcernToAESList extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
+         <Breadcrumbs
+          breadCrumbTitle="Membership List"
+          breadCrumbParent="Membership"
+          breadCrumbActive="Membership List"
+        />
         <Card className="overflow-hidden agGrid-card">
+
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">
-                <h1>Raise Concern To AES List</h1>
                 <div className="d-flex flex-wrap justify-content-between align-items-center">
                   <div className="mb-1">
                     <UncontrolledDropdown className="p-1 ag-dropdown">
@@ -237,4 +321,4 @@ class RaiseConcernToAESList extends React.Component {
     );
   }
 }
-export default RaiseConcernToAESList;
+export default MembershipList;

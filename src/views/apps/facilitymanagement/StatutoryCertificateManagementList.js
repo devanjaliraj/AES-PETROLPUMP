@@ -225,8 +225,9 @@ class StatutoryCertificateManagementList extends React.Component {
   };
 
   componentDidMount() {
+    let { id } = this.props.match.params;
     axiosConfig
-      .get("/dealer/allstatutoryCertificate")
+      .get(`/dealer/allcan5lFMApp/${id}`)
       .then((response) => {
         let rowData = response.data.data;
         JSON.stringify(rowData);
@@ -237,7 +238,7 @@ class StatutoryCertificateManagementList extends React.Component {
     console.log(id);
     await axiosConfig
       .get(
-        `/dealer/deletestatutoryCertificate/${id}`
+        `/dealer/deletecan5lFM/${id}`
       )
       .then((response) => {
         console.log(response);

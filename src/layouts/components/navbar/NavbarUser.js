@@ -23,7 +23,8 @@ import { Route } from "react-router-dom";
 
 const handleNavigation = (e, path) => {
   e.preventDefault();
-  history.push(path);
+  // history.push(path);
+  window.location.replace(path);
 };
 
 const UserDropdown = (props) => {
@@ -33,7 +34,7 @@ const UserDropdown = (props) => {
       <DropdownItem
         tag="a"
         href="#"
-        onClick={(e) => handleNavigation(e, "/pages/profile")}
+        onClick={(e) => handleNavigation(e, "/#/pages/profile")}
       >
         <Icon.User size={14} className="mr-50" />
         <span className="align-middle">Edit Profile</span>
@@ -75,11 +76,11 @@ const UserDropdown = (props) => {
             //href="/pages/login"
             onClick={(e) => {
               // e.preventDefault()
-              console.log("@@##anjali ");
-              localStorage.removeItem("userData");
-              localStorage.removeItem("token");
-              history.push("/pages/login");
-
+              // console.log("@@##anjali ");
+              // localStorage.removeItem("userData");
+              localStorage.removeItem("auth");
+              //history.push("/#/pages/login");
+              window.location.replace("/#/pages/login");
               // if (isAuthenticated) {
               //   return logout({
               //     returnTo: window.location.origin + process.env.REACT_APP_PUBLIC_PATH
@@ -169,7 +170,7 @@ class NavbarUser extends React.PureComponent {
   };
 
   componentDidMount() {
-    axios.get("/api/main-search/data").then(({ data }) => {
+    axios.get("http://3.108.185.7/nodejs/api/admin/allnotification").then(({ data }) => {
       this.setState({ suggestions: data.searchResult });
     });
   }
