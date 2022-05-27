@@ -120,7 +120,7 @@ class DealerListForPESOLicense extends React.Component {
                     color="green"
                     onClick={() =>
                       history.push(
-                        `/app/cashManagement/expensesList/${params.data._id}`
+                        `/app/facilityManagement/statutoryCertificateManagement/PESOLicense/${params.data._id}`
                       )
                     }
                   />
@@ -172,7 +172,7 @@ class DealerListForPESOLicense extends React.Component {
           <Row className="m-1">
             <Col>
               <h1 col-sm-6 className="float-left">
-                List of Dealers for Expenses
+                List of Dealers for PESO License
               </h1>
             </Col>
           </Row>

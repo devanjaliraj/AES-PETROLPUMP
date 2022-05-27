@@ -237,12 +237,12 @@ const navigationConfig = [
         navLink: "/app/cashManagement/status/dealerListForLubricant",
       },
       {
-        id: "dealerListForPaymentMode",
+        id: "dealerListForPaymentModeLists",
         title: "Payment Mode",
         type: "item",
         icon: <Icon.Circle size={12} />,
         permissions: ["admin", "editor"],
-        navLink: "/app/cashManagement/status/dealerListForPaymentMode",
+        navLink: "/app/cashManagement/status/dealerListForPaymentModeLists",
       },
       {
         id: "dealerListForNetProfit",
@@ -352,12 +352,12 @@ const navigationConfig = [
               navLink: "/app/facilityManagement/statutoryCertificateManagement/dealerListForlCan",
             },
             {
-              id: "dealerListForHydrometer",
+              id: "dealerListForPESOLicense",
               title: "PESO License",
               type: "item",
               icon: <Icon.Circle size={12} />,
               permissions: ["admin", "editor"],
-              navLink: "/app/facilityManagement/statutoryCertificateManagement/dealerListForHydrometer",
+              navLink: "/app/facilityManagement/statutoryCertificateManagement/dealerListForPESOLicense",
             },
             {
               id: "dealerListForHydrometer",

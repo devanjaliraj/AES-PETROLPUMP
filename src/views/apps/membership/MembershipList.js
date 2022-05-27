@@ -19,6 +19,8 @@ import { ChevronDown, Trash2, Edit } from "react-feather";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 import { Route } from "react-router-dom";
+import moment from "moment";
+
 class MembershipList extends React.Component {
   state = {
     rowData: [],
@@ -78,6 +80,7 @@ class MembershipList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
+               {/* <span>{moment(this.state.data?.date).format("DD-MM-YYYY")}</span> */}
               <span>{params.data.date}</span>
             </div>
           );
@@ -90,7 +93,8 @@ class MembershipList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.expdate}</span>
+               {/* <span>{moment(this.state.data?.expdate).format("DD-MM-YYYY")}</span> */}
+                 <span>{params.data.expdate}</span>
             </div>
           );
         },

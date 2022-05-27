@@ -185,8 +185,8 @@ const LCan = lazy(() =>
 const DealerListForAddOtherDocument = lazy(() =>
   import("./views/apps/facilitymanagement/statutorycertificatemanagement/DealerListForAddOtherDocument")
 );
-const DealerListForAirGaugge1 = lazy(() =>
-  import("./views/apps/facilitymanagement/statutorycertificatemanagement/DealerListForAirGaugge1")
+const DealerListForAirGaugage1 = lazy(() =>
+  import("./views/apps/facilitymanagement/statutorycertificatemanagement/DealerListForAirGaugage1")
 );
 const DealerListForDPSL = lazy(() =>
   import("./views/apps/facilitymanagement/statutorycertificatemanagement/DealerListForDPSL")
@@ -346,6 +346,27 @@ const OtherStaffList = lazy(() =>
 // cashmanagement
 const DealerListForStatus = lazy(() =>
   import("./views/apps/cashmanagement/DealerListForStatus")
+);
+const DealerListForHSDStock = lazy(() =>
+  import("./views/apps/cashmanagement/status/DealerListForHSDStock")
+);
+const HSDStockList = lazy(() =>
+  import("./views/apps/cashmanagement/status/HSDStockList")
+);
+const DealerListForLubricant = lazy(() =>
+  import("./views/apps/cashmanagement/status/DealerListForLubricant")
+);
+const DealerListForMSStock = lazy(() =>
+  import("./views/apps/cashmanagement/status/DealerListForMSStock")
+);
+const DealerListForNetProfit = lazy(() =>
+  import("./views/apps/cashmanagement/status/DealerListForNetProfit")
+);
+const DealerListForPaymentModeLists = lazy(() =>
+  import("./views/apps/cashmanagement/status/DealerListForPaymentModeLists")
+);
+const PaymentModeLists = lazy(() =>
+  import("./views/apps/cashmanagement/status/PaymentModeLists")
 );
 const DealerListForExpenses = lazy(() =>
   import("./views/apps/cashmanagement/DealerListForExpenses")
@@ -558,6 +579,10 @@ const register = lazy(() =>
 );
 const accessControl = lazy(() =>
   import("./extensions/access-control/AccessControl")
+);
+
+const otpVerify = lazy(() =>
+  import("./views/pages/authentication/OtpVerify")
 );
 
 // Set Layout and Component Using App Route
@@ -844,8 +869,8 @@ class AppRouter extends React.Component {
           />
              <AppRoute
             exact={true}
-            path="/app/facilityManagement/statutoryCertificateManagement/dealerListForAirGaugge1"
-            component={DealerListForAirGaugge1}
+            path="/app/facilityManagement/statutoryCertificateManagement/dealerListForAirGaugage1"
+            component={DealerListForAirGaugage1}
           />
              <AppRoute
             exact={true}
@@ -1096,6 +1121,42 @@ class AppRouter extends React.Component {
               path="/app/cashManagement/dealerListForStatus"
               component={DealerListForStatus}
             />
+             <AppRoute
+              exact={true}
+              path="/app/cashManagement/status/dealerListForHSDStock"
+              component={DealerListForHSDStock}
+            />
+              <AppRoute
+              exact={true}
+              path="/app/cashManagement/status/hsdStockList/:id"
+              component={HSDStockList}
+            />
+              <AppRoute
+              exact={true}
+              path="/app/cashManagement/status/dealerListForLubricant"
+              component={DealerListForLubricant}
+            />
+              <AppRoute
+              exact={true}
+              path="/app/cashManagement/status/dealerListForMSStock"
+              component={DealerListForMSStock}
+            />
+              <AppRoute
+              exact={true}
+              path="/app/cashManagement/status/dealerListForNetProfit"
+              component={DealerListForNetProfit}
+            />
+              <AppRoute
+              exact={true}
+              path="/app/cashManagement/status/dealerListForPaymentModeLists"
+              component={DealerListForPaymentModeLists}
+            />
+                <AppRoute
+              exact={true}
+              path="/app/cashManagement/status/paymentModeLists/:id"
+              component={PaymentModeLists}
+            />
+            
             <AppRoute
               exact={true}
               path="/app/cashManagement/dealerListForExpenses"
@@ -1611,6 +1672,13 @@ class AppRouter extends React.Component {
               component={resetPassword}
               fullLayout
             />
+            <AppRoute
+              exact={true}
+              path="/pages/otp-verify"
+              component={otpVerify}
+              fullLayout
+            />
+            
             <AppRoute
               exact={true}
               path="/misc/error/500"

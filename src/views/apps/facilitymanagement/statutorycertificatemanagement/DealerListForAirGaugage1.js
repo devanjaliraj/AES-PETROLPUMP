@@ -11,14 +11,14 @@ import {
   DropdownItem,
   DropdownToggle,
 } from "reactstrap";
-import axiosConfig from "../../../axiosConfig";
+import axiosConfig from "../../../../axiosConfig";
 import { Route } from "react-router-dom";
 import { AgGridReact } from "ag-grid-react";
-import { ContextLayout } from "../../../utility/context/Layout";
+import { ContextLayout } from "../../../../utility/context/Layout";
 import { ChevronDown, Eye } from "react-feather";
-import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
+import "../../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 // import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
-class DealerListForPaymentMode extends React.Component {
+class DealerListForAirGaugge1 extends React.Component {
   state = {
     rowData: [],
     paginationPageSize: 20,
@@ -120,7 +120,7 @@ class DealerListForPaymentMode extends React.Component {
                     color="green"
                     onClick={() =>
                       history.push(
-                        `/app/cashManagement/status/paymentModeList/${params.data._id}`
+                        `/app/facilityManagement/statutoryCertificateManagement/AirGaugage1/${params.data._id}`
                       )
                     }
                   />
@@ -172,7 +172,7 @@ class DealerListForPaymentMode extends React.Component {
           <Row className="m-1">
             <Col>
               <h1 col-sm-6 className="float-left">
-                List of Dealers for Bank Deposite
+                List of Dealers for Gaugage
               </h1>
             </Col>
           </Row>
@@ -269,4 +269,4 @@ class DealerListForPaymentMode extends React.Component {
     );
   }
 }
-export default DealerListForPaymentMode;
+export default DealerListForAirGaugge1;

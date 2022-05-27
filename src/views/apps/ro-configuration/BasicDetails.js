@@ -117,7 +117,8 @@ export default class BasicDetailForm extends Component {
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/app/ro-configuration/RoConfigurationList");
+        this.props.history.push(`/app/ro-configuration/basicDetailsList`);
+        
       })
 
       .catch((error) => {

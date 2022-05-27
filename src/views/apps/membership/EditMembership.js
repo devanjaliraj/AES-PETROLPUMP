@@ -9,11 +9,11 @@ import {
   Input,
   Button,
 } from "reactstrap";
-import axiosConfig from "../../../axiosConfig";
 import axios from "axios";
 // import swal from "sweetalert";
 import { Route } from "react-router-dom";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+import moment from "moment";
 
 
 export default class EditMembership extends Component {
@@ -21,9 +21,11 @@ export default class EditMembership extends Component {
     super(props);
     this.state = {
       dealer_name: "",
+      // start_date:'',
       date:'',
       expdate:'',
       transaction_id:"",
+      sttaus:"",
       membershipData:{}
     };
     
@@ -36,7 +38,8 @@ export default class EditMembership extends Component {
     const queryParams = new URLSearchParams(window.location.href);
      transaction_id = queryParams.get('transaction_id');
      expdate = queryParams.get('expdate');
-     
+
+     this.setState({ transaction_id: transaction_id,expdate:expdate });
      var payload = {
       transaction_id:transaction_id,
       expdate:expdate
@@ -47,7 +50,13 @@ export default class EditMembership extends Component {
       .post(`http://3.108.185.7/nodejs/api/dealer/updatemembership/${id}`,payload)
       .then((response) => {
         console.log(response.data.data);
-        this.setState({ membershipData: response.data.data });
+        this.setState({ 
+          membershipData: response.data.data,
+          date:response.data.data?.date,
+          // start_date:response.data.data?.date,
+          expdate: response.data.data?.expdate
+        });
+        
    
         // this.props.history.push(
         //   `/app/membership/MembershipList/${this.state.dealer_id._id}`
@@ -63,30 +72,22 @@ export default class EditMembership extends Component {
   };
   submitHandler = (e) => {
     e.preventDefault();
-    var transaction_id = '';
-    var expdate = '';
-    var date = '';
-    var status = '';
-    const queryParams = new URLSearchParams(window.location.href);
-     transaction_id = queryParams.get('transaction_id');
-     expdate = queryParams.get('expdate');
-     date =queryParams.get('date');
-     status =queryParams.get('status');
+    const{transaction_id,expdate,date,status} = this.state;
     var payload = {
       transaction_id:transaction_id,
       expdate:expdate,
+      // date:start_date,
       date:date,
+
       status:status
      }
     let { id } = this.props.match.params;
-    axiosConfig
-      .post(`/dealer/updatemembership/${id}`, payload)
+    axios
+      .post(`http://3.108.185.7/nodejs/api/dealer/updatemembership/${id}`, payload)
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push(`/app/membership/MembershipList/${this.state.dealer_id._id}`);
-       
-        
+        this.props.history.push(`/app/membership/MembershipList`);    
       })
 
       .catch((error) => {
@@ -180,9 +181,9 @@ export default class EditMembership extends Component {
                     type="date"
                     name="date"
                     placeholder="Date"
-                    value={membershipData ? membershipData?.date : null}
-                    onChange={this.changeHandler}
-
+                     value={this.state.date}
+                     onChange={this.changeHandler}
+//  value={membershipData ? membershipData?.date : null}
                   ></Input>
                 </Col>
 
@@ -206,7 +207,7 @@ export default class EditMembership extends Component {
                     <input
                       style={{ marginRight: "3px" }}
                       type="radio"
-                      name="userverified"
+                      name="status"
                       value="Confirm"
                     />
                     <span style={{ marginRight: "20px" }}>Active</span>
@@ -214,7 +215,7 @@ export default class EditMembership extends Component {
                     <input
                       style={{ marginRight: "3px" }}
                       type="radio"
-                      name="userverified"
+                      name="status"
                       value="Pending"
                     />
 

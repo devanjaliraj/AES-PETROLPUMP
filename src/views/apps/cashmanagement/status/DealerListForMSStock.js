@@ -11,12 +11,12 @@ import {
   DropdownItem,
   DropdownToggle,
 } from "reactstrap";
-import axiosConfig from "../../../axiosConfig";
+import axiosConfig from "../../../../axiosConfig";
 import { Route } from "react-router-dom";
 import { AgGridReact } from "ag-grid-react";
-import { ContextLayout } from "../../../utility/context/Layout";
+import { ContextLayout } from "../../../../utility/context/Layout";
 import { ChevronDown, Eye } from "react-feather";
-import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
+import "../../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 // import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 class DealerListForMSStock extends React.Component {
   state = {

@@ -15,8 +15,57 @@ import {
 import { history } from "../../../history"
 import resetImg from "../../../assets/img/pages/reset-password.png"
 import "../../../assets/scss/pages/authentication.scss"
+import axios from "axios";
 
-class ResetPassword extends React.Component {
+class OtpVerify extends React.Component {
+
+    state = {
+        otp:""
+      };
+    
+    handlechange = (e) => {
+        e.preventDefault();
+        this.setState({ [e.target.name]: e.target.value });
+      };
+
+      SubmitOtp = async (e) => {
+        e.preventDefault();
+        const {otp} = this.state;
+        
+        var mobileUrl = '';
+        const queryParams = new URLSearchParams(window.location.href);
+        mobileUrl = queryParams.get('mobile');
+
+        // var isValid = await this.validatePhone(otp)
+        // if(isValid === false){
+        //   this.setState({ isError: true });
+          
+        //    return true;
+        // }
+
+        var payload = {
+          mobile : mobileUrl,
+          otp:otp
+        }
+        axios
+        .post("http://3.108.185.7/nodejs/api/user/verifyotp", payload)
+        .then((response) => { 
+          console.log(response.data);
+          if(response.data.status === 'success'){
+            console.log(response.data.otp);
+            this.props.history.push(`/pages/reset-password`);
+            // localStorage.setItem("auth", response.data.data?._id);
+            // window.location.replace("/#/");
+          }else{
+              alert(response.data.msg)
+          }
+          
+        })
+        .catch((error) => {
+          console.log(error.response);
+        });
+    };
+
   render() {
     return (
       <Row className="m-0 justify-content-center">
@@ -49,24 +98,8 @@ class ResetPassword extends React.Component {
                   <CardBody className="pt-1">
                     <Form>
                       <FormGroup className="form-label-group">
-                        <Input type="email" placeholder="Email" required />
-                        <Label>Email</Label>
-                      </FormGroup>
-                      <FormGroup className="form-label-group">
-                        <Input
-                          type="password"
-                          placeholder="Password"
-                          required
-                        />
-                        <Label>Password</Label>
-                      </FormGroup>
-                      <FormGroup className="form-label-group">
-                        <Input
-                          type="password"
-                          placeholder="Confirm Password"
-                          required
-                        />
-                        <Label>Confirm Password</Label>
+                        <Input type="number" name="otp" onChange={this.handlechange} placeholder="OTP" required />
+                        <Label>OTP</Label>
                       </FormGroup>
                       <div className="d-flex justify-content-between flex-wrap flex-sm-row flex-column">
                         <Button.Ripple
@@ -86,7 +119,7 @@ class ResetPassword extends React.Component {
                           color="primary"
                           type="submit"
                           className="btn-block mt-1 mt-sm-0"
-                          onClick={e => e.preventDefault()}
+                          onClick={this.SubmitOtp}
                         >
                           Reset
                         </Button.Ripple>
@@ -102,4 +135,4 @@ class ResetPassword extends React.Component {
     )
   }
 }
-export default ResetPassword
+export default OtpVerify

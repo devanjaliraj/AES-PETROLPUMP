@@ -227,7 +227,7 @@ class Thermometer extends React.Component {
 
   componentDidMount() {
     let { id } = this.props.match.params;
-  
+
     axiosConfig.get(`/dealer/allbmApp/${id}`).then((response) => {
       let rowData = response.data.data;
       JSON.stringify(rowData);
@@ -269,7 +269,7 @@ class Thermometer extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs breadCrumbTitle="Bay Management List" />
+        <Breadcrumbs breadCrumbTitle="Thermometer" />
         <Card className="overflow-hidden agGrid-card">
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (

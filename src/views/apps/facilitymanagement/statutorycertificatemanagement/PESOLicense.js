@@ -9,15 +9,15 @@ import {
   DropdownItem,
   DropdownToggle,
 } from "reactstrap";
-import axiosConfig from "../../../axiosConfig";
+import axiosConfig from "../../../../axiosConfig";
 // import { Route } from "react-router-dom";
 
 // import { history } from "../../../history";
 import { AgGridReact } from "ag-grid-react";
-import { ContextLayout } from "../../../utility/context/Layout";
+import { ContextLayout } from "../../../../utility/context/Layout";
 import { ChevronDown, Trash2 } from "react-feather";
-import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+import "../../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
+import Breadcrumbs from "../../../../components/@vuexy/breadCrumbs/BreadCrumb";
 class PESOLicense extends React.Component {
   state = {
     rowData: null,
@@ -269,7 +269,7 @@ class PESOLicense extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs breadCrumbTitle="Bay Management List" />
+        <Breadcrumbs breadCrumbTitle="PESOL License" />
         <Card className="overflow-hidden agGrid-card">
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (

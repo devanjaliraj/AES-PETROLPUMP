@@ -120,7 +120,7 @@ class DealerListForAddOtherDocument extends React.Component {
                     color="green"
                     onClick={() =>
                       history.push(
-                        `/app/cashManagement/expensesList/${params.data._id}`
+                        `/app/facilityManagement/statutoryCertificateManagement/AddOtherDocument/${params.data._id}`
                       )
                     }
                   />
@@ -172,7 +172,7 @@ class DealerListForAddOtherDocument extends React.Component {
           <Row className="m-1">
             <Col>
               <h1 col-sm-6 className="float-left">
-                List of Dealers for Expenses
+                List of Dealers for Documents
               </h1>
             </Col>
           </Row>

@@ -172,7 +172,7 @@ class DealerListFor5lCan extends React.Component {
           <Row className="m-1">
             <Col>
               <h1 col-sm-6 className="float-left">
-                List of Dealers for Expenses
+                List of Dealers for 5L Can
               </h1>
             </Col>
           </Row>

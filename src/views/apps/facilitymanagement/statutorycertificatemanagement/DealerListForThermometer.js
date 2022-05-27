@@ -11,12 +11,12 @@ import {
   DropdownItem,
   DropdownToggle,
 } from "reactstrap";
-import axiosConfig from "../../../axiosConfig";
+import axiosConfig from "../../../../axiosConfig";
 import { Route } from "react-router-dom";
 import { AgGridReact } from "ag-grid-react";
-import { ContextLayout } from "../../../utility/context/Layout";
+import { ContextLayout } from "../../../../utility/context/Layout";
 import { ChevronDown, Eye } from "react-feather";
-import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
+import "../../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 // import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 class DealerListForThermometer extends React.Component {
   state = {
@@ -120,7 +120,7 @@ class DealerListForThermometer extends React.Component {
                     color="green"
                     onClick={() =>
                       history.push(
-                        `/app/cashManagement/expensesList/${params.data._id}`
+                        `/app/facilityManagement/statutoryCertificateManagement/Thermometer/${params.data._id}`
                       )
                     }
                   />
@@ -172,7 +172,7 @@ class DealerListForThermometer extends React.Component {
           <Row className="m-1">
             <Col>
               <h1 col-sm-6 className="float-left">
-                List of Dealers for Expenses
+                List of Dealers for Thermometer
               </h1>
             </Col>
           </Row>

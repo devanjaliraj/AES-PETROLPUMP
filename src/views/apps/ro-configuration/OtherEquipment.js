@@ -56,7 +56,8 @@ export default class OtherEquipment extends Component {
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/app/ro-configuration/OtherEquipmentList");
+        this.props.history.push(`/app/ro-configuration/OtherEquipmentList/${this.state.dealer_name1}`);
+        
       })
       .catch((error) => {
         console.log(error.response);
