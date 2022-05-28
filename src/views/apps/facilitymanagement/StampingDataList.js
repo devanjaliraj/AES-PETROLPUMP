@@ -11,7 +11,7 @@ import {
 } from "reactstrap";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Eye, Trash2, Edit } from "react-feather";
+import { ChevronDown,  Trash2, Edit } from "react-feather";
 import axiosConfig from "../../../axiosConfig";
 import { Route } from 'react-router-dom'
 
@@ -180,7 +180,7 @@ class StampingDataList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-          <Route render={({ history}) => (
+          {/* <Route render={({ history}) => (
     <Eye
     className="mr-50"
     size="25px"
@@ -192,7 +192,7 @@ class StampingDataList extends React.Component {
     }
   />
 )}
-/>
+/> */}
 <Route
                   render={({ history }) => (
               <Edit

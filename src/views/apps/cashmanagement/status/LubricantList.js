@@ -10,11 +10,11 @@ import {
   DropdownToggle,
 } from "reactstrap";
 import { AgGridReact } from "ag-grid-react";
-import { ContextLayout } from "../../../utility/context/Layout";
+import { ContextLayout } from "../../../../utility/context/Layout";
 import { ChevronDown, Trash2 } from "react-feather";
-import axiosConfig from "../../../axiosConfig";
-import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+import axiosConfig from "../../../../axiosConfig";
+import "../../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
+import Breadcrumbs from "../../../../components/@vuexy/breadCrumbs/BreadCrumb";
 // import { history } from "../../../history";
 
 class LubricantList extends React.Component {
@@ -253,7 +253,7 @@ class LubricantList extends React.Component {
 
   componentDidMount() {
     let { id } = this.props.match.params;
-    axiosConfig.get(`/dealer/allHsdStockApp/${id}`).then((response) => {
+    axiosConfig.get(`/dealer/alllubricantStockApp/${id}`).then((response) => {
       let rowData = response.data.data;
       JSON.stringify(rowData);
       this.setState({ rowData });
@@ -262,7 +262,7 @@ class LubricantList extends React.Component {
 
   async runthisfunction(id) {
     console.log(id);
-    await axiosConfig.get(`/dealer/deleteHsdStock/${id}`).then((response) => {
+    await axiosConfig.get(`/dealer/dealerdeletelubestock/${id}`).then((response) => {
       console.log(response);
     });
   }
@@ -296,7 +296,7 @@ class LubricantList extends React.Component {
     return (
       <React.Fragment>
         <Breadcrumbs
-          breadCrumbTitle="Fuel Stock List"
+          breadCrumbTitle="Lubricant List"
           // breadCrumbParent="Forms & Tables"
           // breadCrumbActive="Stock Management"
         />

@@ -44,7 +44,7 @@ class ForgotPassword extends React.Component {
     var isValid = await this.validatePhone(mobile)
     if(isValid === false){
       this.setState({ isError: true });
-      
+
        return true;
     }
     var payload = {
@@ -52,15 +52,16 @@ class ForgotPassword extends React.Component {
     }
     axios
     .post("http://3.108.185.7/nodejs/api/dealer/signupsendotp", payload)
-    .then((response) => { 
+    .then((response) => {
       console.log(response.data);
       if(response.data.status === 'success'){
         console.log(response.data.otp);
-        this.props.history.push(`/pages/otp-verify/?&mobile=${mobile}`);
+      this.props.history.push("/pages/otp-verify?&mobile="+mobile)
+
         // localStorage.setItem("auth", response.data.data?._id);
         // window.location.replace("/#/");
       }
-      
+
     })
     .catch((error) => {
       console.log(error.response);
@@ -94,8 +95,8 @@ class ForgotPassword extends React.Component {
                     </CardTitle>
                   </CardHeader>
                   <p className="px-2 auth-title">
-                    Please enter your email address and we'll send you
-                    instructions on how to reset your password.
+                    Please enter your  Mobile Number and we'll send you
+                    OTP,  for  reset your password.
                   </p>
                   <CardBody className="pt-1 pb-0">
                     <Form>
@@ -112,10 +113,13 @@ class ForgotPassword extends React.Component {
                           color="primary"
                           outline
                           className="px-75 btn-block"
-                          onClick={() => history.push("/pages/login")}
+                          onClick={() => this.props.history.push("/pages/login")}
+                          // onClick={() => history.push("/pages/login")}
                         >
                           Back to Login
-                        </Button.Ripple> )} />
+                        </Button.Ripple> 
+                        )}
+                     />
                       </div>
                       <div className="float-md-right d-block mb-1">
                         <Button.Ripple

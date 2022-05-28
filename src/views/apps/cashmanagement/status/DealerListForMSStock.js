@@ -120,6 +120,7 @@ class DealerListForMSStock extends React.Component {
                     color="green"
                     onClick={() =>
                       history.push(
+                        
                         `/app/cashManagement/status/msStockList/${params.data._id}`
                       )
                     }

@@ -277,7 +277,7 @@ const otherEquipment = lazy(() =>
 const paymentModeAvalable = lazy(() =>
   import("./views/apps/ro-configuration/PaymentModeAvalable")
 );
-const paymentModeList = lazy(() =>
+const PaymentModeList = lazy(() =>
   import("./views/apps/ro-configuration/PaymentModeList")
 );
 const designYourOutlet = lazy(() =>
@@ -356,9 +356,16 @@ const HSDStockList = lazy(() =>
 const DealerListForLubricant = lazy(() =>
   import("./views/apps/cashmanagement/status/DealerListForLubricant")
 );
+const LubricantList = lazy(() =>
+  import("./views/apps/cashmanagement/status/LubricantList")
+);
 const DealerListForMSStock = lazy(() =>
   import("./views/apps/cashmanagement/status/DealerListForMSStock")
 );
+const MSStockList = lazy(() =>
+  import("./views/apps/cashmanagement/status/MSStockList")
+);
+
 const DealerListForNetProfit = lazy(() =>
   import("./views/apps/cashmanagement/status/DealerListForNetProfit")
 );
@@ -584,6 +591,9 @@ const accessControl = lazy(() =>
 const otpVerify = lazy(() =>
   import("./views/pages/authentication/OtpVerify")
 );
+const otpScreen = lazy(() =>
+  import("./views/pages/authentication/OtpScreen")
+);
 
 // Set Layout and Component Using App Route
 const RouteConfig = ({ component: Component, fullLayout, ...rest }) => (
@@ -712,7 +722,7 @@ class AppRouter extends React.Component {
             <AppRoute
               exact={true}
               path="/app/ro-configuration/paymentModeList/:id"
-              component={paymentModeList}
+              component={PaymentModeList}
             />
             <AppRoute
               exact={true}
@@ -741,7 +751,7 @@ class AppRouter extends React.Component {
             />
             <AppRoute
               exact={true}
-              path="/app/ro-configuration/tankMapList"
+              path="/app/ro-configuration/tankMapList/:id"
               component={tankMapList}
             />
             <AppRoute
@@ -751,7 +761,7 @@ class AppRouter extends React.Component {
             />
             <AppRoute
               exact={true}
-              path="/app/ro-configuration/nozzleMapList/"
+              path="/app/ro-configuration/nozzleMapList/:id"
               component={nozzleMapList}
             />
             <AppRoute
@@ -1138,8 +1148,19 @@ class AppRouter extends React.Component {
             />
               <AppRoute
               exact={true}
+              path="/app/cashManagement/status/lubricantList/:id"
+              component={LubricantList}
+            />
+            
+              <AppRoute
+              exact={true}
               path="/app/cashManagement/status/dealerListForMSStock"
               component={DealerListForMSStock}
+            />
+               <AppRoute
+              exact={true}
+              path="/app/cashManagement/status/msStockList/:id"
+              component={MSStockList}
             />
               <AppRoute
               exact={true}
@@ -1676,6 +1697,12 @@ class AppRouter extends React.Component {
               exact={true}
               path="/pages/otp-verify"
               component={otpVerify}
+              fullLayout
+            />
+             <AppRoute
+              exact={true}
+              path="/pages/otp-Screen"
+              component={otpScreen}
               fullLayout
             />
             

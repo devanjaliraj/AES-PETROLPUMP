@@ -74,7 +74,10 @@ export default class EditTankMap extends Component {
         console.log(response);
 
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/app/ro-configuration/tankMapList");
+        this.props.history.push(
+          `/app/ro-configuration/tankMapList`
+        );
+      
         // }
         // else{
         //   alert('Something went wrong in Dealer Shipform Api');

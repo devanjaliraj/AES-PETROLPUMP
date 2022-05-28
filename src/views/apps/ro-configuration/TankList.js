@@ -9,12 +9,13 @@ import {
   DropdownItem,
   DropdownToggle,
 } from "reactstrap";
+
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown } from "react-feather";
 import axiosConfig from "../../../axiosConfig";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-// import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+ import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 import { Trash2, Edit, Eye } from "react-feather";
 // import { history } from "../../../history";
 import { Route } from "react-router-dom";
@@ -146,6 +147,11 @@ class TankList extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
+          <Breadcrumbs
+          breadCrumbTitle="Tank List"
+          // breadCrumbParent="Forms & Tables"
+          // breadCrumbActive="Stock Management"
+        />
         <div>
           <Card className="overflow-hidden agGrid-card">
             <CardBody className="py-0">

@@ -29,20 +29,11 @@ export default class PaymentModeAvalable extends Component {
       bankC: [],
       modeC: [],
     };
-    this.submitHandler = this.submitHandler.bind(this);
+    // this.submitHandler = this.submitHandler.bind(this);
   }
 
   componentDidMount() {
-    // //Payment
-    // axiosConfig
-    // .get("/dealer/allpayment")
-    // .then((response) => {
-    //   console.log(response.data.data);
-    //   this.setState({ modeC: response.data.data });
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    // });
+   
     //mode
     axiosConfig
       .get("/dealer/allmode")
@@ -84,6 +75,23 @@ export default class PaymentModeAvalable extends Component {
   changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
+  // submitHandler = (e) => {
+  //   e.preventDefault();
+  //   let { id } = this.props.match.params;
+
+  //   axiosConfig
+  //     .post(`/dealer/updateonepayment/${id}`, this.state)
+  //     .then((response) => {
+  //       console.log(response);
+  //       // swal("Success!", "Submitted SuccessFull!", "success");
+  //       this.props.history.push(`/app/ro-configuration/paymentModeList/${this.state.dealer_name1._id}`);
+  //     })
+  //     .catch((error) => {
+  //       //  swal("Error!", "You clicked the button!", "error");
+  //       console.log(error.response);
+  //     });
+  // };
+
   submitHandler = (e) => {
     e.preventDefault();
     let { id } = this.props.match.params;
@@ -92,7 +100,8 @@ export default class PaymentModeAvalable extends Component {
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/app/ro-configuration/paymentModeList");
+        this.props.history.push(`/app/ro-configuration/paymentModeList/${this.state.dealer_name1}`);
+        
       })
       .catch((error) => {
         console.log(error.response);

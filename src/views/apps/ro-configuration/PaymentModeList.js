@@ -15,7 +15,7 @@ import { ChevronDown } from "react-feather";
 import axiosConfig from "../../../axiosConfig";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 // import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
-import { Trash2, Edit, Eye } from "react-feather";
+import { Trash2, Edit } from "react-feather";
 // import { history } from "../../../history";
 import { Route } from "react-router-dom";
 class PaymentModeList extends React.Component {
@@ -75,7 +75,7 @@ class PaymentModeList extends React.Component {
           cellRendererFramework: (params) => {
             return (
               <div className="actions cursor-pointer">
-                <Route
+                {/* <Route
                   render={({ history }) => (
                     <Eye
                       className="mr-50"
@@ -88,7 +88,7 @@ class PaymentModeList extends React.Component {
                       }
                     />
                   )}
-                />
+                /> */}
                 <Route
                   render={({ history }) => (
                     <Edit
@@ -127,10 +127,7 @@ class PaymentModeList extends React.Component {
       .then((response) => {
         console.log(response);
         this.setState({
-          // tank: response.data.data.tank,
-          // nozzle: response.data.data.nozzle,
-          // mpd: response.data.data.mpd,
-          // bay: response.data.data.bay,
+      
         });
         const rowData = response.data.data;
         console.log(rowData);

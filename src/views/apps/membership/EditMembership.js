@@ -6,11 +6,15 @@ import {
   Col,
   Form,
   Label,
+  FormGroup,
   Input,
+  CustomInput,
   Button,
 } from "reactstrap";
 import axios from "axios";
 // import swal from "sweetalert";
+import axiosConfig from "../../../axiosConfig";
+
 import { Route } from "react-router-dom";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 import moment from "moment";
@@ -22,17 +26,35 @@ export default class EditMembership extends Component {
     this.state = {
       dealer_name: "",
       // start_date:'',
+      plan_name:"",
       date:'',
       expdate:'',
       transaction_id:"",
       sttaus:"",
       membershipData:{}
+      
+     
     };
-    
+    this.state = {
+      planN :[],
+    };
     this.submitHandler = this.submitHandler.bind(this);
   }
   
   componentDidMount() {
+//plan
+axiosConfig
+.get("/admin/allplan")
+.then((response) => {
+  console.log(response.data.data);
+  this.setState({ planN: response.data.data });
+})
+.catch((error) => {
+  console.log(error);
+});
+
+
+
     var transaction_id = '';
     var expdate = '';
     const queryParams = new URLSearchParams(window.location.href);
@@ -78,7 +100,6 @@ export default class EditMembership extends Component {
       expdate:expdate,
       // date:start_date,
       date:date,
-
       status:status
      }
     let { id } = this.props.match.params;
@@ -144,7 +165,7 @@ export default class EditMembership extends Component {
                   ></Input>
                 
                 </Col>
-                <Col lg="6" md="6" sm="6" className="mb-2">
+                {/* <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Plan Name</Label>
                   <Input
                     type="text"
@@ -154,7 +175,24 @@ export default class EditMembership extends Component {
                     value={membershipData ? membershipData.planId?.associated_plan : null}
                     readOnly
                   ></Input>
-                </Col>
+                </Col> */}
+                  <Col lg="6" md="6" sm="12">
+                <FormGroup>
+                  <Label>Select Mode </Label>
+                  <CustomInput
+                    type="select"
+                    name="plan_name"
+                    value={this.state.plan_name}
+                    onChange={this.changeHandler}
+                  >
+                    {this.state.planN?.map((planc) => (
+                      <option value={planc._id} key={planc._id}>
+                        {planc.associated_plan}
+                      </option>
+                    ))}
+                  </CustomInput>
+                </FormGroup>
+              </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Amout</Label>
                   <Input

@@ -15,8 +15,71 @@ import {
 import { history } from "../../../history"
 import resetImg from "../../../assets/img/pages/reset-password.png"
 import "../../../assets/scss/pages/authentication.scss"
+import axios from "axios";
+import { tokenize } from "prismjs"
 
 class ResetPassword extends React.Component {
+  
+  state = {
+    email:"",
+    password:"",
+    confirm_password:""
+   
+  };
+
+  handlechange = (e) => {
+    e.preventDefault();
+    this.setState({ isError: false });
+    this.setState({ [e.target.name]: e.target.value });
+  };
+
+  //  validatePhone = (text) => {
+  //  if (/^[6789][0-9]{9}$/.test(text)) {
+  //     return true;
+  //   }
+  //   return false;
+  // };
+
+  handleOtp = async (e) => {
+    e.preventDefault();
+    const {email} = this.state;
+    var isValid = await this.validatePhone( email)
+    if(isValid === false){
+      this.setState({ isError: true });
+
+       return true;
+    }
+    var payload = {
+      email : email,
+      // password : password,
+      // confirm_password :confirm_password,
+    }
+     let { id } = this.props.match.params;
+
+    axios
+    .post(`http://3.108.185.7/nodejs/api/user/changepassadmin/${id}`, payload)
+     
+  
+
+
+    .then((response) => {
+      console.log(response.data);
+      if(response.data.status === 'success'){
+        console.log(response.data.otp);
+      // this.props.history.push("/pages/otp-verify?&mobile="+mobile)
+      this.props.history.push("/pages/login")
+
+        // localStorage.setItem("auth", response.data.data?._id);
+        // window.location.replace("/#/");
+      }
+
+    })
+    .catch((error) => {
+      console.log(error.response);
+    });
+};
+
+
   render() {
     return (
       <Row className="m-0 justify-content-center">
@@ -49,13 +112,17 @@ class ResetPassword extends React.Component {
                   <CardBody className="pt-1">
                     <Form>
                       <FormGroup className="form-label-group">
-                        <Input type="email" placeholder="Email" required />
+                        <Input type="email" name="email" placeholder="Email"
+                        onChange={this.handlechange}
+                         required />
                         <Label>Email</Label>
                       </FormGroup>
                       <FormGroup className="form-label-group">
                         <Input
                           type="password"
+                          name="password"
                           placeholder="Password"
+                          onChange={this.handlechange}
                           required
                         />
                         <Label>Password</Label>
@@ -63,7 +130,9 @@ class ResetPassword extends React.Component {
                       <FormGroup className="form-label-group">
                         <Input
                           type="password"
+                          name="confirm_password"
                           placeholder="Confirm Password"
+                          onChange={this.handlechange}
                           required
                         />
                         <Label>Confirm Password</Label>
