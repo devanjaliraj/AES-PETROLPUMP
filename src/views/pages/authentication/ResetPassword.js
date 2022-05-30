@@ -40,37 +40,30 @@ class ResetPassword extends React.Component {
   //   return false;
   // };
 
-  handleOtp = async (e) => {
+  handleResetPassword = async (e) => {
     e.preventDefault();
-    const {email} = this.state;
-    var isValid = await this.validatePhone( email)
-    if(isValid === false){
-      this.setState({ isError: true });
+    const {email,password,confirm_password} = this.state;
+    
+    //var isValid = await this.validatePhone( email)
+    // if(isValid === false){
+    //   this.setState({ isError: true });
+    //    return true;
+    // }
 
-       return true;
-    }
     var payload = {
       email : email,
-      // password : password,
-      // confirm_password :confirm_password,
+      password : password,
+      confirm_password :confirm_password,
     }
      let { id } = this.props.match.params;
 
     axios
     .post(`http://3.108.185.7/nodejs/api/user/changepassadmin/${id}`, payload)
-     
-  
-
-
     .then((response) => {
       console.log(response.data);
-      if(response.data.status === 'success'){
+      if(response.data.status === true){
         console.log(response.data.otp);
-      // this.props.history.push("/pages/otp-verify?&mobile="+mobile)
-      this.props.history.push("/pages/login")
-
-        // localStorage.setItem("auth", response.data.data?._id);
-        // window.location.replace("/#/");
+        this.props.history.push("/")
       }
 
     })
@@ -155,7 +148,7 @@ class ResetPassword extends React.Component {
                           color="primary"
                           type="submit"
                           className="btn-block mt-1 mt-sm-0"
-                          onClick={e => e.preventDefault()}
+                          onClick={this.handleResetPassword}
                         >
                           Reset
                         </Button.Ripple>

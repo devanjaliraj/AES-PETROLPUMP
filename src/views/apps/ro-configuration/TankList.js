@@ -79,7 +79,7 @@ class TankList extends React.Component {
             console.log("@@@@id@@@@@@@@@@", params);
             return (
               <div className="actions cursor-pointer">
-                <Route
+                {/* <Route
                   render={({ history }) => (
                     <Eye
                       className="mr-50"
@@ -92,7 +92,7 @@ class TankList extends React.Component {
                       }
                     />
                   )}
-                />
+                /> */}
                 <Route
                   render={({ history }) => (
                     <Edit

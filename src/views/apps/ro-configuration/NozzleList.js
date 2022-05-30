@@ -91,7 +91,7 @@ class NozzleList extends React.Component {
             console.log("@@@@id@@@@@@@@@@", params);
             return (
               <div className="actions cursor-pointer">
-                <Route
+                {/* <Route
                   render={({ history }) => (
                     <Eye
                       className="mr-50"
@@ -99,12 +99,12 @@ class NozzleList extends React.Component {
                       color="green"
                       onClick={() =>
                         history.push(
-                          `/app/ro-configuration/NozzleList/${params.data.dealer_id._id}`
+                          `/app/ro-configuration/NozzleList/${params.data._id}`
                         )
                       }
                     />
                   )}
-                />
+                /> */}
                 <Route
                   render={({ history }) => (
                     <Edit
@@ -113,7 +113,7 @@ class NozzleList extends React.Component {
                       color="blue"
                       onClick={() =>
                         history.push(
-                          `/app/ro-configuration/EditNozzleMap/${params.data.dealer_id._id}`
+                          `/app/ro-configuration/EditNozzleMap/${params.data._id}`
                         )
                       }
                     />

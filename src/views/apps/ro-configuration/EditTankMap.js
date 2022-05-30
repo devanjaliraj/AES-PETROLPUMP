@@ -63,42 +63,26 @@ export default class EditTankMap extends Component {
       });
   }
   changeHandler = (e) => {
+    console.log('@@@@@@',e.target.value)
     this.setState({ [e.target.name]: e.target.value });
   };
   submitHandler = (e) => {
     e.preventDefault();
+    const {tank,Product,capacity} = this.state;
     let { id } = this.props.match.params;
+    
+    let payload = {
+      dealer_id : id,
+      Product:Product,
+      capacity:capacity
+    }
     axiosConfig
-      .post(`/dealer/updattankmap/${id}`, this.state)
+      .post(`/dealer/updattankmap/${tank}`, payload)
       .then((response) => {
         console.log(response);
-
-        // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push(
-          `/app/ro-configuration/tankMapList`
-        );
-      
-        // }
-        // else{
-        //   alert('Something went wrong in Dealer Shipform Api');
-        // }
-
         if (response.status === 200) {
-          let data = response.data.data;
-          if (data.tank.length > 0) {
-            data.tank.map((tank) => {
-              let tankObj = {};
-              tankOptions.push(tankObj);
-            });
-          }
-
-          this.setState({
-            tank: data.tank,
-          });
-        } else {
-          alert("Something went wrong in Dealer Shipform Api");
+          this.props.history.push(`/app/ro-configuration/tankList/`+id);
         }
-        // this.props.history.push("/app/ro-configuration/designYourOutletList");
       })
       .catch((error) => {
         console.log(error.response);
@@ -183,7 +167,7 @@ export default class EditTankMap extends Component {
                     onChange={this.changeHandler}
                   >
                     {this.state.tankN?.map((tankp) => (
-                      <option value={tankp.id} key={tankp.id}>
+                      <option value={tankp._id} key={tankp._id}>
                         {tankp.tank}
                       </option>
                     ))}

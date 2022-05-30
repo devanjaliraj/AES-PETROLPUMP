@@ -55,8 +55,8 @@ class ForgotPassword extends React.Component {
     .then((response) => {
       console.log(response.data);
       if(response.data.status === 'success'){
-        console.log(response.data.otp);
-      this.props.history.push("/pages/otp-verify?&mobile="+mobile)
+        console.log('#@@@@@@@@@@@@@@@',response.data.otp);
+      this.props.history.push("/pages/otp-verify/?&mobile="+mobile+"&id="+response.data._id)
 
         // localStorage.setItem("auth", response.data.data?._id);
         // window.location.replace("/#/");

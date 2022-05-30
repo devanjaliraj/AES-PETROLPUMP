@@ -33,8 +33,10 @@ class OtpVerify extends React.Component {
         const {otp} = this.state;
         
         var mobileUrl = '';
+        var idUrl = '';
         const queryParams = new URLSearchParams(window.location.href);
         mobileUrl = queryParams.get('mobile');
+        idUrl = queryParams.get('id');
 
         // var isValid = await this.validatePhone(otp)
         // if(isValid === false){
@@ -53,7 +55,8 @@ class OtpVerify extends React.Component {
           console.log(response.data);
           if(response.data.status === 'success'){
             console.log(response.data.otp);
-            this.props.history.push(`/pages/reset-password`);
+            console.log(response.data._id);
+            this.props.history.push(`/pages/reset-password/`+idUrl);
             // localStorage.setItem("auth", response.data.data?._id);
             // window.location.replace("/#/");
           }else{

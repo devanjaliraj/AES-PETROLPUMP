@@ -39,15 +39,7 @@ export default class EditNozzleMap extends Component {
       .catch((error) => {
         console.log(error.response);
       });
-    // axiosConfig
-    //   .get("/dealer/allnozzle")
-    //   .then((response) => {
-    //     console.log(response.data.data);
-    //     this.setState({ nozzleN: response.data.data });
-    //   })
-    //   .catch((error) => {
-    //     console.log(error.response);
-    //   });
+  
 
     axiosConfig
       .get(`/dealer/getonenozzle/${id}`)
@@ -70,13 +62,23 @@ export default class EditNozzleMap extends Component {
   };
   submitHandler = (e) => {
     e.preventDefault();
+    const {nozzle,mpd,tank,bay} = this.state;
+
     let { id } = this.props.match.params;
+let payload ={
+  tank: tank,
+  nozzle: nozzle,
+  mpd: mpd,
+  bay: bay,
+  dealer_id: id,
+}
+
     axiosConfig
-      .post(`/dealer/updatnozzle/${id}`, this.state)
+      .post(`/dealer/updatnozzle/${nozzle}`, this.state)
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push(`/app/ro-configuration/NozzleList`);
+        this.props.history.push(`/app/ro-configuration/NozzleList/`+id);
       })
       .catch((error) => {
         console.log(error.response);
@@ -84,11 +86,7 @@ export default class EditNozzleMap extends Component {
   };
 
   render() {
-    // const {
-    //   // dealerId,
-    //   // selectedBayOption,
-    //   // selectedMpdOption,
-    // } = this.state
+
     return (
       <div>
         <Row>
@@ -99,7 +97,7 @@ export default class EditNozzleMap extends Component {
                   Home
                 </BreadcrumbItem>
                 <BreadcrumbItem
-                  href="/app/ro-configuration/nozzleMapList"
+                  href="/app/ro-configuration/nozzleMapList/"
                   tag="a"
                 >
                   Nozzle Map List

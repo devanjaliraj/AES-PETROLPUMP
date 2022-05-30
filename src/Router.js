@@ -1689,7 +1689,7 @@ class AppRouter extends React.Component {
             />
             <AppRoute
               exact={true}
-              path="/pages/reset-password"
+              path="/pages/reset-password/:id"
               component={resetPassword}
               fullLayout
             />
