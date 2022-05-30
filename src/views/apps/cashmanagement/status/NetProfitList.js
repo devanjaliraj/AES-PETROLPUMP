@@ -295,8 +295,8 @@ class NetProfitList extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs
-          breadCrumbTitle="Fuel Stock List"
+        <Breadcrumbs   
+          breadCrumbTitle="Net Profit List"
           // breadCrumbParent="Forms & Tables"
           // breadCrumbActive="Stock Management"
         />

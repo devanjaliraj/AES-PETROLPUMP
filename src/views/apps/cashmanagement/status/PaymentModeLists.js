@@ -296,7 +296,7 @@ class PaymentModeLists extends React.Component {
     return (
       <React.Fragment>
         <Breadcrumbs
-          breadCrumbTitle="Fuel Stock List"
+          breadCrumbTitle="Payment Mode List"
           // breadCrumbParent="Forms & Tables"
           // breadCrumbActive="Stock Management"
         />

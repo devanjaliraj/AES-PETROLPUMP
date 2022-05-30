@@ -211,7 +211,7 @@ class MSStockList extends React.Component {
     return (
       <React.Fragment>
         <Breadcrumbs
-          breadCrumbTitle="Fuel Stock List"
+          breadCrumbTitle="MS Stock List"
           // breadCrumbParent="Forms & Tables"
           // breadCrumbActive="Stock Management"
         />

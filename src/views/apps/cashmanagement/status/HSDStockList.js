@@ -210,8 +210,8 @@ class HSDStockList extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs
-          breadCrumbTitle="Fuel Stock List"
+        <Breadcrumbs    
+          breadCrumbTitle="HSD Stock List"
           // breadCrumbParent="Forms & Tables"
           // breadCrumbActive="Stock Management"
         />

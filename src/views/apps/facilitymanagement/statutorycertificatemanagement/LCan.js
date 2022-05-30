@@ -37,7 +37,7 @@ class LCan extends React.Component {
         field: "Due_Date_of_Stamping",
         filter: false,
         // pinned: window.innerWidth > 992 ? "left" : false,
-        width: 150,
+        width: 400,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -46,57 +46,24 @@ class LCan extends React.Component {
           );
         },
       },
-      // {
-      //   headerName: "Date",
-      //   field: "date",
-      //   width: 150,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         <span>{params.data.date}</span>
-      //       </div>
-      //     );
-      //   },
-      // },
-      // {
-      //   headerName: "Upload Document",
-      //   field: "Upload_Document",
-      //   filter: false,
-      //   width: 200,
-      //   setColumnVisible: false,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //          {params.data.Upload_Document.map((i) => (
-      //         <img
-      //           className=" rounded-circle  mr-3"
-      //           src={i}
-      //           alt="user avatar"
-      //           height="40"
-      //           width="40"
-      //         />
-      //          ))}
-      //       </div>
-      //     );
-      //   },
-      // },
+
       {
         headerName: "Upload Document",
         field: "Upload_Document",
         filter: false,
-        width: 200,
+        width: 400,
         setColumnVisible: false,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              
+
               <img
                 className=" rounded-circle  mr-3"
                 src= {params.data.Upload_Document}
                 alt="user avatar"
                 height="40"
                 width="40"
-              /> 
+              />
             </div>
           );
         },
@@ -104,7 +71,7 @@ class LCan extends React.Component {
       {
         headerName: "Actions",
         field: "sortorder",
-        width: 150,
+        width: 200,
         // pinned: window.innerWidth > 992 ? "right" : false,
         cellRendererFramework: (params) => {
           return (
@@ -143,7 +110,7 @@ class LCan extends React.Component {
 
   componentDidMount() {
     let { id } = this.props.match.params;
-   
+
     axiosConfig.get(`/dealer/allcan5lFMApp/${id}`).then((response) => {
       let rowData = response.data.data;
       JSON.stringify(rowData);
@@ -153,7 +120,7 @@ class LCan extends React.Component {
   }
   async runthisfunction(id) {
     console.log(id);
-    await axiosConfig.get(`/dealer/deletebm/${id}`).then((response) => {
+    await axiosConfig.get(`/dealer/deletePESO_FM/${id}`).then((response) => {
       console.log(response);
     });
   }

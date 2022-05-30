@@ -172,7 +172,7 @@ class DealerListForNetProfit extends React.Component {
           <Row className="m-1">
             <Col>
               <h1 col-sm-6 className="float-left">
-                List of Dealers for Bank Deposite
+                List of Dealers for Net Profit
               </h1>
             </Col>
           </Row>

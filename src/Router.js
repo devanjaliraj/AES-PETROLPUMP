@@ -18,7 +18,8 @@ const ecommerceDashboard = lazy(() =>
 const checkout = lazy(() => import("./views/apps/ecommerce/cart/Cart"));
 const aboutUs = lazy(() => import("./views/apps/about/AboutUs"));
 const AllaboutUs = lazy(() => import("./views/apps/about/AllaboutUs"));
-
+const PrivacyPolicy = lazy(() => import("./views/apps/privacypolicy/PrivacyPolicy"));
+const TermsCondition = lazy(() => import("./views/apps/termscondition/TermsCondition"));
 const helpUs = lazy(() => import("./views/apps/helpUs/HelpUS"));
 const EdithelpusForm = lazy(() => import("./views/apps/helpUs/EdithelpusForm"));
 const ViewHelpUs = lazy(() => import("./views/apps/helpUs/ViewHelpUs"));
@@ -185,22 +186,39 @@ const LCan = lazy(() =>
 const DealerListForAddOtherDocument = lazy(() =>
   import("./views/apps/facilitymanagement/statutorycertificatemanagement/DealerListForAddOtherDocument")
 );
+const AddOtherDocument = lazy(() =>
+  import("./views/apps/facilitymanagement/statutorycertificatemanagement/AddOtherDocument")
+);
 const DealerListForAirGaugage1 = lazy(() =>
   import("./views/apps/facilitymanagement/statutorycertificatemanagement/DealerListForAirGaugage1")
+);
+const AirGaugage1 = lazy(() =>
+  import("./views/apps/facilitymanagement/statutorycertificatemanagement/AirGaugage1")
 );
 const DealerListForDPSL = lazy(() =>
   import("./views/apps/facilitymanagement/statutorycertificatemanagement/DealerListForDPSL")
 );
+const DPSL = lazy(() =>
+  import("./views/apps/facilitymanagement/statutorycertificatemanagement/DPSL")
+);
 const DealerListForHydrometer = lazy(() =>
   import("./views/apps/facilitymanagement/statutorycertificatemanagement/DealerListForHydrometer")
+); 
+const Hydrometer = lazy(() =>
+  import("./views/apps/facilitymanagement/statutorycertificatemanagement/Hydrometer")
 );
 const DealerListForPESOLicense = lazy(() =>
   import("./views/apps/facilitymanagement/statutorycertificatemanagement/DealerListForPESOLicense")
 );
+const PESOLicense = lazy(() =>
+  import("./views/apps/facilitymanagement/statutorycertificatemanagement/PESOLicense")
+);
 const DealerListForThermometer = lazy(() =>
   import("./views/apps/facilitymanagement/statutorycertificatemanagement/Thermometer")
 );
-
+const Thermometer  = lazy(() =>
+  import("./views/apps/facilitymanagement/statutorycertificatemanagement/Thermometer")
+);
 
 const DealerListForStatutoryCertificateManagementList = lazy(() =>
 import("./views/apps/facilitymanagement/DealerListForStatutoryCertificateManagementList")
@@ -877,20 +895,41 @@ class AppRouter extends React.Component {
             path="/app/facilityManagement/statutoryCertificateManagement/dealerListForAddOtherDocument"
             component={DealerListForAddOtherDocument}
           />
+              <AppRoute
+            exact={true}
+            path="/app/facilityManagement/statutoryCertificateManagement/AddOtherDocument/:id"
+            component={AddOtherDocument}
+          />
+          
              <AppRoute
             exact={true}
-            path="/app/facilityManagement/statutoryCertificateManagement/dealerListForAirGaugage1"
+            path="/app/facilityManagement/statutoryCertificateManagement/dealerListForAirGaugage1/:id"
             component={DealerListForAirGaugage1}
+          />
+            <AppRoute
+            exact={true}
+            path="/app/facilityManagement/statutoryCertificateManagement/AirGaugage1"
+            component={AirGaugage1}
           />
              <AppRoute
             exact={true}
             path="/app/facilityManagement/statutoryCertificateManagement/dealerListForDPSL"
             component={DealerListForDPSL}
           />
+              <AppRoute
+            exact={true}
+            path="/app/facilityManagement/statutoryCertificateManagement/DPSL/:id"
+            component={DPSL}
+          />
              <AppRoute
             exact={true}
             path="/app/facilityManagement/statutoryCertificateManagement/dealerListForHydrometer"
             component={DealerListForHydrometer}
+          />
+            <AppRoute
+            exact={true}
+            path="/app/facilityManagement/statutoryCertificateManagement/Hydrometer/:id"
+            component={Hydrometer}
           />
              <AppRoute
             exact={true}
@@ -899,10 +938,20 @@ class AppRouter extends React.Component {
           />
              <AppRoute
             exact={true}
+            path="/app/facilityManagement/statutoryCertificateManagement/PESOLicense/:id"
+            component={PESOLicense}
+          />
+             <AppRoute
+            exact={true}
             path="/app/facilityManagement/statutoryCertificateManagement/dealerListForThermometer"
             component={DealerListForThermometer}
           />
-
+               <AppRoute
+            exact={true}
+            path="/app/facilityManagement/statutoryCertificateManagement/Thermometer/:id"
+            component={Thermometer}
+          />
+ 
             <AppRoute
               exact={true}
               path="/app/facilityManagement/stampingDataList/:id"
@@ -1331,10 +1380,21 @@ class AppRouter extends React.Component {
               path="/app/about/aboutUs"
               component={aboutUs}
             />
+            
             <AppRoute
               exact={true}
               path="/app/about/AllaboutUs"
               component={AllaboutUs}
+            />
+             <AppRoute
+              exact={true}
+              path="/app/termscondition/TermsCondition"
+              component={TermsCondition}
+            />
+             <AppRoute
+              exact={true}
+              path="/app/privacypolicy/PrivacyPolicy"
+              component={PrivacyPolicy}
             />
             <AppRoute
               exact={true}

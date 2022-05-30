@@ -31,164 +31,65 @@ class AddOtherDocument extends React.Component {
     },
 
     columnDefs: [
-      {
-        headerName: "DSM_Name",
-        field: "dsm__Id.dsm_name",
-        filter: false,
-        pinned: window.innerWidth > 992 ? "left" : false,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dsm__Id?.dsm_name}</span>
-            </div>
-          );
-        },
-      },
+
       {
         headerName: "Date",
-        field: "date",
-        width: 150,
+        field: "Due_Date",
+        filter: false,
+        pinned: window.innerWidth > 992 ? "left" : false,
+        width: 250,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.date}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Nozzle",
-        field: "nozzel.nozzle",
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.nozzel?.nozzle}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Product",
-        field: "product",
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.product}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Closing Entry",
-        field: "closing_Entry",
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.closing_Entry}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Opening total",
-        field: "opening_total",
-        width: 160,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.opening_total}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Closing Sales MS",
-        field: "closing_Entry_MS",
-        width: 180,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.closing_Entry_MS}</span>
+              <span>{params.data.Due_Date}</span>
             </div>
           );
         },
       },
 
+
       {
-        headerName: "Closing Sales HSD",
-        field: "closing_Entry_HSD",
+        headerName: "Upload Document",
+        field: "Upload_Document",
         filter: false,
-        width: 200,
+        width: 250,
+        setColumnVisible: false,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.closing_Entry_HSD}</span>
+
+              <img
+                className=" rounded-circle  mr-3"
+                src= {params.data.Upload_Document}
+                alt="user avatar"
+                height="40"
+                width="40"
+              />
+            </div>
+          );
+        },
+      },
+      {
+        headerName: "Remark",
+        field: "remark",
+        filter: false,
+        // pinned: window.innerWidth > 992 ? "left" : false,
+        width: 250,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.remark}</span>
             </div>
           );
         },
       },
 
-      {
-        headerName: "Closing Total MS",
-        field: "closing_total_MS",
-        filter: false,
-        width: 180,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.closing_total_MS}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Closing Total HSD",
-        field: "closing_total_HSD",
-        filter: false,
-        width: 180,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.closing_total_HSD}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Sum MS",
-        field: "sumMS",
-        filter: false,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.sumMS}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Sum HSD",
-        field: "sumHSD",
-        filter: false,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.sumHSD}</span>
-            </div>
-          );
-        },
-      },
+
       {
         headerName: "Actions",
         field: "sortorder",
-        width: 150,
-        pinned: window.innerWidth > 992 ? "right" : false,
+        width: 250,
+        // pinned: window.innerWidth > 992 ? "right" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
@@ -227,7 +128,7 @@ class AddOtherDocument extends React.Component {
   componentDidMount() {
     let { id } = this.props.match.params;
 
-    axiosConfig.get(`/dealer/allbmApp/${id}`).then((response) => {
+    axiosConfig.get(`/dealer/allouther_documentApp/${id}`).then((response) => {
       let rowData = response.data.data;
       JSON.stringify(rowData);
       this.setState({ rowData });
@@ -236,7 +137,7 @@ class AddOtherDocument extends React.Component {
   }
   async runthisfunction(id) {
     console.log(id);
-    await axiosConfig.get(`/dealer/deletebm/${id}`).then((response) => {
+    await axiosConfig.get(`/dealer/deleteouther_document/${id}`).then((response) => {
       console.log(response);
     });
   }

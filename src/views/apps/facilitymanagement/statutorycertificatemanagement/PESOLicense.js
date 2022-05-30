@@ -33,154 +33,38 @@ class PESOLicense extends React.Component {
 
     columnDefs: [
       {
-        headerName: "DSM_Name",
-        field: "dsm__Id.dsm_name",
+        headerName: "Due Date of Stamping",
+        field: "Due_Date_of_Stamping",
         filter: false,
-        pinned: window.innerWidth > 992 ? "left" : false,
-        width: 150,
+        // pinned: window.innerWidth > 992 ? "left" : false,
+        width: 400,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dsm__Id?.dsm_name}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Date",
-        field: "date",
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.date}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Nozzle",
-        field: "nozzel.nozzle",
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.nozzel?.nozzle}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Product",
-        field: "product",
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.product}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Closing Entry",
-        field: "closing_Entry",
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.closing_Entry}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Opening total",
-        field: "opening_total",
-        width: 160,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.opening_total}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Closing Sales MS",
-        field: "closing_Entry_MS",
-        width: 180,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.closing_Entry_MS}</span>
+              <span>{params.data.Due_Date_of_Stamping}</span>
             </div>
           );
         },
       },
 
-      {
-        headerName: "Closing Sales HSD",
-        field: "closing_Entry_HSD",
-        filter: false,
-        width: 200,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.closing_Entry_HSD}</span>
-            </div>
-          );
-        },
-      },
 
       {
-        headerName: "Closing Total MS",
-        field: "closing_total_MS",
+        headerName: "Upload Document",
+        field: "Upload_Document",
         filter: false,
-        width: 180,
+        width: 400,
+        setColumnVisible: false,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.closing_total_MS}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Closing Total HSD",
-        field: "closing_total_HSD",
-        filter: false,
-        width: 180,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.closing_total_HSD}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Sum MS",
-        field: "sumMS",
-        filter: false,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.sumMS}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Sum HSD",
-        field: "sumHSD",
-        filter: false,
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.sumHSD}</span>
+
+              <img
+                className=" rounded-circle  mr-3"
+                src= {params.data.Upload_Document}
+                alt="user avatar"
+                height="40"
+                width="40"
+              />
             </div>
           );
         },
@@ -188,8 +72,8 @@ class PESOLicense extends React.Component {
       {
         headerName: "Actions",
         field: "sortorder",
-        width: 150,
-        pinned: window.innerWidth > 992 ? "right" : false,
+        width: 200,
+        // pinned: window.innerWidth > 992 ? "right" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
@@ -228,7 +112,7 @@ class PESOLicense extends React.Component {
   componentDidMount() {
     let { id } = this.props.match.params;
 
-    axiosConfig.get(`/dealer/allbmApp/${id}`).then((response) => {
+    axiosConfig.get(`/dealer/allPESO_FMApp/${id}`).then((response) => {
       let rowData = response.data.data;
       JSON.stringify(rowData);
       this.setState({ rowData });
@@ -237,7 +121,7 @@ class PESOLicense extends React.Component {
   }
   async runthisfunction(id) {
     console.log(id);
-    await axiosConfig.get(`/dealer/deletebm/${id}`).then((response) => {
+    await axiosConfig.get(`/dealer/deletePESO_FM/${id}`).then((response) => {
       console.log(response);
     });
   }
@@ -269,7 +153,7 @@ class PESOLicense extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs breadCrumbTitle="PESOL License" />
+        <Breadcrumbs breadCrumbTitle="PESO License" />
         <Card className="overflow-hidden agGrid-card">
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (

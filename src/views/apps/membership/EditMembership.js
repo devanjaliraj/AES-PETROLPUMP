@@ -11,13 +11,12 @@ import {
   CustomInput,
   Button,
 } from "reactstrap";
-import axios from "axios";
 // import swal from "sweetalert";
 import axiosConfig from "../../../axiosConfig";
 
 import { Route } from "react-router-dom";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
-import moment from "moment";
+// import moment from "moment";
 
 
 export default class EditMembership extends Component {
@@ -68,8 +67,8 @@ axiosConfig
      }
   
     let { id } = this.props.match.params;
-    axios
-      .post(`http://3.108.185.7/nodejs/api/dealer/updatemembership/${id}`,payload)
+    axiosConfig
+      .post(`/dealer/updatemembership/${id}`,payload)
       .then((response) => {
         console.log(response.data.data);
         this.setState({ 
@@ -80,9 +79,6 @@ axiosConfig
         });
         
    
-        // this.props.history.push(
-        //   `/app/membership/MembershipList/${this.state.dealer_id._id}`
-        // );
       })
       .catch((error) => {
         console.log(error);
@@ -94,17 +90,18 @@ axiosConfig
   };
   submitHandler = (e) => {
     e.preventDefault();
-    const{transaction_id,expdate,date,status} = this.state;
+    const{transaction_id,expdate,date,status,amount,associated_plan} = this.state;
     var payload = {
       transaction_id:transaction_id,
       expdate:expdate,
-      // date:start_date,
+      amount:amount,
+      plan_name:associated_plan,
       date:date,
       status:status
      }
     let { id } = this.props.match.params;
-    axios
-      .post(`http://3.108.185.7/nodejs/api/dealer/updatemembership/${id}`, payload)
+    axiosConfig
+      .post(`/dealer/updatemembership/${id}`, payload)
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
@@ -165,17 +162,7 @@ axiosConfig
                   ></Input>
                 
                 </Col>
-                {/* <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>Plan Name</Label>
-                  <Input
-                    type="text"
-                    name="plan_name"
-                    // value={this.state.plan_name}
-                 
-                    value={membershipData ? membershipData.planId?.associated_plan : null}
-                    readOnly
-                  ></Input>
-                </Col> */}
+               
                   <Col lg="6" md="6" sm="12">
                 <FormGroup>
                   <Label>Select Mode </Label>
@@ -198,8 +185,8 @@ axiosConfig
                   <Input
                     type="number"
                     name="amount"
-                    value={membershipData ? membershipData.amount : null}
-                    readOnly
+                    value={this.state.amount}
+                    onChange={this.changeHandler}
                   ></Input>
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
@@ -221,7 +208,6 @@ axiosConfig
                     placeholder="Date"
                      value={this.state.date}
                      onChange={this.changeHandler}
-//  value={membershipData ? membershipData?.date : null}
                   ></Input>
                 </Col>
 

@@ -222,7 +222,7 @@ const navigationConfig = [
       },
       {
         id: "dealerListForHSDStock",
-        title: "HSDStock",
+        title: "HSD Stock",
         type: "item",
         icon: <Icon.Circle size={12} />,
         permissions: ["admin", "editor"],
@@ -341,7 +341,7 @@ const navigationConfig = [
         id: "StatutoryCertificateManagement",
         title: "Statutory Certificate Management",
         type: "collapse",
-        icon: <Icon.FileMinus size={20} />,
+        icon: <Icon.User size={20} />,
         children: [
           {
               id: "dealerListForlCan",
@@ -408,7 +408,7 @@ const navigationConfig = [
       id: "otherEquipment",
       title: "Other Equipments",
       type: "collapse",
-      icon: <Icon.FileMinus size={20} />,
+      icon: <Icon.User size={20} />,
       children: [
         {
       
@@ -530,46 +530,40 @@ const navigationConfig = [
     permissions: ["admin", "editor"],
     navLink: "/app/helpUs/HelpUs",
   },
-  // {
-  //   id: "setting",
-  //   title: "Setting",
-  //   type: "collapse",
-  //   icon: <Icon.User size={20} />,
-  //   children: [
-  //     {
-  //       id: "enquiryForm",
-  //       title: "Enquiry Form",
-  //       type: "item",
-  //       icon: <Icon.Circle size={12} />,
-  //       permissions: ["admin", "editor"],
-  //       navLink: "/app/setting/enquiryForm",
-  //     },
-  //     {
-  //       id: "mOCList",
-  //       title: "MOC List",
-  //       type: "item",
-  //       icon: <Icon.Circle size={12} />,
-  //       permissions: ["admin", "editor"],
-  //       navLink: "/app/setting/moc/mOCList",
-  //     },
-  //     {
-  //       id: "tankList",
-  //       title: "TANK LIST",
-  //       type: "item",
-  //       icon: <Icon.Circle size={12} />,
-  //       permissions: ["admin", "editor"],
-  //       navLink: "/app/setting/tank/tankList",
-  //     },
-  //     {
-  //       id: "bayList",
-  //       title: "BAY LIST",
-  //       type: "item",
-  //       icon: <Icon.Circle size={12} />,
-  //       permissions: ["admin", "editor"],
-  //       navLink: "/app/setting/bay/bayList",
-  //     },
+ 
+      {
+        id: "termscondition",
+        title: "Term And Condition ",
+        type: "item",
+        icon: <Icon.User size={20} />,
+        permissions: ["admin", "editor"],
+        navLink: "/app/termscondition/TermsCondition",
+      },
+      {
+        id: "privacypolicy",
+        title: "Privacy policy",
+        type: "item",
+        icon: <Icon.User size={20} />,
+        permissions: ["admin", "editor"],
+        navLink: "/app/privacypolicy/PrivacyPolicy",
+      },
+      // {
+      //   id: "tankList",
+      //   title: "TANK LIST",
+      //   type: "item",
+      //   icon: <Icon.Circle size={12} />,
+      //   permissions: ["admin", "editor"],
+      //   navLink: "/app/setting/tank/tankList",
+      // },
+      // {
+      //   id: "bayList",
+      //   title: "BAY LIST",
+      //   type: "item",
+      //   icon: <Icon.Circle size={12} />,
+      //   permissions: ["admin", "editor"],
+      //   navLink: "/app/setting/bay/bayList",
+      // },
 
-  //   ],
-  // },
+  
 ];
 export default navigationConfig;

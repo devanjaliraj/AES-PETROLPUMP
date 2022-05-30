@@ -9,12 +9,12 @@
 // ================================================================================================
 
 // Core variables and mixins overrides
-@import "~bootstrap/scss/_functions.scss";
-@import "../core/variables/variables";
-@import "~bootstrap/scss/_variables.scss";
+@import '~bootstrap/scss/_functions.scss';
+@import '../core/variables/variables';
+@import '~bootstrap/scss/_variables.scss';
 
 // Overrides user variable
-@import "../core/variables/components-variables";
+@import '../core/variables/components-variables';
 
 // User profile Scss
 #user-profile {
@@ -84,6 +84,31 @@
       }
     }
   }
+}
+
+// rohit css
+.st-2 {
+  padding: 30px;
+}
+.profile-img.text-center.st-1 {
+  padding: 30px 0px;
+}
+ul.lst-1 {
+  list-style: none;
+  padding: 11px 30px;
+}
+li.lst-2 {
+  line-height: 30px;
+  text-align: left;
+  font-weight: 600;
+}
+span.lst-3 {
+  text-align: right;
+  float: right;
+}
+button.btn-icon.rounded-circle.mr-1.btn.btn-primary.stpro {
+  margin-left: 80px;
+  margin-top: -30px;
 }
 
 // Profile-header-navbar responsive padding
