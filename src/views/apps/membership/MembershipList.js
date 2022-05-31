@@ -33,29 +33,46 @@ class MembershipList extends React.Component {
       resizable: true,
       suppressMenu: true,
     },
+
+    
+   
+
     columnDefs: [
+      // {
+      //   headerName: "Email",
+      //   field: "email",
+      //   width: 100,
+      //   pinned: window.innerWidth > 992 ? "left" : false,
+      //   cellRendererFramework: (params) => {
+      //     return (
+      //       <div className="d-flex align-items-center cursor-pointer">
+      //         <span>{params.data?.dealer_id?.email}</span>
+      //       </div>
+      //     );
+      //   },
+      // },
       {
-        headerName: "Email",
-        field: "email",
-        width: 200,
+        headerName: "Dealer Name",
+        field: "dealer_name",
+        width: 100,
         pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data?.dealer_id.email}</span>
+              <span>{params.data.dealer_id?.dealer_name}</span>
             </div>
           );
         },
       },
       {
-        headerName: "Dealer Name",
-        field: "dealer_name",
-        width: 200,
+        headerName: "Mobile",
+        field: "mobile",
+        width: 100,
         pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dealer_id.dealer_name}</span>
+              <span>{params.data.dealer_id?.mobile}</span>
             </div>
           );
         },
@@ -113,7 +130,7 @@ class MembershipList extends React.Component {
       },
       {
         headerName: "Plan Id",
-        field: "associated_plan",
+        field: "planId.associated_plan",
         width: 150,
         cellRendererFramework: (params) => {
           return (
@@ -182,7 +199,7 @@ class MembershipList extends React.Component {
     ],
   };
   async componentDidMount() {
-    await axiosConfig.get("http://3.108.185.7/nodejs/api/dealer/allmembershipplan").then((response) => {
+    await axiosConfig.get("/dealer/allmembershipplan").then((response) => {
       const rowData = response.data.data;
       console.log(rowData);
       this.setState({ rowData });
@@ -191,7 +208,7 @@ class MembershipList extends React.Component {
   async runthisfunction(id) {
     console.log(id);
     await axiosConfig
-      .get(`http://3.108.185.7/nodejs/api/dealer/allmembershipplan/${id}`)
+      .get(`/dealer/deletemembership/${id}`)
       .then((response) => {
         console.log(response);
       });

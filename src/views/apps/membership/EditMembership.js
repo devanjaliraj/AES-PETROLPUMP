@@ -23,6 +23,7 @@ export default class EditMembership extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      planId:"",
       dealer_name: "",
       // start_date:'',
       plan_name:"",
@@ -90,15 +91,16 @@ axiosConfig
   };
   submitHandler = (e) => {
     e.preventDefault();
-    const{transaction_id,expdate,date,status,amount,associated_plan} = this.state;
+    const{transaction_id,expdate,date,status,amount,planId} = this.state;
     var payload = {
       transaction_id:transaction_id,
       expdate:expdate,
       amount:amount,
-      plan_name:associated_plan,
+      planId:planId,
       date:date,
       status:status
      }
+     console.log(payload)
     let { id } = this.props.match.params;
     axiosConfig
       .post(`/dealer/updatemembership/${id}`, payload)
@@ -168,10 +170,11 @@ axiosConfig
                   <Label>Select Mode </Label>
                   <CustomInput
                     type="select"
-                    name="plan_name"
-                    value={this.state.plan_name}
+                    name="planId"
+                    value={this.state.planId}
                     onChange={this.changeHandler}
                   >
+                    <option>Choose Plan</option>
                     {this.state.planN?.map((planc) => (
                       <option value={planc._id} key={planc._id}>
                         {planc.associated_plan}

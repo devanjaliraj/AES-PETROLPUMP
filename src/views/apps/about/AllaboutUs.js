@@ -126,7 +126,7 @@ class AllaboutUs extends React.Component {
                 // )}
               />
 
-              <Trash2
+              {/* <Trash2
                 className="mr-50"
                 size="25px"
                 color="red"
@@ -135,7 +135,7 @@ class AllaboutUs extends React.Component {
                   this.runthisfunction(params.data._id);
                   this.gridApi.updateRowData({ remove: selectedData });
                 }}
-              />
+              /> */}
             </div>
           );
         },
@@ -143,20 +143,20 @@ class AllaboutUs extends React.Component {
     ],
   };
   async componentDidMount() {
-    await axiosConfig.get("http://3.108.185.7/nodejs/api/admin/allabout").then((response) => {
+    await axiosConfig.get("/admin/allabout").then((response) => {
       const rowData = response.data.data;
       console.log(rowData);
       this.setState({ rowData });
     });
   }
-  async runthisfunction(id) {
-    console.log(id);
-    await axiosConfig
-      .get(`http://3.108.185.7/nodejs/api/admin/allabout/${id}`)
-      .then((response) => {
-        console.log(response);
-      });
-  }
+  // async runthisfunction(id) {
+  //   console.log(id);
+  //   await axiosConfig
+  //     .get(`http://3.108.185.7/nodejs/api/admin/allabout/${id}`)
+  //     .then((response) => {
+  //       console.log(response);
+  //     });
+  // }
 
   onGridReady = (params) => {
     this.gridApi = params.api;

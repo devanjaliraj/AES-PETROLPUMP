@@ -170,7 +170,7 @@ class HelpUs extends React.Component {
     ],
   };
   async componentDidMount() {
-    await axiosConfig.get("http://3.108.185.7/nodejs/api/admin/allequairy").then((response) => {
+    await axiosConfig.get("/admin/allequairy").then((response) => {
       const rowData = response.data.data;
       console.log(rowData);
       this.setState({ rowData });
@@ -179,7 +179,7 @@ class HelpUs extends React.Component {
   async runthisfunction(id) {
     console.log(id);
     await axiosConfig
-      .get(`http://3.108.185.7/nodejs/api/admin/allequairy/${id}`)
+      .get(`/admin/deleteequairy/${id}`)
       .then((response) => {
         console.log(response);
       });
