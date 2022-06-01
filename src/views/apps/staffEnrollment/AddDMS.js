@@ -105,11 +105,11 @@ export default class AddDSM extends Component {
     let { id } = this.props.match.params;
 
     axiosConfig
-      .post(`/dealer/updateoneDSN/${id}`, data)
+      .post(`/dealer/editDsnform/${id}`, data)
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/app/staffEnrollment/dmsList");
+        this.props.history.push(`/app/staffEnrollment/dmsList/${this.state.dealer_id._id}`);
       })
       .catch((error) => {
         console.log(error);
@@ -287,7 +287,7 @@ export default class AddDSM extends Component {
                   <Label>Joining Date</Label>
                   <Input
                     required
-                    type="date"
+                    type="text"
                     name="joining_date"
                     placeholder="Enter Joining Date"
                     value={this.state.joining_date}
@@ -307,7 +307,7 @@ export default class AddDSM extends Component {
                   ></Input>
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>Salary Decieded</Label>
+                  <Label>Monthly Salary</Label>
                   <Input
                     required
                     type="text"
@@ -321,7 +321,7 @@ export default class AddDSM extends Component {
                   <Label>Salary Date</Label>
                   <Input
                     required
-                    type="date"
+                    type="text"
                     name="salary_date"
                     placeholder="Enter Name"
                     value={this.state.salary_date}

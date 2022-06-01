@@ -16,11 +16,10 @@ import axiosConfig from "../../../axiosConfig";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 // import { history } from "../../../history";
-import { Route } from "react-router-dom";
 
-class DSMList extends React.Component {
+class TraningVideoList extends React.Component {
   state = {
-    rowData: null,
+    rowData: [],
     paginationPageSize: 20,
     currenPageSize: "",
     getPageSize: "",
@@ -31,190 +30,89 @@ class DSMList extends React.Component {
       suppressMenu: true,
     },
     columnDefs: [
+      // {
+      //   headerName: "Sno",
+      //   field: "sno",
+      //   width: 175,
+      //   filter: true,
+      //   checkboxSelection: true,
+      //   headerCheckboxSelectionFilteredOnly: true,
+      //   headerCheckboxSelection: true,
+      // },
+      // {
+      //   headerName: "ID",
+      //   field: "_id",
+      //   filter: true,
+      //   width: 250,
+      //   pinned: window.innerWidth > 992 ? "left" : false,
+      //   cellRendererFramework: (params) => {
+      //     return (
+      //       <div className="d-flex align-items-center cursor-pointer">
+      //         <span>{params.data._id}</span>
+      //       </div>
+      //     );
+      //   },
+      // },
       {
-        headerName: "Dsm Name",
-        field: "dsm_name",
-        width: 250,
-        pinned: window.innerWidth > 992 ? "left" : false,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.dsm_name}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Addres",
-        field: "addres",
-        width: 250,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.addres}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Mobile",
-        field: "mobile",
-        width: 250,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.mobile}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Joining Date",
-        field: "joining_date",
-        width: 140,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.joining_date}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Adhar Number",
-        field: "adhar_number",
-        width: 125,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.adhar_number}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Adhar Img",
-        field: "adharimg",
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.adharimg}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Pan Number",
-        field: "pan_number",
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.pan_number}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Pan Img",
-        field: "panImg",
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.panImg}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Photograh",
-        field: "photograh",
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.photograh}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Bate of Brith",
-        field: "date_of_brith",
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.date_of_brith}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Monthly Salary",
-        field: "salary_decieded",
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.salary_decieded}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "Salary Date",
-        field: "salary_date",
-        width: 150,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.salary_date}</span>
-            </div>
-          );
-        },
-      },
-
-      {
-        headerName: "Status",
-        field: "status",
+        headerName: "Title",
+        field: "title",
         filter: true,
-        width: 150,
+        width: 250,
+        // pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
-          return params.value === "Active" ? (
-            <div className="badge badge-pill badge-success">
-              {params.data.status}
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.title}</span>
             </div>
-          ) : params.value === "Inactive" ? (
-            <div className="badge badge-pill badge-warning">
-              {params.data.status}
+          );
+        },
+      },
+      {
+      headerName: "Link",
+      field: "link",
+      filter: true,
+      width: 250,
+      // pinned: window.innerWidth > 992 ? "left" : false,
+      cellRendererFramework: (params) => {
+        return (
+          <div className="d-flex align-items-center cursor-pointer">
+            <span>{params.data.link}</span>
+          </div>
+        );
+      },
+    },
+      {
+        headerName: "Description",
+        field: "desc",
+        filter: true,
+        width: 250,
+        // pinned: window.innerWidth > 992 ? "left" : false,
+        cellRendererFramework: (params) => {
+          return (
+            <div className="d-flex align-items-center cursor-pointer">
+              <span>{params.data.desc}</span>
             </div>
-          ) : null;
+          );
         },
       },
       {
         headerName: "Actions",
         field: "sortorder",
         width: 150,
-        pinned: window.innerWidth > 992 ? "right" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              <Route
-                render={({ history }) => (
-                  <Edit
-                    className="mr-50"
-                    size="25px"
-                    color="blue"
-                    onClick={() =>
-                      history.push(
-                        `/app/staffEnrollment/addDMS/${params.data._id}`
-                      )
-                    }
-                  />
-                )}
+              {/* <Eye
+                className="mr-50"
+                size="25px"
+                color="green"
+                onClick={() => history.push("/#/app/staffManagement/staffForm")}
+              /> */}
+              <Edit
+                className="mr-50"
+                size="25px"
+                color="blue"
+                // onClick={() => history.push("/#/app/slider/editSlider/${params.data._id}")}
               />
               <Trash2
                 className="mr-50"
@@ -233,22 +131,21 @@ class DSMList extends React.Component {
     ],
   };
 
-  componentDidMount() {
-    let { id } = this.props.match.params;
-    axiosConfig.get(`/dealer/getDsnformApp/${id}`).then((response) => {
-      let rowData = response.data.data;
+  async componentDidMount() {
+    await axiosConfig.get("/admin/allvideo").then((response) => {
+      const rowData = response.data.data;
       console.log(rowData);
-      JSON.stringify(rowData);
       this.setState({ rowData });
     });
   }
   async runthisfunction(id) {
     console.log(id);
-    await axiosConfig.get(`/dealer/deleteDsnform/${id}`).then((response) => {
-      console.log(response);
-    });
+    await axiosConfig
+      .get(`/admin/deletevideo/${id}`)
+      .then((response) => {
+        console.log(response);
+      });
   }
-
   onGridReady = (params) => {
     this.gridApi = params.api;
     this.gridColumnApi = params.columnApi;
@@ -278,9 +175,9 @@ class DSMList extends React.Component {
     return (
       <React.Fragment>
         <Breadcrumbs
-          breadCrumbTitle="DSM List"
-          // breadCrumbParent="Forms & Tables"
-          // breadCrumbActive="Staff Management List"
+          breadCrumbTitle="Subscription Plan Video"
+          breadCrumbParent="Forms & Tables"
+          breadCrumbActive="Subscription Plan Video"
         />
         <Card className="overflow-hidden agGrid-card">
           <CardBody className="py-0">
@@ -360,7 +257,7 @@ class DSMList extends React.Component {
                       onGridReady={this.onGridReady}
                       colResizeDefault={"shift"}
                       animateRows={true}
-                      floatingFilter={false}
+                      floatingFilter={true}
                       pagination={true}
                       paginationPageSize={this.state.paginationPageSize}
                       pivotPanelShow="always"
@@ -376,4 +273,4 @@ class DSMList extends React.Component {
     );
   }
 }
-export default DSMList;
+export default TraningVideoList;

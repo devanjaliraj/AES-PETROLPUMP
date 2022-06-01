@@ -246,7 +246,7 @@ const addPlan = lazy(() => import("./views/apps/subplan/AddPlan"));
 const dealerList = lazy(() => import("./views/apps/dealer/DealerList"));
 const editDealer = lazy(() => import("./views/apps/dealer/EditDealer"));
 const viewDealer = lazy(() => import("./views/apps/dealer/ViewDealer"));
-
+const TraningVideoList = lazy(() => import("./views/apps/traningvideo/TraningVideoList"));
 
 //////////////////////////////////////////// ro-configuration --- start //////////////////////////////////////////
 const outletList = lazy(() =>
@@ -1361,6 +1361,11 @@ class AppRouter extends React.Component {
               exact={true}
               path="/app/subplan/addPlan"
               component={addPlan}
+            />
+             <AppRoute
+              exact={true}
+              path="/app/traningvideo/traningVideoList"
+              component={TraningVideoList}
             />
             <AppRoute
               exact={true}

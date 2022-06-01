@@ -60,15 +60,15 @@ export default class Manager extends Component {
           maneger_name: response.data.data.maneger_name,
           addres: response.data.data.addres,
           mobile: response.data.data.mobile,
-          joining_date: response.data.data.joining_date.split(","),
+          joining_date: response.data.data.joining_date,
           adhar_number: response.data.data.adhar_number,
           adharimg: response.data.data.adharimg,
           pan_number: response.data.data.pan_number,
           panImg: response.data.data.panImg,
           photograh: response.data.data.photograh,
-          date_of_brith: response.data.data.date_of_brith.split(","),
+          date_of_brith: response.data.data.date_of_brith,
           salary_decieded: response.data.data.salary_decieded,
-          salary_date: response.data.data.salary_date.split(","),
+          salary_date: response.data.data.salary_date,
          
           status: response.data.data.status,
         });
@@ -96,12 +96,12 @@ export default class Manager extends Component {
 
     data.append("addres", this.state.addres);
     data.append("mobile", this.state.mobile);
-    data.append("joining_date", this.state.joining_date.toString());
+    data.append("joining_date", this.state.joining_date);
     data.append("adhar_number", this.state.adhar_number);
     data.append("pan_number", this.state.pan_number);
-    data.append("date_of_brith", this.state.date_of_brith.toString());
+    data.append("date_of_brith", this.state.date_of_brith);
     data.append("salary_decieded", this.state.salary_decieded);
-    data.append("salary_date", this.state.salary_date.toString());
+    data.append("salary_date", this.state.salary_date);
    
     
     data.append("status", this.state.status);
@@ -295,17 +295,26 @@ export default class Manager extends Component {
                   ></Input>
                 </Col>
 
-                <Col lg="6" md="0" sm="6" className="mb-2">
-                  <Label>Pan Image</Label>
+               
 
-                  <Input
-                    disabled
-                    type="text"
-                    name="panImg"
-                    value={this.state.panImg}
-                    onChange={this.changeHandler}
-                  />
-
+                
+    <Col lg="6" md="0" sm="6">
+                  {/* <Label>Adhar Image</Label> */}
+                  {/* <img
+                    src={this.state.adharimg}
+                    name="photograh"
+                    className="w-25 ml-5 h-50"
+                  /> */}
+                  <a
+                    href={this.state.panImg}
+                    download
+                    target="blank"
+                    onClick={(e) => this.download(e)}
+                  >
+                    <Download className="mr-50" size="25px" color="blue" />
+                    download Pan Image
+                  </a>
+                </Col>
                   {/* <a
                     href={this.state.panImg}
                     download
@@ -316,7 +325,7 @@ export default class Manager extends Component {
                     <Download className="mr-50" size="25px" color="blue" />
                     download Pan Image
                   </a> */}
-                </Col>
+             
 
                 {/* <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Pan Url</Label>
@@ -331,7 +340,7 @@ export default class Manager extends Component {
                   <Label>Joining Date</Label>
                   <Input
                     required
-                    type="date"
+                    type="text"
                     name="joining_date"
                     placeholder="Enter Joining Date"
                     value={this.state.joining_date}
@@ -342,7 +351,7 @@ export default class Manager extends Component {
                   <Label>Date of Brith</Label>
                   <Input
                     required
-                    type="date"
+                    type="text"
                     name="date_of_brith"
                     placeholder="Enter DOB"
                     value={this.state.date_of_brith}
@@ -350,7 +359,7 @@ export default class Manager extends Component {
                   ></Input>
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>Salary Decieded</Label>
+                  <Label>Monthly Salary</Label>
                   <Input
                     required
                     type="text"
@@ -364,7 +373,7 @@ export default class Manager extends Component {
                   <Label>Salary Date</Label>
                   <Input
                     required
-                    type="date"
+                    type="text"
                     name="salary_date"
                     placeholder="Enter Name"
                     value={this.state.salary_date}

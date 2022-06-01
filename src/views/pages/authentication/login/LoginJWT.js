@@ -13,7 +13,7 @@ import { Route } from 'react-router-dom'
 class LoginJWT extends React.Component {
   state = {
     email: "",
-    mobile:"1111111111",
+    mobile:"",
     password: "",
     remember: false
   };
@@ -77,9 +77,9 @@ class LoginJWT extends React.Component {
           <Form  onSubmit={this.handleLogin}>
             <FormGroup className="form-label-group position-relative has-icon-left">
               <Input
-                type="email"
+                type="text"
                 name="email"
-                placeholder="Email"
+                placeholder="Email/Phone number"
                 value={this.state.email}
                 //onChange={(e) => this.setState({ email: e.target.value })}
                 onChange={this.handlechange}

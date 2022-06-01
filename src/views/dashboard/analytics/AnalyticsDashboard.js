@@ -10,9 +10,9 @@ import SalesCard from "./SalesCard"
 // import ActivityTimeline from "./ActivityTimeline"
 import DispatchedOrders from "./DispatchedOrders"
 import Notification from "./Notification"
-
+import axiosConfig from "../../../axiosConfig"
 import "../../../assets/scss/pages/dashboard-analytics.scss"
-
+import axios from "axios";
 // let $primary = "#7367F0",
 //   $danger = "#EA5455",
 //   $warning = "#FF9F43",
@@ -26,6 +26,116 @@ import "../../../assets/scss/pages/dashboard-analytics.scss"
 //   $white = "#fff"
 
 class AnalyticsDashboard extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      product: {},
+      customer: {},
+      store:{},
+      seller:{},
+      order:{},
+      banner: {},
+      brand: {},
+      total_sub: {},
+      Coupon: {}
+    };
+  }
+
+  
+    componentDidMount() {
+      axiosConfig
+        .get("/totalproduct")
+        .then((response) => {
+          console.log(response.data);
+          //console.log(response.data.data);
+          this.setState({ product: response.data });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+
+        axios
+        .get("http://35.154.86.59/api/user/totalcustomer")
+        .then((response) => {
+          console.log(response.data);
+         
+          this.setState({ customer: response.data });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+        axiosConfig
+        .get("/totalstore")
+        .then((response) => {
+          console.log(response.data);
+          //console.log(response.data.data);
+          this.setState({ store: response.data });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      axiosConfig
+        .get("/totalseller")
+        .then((response) => {
+          console.log(response.data);
+          //console.log(response.data.data);
+          this.setState({ seller: response.data });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+        axiosConfig
+        .get("/totalorder")
+        .then((response) => {
+          console.log(response.data);
+          console.log(response.data.data);
+          this.setState({ order: response.data });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+        axiosConfig
+        .get("/totalbrand")
+        .then((response) => {
+          console.log(response.data);
+          //console.log(response.data.data);
+          this.setState({ brand: response.data });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+        axiosConfig
+        .get("/totalbanner")
+        .then((response) => {
+          console.log(response.data);
+          //console.log(response.data.data);
+          this.setState({ banner: response.data });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+     
+        axiosConfig
+        .get("/gettotalcoupon")
+        .then((response) => {
+          console.log(response.data);
+          //console.log(response.data.data);
+          this.setState({ Coupon: response.data });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+        axiosConfig
+        .get("/total_sub")
+        .then((response) => {
+          console.log(response.data);
+          //console.log(response.data.data);
+          this.setState({ total_sub: response.data });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+   }
   render() {
     return (
       <React.Fragment>

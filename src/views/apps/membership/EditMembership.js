@@ -76,7 +76,8 @@ axiosConfig
           membershipData: response.data.data,
           date:response.data.data?.date,
           // start_date:response.data.data?.date,
-          expdate: response.data.data?.expdate
+          expdate: response.data.data?.expdate,
+          amount: response.data.data?.amount
         });
         
    
@@ -184,7 +185,7 @@ axiosConfig
                 </FormGroup>
               </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>Amout</Label>
+                  <Label>Amount</Label>
                   <Input
                     type="number"
                     name="amount"

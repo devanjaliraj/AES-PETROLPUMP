@@ -101,7 +101,7 @@ class TankList extends React.Component {
                       color="blue"
                       onClick={() =>
                         history.push(
-                          `/app/ro-configuration/EditTankMap/${params.data.dealer_id._id}`
+                          `/app/ro-configuration/EditTankMap/${params.data._id}`
                         )
                       }
                     />

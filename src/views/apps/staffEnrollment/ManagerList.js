@@ -155,7 +155,7 @@ class ManagerList extends React.Component {
         },
       },
       {
-        headerName: "Salary Decieded",
+        headerName: "Monthly Salary",
         field: "salary_decieded",
         width: 150,
         cellRendererFramework: (params) => {

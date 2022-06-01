@@ -20,6 +20,8 @@ export default class OtherStaff extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      dealer_id: "",
+
       staff_name: "",
       mobile: "",
       joining_date: "",
@@ -34,6 +36,7 @@ export default class OtherStaff extends Component {
       photograh: "",
       adharimg: "",
       selectedFile: null,
+      selectedName: "",
     };
   }
   onChangeHandler = (event) => {
@@ -50,6 +53,7 @@ export default class OtherStaff extends Component {
       .then((response) => {
         console.log(response);
         this.setState({
+          dealer_id: response.data.data.dealer_id,
           staff_name: response.data.data.staff_name,
           addres: response.data.data.addres,
           mobile: response.data.data.mobile,
@@ -110,7 +114,7 @@ export default class OtherStaff extends Component {
       .post(`/dealer/updateonestaff/${id}`, data)
       .then((response) => {
         console.log(response);
-        this.props.history.push("/app/staffEnrollment/otherStaffList");
+        this.props.history.push(`/app/staffEnrollment/otherStaffList/${this.state.dealer_id._id}`);
       })
       .catch((error) => {
         console.log(error.response);
@@ -300,7 +304,7 @@ export default class OtherStaff extends Component {
                   <Label>Joining Date</Label>
                   <Input
                     required
-                    type="date"
+                    type="text"
                     name="joining_date"
                     placeholder="Enter Joining Date"
                     value={this.state.joining_date}
@@ -312,7 +316,7 @@ export default class OtherStaff extends Component {
                   <Label>Date of Brith</Label>
                   <Input
                     required
-                    type="date"
+                    type="text"
                     name="date_of_brith"
                     value={this.state.date_of_brith}
                     onChange={this.changeHandler}
@@ -320,7 +324,7 @@ export default class OtherStaff extends Component {
                 </Col>
 
                 <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>Salary Decieded</Label>
+                  <Label>Monthly Salary</Label>
                   <Input
                     required
                     type="text"
@@ -334,11 +338,11 @@ export default class OtherStaff extends Component {
                   <Label>Salary Date</Label>
                   <Input
                     required
-                    type="date"
+                    type="text"
                     name="salary_date"
-                    placeholder="Enter Salary Date"
                     value={this.state.salary_date}
                     onChange={this.changeHandler}
+                   
                   ></Input>
                 </Col>
                 <Col lg="6" md="6" sm="6" className="mb-2">
@@ -347,7 +351,7 @@ export default class OtherStaff extends Component {
                     required
                     type="number"
                     name="apprpved_leave"
-                    placeholder="Enter Salary Date"
+                 
                     value={this.state.apprpved_leave}
                     onChange={this.changeHandler}
                   ></Input>

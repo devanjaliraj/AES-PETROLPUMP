@@ -245,7 +245,7 @@ export default class CreditCustomersForm extends Component {
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Vehicle no. </Label>
                   <Input
-                    type="number"
+                    type="text"
                     name="vehicle_no"
                     value={this.state.vehicle_no}
                     onChange={this.changeHandler}

@@ -491,6 +491,15 @@ const navigationConfig = [
       },
     ],
   },
+  {
+    id: "traningVideoList",
+    title: "Traning Video List ",
+    type: "item",
+    icon: <Icon.User size={12} />,
+    permissions: ["admin", "editor"],
+    navLink: "/app/traningvideo/traningVideoList",
+  },
+
       {
         id: "membership",
         title: "Membership",

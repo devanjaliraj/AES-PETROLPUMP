@@ -17,6 +17,7 @@ export default class EditNozzleMap extends Component {
     super(props);
     this.state = {
       tank: "",
+      tank_id: "",
       nozzle: "",
       mpd: "",
       bay: "",
@@ -46,10 +47,12 @@ export default class EditNozzleMap extends Component {
       .then((response) => {
         console.log(response);
         this.setState({
-          tank: response.data.data.tank,
+          tank: response.data.data.tank_map?.tank,
+          tank_id: response.data.data.tank_map?._id,
           nozzle: response.data.data.nozzle,
           mpd: response.data.data.mpd,
           bay: response.data.data.bay,
+          dealerId:response.data.data.dealer_id?._id,
         });
       })
       .catch((error) => {
@@ -62,23 +65,24 @@ export default class EditNozzleMap extends Component {
   };
   submitHandler = (e) => {
     e.preventDefault();
-    const {nozzle,mpd,tank,bay} = this.state;
+    const {nozzle,mpd,tank_id,bay,dealerId} = this.state;
 
     let { id } = this.props.match.params;
-let payload ={
-  tank: tank,
-  nozzle: nozzle,
-  mpd: mpd,
-  bay: bay,
-  dealer_id: id,
-}
+      let payload ={
+        tank: tank_id,
+        nozzle: nozzle,
+        mpd: mpd,
+        bay: bay,
+        dealer_id: dealerId,
+      }
 
     axiosConfig
-      .post(`/dealer/updatnozzle/${nozzle}`, this.state)
+      //.post(`/dealer/getonenozzle/${nozzle}`, payload)
+      .post(`/dealer/updatnozzle/`+id, payload)
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push(`/app/ro-configuration/NozzleList/`+id);
+        this.props.history.push(`/app/ro-configuration/NozzleList/`+dealerId);
       })
       .catch((error) => {
         console.log(error.response);
@@ -120,7 +124,7 @@ let payload ={
                   <Button
                     className=" btn btn-danger float-right"
                     onClick={() =>
-                      history.push(`/app/ro-configuration/nozzleMapList`)
+                      history.push(`/app/ro-configuration/NozzleList/${this.state.dealerId}`)
                     }
                   >
                     Back
@@ -136,12 +140,26 @@ let payload ={
                   {/* <FormGroup> */}
                   <h5 className="my-1 text-bold-600">Nozzle</h5>
                   <Input
+                  readOnly
                     type="text"
                     name="nozzle"
                     value={this.state.nozzle}
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
+
+                <Col lg="6" md="6" sm="6" className="mb-2">
+                  {/* <FormGroup> */}
+                  <h5 className="my-1 text-bold-600">Tank</h5>
+                  <Input
+                  readOnly
+                    type="text"
+                    name="tank"
+                    value={this.state.tank}
+                    //onChange={this.changeHandler}
+                  ></Input>
+                </Col>
+
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <h5 className="my-1 text-bold-600">Select MPD</h5>
                   {/* <Label>MPD </Label> */}

@@ -153,7 +153,7 @@ class OtherStaffList extends React.Component {
         },
       },
       {
-        headerName: "Salary_Decieded",
+        headerName: "Monthly Salary",
         field: "salary_decieded",
         width: 150,
         cellRendererFramework: (params) => {
@@ -234,8 +234,9 @@ class OtherStaffList extends React.Component {
   };
 
   componentDidMount() {
+    let { id } = this.props.match.params;
     axiosConfig
-      .get("http://3.108.185.7/nodejs/api/dealer/allstaff")
+      .get(`/dealer/allstaffApp/${id}`)
       .then((response) => {
         let rowData = response.data.data;
         console.log(rowData);
@@ -246,7 +247,7 @@ class OtherStaffList extends React.Component {
   async runthisfunction(id) {
     console.log(id);
     await axiosConfig
-      .get(`http://3.108.185.7/nodejs/api/dealer/deletestaff/${id}`)
+      .get(`/dealer/deletestaff/${id}`)
       .then((response) => {
         console.log(response);
       });

@@ -72,7 +72,7 @@ class StaffForm extends React.Component {
             </Col>
             <Col md="6" sm="12">
               <FormGroup>
-                <Label>Salary Decided</Label>
+                <Label>Monthly Salary</Label>
                 <Input type="text" />
               </FormGroup>
             </Col>
