@@ -347,7 +347,7 @@ const ManagerList = lazy(() =>
 const DealerListForDSM = lazy(() =>
   import("./views/apps/staffEnrollment/DealerListForDSM")
 );
-const staffForm = lazy(() => import("./views/apps/staffEnrollment/StaffForm"));
+
 const manager = lazy(() => import("./views/apps/staffEnrollment/Manager"));
 const addDMS = lazy(() => import("./views/apps/staffEnrollment/AddDMS"));
 const dMSList = lazy(() => import("./views/apps/staffEnrollment/DMSList"));
@@ -1168,11 +1168,7 @@ class AppRouter extends React.Component {
               path="/app/staffEnrollment/DMSList/:id"
               component={dMSList}
             />
-            <AppRoute
-              exact={true}
-              path="/app/staffEnrollment/staffForm"
-              component={staffForm}
-            />
+          
             {/*//////////////////////////////////////   staffEnrollment --end    //////////////////////////////*/}
             {/*///////////////////////  cashManagement -- start ////////////////////////////*/}
             <AppRoute

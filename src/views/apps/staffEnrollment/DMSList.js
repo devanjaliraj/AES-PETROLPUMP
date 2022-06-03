@@ -141,7 +141,7 @@ class DSMList extends React.Component {
         },
       },
       {
-        headerName: "Bate of Brith",
+        headerName: "Date of Birth",
         field: "date_of_brith",
         width: 150,
         cellRendererFramework: (params) => {

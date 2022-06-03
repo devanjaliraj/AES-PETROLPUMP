@@ -144,6 +144,14 @@ const navigationConfig = [
         navLink: "/app/shiftmanagement/dealerListForBayMang",
       },
       {
+        id: "dealerListForLubricantSales",
+        title: "Lubricant Sales",
+        type: "item",
+        icon: <Icon.Circle size={12} />,
+        permissions: ["admin", "editor"],
+        navLink: "/app/shiftManagement/dealerListForLubricantSales",
+      },
+      {
         id: "dealerListForDSMClosing",
         title: "DSM Closing Sheet",
         type: "item",
@@ -175,14 +183,7 @@ const navigationConfig = [
         permissions: ["admin", "editor"],
         navLink: "/app/shiftManagement/dealerListForCreditGivento",
       },
-      {
-        id: "dealerListForLubricantSales",
-        title: "Lubricant Sales",
-        type: "item",
-        icon: <Icon.Circle size={12} />,
-        permissions: ["admin", "editor"],
-        navLink: "/app/shiftManagement/dealerListForLubricantSales",
-      },
+    
       {
         id: "dealerListForStaffAttendence",
         title: "Staff Attendance",

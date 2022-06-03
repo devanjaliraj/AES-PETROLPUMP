@@ -32,45 +32,45 @@ class PrivacyPolicy extends React.Component {
     };
   }
 
-  async componentDidMount() {
-    //dealer List
-    axiosConfig
-      .get("/dealer/alldealers")
-      .then((response) => {
-        console.log(response);
-        this.setState({ dealerN: response.data.data });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+  // async componentDidMount() {
+  //   //dealer List
+  //   axiosConfig
+  //     .get("/dealer/alldealers")
+  //     .then((response) => {
+  //       console.log(response);
+  //       this.setState({ dealerN: response.data.data });
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }
 
-  changeHandler1 = (e) => {
-    this.setState({ status: e.target.value });
-  };
-  changeHandler = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
-  };
-  submitHandler = (e) => {
-    e.preventDefault();
+  // changeHandler1 = (e) => {
+  //   this.setState({ status: e.target.value });
+  // };
+  // changeHandler = (e) => {
+  //   this.setState({ [e.target.name]: e.target.value });
+  // };
+  // submitHandler = (e) => {
+  //   e.preventDefault();
 
-    axiosConfig
-      .post("http://3.108.185.7/nodejs/api/admin/addabout", this.state,
-      // {
-      //   headers: {
-      //     "auth-adtoken": localStorage.getItem("auth-adtoken"),
-      //   },
-      // }
-      )
-      .then((response) => {
-        console.log(response);
-        // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/app/about/AllaboutUs");
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
+  //   axiosConfig
+  //     .post("http://3.108.185.7/nodejs/api/admin/addabout", this.state,
+  //     // {
+  //     //   headers: {
+  //     //     "auth-adtoken": localStorage.getItem("auth-adtoken"),
+  //     //   },
+  //     // }
+  //     )
+  //     .then((response) => {
+  //       console.log(response);
+  //       // swal("Success!", "Submitted SuccessFull!", "success");
+  //       this.props.history.push("/app/about/AllaboutUs");
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
 
 
 

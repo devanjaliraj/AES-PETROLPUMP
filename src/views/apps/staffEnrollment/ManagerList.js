@@ -143,7 +143,7 @@ class ManagerList extends React.Component {
         },
       },
       {
-        headerName: "Date of Brith",
+        headerName: "Date of Birth",
         field: "date_of_brith",
         width: 150,
         cellRendererFramework: (params) => {
@@ -342,7 +342,7 @@ class ManagerList extends React.Component {
     return (
       <React.Fragment>
         <Breadcrumbs
-          breadCrumbTitle="Staff Management List"
+          breadCrumbTitle="Management List"
           // breadCrumbParent="Forms & Tables"
           // breadCrumbActive="Staff Management List"
         />

@@ -170,6 +170,7 @@ export default class BasicDetailForm extends Component {
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Mobile No.</Label>
                   <Input
+                  readOnly
                     type="number"
                     name="mobile"
                     value={this.state.mobile}

@@ -33,45 +33,7 @@ class AllaboutUs extends React.Component {
       suppressMenu: true,
     },
     columnDefs: [
-      // {
-      //   headerName: "Email",
-      //   field: "email",
-      //   width: 200,
-      //   pinned: window.innerWidth > 992 ? "left" : false,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         <span>{params.data?.dealer_id.email}</span>
-      //       </div>
-      //     );
-      //   },
-      // },
-      // {
-      //   headerName: " Name",
-      //   field: "name",
-      //   width: 200,
-      //   pinned: window.innerWidth > 992 ? "left" : false,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         <span>{params.data.dealer_id.name}</span>
-      //       </div>
-      //     );
-      //   },
-      // },
-
-      // {
-      //   headerName: "Mobile",
-      //   field: "mobile",
-      //   width: 150,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         <span>{params.data.mobile}</span>
-      //       </div>
-      //     );
-      //   },
-      // },
+   
       {
         headerName: "Descriptions",
         field: "desc",
@@ -112,21 +74,21 @@ class AllaboutUs extends React.Component {
           return (
             <div className="actions cursor-pointer">
               <Route
-                // render={({ history }) => (
-                //   <Edit
-                //     className="mr-50"
-                //     size="25px"
-                //     color="blue"
-                //     onClick={() =>
-                //       history.push(
-                //         `/app/membership/EditMembership/${params.data._id}`
-                //       )
-                //     }
-                //   />
-                // )}
+                render={({ history }) => (
+                  <Edit
+                    className="mr-50"
+                    size="25px"
+                    color="blue"
+                    onClick={() =>
+                      history.push(
+                        `/app/about/aboutUs/${params.data._id}`
+                      )
+                    }
+                  />
+                )}
               />
 
-              {/* <Trash2
+              <Trash2
                 className="mr-50"
                 size="25px"
                 color="red"
@@ -135,7 +97,7 @@ class AllaboutUs extends React.Component {
                   this.runthisfunction(params.data._id);
                   this.gridApi.updateRowData({ remove: selectedData });
                 }}
-              /> */}
+              />
             </div>
           );
         },
@@ -149,14 +111,14 @@ class AllaboutUs extends React.Component {
       this.setState({ rowData });
     });
   }
-  // async runthisfunction(id) {
-  //   console.log(id);
-  //   await axiosConfig
-  //     .get(`http://3.108.185.7/nodejs/api/admin/allabout/${id}`)
-  //     .then((response) => {
-  //       console.log(response);
-  //     });
-  // }
+  async runthisfunction(id) {
+    console.log(id);
+    await axiosConfig
+      .get(`/admin/deleteabout/${id}`)
+      .then((response) => {
+        console.log(response);
+      });
+  }
 
   onGridReady = (params) => {
     this.gridApi = params.api;

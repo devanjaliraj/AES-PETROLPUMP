@@ -45,7 +45,7 @@ class OtherStaffList extends React.Component {
         },
       },
       {
-        headerName: "Addres",
+        headerName: "Address",
         field: "addres",
         width: 250,
         cellRendererFramework: (params) => {
@@ -141,7 +141,7 @@ class OtherStaffList extends React.Component {
         },
       },
       {
-        headerName: "Bate of Brith",
+        headerName: "Bate of Birth",
         field: "date_of_brith",
         width: 150,
         cellRendererFramework: (params) => {

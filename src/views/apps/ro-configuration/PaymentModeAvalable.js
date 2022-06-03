@@ -27,23 +27,23 @@ export default class PaymentModeAvalable extends Component {
     };
     this.state = {
       bankC: [],
-      modeC: [],
+      // modeC: [],
     };
     // this.submitHandler = this.submitHandler.bind(this);
   }
 
   componentDidMount() {
    
-    //mode
-    axiosConfig
-      .get("/dealer/allmode")
-      .then((response) => {
-        console.log(response.data.data);
-        this.setState({ modeC: response.data.data });
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // //mode
+    // axiosConfig
+    //   .get("/dealer/allmode")
+    //   .then((response) => {
+    //     console.log(response.data.data);
+    //     this.setState({ modeC: response.data.data });
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
 
     //Bank
     axiosConfig
@@ -155,18 +155,18 @@ export default class PaymentModeAvalable extends Component {
               <Col lg="6" md="6" sm="12">
                 <FormGroup>
                   <Label>Select Mode </Label>
-                  <CustomInput
-                    type="select"
+                  <Input
+                    type="text"
                     name="select_mode"
                     value={this.state.select_mode}
                     onChange={this.changeHandler}
                   >
-                    {this.state.modeC?.map((modep) => (
+                    {/* {this.state.modeC?.map((modep) => (
                       <option value={modep._id} key={modep._id}>
                         {modep.mode}
-                      </option>
-                    ))}
-                  </CustomInput>
+                      </option> */}
+                    {/* ))} */}
+                  </Input>
                 </FormGroup>
               </Col>
               <Col lg="6" md="6" sm="6" className="mb-2">

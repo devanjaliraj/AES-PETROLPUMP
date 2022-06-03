@@ -95,7 +95,7 @@ class AboutUs extends React.Component {
                 <Button
                   className=" btn btn-danger float-right"
                   onClick={() =>
-                    history.push("/app/ro-configuration/basicDetailsList")
+                    history.push("/app/about/allaboutUs")
                   }
                 >
                   Back

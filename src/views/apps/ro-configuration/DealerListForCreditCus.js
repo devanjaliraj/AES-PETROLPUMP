@@ -185,8 +185,9 @@ class DealerListForCreditCus extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs breadCrumbTitle="Dealer Details List " />
+        <Breadcrumbs breadCrumbTitle=" List of Dealers for Credit Customer " />
         <Card className="overflow-hidden agGrid-card">
+       
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">

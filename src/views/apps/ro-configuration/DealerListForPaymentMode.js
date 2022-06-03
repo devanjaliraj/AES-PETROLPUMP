@@ -1,5 +1,5 @@
 import React from "react";
-import {
+import {Col, Row,
   Card,
   CardBody,
   Input,
@@ -199,8 +199,15 @@ class DealerListForNozzle extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs breadCrumbTitle="Basic Detail List" />
+        {/* <Breadcrumbs breadCrumbTitle=" List of Dealers for Payment Mode Avalable" /> */}
         <Card className="overflow-hidden agGrid-card">
+        <Row className="m-1">
+            <Col>
+              <h1 col-sm-6 className="float-left">
+                List of Dealers for Payment Mode Avalable
+              </h1>
+            </Col>
+          </Row>
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">

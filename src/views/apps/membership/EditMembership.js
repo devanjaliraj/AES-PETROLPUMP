@@ -240,14 +240,14 @@ axiosConfig
                     />
                     <span style={{ marginRight: "20px" }}>Active</span>
 
-                    <input
+                    {/* <input
                       style={{ marginRight: "3px" }}
                       type="radio"
                       name="status"
                       value="Pending"
                     />
 
-                    <span style={{ marginRight: "3px" }}>Inactive</span>
+                    <span style={{ marginRight: "3px" }}>Inactive</span> */}
                   </div>
                   </Col>
 

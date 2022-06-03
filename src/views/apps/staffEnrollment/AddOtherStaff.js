@@ -313,7 +313,7 @@ export default class OtherStaff extends Component {
                 </Col>
 
                 <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>Date of Brith</Label>
+                  <Label>Date of Birth</Label>
                   <Input
                     required
                     type="text"
