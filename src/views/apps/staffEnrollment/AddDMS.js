@@ -17,6 +17,12 @@ export default class AddDSM extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      shiftManagment : false,
+      stockManagment : false,
+      cashManagment : false,
+      facilityManagment : false,
+      roconfiguration : false,
+      dealer_id: "",
       addres: "",
       adhar_number: "",
       adharimg: "",
@@ -49,6 +55,7 @@ export default class AddDSM extends Component {
       .then((response) => {
         console.log(response);
         this.setState({
+          dealer_id: response.data.data.dealer_Id._id,
           dsm_name: response.data.data.dsm_name,
           addres: response.data.data.addres,
           mobile: response.data.data.mobile,
@@ -109,7 +116,7 @@ export default class AddDSM extends Component {
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push(`/app/staffEnrollment/dmsList/${this.state.dealer_id._id}`);
+        this.props.history.push(`/app/staffEnrollment/DMSList/${this.state.dealer_id}`);
       })
       .catch((error) => {
         console.log(error);
@@ -328,6 +335,69 @@ export default class AddDSM extends Component {
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
+                <Col lg="3" md="3" sm="6" className="m-1">
+                      <div>
+                        <input
+                          checked={this.state.shiftManagment}
+                          onChange={this.changeHandler}
+                          type="checkbox"
+                          name="shiftManagment"
+                        />{" "}
+                       Shift Managment
+                      </div>
+                    </Col>
+                   
+                <Col lg="3" md="3" sm="6" className="m-1">
+                      <div>
+                        <input
+                          checked={this.state.stockManagment}
+                          onChange={this.changeHandler}
+                          type="checkbox"
+                          name="stockManagment"
+                        />{" "}
+                       Stock Managment
+                      </div>
+                    </Col>
+                
+                <Col lg="3" md="3" sm="6" className="m-1">
+                      <div>
+                        <input
+                          checked={this.state.cashManagment}
+                          onChange={this.changeHandler}
+                          type="checkbox"
+                          name="cashManagment"
+                        />{" "}
+                       Cash Managment
+                      </div>
+                    </Col>
+                    
+                    <Col lg="3" md="3" sm="6" className="m-1">
+                      <div>
+                        <input
+                          checked={this.state.facilityManagment}
+                          onChange={this.changeHandler}
+                          type="checkbox"
+                          name="facilityManagment"
+                        />{" "}
+                       Facility Managment
+                      </div>
+                    </Col>
+                    <Col lg="3" md="3" sm="6" className="m-1">
+                      <div>
+                        <input
+                          checked={this.state.roconfiguration}
+                          onChange={this.changeHandler}
+                          type="checkbox"
+                          name="roconfiguration"
+                        />{" "}
+                      Ro-Configuration
+
+                      </div>
+                    </Col>
+       
+
+
+
                 <Col lg="6" md="6" sm="6" className="mb-2 mt-1">
                   <Label className="mb-1">Status</Label>
                   <div
@@ -359,7 +429,7 @@ export default class AddDSM extends Component {
                     type="submit"
                     className="mr-1 mb-1"
                   >
-                    Update Manager
+                    Update DSM
                   </Button.Ripple>
                 </Col>
               </Row>

@@ -20,6 +20,12 @@ export default class OtherStaff extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      shiftManagment : false,
+      stockManagment : false,
+      cashManagment : false,
+      facilityManagment : false,
+      roconfiguration : false,
+
       dealer_id: "",
 
       staff_name: "",
@@ -53,7 +59,7 @@ export default class OtherStaff extends Component {
       .then((response) => {
         console.log(response);
         this.setState({
-          dealer_id: response.data.data.dealer_id,
+          dealer_id: response.data.data?.dealer_Id?._id,
           staff_name: response.data.data.staff_name,
           addres: response.data.data.addres,
           mobile: response.data.data.mobile,
@@ -114,7 +120,7 @@ export default class OtherStaff extends Component {
       .post(`/dealer/updateonestaff/${id}`, data)
       .then((response) => {
         console.log(response);
-        this.props.history.push(`/app/staffEnrollment/otherStaffList/${this.state.dealer_id._id}`);
+        this.props.history.push(`/app/staffEnrollment/otherStaffList/${this.state.dealer_id}`);
       })
       .catch((error) => {
         console.log(error.response);
@@ -356,6 +362,65 @@ export default class OtherStaff extends Component {
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
+                <Col lg="3" md="3" sm="6" className="m-1">
+                      <div>
+                        <input
+                          checked={this.state.shiftManagment}
+                          onChange={this.changeHandler}
+                          type="checkbox"
+                          name="shiftManagment"
+                        />{" "}
+                       Shift Managment
+                      </div>
+                    </Col>
+                   
+                <Col lg="3" md="3" sm="6" className="m-1">
+                      <div>
+                        <input
+                          checked={this.state.stockManagment}
+                          onChange={this.changeHandler}
+                          type="checkbox"
+                          name="stockManagment"
+                        />{" "}
+                       Stock Managment
+                      </div>
+                    </Col>
+                
+                <Col lg="3" md="3" sm="6" className="m-1">
+                      <div>
+                        <input
+                          checked={this.state.cashManagment}
+                          onChange={this.changeHandler}
+                          type="checkbox"
+                          name="cashManagment"
+                        />{" "}
+                       Cash Managment
+                      </div>
+                    </Col>
+                    
+                    <Col lg="3" md="3" sm="6" className="m-1">
+                      <div>
+                        <input
+                          checked={this.state.facilityManagment}
+                          onChange={this.changeHandler}
+                          type="checkbox"
+                          name="facilityManagment"
+                        />{" "}
+                       Facility Managment
+                      </div>
+                    </Col>
+                    <Col lg="3" md="3" sm="6" className="m-1">
+                      <div>
+                        <input
+                          checked={this.state.roconfiguration}
+                          onChange={this.changeHandler}
+                          type="checkbox"
+                          name="roconfiguration"
+                        />{" "}
+                      Ro-Configuration
+
+                      </div>
+                    </Col>
 
                 <Col lg="6" md="6" sm="6" className="mb-2 mt-1">
                   <Label className="mb-1">Status</Label>

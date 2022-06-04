@@ -182,14 +182,32 @@ class ManagerList extends React.Component {
         headerName: "Shift Managment",
         field: "shiftManagment",
         filter: true,
-        editable: false,
-        width: 120,
-        cellRenderer: (params) => {
-          return `<input type='checkbox' ${
-            params.data.shiftManagment ? "checked" : ""
-          } />`;
+        width: 150,
+        cellRendererFramework: (params) => {
+          return params.value === "true" ? (
+            <div className="badge badge-pill badge-success">
+              {params.data.shiftManagment}
+            </div>
+          ) : params.value === "false" ? (
+            <div className="badge badge-pill badge-warning">
+              {params.data.shiftManagment}
+            </div>
+          ) : null;
         },
       },
+
+      // {
+      //   headerName: "Shift Managment",
+      //   field: "shiftManagment",
+      //   filter: true,
+      //   editable: false,
+      //   width: 120,
+      //   cellRenderer: (params) => {
+      //     return `<input type='checkbox' ${
+      //       params.data.shiftManagment ? "checked" : ""
+      //     } />`;
+      //   },
+      // },
       {
         headerName: "Stock Managment",
         field: "stockManagment",

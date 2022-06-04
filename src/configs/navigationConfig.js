@@ -335,7 +335,7 @@ const navigationConfig = [
         id: "StatutoryCertificateManagement",
         title: "Statutory Certificate Management",
         type: "collapse",
-        icon: <Icon.User size={20} />,
+        icon: <Icon.ArrowRight size={20} />,
         children: [
           {
               id: "dealerListForlCan",
@@ -402,7 +402,7 @@ const navigationConfig = [
       id: "otherEquipment",
       title: "Other Equipments",
       type: "collapse",
-      icon: <Icon.User size={20} />,
+      icon: <Icon.ArrowRight size={20} />,
       children: [
         {
       
@@ -496,7 +496,7 @@ const navigationConfig = [
     id: "traningVideoList",
     title: "Traning Video List ",
     type: "item",
-    icon: <Icon.User size={12} />,
+    icon: <Icon.User size={20} />,
     permissions: ["admin", "editor"],
     navLink: "/app/traningvideo/traningVideoList",
   },

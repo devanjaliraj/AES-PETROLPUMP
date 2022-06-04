@@ -36,7 +36,7 @@ export default class Manager extends Component {
       photograh: "",
       salary_date: "",
       salary_decieded: "",
-     
+      // shiftManagment:"",
       status: "",
       selectedFile: null,
       selectedName: "",
@@ -69,7 +69,7 @@ export default class Manager extends Component {
           date_of_brith: response.data.data.date_of_brith,
           salary_decieded: response.data.data.salary_decieded,
           salary_date: response.data.data.salary_date,
-         
+          // shiftManagment: response.data.data.shiftManagment,
           status: response.data.data.status,
         });
       })
@@ -102,6 +102,7 @@ export default class Manager extends Component {
     data.append("date_of_brith", this.state.date_of_brith);
     data.append("salary_decieded", this.state.salary_decieded);
     data.append("salary_date", this.state.salary_date);
+    // data.append("shiftManagment", this.state.shiftManagment);
    
     
     data.append("status", this.state.status);
@@ -381,18 +382,18 @@ export default class Manager extends Component {
                   ></Input>
                 </Col>
                 <Col lg="3" md="3" sm="6" className="m-1">
-                      <div>
-                        <input
-                          checked={this.state.shiftManagment}
-                          onChange={this.changeHandler}
-                          type="checkbox"
-                          name="shiftManagment"
-                        />{" "}
-                       Shift Managment
-                      </div>
-                    </Col>
+                  <div>
+                    <input
+                      checked={this.state.shiftManagment}
+                      onChange={this.changeHandler}
+                      type="checkbox"
+                      name="shiftManagment"
+                    />{" "}
+                    Shift Managment
+                  </div>
+                </Col>
                    
-                <Col lg="3" md="3" sm="6" className="m-1">
+                    <Col lg="3" md="3" sm="6" className="m-1">
                       <div>
                         <input
                           checked={this.state.stockManagment}
@@ -404,7 +405,7 @@ export default class Manager extends Component {
                       </div>
                     </Col>
                 
-                <Col lg="3" md="3" sm="6" className="m-1">
+                    <Col lg="3" md="3" sm="6" className="m-1">
                       <div>
                         <input
                           checked={this.state.cashManagment}

@@ -128,7 +128,7 @@ export default class OtherEquipment extends Component {
               <Col lg="6" md="6" sm="6" className="mb-2">
                 <Label>Purchased on</Label>
                 <Input
-                  type="date"
+                  type="text"
                   name="purchased_on"
                   value={this.state.purchased_on}
                   onChange={this.changeHandler}
