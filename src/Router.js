@@ -239,6 +239,22 @@ const DealerListForRaiseConcernToAES = lazy(() =>
 const RaiseConcernToAESForm = lazy(() =>
   import("./views/apps/facilitymanagement/RaiseConcernToAESForm")
 );
+const DealerListDataFromRoConfigration = lazy(() =>
+  import("./views/apps/facilitymanagement/otherEquipment/DealerListDataFromRoConfigration")
+);
+const DealerListForFireEquipment = lazy(() =>
+  import("./views/apps/facilitymanagement/otherEquipment/DealerListForFireEquipment")
+);
+const EditDataFromRoConfigration = lazy(() =>
+  import("./views/apps/facilitymanagement/otherEquipment/EditDataFromRoConfigration")
+);
+const ListForDataFromRoConfigration = lazy(() =>
+  import("./views/apps/facilitymanagement/otherEquipment/ListForDataFromRoConfigration")
+);
+const ListForFireEquipment = lazy(() =>
+  import("./views/apps/facilitymanagement/otherEquipment/ListForFireEquipment")
+);
+
 
 // my component
 const subplanvideos = lazy(() => import("./views/apps/subplan/SubPlanVideos"));
@@ -1010,6 +1026,42 @@ class AppRouter extends React.Component {
               path="/app/facilityManagement/raiseConcernToAESForm/:id"
               component={RaiseConcernToAESForm}
             />
+             <AppRoute
+              exact={true}
+              path="/app/facilitymanagement/otherEquipment/delaerListForDataFromRoConfigration"
+              component={DealerListDataFromRoConfigration}
+            />
+             <AppRoute
+              exact={true}
+              path="/app/facilitymanagement/otherEquipment/dealerListForFireEquipment"
+              component={DealerListForFireEquipment}
+            />
+             <AppRoute
+              exact={true}
+              path="/app/facilityManagement/otherEquipment/editDataFromRoConfigration/:id"
+              component={EditDataFromRoConfigration}
+            />
+             <AppRoute
+              exact={true}
+              path="/app/facilityManagement/otherEquipment/listForDataFromRoConfigration/:id"
+              component={ListForDataFromRoConfigration}
+            />
+             <AppRoute
+              exact={true}
+              path="/app/facilityManagement/otherEquipment/listForFireEquipment/:id"
+              component={ListForFireEquipment}
+            />
+
+
+
+
+
+
+
+
+
+
+
             {/*///////////////////////////////  shiftManagement --start  //////////////////////////*/}
             <AppRoute
               path="/app/shiftmanagement/rsp/addRsp"

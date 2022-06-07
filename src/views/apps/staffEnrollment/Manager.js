@@ -12,17 +12,15 @@ import {
 import axiosConfig from "../../../axiosConfig";
 import { Download } from "react-feather";
 import { Route } from "react-router-dom";
-
 export default class Manager extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      shiftManagment : false,
-      stockManagment : false,
-      cashManagment : false,
-      facilityManagment : false,
-      roconfiguration : false,
-     
+      // shiftManagment : false,
+      // stockManagment : false,
+      // cashManagment : false,
+      // facilityManagment : false,
+      // roconfiguration : false,
       dealer_id: "",
       addres: "",
       adhar_number: "",
@@ -78,12 +76,9 @@ export default class Manager extends Component {
       });
   }
 
-
-  
   changeHandler1 = (e) => {
     this.setState({ status: e.target.value });
   };
-
 
   changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -93,7 +88,6 @@ export default class Manager extends Component {
     console.log(this.props.match.params, this.state);
     const data = new FormData();
     data.append("maneger_name", this.state.maneger_name);
-
     data.append("addres", this.state.addres);
     data.append("mobile", this.state.mobile);
     data.append("joining_date", this.state.joining_date);
@@ -102,9 +96,6 @@ export default class Manager extends Component {
     data.append("date_of_brith", this.state.date_of_brith);
     data.append("salary_decieded", this.state.salary_decieded);
     data.append("salary_date", this.state.salary_date);
-    // data.append("shiftManagment", this.state.shiftManagment);
-   
-    
     data.append("status", this.state.status);
     if (this.state.selectedFile !== null) {
       data.append("adharimg", this.state.selectedFile, this.state.selectedName);
@@ -208,23 +199,7 @@ export default class Manager extends Component {
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-                {/* <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>Photograph Url</Label>
-                  <Input
-                    type="url"
-                    name="photograh"
-                    value={this.state.photograh}
-                    onChange={this.onChangeHandler}
-                  />
-                </Col> */}
-
                 <Col lg="6" md="0" sm="6">
-                  {/* <Label>Photograph</Label> */}
-                  {/* <img
-                    src={this.state.photograh}
-                    name="photograh"
-                    className="w-25 ml-5 h-50"
-                  /> */}
                   <a
                     href={this.state.photograh}
                     download
@@ -235,7 +210,6 @@ export default class Manager extends Component {
                     download Photograph
                   </a>
                 </Col>
-
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Mobile</Label>
                   <Input
@@ -258,22 +232,8 @@ export default class Manager extends Component {
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-                {/* <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>Adhar Url</Label>
-                  <Input
-                    type="url"
-                    name="adharimg"
-                    value={this.state.adharimg}
-                    onChange={this.onChangeHandler}
-                  />
-                </Col> */}
+              
                 <Col lg="6" md="0" sm="6">
-                  {/* <Label>Adhar Image</Label> */}
-                  {/* <img
-                    src={this.state.adharimg}
-                    name="photograh"
-                    className="w-25 ml-5 h-50"
-                  /> */}
                   <a
                     href={this.state.adharimg}
                     download
@@ -295,17 +255,7 @@ export default class Manager extends Component {
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-
-               
-
-                
-    <Col lg="6" md="0" sm="6">
-                  {/* <Label>Adhar Image</Label> */}
-                  {/* <img
-                    src={this.state.adharimg}
-                    name="photograh"
-                    className="w-25 ml-5 h-50"
-                  /> */}
+                <Col lg="6" md="0" sm="6">
                   <a
                     href={this.state.panImg}
                     download
@@ -316,27 +266,6 @@ export default class Manager extends Component {
                     download Pan Image
                   </a>
                 </Col>
-                  {/* <a
-                    href={this.state.panImg}
-                    download
-                    target="blank"
-                    onClick={(e) => this.download(e)}
-                  >
-                    <i className="fa fa-download" />
-                    <Download className="mr-50" size="25px" color="blue" />
-                    download Pan Image
-                  </a> */}
-             
-
-                {/* <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>Pan Url</Label>
-                  <Input
-                    type="url"
-                    value={this.state.panImg}
-                    onChange={this.onChangeHandler}
-                    name="panImg"
-                  />
-                </Col> */}
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Joining Date</Label>
                   <Input
@@ -381,7 +310,7 @@ export default class Manager extends Component {
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-                <Col lg="3" md="3" sm="6" className="m-1">
+                {/* <Col lg="3" md="3" sm="6" className="m-1">
                   <div>
                     <input
                       checked={this.state.shiftManagment}
@@ -436,10 +365,10 @@ export default class Manager extends Component {
                           type="checkbox"
                           name="roconfiguration"
                         />{" "}
-                      Ro-Configuration
+                      Ro-Configuration 
 
-                      </div>
-                    </Col>
+                       </div>
+                    </Col> */}
        
 
                 <Col lg="6" md="6" sm="6" className="mb-2 mt-1">

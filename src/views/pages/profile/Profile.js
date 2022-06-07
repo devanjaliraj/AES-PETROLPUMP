@@ -10,9 +10,7 @@ import {
   Card,
   CardTitle
 } from "reactstrap";
-import { Camera, Edit2,  Menu, X } from "react-feather";
-// import coverImg from "../../../assets/img/profile/user-uploads/cover.jpg";
-import profileImg from "../../../assets/img/profile/user-uploads/user-13.jpg";
+// import profileImg from "../../../assets/img/profile/user-uploads/user-13.jpg";
 import "../../../assets/scss/pages/users-profile.scss";
 import CheckBoxesVuexy from "../../../components/@vuexy/checkbox/CheckboxesVuexy";
 import { Check } from "react-feather";
@@ -20,13 +18,9 @@ import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 import axios from "axios";
 import axiosConfig from "../../../axiosConfig";
 
-
-// import registerImg from "../../.././assets/img/pages/register.jpg";
-
 class Profile extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       name: "",
       email:"",
@@ -37,7 +31,6 @@ class Profile extends React.Component {
       selectedName: "",
       selectedFile: null,
       data: {},
-
     };
   }
 
@@ -76,7 +69,7 @@ class Profile extends React.Component {
     //  let { id } = this.props.match.params;
 
     axios
-      .post(`http://3.108.185.7/nodejs/api/user/updateoneadmin/621cb6ff448e0cef89a5bf4b`, data)
+      .post(`http://15.206.122.110:4000/api/user/updateoneadmin/629b43e4b481821324ad3006`, data)
       .then((response) => {
         console.log(response.data);
       })
@@ -90,7 +83,7 @@ class Profile extends React.Component {
     //console.log(this.props.match.params);
     // let { id } = this.props.match.params;
     axiosConfig
-      .get(`http://3.108.185.7/nodejs/api/user/viewoneadmin/621cb6ff448e0cef89a5bf4b`)
+      .get(`http://15.206.122.110:4000/api/user/viewoneadmin/629b43e4b481821324ad3006`)
       .then((response) => {
         //console.log(response.data);
         console.log(response.data.data);

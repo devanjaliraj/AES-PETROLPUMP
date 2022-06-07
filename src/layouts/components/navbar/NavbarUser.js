@@ -28,7 +28,7 @@ const handleNavigation = (e, path) => {
 };
 
 const UserDropdown = (props) => {
-  // const { logout, isAuthenticated } = useAuth0()
+  // const { logout, isAuthenticated } = useAuth0()\\\\\\\\\\
   return (
     <DropdownMenu right>
       <DropdownItem
@@ -666,7 +666,7 @@ class NavbarUser extends React.PureComponent {
             </div>
             <span data-tour="user">
               <img
-                src={this.props.userImg}
+                // src={this.props.userImg}
                 className="round"
                 height="40"
                 width="40"

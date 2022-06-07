@@ -405,24 +405,25 @@ const navigationConfig = [
       icon: <Icon.ArrowRight size={20} />,
       children: [
         {
-      
-        id: "dealerListForDataFromRoConfimation",
-        title: "Data From RO-Confimation",
-        type: "item",
-        icon: <Icon.Circle size={12} />,
-        permissions: ["admin", "editor"],
-        navLink: "/app/facilityManagement/otherEquipment/dealerListForDataFromRoConfimation",
-      },
-      {
-      
-        id: "dealerListForFireEquipment",
-        title: "Fire Equipments",
-        type: "item",
-        icon: <Icon.Circle size={12} />,
-        permissions: ["admin", "editor"],
-        navLink: "/app/facilityManagement/otherEquipment/dealerListForFireEquipment",
-      },
-    ],
+          id: "dealerListForDataFromRoConfimation",
+          title: "Data From RO-Confimation",
+          type: "item",
+          icon: <Icon.Circle size={12} />,
+          permissions: ["admin", "editor"],
+          navLink:
+            "/app/facilitymanagement/otherEquipment/delaerListForDataFromRoConfigration",
+        },
+
+        {
+          id: "dealerListForFireEquipment",
+          title: "Fire Equipments",
+          type: "item",
+          icon: <Icon.Circle size={12} />,
+          permissions: ["admin", "editor"],
+          navLink:
+            "/app/facilitymanagement/otherEquipment/dealerListForFireEquipment",
+        },
+      ],
   },
       // {
       //   id: "dealerListForStatutoryCertificateManagementList",
