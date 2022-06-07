@@ -1,6 +1,7 @@
 import React from "react";
 import {
-  Col,Row,
+  Col,
+  Row,
   Card,
   CardBody,
   Input,
@@ -14,7 +15,7 @@ import { Route } from "react-router-dom";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
- import axios from "axios";
+import axios from "axios";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 // import { history } from "../../../history";
@@ -31,7 +32,6 @@ class NotificationList extends React.Component {
       resizable: true,
       suppressMenu: true,
     },
-
 
     columnDefs: [
       // {
@@ -141,15 +141,12 @@ class NotificationList extends React.Component {
           );
         },
       },
-   
     ],
   };
   componentDidMount() {
-   
-  
     // let { id } = this.props.match.params;
-    axios 
-      .get(`http://3.108.185.7/nodejs/api/admin/allnotification/`)
+    axios
+      .get(`http://15.206.122.110:4000/api/admin/allnotification`)
       .then((response) => {
         let rowData = response.data.data;
         JSON.stringify(rowData);
@@ -158,7 +155,6 @@ class NotificationList extends React.Component {
       .catch((error) => {
         console.log(error.response);
       });
-    
   }
 
   // async componentDidMount() {
@@ -204,28 +200,27 @@ class NotificationList extends React.Component {
         />
 
         <Card className="overflow-hidden agGrid-card">
-        <Row className="m-2">
-                <Col>
-                  <h1 sm="6" className="float-left">
-                    Notification List
-                  </h1>
-                </Col>
-                <Col>
-                <Route
+          <Row className="m-2">
+            <Col>
+              <h1 sm="6" className="float-left">
+                Notification List
+              </h1>
+            </Col>
+            <Col>
+              <Route
                 render={({ history }) => (
                   <Button
                     className=" btn btn-danger float-right"
                     onClick={() =>
-                      history.push("/app/notification/Addnotification")}
+                      history.push("/app/notification/Addnotification")
+                    }
                   >
                     Add Notification
-                    </Button>
+                  </Button>
                 )}
               />
-
             </Col>
           </Row>
-
 
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
@@ -321,5 +316,3 @@ class NotificationList extends React.Component {
   }
 }
 export default NotificationList;
-
-

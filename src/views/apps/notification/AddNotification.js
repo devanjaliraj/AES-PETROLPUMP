@@ -1,5 +1,16 @@
 import React, { Component } from "react";
-import {Card,CardBody,Col,Form,Row,Input,Label,Button,FormGroup,CustomInput} from "reactstrap";
+import {
+  Card,
+  CardBody,
+  Col,
+  Form,
+  Row,
+  Input,
+  Label,
+  Button,
+  FormGroup,
+  CustomInput,
+} from "reactstrap";
 import { Route } from "react-router-dom";
 
 import { history } from "../../../history";
@@ -10,8 +21,8 @@ export class AddNotification extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        dealer: "",
-        desc: "",
+      dealer: "",
+      desc: "",
     };
     this.state = {
       dealerN: [],
@@ -41,12 +52,14 @@ export class AddNotification extends Component {
     e.preventDefault();
 
     axiosConfig
-      .post("/admin/addnotification", this.state, 
-      // {
-      //   headers: {
-      //     "auth-adtoken": localStorage.getItem("auth-adtoken"),
-      //   },
-      // }
+      .post(
+        "/admin/addnotification",
+        this.state
+        // {
+        //   headers: {
+        //     "auth-adtoken": localStorage.getItem("auth-adtoken"),
+        //   },
+        // }
       )
       .then((response) => {
         console.log(response);
@@ -64,11 +77,11 @@ export class AddNotification extends Component {
           <Row className="m-2">
             <Col>
               <h1 col-sm-6 className="float-left">
-                Add Subscription Plan
+                Add Notification
               </h1>
             </Col>
             <Col>
-            <Route
+              <Route
                 render={({ history }) => (
                   <Button
                     className=" btn btn-danger float-right"
@@ -80,29 +93,27 @@ export class AddNotification extends Component {
                   </Button>
                 )}
               />
-
             </Col>
           </Row>
           <CardBody>
             <Form className="m-1" onSubmit={this.submitHandler}>
               <Row className="mb-2">
-
                 <Col lg="4" md="4" className="mb-2">
-                <FormGroup>
-                  <Label>Dealer List</Label>
-                  <CustomInput
-                    type="select"
-                    name="dealer"
-                    value={this.state.dealer}
-                    onChange={this.changeHandler}
-                  >
-                    {this.state.dealerN?.map((dealerp) => (
-                      <option value={dealerp._id} key={dealerp._id}>
-                        {dealerp.dealer_name}
-                      </option>
-                    ))}
-                  </CustomInput>
-                </FormGroup>
+                  <FormGroup>
+                    <Label>Dealer List</Label>
+                    <CustomInput
+                      type="select"
+                      name="dealer"
+                      value={this.state.dealer}
+                      onChange={this.changeHandler}
+                    >
+                      {this.state.dealerN?.map((dealerp) => (
+                        <option value={dealerp._id} key={dealerp._id}>
+                          {dealerp.dealer_name}
+                        </option>
+                      ))}
+                    </CustomInput>
+                  </FormGroup>
                 </Col>
                 <Col lg="12" md="12" className="mb-2">
                   <Label>Descripiton</Label>

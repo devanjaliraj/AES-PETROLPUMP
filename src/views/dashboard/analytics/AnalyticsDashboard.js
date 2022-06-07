@@ -1,6 +1,6 @@
-import React from "react"
-import { Row, Col, Card, CardTitle, CardText } from "reactstrap"
-import SalesCard from "./SalesCard"
+import React from "react";
+import { Row, Col, Card, CardTitle, CardText } from "reactstrap";
+import SalesCard from "./SalesCard";
 // import SuberscribersGained from "../../ui-elements/cards/statistics/SubscriberGained"
 // import OrdersReceived from "../../ui-elements/cards/statistics/OrdersReceived"
 // import AvgSession from "../../ui-elements/cards/analytics/AvgSessions"
@@ -8,10 +8,10 @@ import SalesCard from "./SalesCard"
 // import ProductOrders from "../../ui-elements/cards/analytics/ProductOrders"
 // import SalesStat from "../../ui-elements/cards/analytics/Sales"
 // import ActivityTimeline from "./ActivityTimeline"
-import DispatchedOrders from "./DispatchedOrders"
-import Notification from "./Notification"
-import axiosConfig from "../../../axiosConfig"
-import "../../../assets/scss/pages/dashboard-analytics.scss"
+import DispatchedOrders from "./DispatchedOrders";
+import Notification from "./Notification";
+import axiosConfig from "../../../axiosConfig";
+import "../../../assets/scss/pages/dashboard-analytics.scss";
 import axios from "axios";
 // let $primary = "#7367F0",
 //   $danger = "#EA5455",
@@ -29,531 +29,284 @@ class AnalyticsDashboard extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product: {},
-      customer: {},
-      store:{},
-      seller:{},
-      order:{},
-      banner: {},
-      brand: {},
-      total_sub: {},
-      Coupon: {}
+      total7sayplan: {},
+      bsicplan: {},
+      endtoend: {},
+      day7planearnig: {},
+      basicplanearning: {},
+      endtoendearning: {},
+      maneger: {},
+      dsm: {},
+      outherstaff: {},
+      // dealerTable: [],
     };
   }
 
-  
-    componentDidMount() {
-      axiosConfig
-        .get("/totalproduct")
-        .then((response) => {
-          console.log(response.data);
-          //console.log(response.data.data);
-          this.setState({ product: response.data });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
+  componentDidMount() {
+    // //dealer table
+    // axiosConfig
+    //   .get("/dealer/alldealers")
+    //   .then((response) => {
+    //     console.log(response.data);
+    //     //console.log(response.data.data);
+    //     this.setState({ dealerTable: response.data });
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    // //end dealer //
+    axiosConfig
+      .get("/dealer/total7sayplan")
+      .then((response) => {
+        console.log(response.data);
+        //console.log(response.data.data);
+        this.setState({ total7sayplan: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
 
-        axios
-        .get("http://35.154.86.59/api/user/totalcustomer")
-        .then((response) => {
-          console.log(response.data);
-         
-          this.setState({ customer: response.data });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-        axiosConfig
-        .get("/totalstore")
-        .then((response) => {
-          console.log(response.data);
-          //console.log(response.data.data);
-          this.setState({ store: response.data });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-      axiosConfig
-        .get("/totalseller")
-        .then((response) => {
-          console.log(response.data);
-          //console.log(response.data.data);
-          this.setState({ seller: response.data });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-        axiosConfig
-        .get("/totalorder")
-        .then((response) => {
-          console.log(response.data);
-          console.log(response.data.data);
-          this.setState({ order: response.data });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-        axiosConfig
-        .get("/totalbrand")
-        .then((response) => {
-          console.log(response.data);
-          //console.log(response.data.data);
-          this.setState({ brand: response.data });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-        axiosConfig
-        .get("/totalbanner")
-        .then((response) => {
-          console.log(response.data);
-          //console.log(response.data.data);
-          this.setState({ banner: response.data });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-     
-        axiosConfig
-        .get("/gettotalcoupon")
-        .then((response) => {
-          console.log(response.data);
-          //console.log(response.data.data);
-          this.setState({ Coupon: response.data });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-        axiosConfig
-        .get("/total_sub")
-        .then((response) => {
-          console.log(response.data);
-          //console.log(response.data.data);
-          this.setState({ total_sub: response.data });
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-   }
+    axiosConfig
+      .get("/dealer/totalvasicplan")
+      .then((response) => {
+        console.log(response.data);
+        //console.log(response.data.data);
+        this.setState({ bsicplan: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    axiosConfig
+      .get("/dealer/totalendtoendplan")
+      .then((response) => {
+        console.log(response.data);
+        //console.log(response.data.data);
+        this.setState({ endtoend: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    axiosConfig
+      .get("/dealer/total7dayplanearnig")
+      .then((response) => {
+        console.log(response.data);
+        console.log(response.data.Earning);
+        this.setState({ day7planearnig: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    axiosConfig
+      .get("/dealer/totalbasicplanearning")
+      .then((response) => {
+        console.log(response.data);
+        //console.log(response.data.data);
+        this.setState({ basicplanearning: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    axiosConfig
+      .get("dealer/endtoendearning")
+      .then((response) => {
+        console.log(response.data);
+        //console.log(response.data.data);
+        this.setState({ endtoendearning: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    axiosConfig
+      .get("/dealer/totalmaneger")
+      .then((response) => {
+        console.log(response.data);
+        //console.log(response.data.data);
+        this.setState({ maneger: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    axiosConfig
+      .get("/dealer/totaldsm")
+      .then((response) => {
+        console.log(response.data);
+        //console.log(response.data.data);
+        this.setState({ dsm: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    axiosConfig
+      .get("/dealer/totaloutherstaff")
+      .then((response) => {
+        console.log(response.data);
+        //console.log(response.data.data);
+        this.setState({ outherstaff: response.data });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }
+
   render() {
     return (
       <React.Fragment>
-         <Col lg="12" md="12">
-
-<SalesCard />
-</Col>
-        <h3>RO-Configurtion</h3>
+        <Col lg="12" md="12">
+          <SalesCard />
+        </Col>
+        <h3>Menbership Plans</h3>
         <Row className="match-height">
-          
-        
           <Col lg="3" md="12">
-          <Card
+            <Card
               className="bg-warning"
               body
               inverse
               style={{ borderColor: "white" }}
             >
               <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
-               Total  Basic Details
+                Total No. of 7 Days Plans
               </CardTitle>
 
               <CardText tag="h3" style={{ color: "white" }}>
-                {/* {this.state.product.data} */}
+                {this.state.total7sayplan.data}
               </CardText>
             </Card>
           </Col>
           <Col lg="3" md="12">
-          <Card
+            <Card
               className="bg-danger"
               body
               inverse
               style={{ borderColor: "white" }}
             >
               <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
-               Total Design your outlet
+                Total No of Basic Plans
               </CardTitle>
 
               <CardText tag="h3" style={{ color: "white" }}>
-                {/* {this.state.product.data} */}
+                {this.state.bsicplan.data}
               </CardText>
             </Card>
           </Col>
           <Col lg="3" md="12">
-          <Card
+            <Card
               className="bg-info"
               body
               inverse
               style={{ borderColor: "white" }}
             >
               <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
-               Total Payment Mode Available
+                Total No of End to End plans
               </CardTitle>
 
               <CardText tag="h3" style={{ color: "white" }}>
-                {/* {this.state.product.data} */}
+                {this.state.endtoend.data}
               </CardText>
             </Card>
           </Col>
           <Col lg="3" md="12">
-          <Card
+            <Card
               className="bg-danger"
               body
               inverse
               style={{ borderColor: "white" }}
             >
               <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
-               Total Credit Customers
+                Total 7 days earring
               </CardTitle>
-
               <CardText tag="h3" style={{ color: "white" }}>
-                {/* {this.state.product.data} */}
+                {this.state.day7planearnig.Earning}
               </CardText>
             </Card>
           </Col>
           <Col lg="3" md="12">
-          <Card
+            <Card
               className="bg-secondary"
               body
               inverse
               style={{ borderColor: "white" }}
             >
               <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
-               Total Other Equipments in Outlet
+                Total Basic plan earring
               </CardTitle>
 
               <CardText tag="h3" style={{ color: "white" }}>
-                {/* {this.state.product.data} */}
+                {this.state.basicplanearning.Earning}
               </CardText>
             </Card>
           </Col>
           <Col lg="3" md="12">
-          <Card
+            <Card
               className="bg-primary"
               body
               inverse
               style={{ borderColor: "white" }}
             >
               <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
-               Total Bank for Transaction
+                Total end to end earring
               </CardTitle>
 
               <CardText tag="h3" style={{ color: "white" }}>
-                {/* {this.state.product.data} */}
+                {this.state.endtoendearning.Earning}
               </CardText>
             </Card>
           </Col>
-          <Col lg="3" md="12">
-          <Card
-              className="bg-secondary"
-              body
-              inverse
-              style={{ borderColor: "white" }}
-            >
-              <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
-               Total --------
-              </CardTitle>
-
-              <CardText tag="h3" style={{ color: "white" }}>
-                {/* {this.state.product.data} */}
-              </CardText>
-            </Card>
-          </Col>
-          <Col lg="3" md="12">
-          <Card
-              className="bg-info"
-              body
-              inverse
-              style={{ borderColor: "white" }}
-            >
-              <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
-              Total --------
-              </CardTitle>
-
-              <CardText tag="h3" style={{ color: "white" }}>
-                {/* {this.state.product.data} */}
-              </CardText>
-            </Card>
-          </Col>
-          <Col lg="3" md="12">
-          <Card
-              className="bg-danger"
-              body
-              inverse
-              style={{ borderColor: "white" }}
-            >
-              <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
-              Total --------
-              </CardTitle>
-
-              <CardText tag="h3" style={{ color: "white" }}>
-                {/* {this.state.product.data} */}
-              </CardText>
-            </Card>
-          </Col>
-          <Col lg="3" md="12">
-          <Card
-              className="bg-primary"
-              body
-              inverse
-              style={{ borderColor: "white" }}
-            >
-              <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
-                 Total --------
-              </CardTitle>
-
-              <CardText tag="h3" style={{ color: "white" }}>
-                {/* {this.state.product.data} */}
-              </CardText>
-            </Card>
-          </Col>
-         
-          <Col lg="3" md="12">
-          <Card
-              className="bg-primary"
-              body
-              inverse
-              style={{ borderColor: "white" }}
-            >
-              <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
-               Total 
-              </CardTitle>
-
-              <CardText tag="h3" style={{ color: "white" }}>
-                {/* {this.state.product.data} */}
-              </CardText>
-            </Card>
-          </Col>
-          {/* <Col lg="3" md="6" sm="12">
-            <SuberscribersGained />
-          </Col>
-          <Col lg="3" md="6" sm="12">
-            <OrdersReceived />
-          </Col> */}
         </Row>
         <h3>Staff Enrollment</h3>
         <Row className="match-height">
-          
-        
           <Col lg="3" md="12">
-          <Card
+            <Card
               className="bg-warning"
               body
               inverse
               style={{ borderColor: "white" }}
             >
               <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
-               Total DSM
+                Total DSM
               </CardTitle>
 
               <CardText tag="h3" style={{ color: "white" }}>
-                {/* {this.state.product.data} */}
+                {this.state.dsm.data}
               </CardText>
             </Card>
           </Col>
           <Col lg="3" md="12">
-          <Card
+            <Card
               className="bg-danger"
               body
               inverse
               style={{ borderColor: "white" }}
             >
               <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
-               Total Other Staff 
+                Total Other Staff
               </CardTitle>
 
               <CardText tag="h3" style={{ color: "white" }}>
-                {/* {this.state.product.data} */}
+                {this.state.outherstaff.data}
               </CardText>
             </Card>
           </Col>
           <Col lg="3" md="12">
-          <Card
+            <Card
               className="bg-info"
               body
               inverse
               style={{ borderColor: "white" }}
             >
               <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
-               Total Staff Management
+                Total Staff Management
               </CardTitle>
 
               <CardText tag="h3" style={{ color: "white" }}>
-                {/* {this.state.product.data} */}
+                {this.state.maneger.data}
               </CardText>
             </Card>
           </Col>
-          <Col lg="3" md="12">
-          <Card
-              className="bg-danger"
-              body
-              inverse
-              style={{ borderColor: "white" }}
-            >
-              <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
-               Total Credit Customers
-              </CardTitle>
-
-              <CardText tag="h3" style={{ color: "white" }}>
-                {/* {this.state.product.data} */}
-              </CardText>
-            </Card>
-          </Col>
-          <Col lg="3" md="12">
-          <Card
-              className="bg-secondary"
-              body
-              inverse
-              style={{ borderColor: "white" }}
-            >
-              <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
-               Total Other Equipments in Outlet
-              </CardTitle>
-
-              <CardText tag="h3" style={{ color: "white" }}>
-                {/* {this.state.product.data} */}
-              </CardText>
-            </Card>
-          </Col>
-          <Col lg="3" md="12">
-          <Card
-              className="bg-primary"
-              body
-              inverse
-              style={{ borderColor: "white" }}
-            >
-              <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
-               Total Bank for Transaction
-              </CardTitle>
-
-              <CardText tag="h3" style={{ color: "white" }}>
-                {/* {this.state.product.data} */}
-              </CardText>
-            </Card>
-          </Col>
-          <Col lg="3" md="12">
-          <Card
-              className="bg-secondary"
-              body
-              inverse
-              style={{ borderColor: "white" }}
-            >
-              <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
-               Total --------
-              </CardTitle>
-
-              <CardText tag="h3" style={{ color: "white" }}>
-                {/* {this.state.product.data} */}
-              </CardText>
-            </Card>
-          </Col>
-          <Col lg="3" md="12">
-          <Card
-              className="bg-info"
-              body
-              inverse
-              style={{ borderColor: "white" }}
-            >
-              <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
-              Total --------
-              </CardTitle>
-
-              <CardText tag="h3" style={{ color: "white" }}>
-                {/* {this.state.product.data} */}
-              </CardText>
-            </Card>
-          </Col>
-          <Col lg="3" md="12">
-          <Card
-              className="bg-danger"
-              body
-              inverse
-              style={{ borderColor: "white" }}
-            >
-              <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
-              Total --------
-              </CardTitle>
-
-              <CardText tag="h3" style={{ color: "white" }}>
-                {/* {this.state.product.data} */}
-              </CardText>
-            </Card>
-          </Col>
-          <Col lg="3" md="12">
-          <Card
-              className="bg-primary"
-              body
-              inverse
-              style={{ borderColor: "white" }}
-            >
-              <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
-                 Total --------
-              </CardTitle>
-
-              <CardText tag="h3" style={{ color: "white" }}>
-                {/* {this.state.product.data} */}
-              </CardText>
-            </Card>
-          </Col>
-         
-          <Col lg="3" md="12">
-          <Card
-              className="bg-primary"
-              body
-              inverse
-              style={{ borderColor: "white" }}
-            >
-              <CardTitle className="mb-1" tag="h4" style={{ color: "white" }}>
-               Total 
-              </CardTitle>
-
-              <CardText tag="h3" style={{ color: "white" }}>
-                {/* {this.state.product.data} */}
-              </CardText>
-            </Card>
-          </Col>
-          {/* <Col lg="3" md="6" sm="12">
-            <SuberscribersGained />
-          </Col>
-          <Col lg="3" md="6" sm="12">
-            <OrdersReceived />
-          </Col> */}
         </Row>
-        {/* <Row className="match-height">
-          <Col md="6" sm="12">
-            <AvgSession labelColor={$label_color} primary={$primary} />
-          </Col>
-          <Col md="6" sm="12">
-            <SupportTracker
-              primary={$primary}
-              danger={$danger}
-              white={$white}
-            />
-          </Col>
-        </Row> */}
-        {/* <Row className="match-height">
-          <Col lg="4">
-            <ProductOrders
-              primary={$primary}
-              warning={$warning}
-              danger={$danger}
-              primaryLight={$primary_light}
-              warningLight={$warning_light}
-              dangerLight={$danger_light}
-            />
-          </Col>
-          <Col lg="4">
-            <SalesStat
-              strokeColor={$stroke_color}
-              infoLight={$info_light}
-              primary={$primary}
-              info={$info}
-            />
-          </Col>
-          <Col lg="4">
-            <ActivityTimeline />
-          </Col>
-        </Row> */}
+
         <Row>
           <Col sm="12">
             <DispatchedOrders />
@@ -563,8 +316,8 @@ class AnalyticsDashboard extends React.Component {
           </Col>
         </Row>
       </React.Fragment>
-    )
+    );
   }
 }
 
-export default AnalyticsDashboard
+export default AnalyticsDashboard;
