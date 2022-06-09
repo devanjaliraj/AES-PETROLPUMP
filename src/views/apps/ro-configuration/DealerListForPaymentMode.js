@@ -142,7 +142,7 @@ class DealerListForNozzle extends React.Component {
                   <Eye
                     className="mr-50"
                     size="25px"
-                    color="blue"
+                    color="green"
                     onClick={() =>
                       history.push(
                         `/app/ro-configuration/paymentModeList/${params.data._id}`

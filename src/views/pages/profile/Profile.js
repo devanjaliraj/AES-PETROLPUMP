@@ -15,8 +15,10 @@ import "../../../assets/scss/pages/users-profile.scss";
 import CheckBoxesVuexy from "../../../components/@vuexy/checkbox/CheckboxesVuexy";
 import { Check } from "react-feather";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
-import axios from "axios";
+// import axios from "axios";
+import swal from 'sweetalert';
 import axiosConfig from "../../../axiosConfig";
+// import { history } from "../../../history";
 
 class Profile extends React.Component {
   constructor(props) {
@@ -33,6 +35,9 @@ class Profile extends React.Component {
       data: {},
     };
   }
+  //  handleClick() {
+  //   history.push("/#/pages/profile");
+  // }
 
   //Image Submit Handler
   onChangeHandler = (event) => {
@@ -40,6 +45,25 @@ class Profile extends React.Component {
     this.setState({ selectedName: event.target.files[0].name });
     console.log(event.target.files[0]);
   };
+
+  componentDidMount() {
+    //console.log(this.props.match.params);
+    // let { id } = this.props.match.params;
+    axiosConfig
+      .get(`http://15.206.122.110:4000/api/user/viewoneadmin/629b43e4b481821324ad3006`)
+      .then((response) => {
+        //console.log(response.data);
+        console.log(response.data.data);
+        this.setState({ 
+          data: response.data.data
+         });
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+  }
+  
+  
   changeHandler1 = (e) => {
     this.setState({ status: e.target.value });
   };
@@ -68,10 +92,12 @@ class Profile extends React.Component {
     }
     //  let { id } = this.props.match.params;
 
-    axios
+    axiosConfig
       .post(`http://15.206.122.110:4000/api/user/updateoneadmin/629b43e4b481821324ad3006`, data)
       .then((response) => {
         console.log(response.data);
+         swal("Success!", "Submitted SuccessFull!", "success");
+        this.props.history.push(`/pages/profile`);
       })
       .catch((error) => {
         console.log(error.response);
@@ -79,20 +105,7 @@ class Profile extends React.Component {
   };
 
 
-  componentDidMount() {
-    //console.log(this.props.match.params);
-    // let { id } = this.props.match.params;
-    axiosConfig
-      .get(`http://15.206.122.110:4000/api/user/viewoneadmin/629b43e4b481821324ad3006`)
-      .then((response) => {
-        //console.log(response.data);
-        console.log(response.data.data);
-        this.setState({ data: response.data.data });
-      })
-      .catch((error) => {
-        console.log(error.response);
-      });
-  }
+ 
 
   render() {
     return (
@@ -114,15 +127,7 @@ class Profile extends React.Component {
                         className="img-fluid img-border rounded-circle box-shadow-1"
                         width="150"
                       />
-                       {/* <div class="variants">
-                         <div class='file'>
-                            <label for='input-file'>
-                              <Camera/>
-                              Upload Image
-                            </label>
-                            <input id='input-file' type='file' />
-                        </div>
-                      </div> */}
+                  
                       <ul className="lst-1">
                          <li className="lst-2">
                              Name: <span className="lst-3">{this.state.data.name}</span>
@@ -133,9 +138,7 @@ class Profile extends React.Component {
                          <li className="lst-2">
                              Email: <span className="lst-3">{this.state.data.email}</span>
                          </li>
-                         {/* <li className="lst-2">
-                             Name: <span className="lst-3">grtt</span>
-                         </li> */}
+                      
                       </ul>
                   </div>
               </Card>
@@ -151,7 +154,10 @@ class Profile extends React.Component {
                <Form className="m-1" onSubmit={this.submitHandler}>
                   <div className="st-2">
                       <CardTitle>
-                        <h4 className="mb-0">Edit Profile</h4>
+                        <h4 className="mb-3">Edit Profile</h4>
+                        <Col>
+                        
+                        </Col>
                     </CardTitle>
                       <Row className="m-0">
                         <Col sm="12" className="p-0">
@@ -160,7 +166,7 @@ class Profile extends React.Component {
                               <Input
                                 type="text"
                                 placeholder="Name"
-                                required
+                           
                                 name="name"
                                 value={this.state.name}
                                 onChange={this.changeHandler}
@@ -171,7 +177,7 @@ class Profile extends React.Component {
                               <Input
                                 type="email"
                                 placeholder="email"
-                                required
+                             
                                 name="email"
                                 value={this.state.email}
                                 onChange={this.changeHandler}
@@ -182,7 +188,7 @@ class Profile extends React.Component {
                               <Input
                                 type="number"
                                 placeholder="Mobile No."
-                                required
+                               
                                 name="mobile"
                                 value={this.state.mobile}
                                 onChange={this.changeHandler}
@@ -193,7 +199,7 @@ class Profile extends React.Component {
                               <Input
                                 type="password"
                                 placeholder="Reset password"
-                                required
+                             
                                 name="password"
                                 value={this.state.password}
                                 onChange={this.changeHandler}
@@ -219,18 +225,7 @@ class Profile extends React.Component {
                             </FormGroup>
 
                             <div className="d-flex justify-content-between">
-                              {/* <Button.Ripple
-                      color="primary"
-                      outline
-                      onClick={() => {
-                        history.push("/pages/login");
-                      }}
-                    >
-                      Login
-                    </Button.Ripple> */}
-                              {/* <Button.Ripple color="primary" type="submit">
-                      Register
-                    </Button.Ripple> */}
+                             
                               <Button.Ripple color="primary" type="submit">
                                 Submit
                               </Button.Ripple>

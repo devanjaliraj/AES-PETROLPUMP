@@ -125,6 +125,7 @@ class DealerListForNozzle extends React.Component {
         headerName: "Actions",
         field: "sortorder",
         width: 300,
+        pinned: window.innerWidth > 992 ? "right" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
@@ -141,7 +142,7 @@ class DealerListForNozzle extends React.Component {
                   <Eye
                     className="mr-50"
                     size="25px"
-                    color="blue"
+                    color="green"
                     onClick={() =>
                       history.push(
                         `/app/ro-configuration/NozzleList/${params.data._id}`

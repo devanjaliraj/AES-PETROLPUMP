@@ -1469,7 +1469,7 @@ class AppRouter extends React.Component {
             />
               <AppRoute
               exact={true}
-              path="/app/termscondition/EditTermCondition"
+              path="/app/termscondition/EditTermCondition/:id"
               component={EditTermCondition}
             />
               <AppRoute

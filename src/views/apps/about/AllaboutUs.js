@@ -37,7 +37,7 @@ class AllaboutUs extends React.Component {
       {
         headerName: "Descriptions",
         field: "desc",
-        width: 800,
+        width: 600,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -70,6 +70,7 @@ class AllaboutUs extends React.Component {
         headerName: "Actions",
         field: "sortorder",
         width: 200,
+        pinned: window.innerWidth > 992 ? "right" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">

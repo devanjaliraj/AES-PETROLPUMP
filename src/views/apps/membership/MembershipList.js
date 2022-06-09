@@ -54,7 +54,7 @@ class MembershipList extends React.Component {
       {
         headerName: "Dealer Name",
         field: "dealer_name",
-        width: 100,
+        width: 120,
         pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
@@ -67,7 +67,7 @@ class MembershipList extends React.Component {
       {
         headerName: "Mobile",
         field: "mobile",
-        width: 100,
+        width: 120,
         pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
@@ -81,7 +81,7 @@ class MembershipList extends React.Component {
       {
         headerName: "Transaction ID",
         field: "transaction_id",
-        width: 150,
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -93,7 +93,7 @@ class MembershipList extends React.Component {
       {
         headerName: "Date",
         field: "date",
-        width: 150,
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -106,7 +106,7 @@ class MembershipList extends React.Component {
       {
         headerName: "Expire Date",
         field: "expdate",
-        width: 150,
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -119,7 +119,7 @@ class MembershipList extends React.Component {
       {
         headerName: "Amount",
         field: "amount",
-        width: 150,
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -131,7 +131,7 @@ class MembershipList extends React.Component {
       {
         headerName: "Plan Id",
         field: "planId.associated_plan",
-        width: 150,
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -147,7 +147,7 @@ class MembershipList extends React.Component {
         headerName: "Status",
         field: "status",
         // filter: true,
-        width: 150,
+        width: 130,
         cellRendererFramework: (params) => {
           return params.value === "Confirm" ? (
             <div className="badge badge-pill badge-success">
@@ -164,6 +164,7 @@ class MembershipList extends React.Component {
         headerName: "Actions",
         field: "sortorder",
         width: 150,
+        pinned: window.innerWidth > 992 ? "right" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">

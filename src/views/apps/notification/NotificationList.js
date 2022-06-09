@@ -39,7 +39,7 @@ class NotificationList extends React.Component {
       headerName: "Descripiton",
       field: "desc",
       filter: true,
-      width: 250,
+      width: 600,
       // pinned: window.innerWidth > 992 ? "left" : false,
       cellRendererFramework: (params) => {
         return (
@@ -53,6 +53,7 @@ class NotificationList extends React.Component {
         headerName: "Actions",
         field: "sortorder",
         width: 200,
+        pinned: window.innerWidth > 992 ? "right" : false,
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
@@ -72,17 +73,18 @@ class NotificationList extends React.Component {
                 )}
               /> */}
 
+           
               <Trash2
-                className="mr-50"
-                size="25px"
-                color="red"
-                onClick={() => {
-                  let selectedData = this.gridApi.getSelectedRows();
-                  this.runthisfunction(params.data._id);
-                  this.gridApi.updateRowData({ remove: selectedData });
-                }}
-              />
-            </div>
+              className="mr-50"
+              size="25px"
+              color="red"
+              onClick={() => {
+                let selectedData = this.gridApi.getSelectedRows();
+                this.runthisfunction(params.data._id);
+                this.gridApi.updateRowData({ remove: selectedData });
+              }}
+            />
+          </div>
           );
         },
       },
@@ -100,6 +102,16 @@ componentDidMount() {
       console.log(error.response);
     });
   }
+  async runthisfunction(id) {
+    console.log(id);
+    await axiosConfig
+      .get(`/admin/deletenotification/${id}`)
+      .then((response) => {
+        console.log(response);
+      });
+  }
+
+  
 
   onGridReady = (params) => {
     this.gridApi = params.api;

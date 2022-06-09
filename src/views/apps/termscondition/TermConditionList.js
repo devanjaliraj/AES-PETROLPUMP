@@ -38,7 +38,7 @@ class termscondition extends React.Component {
       {
         headerName: "Descriptions",
         field: "desc",
-        width: 800,
+        width: 400,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">

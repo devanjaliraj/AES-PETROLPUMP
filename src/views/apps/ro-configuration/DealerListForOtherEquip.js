@@ -135,7 +135,7 @@ class DealerListForOtherEquip extends React.Component {
                   <Eye
                     className="mr-50"
                     size="25px"
-                    color="blue"
+                    color="green"
                     onClick={() =>
                       history.push(
                         `/app/ro-configuration/otherEquipmentList/${params.data._id}`
