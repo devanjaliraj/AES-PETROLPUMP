@@ -536,21 +536,21 @@ const navigationConfig = [
   },
  
       {
-        id: "termscondition",
+        id: "TermConditionList",
         title: "Term And Condition ",
         type: "item",
         icon: <Icon.User size={20} />,
         permissions: ["admin", "editor"],
-        navLink: "/app/termscondition/TermsCondition",
+        navLink: "/app/termscondition/TermConditionList",
       },
-      {
-        id: "privacypolicy",
-        title: "Privacy policy",
-        type: "item",
-        icon: <Icon.User size={20} />,
-        permissions: ["admin", "editor"],
-        navLink: "/app/privacypolicy/PrivacyPolicy",
-      },
+      // {
+      //   id: "privacypolicy",
+      //   title: "Privacy policy",
+      //   type: "item",
+      //   icon: <Icon.User size={20} />,
+      //   permissions: ["admin", "editor"],
+      //   navLink: "/app/privacypolicy/PrivacyPolicy",
+      // },
       // {
       //   id: "tankList",
       //   title: "TANK LIST",

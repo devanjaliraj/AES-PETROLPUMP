@@ -81,14 +81,15 @@ class AllaboutUs extends React.Component {
                     color="blue"
                     onClick={() =>
                       history.push(
-                        `/app/about/aboutUs/${params.data._id}`
+                        
+                        `/app/about/EditAboutUs/${params.data._id}`
                       )
                     }
                   />
                 )}
               />
 
-              <Trash2
+              {/* <Trash2
                 className="mr-50"
                 size="25px"
                 color="red"
@@ -97,7 +98,7 @@ class AllaboutUs extends React.Component {
                   this.runthisfunction(params.data._id);
                   this.gridApi.updateRowData({ remove: selectedData });
                 }}
-              />
+              /> */}
             </div>
           );
         },

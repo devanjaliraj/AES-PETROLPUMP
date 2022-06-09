@@ -18,7 +18,7 @@ import axiosConfig from "../../../axiosConfig";
 // import swal from "sweetalert";
 import { Route } from "react-router-dom";
 
-export default class EditAboutUs extends Component {
+export default class EditTermCondition extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -30,7 +30,7 @@ export default class EditAboutUs extends Component {
   componentDidMount() {
     let { id } = this.props.match.params;
     axiosConfig
-      .get(`/admin/viewoneabout/${id}`)
+      .get(`/admin/viewonecondition/${id}`)
       .then((response) => {
         console.log(response);
         this.setState({
@@ -51,11 +51,11 @@ export default class EditAboutUs extends Component {
     e.preventDefault();
     let { id } = this.props.match.params;
     axiosConfig
-      .post(`/admin/edit_aboutus/${id}`, this.state)
+      .post(`/admin/edit_termscondition/${id}`, this.state)
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push(`/app/about/AllaboutUs`);
+        this.props.history.push(`/app/termscondition/TermConditionList`);
         
       })
       .catch((error) => {
@@ -76,7 +76,7 @@ export default class EditAboutUs extends Component {
                 {/* <BreadcrumbItem href="/app/material/materialList" tag="a">
                     Material List
                 </BreadcrumbItem> */}
-                <BreadcrumbItem active>Edit About Us</BreadcrumbItem>
+                <BreadcrumbItem active>Edit Term & Condition</BreadcrumbItem>
               </Breadcrumb>
             </div>
           </Col>
@@ -85,7 +85,7 @@ export default class EditAboutUs extends Component {
           <Row className="m-2">
             <Col>
               <h1 col-sm-6 className="float-left">
-                Edit AboutUs
+                Edit Term & Condition
               </h1>
             </Col>
             <Col>
@@ -94,7 +94,7 @@ export default class EditAboutUs extends Component {
                   <Button
                     className=" btn btn-danger float-right"
                     onClick={() =>
-                      history.push("/app/about/AllaboutUs")
+                      history.push("/app/termscondition/TermConditionList")
                     }
                   >
                     Back

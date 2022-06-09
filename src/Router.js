@@ -18,8 +18,11 @@ const ecommerceDashboard = lazy(() =>
 const checkout = lazy(() => import("./views/apps/ecommerce/cart/Cart"));
 const aboutUs = lazy(() => import("./views/apps/about/AboutUs"));
 const AllaboutUs = lazy(() => import("./views/apps/about/AllaboutUs"));
-const PrivacyPolicy = lazy(() => import("./views/apps/privacypolicy/PrivacyPolicy"));
-const TermsCondition = lazy(() => import("./views/apps/termscondition/TermsCondition"));
+const EditAboutUs = lazy(() => import("./views/apps/about/EditAboutUs"));
+
+const TermConditionList = lazy(() => import("./views/apps/termscondition/TermConditionList"));
+const AddTermsCondition = lazy(() => import("./views/apps/termscondition/AddTermsCondition"));
+const EditTermCondition = lazy(() => import("./views/apps/termscondition/EditTermCondition"));
 const helpUs = lazy(() => import("./views/apps/helpUs/HelpUS"));
 const EdithelpusForm = lazy(() => import("./views/apps/helpUs/EdithelpusForm"));
 const ViewHelpUs = lazy(() => import("./views/apps/helpUs/ViewHelpUs"));
@@ -263,6 +266,9 @@ const dealerList = lazy(() => import("./views/apps/dealer/DealerList"));
 const editDealer = lazy(() => import("./views/apps/dealer/EditDealer"));
 const viewDealer = lazy(() => import("./views/apps/dealer/ViewDealer"));
 const TraningVideoList = lazy(() => import("./views/apps/traningvideo/TraningVideoList"));
+const EditTraningVideo = lazy(() => import("./views/apps/traningvideo/EditTraningVideo"));
+const AddTraningVideo = lazy(() => import("./views/apps/traningvideo/AddTraningVideo"));
+
 
 //////////////////////////////////////////// ro-configuration --- start //////////////////////////////////////////
 const outletList = lazy(() =>
@@ -1415,6 +1421,17 @@ class AppRouter extends React.Component {
               path="/app/traningvideo/traningVideoList"
               component={TraningVideoList}
             />
+              <AppRoute
+              exact={true}
+              path="/app/traningvideo/editTraningVideo/:id"
+              component={EditTraningVideo}
+            /> 
+                <AppRoute
+              exact={true}
+              path="/app/traningvideo/addTraningVideo"
+              component={AddTraningVideo}
+            /> 
+               
             <AppRoute
               exact={true}
               path="/todo"
@@ -1439,16 +1456,28 @@ class AppRouter extends React.Component {
               path="/app/about/AllaboutUs"
               component={AllaboutUs}
             />
+            <AppRoute
+              exact={true}
+              path="/app/about/EditAboutUs/:id"
+              component={EditAboutUs}
+            />
+            
              <AppRoute
               exact={true}
-              path="/app/termscondition/TermsCondition"
-              component={TermsCondition}
+              path="/app/termscondition/AddTermsCondition"
+              component={AddTermsCondition}
             />
-             <AppRoute
+              <AppRoute
               exact={true}
-              path="/app/privacypolicy/PrivacyPolicy"
-              component={PrivacyPolicy}
+              path="/app/termscondition/EditTermCondition"
+              component={EditTermCondition}
             />
+              <AppRoute
+              exact={true}
+              path="/app/termscondition/TermConditionList"
+              component={TermConditionList}
+            />
+           
             <AppRoute
               exact={true}
               path="/app/helpUs/HelpUs"

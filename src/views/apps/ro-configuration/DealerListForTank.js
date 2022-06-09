@@ -1,5 +1,7 @@
 import React from "react";
 import {
+  Col,
+  Row,
   Card,
   CardBody,
   Input,
@@ -15,7 +17,7 @@ import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Eye } from "react-feather";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+// import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 import { Route } from "react-router-dom";
 class DealerListForTank extends React.Component {
   state = {
@@ -207,9 +209,19 @@ class DealerListForTank extends React.Component {
   render() {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
-      <React.Fragment>
-        <Breadcrumbs breadCrumbTitle="Basic Detail List" />
-        <Card className="overflow-hidden agGrid-card">
+      <Row className="app-user-list">
+      <Col sm="12"></Col>
+        <Col sm="12">
+          <Card>
+            <Row className="m-2">
+            <Col>
+          <h1 col-sm-6 className="float-left">
+          List of Dealers for Tank
+          </h1>
+        </Col>
+        </Row>
+
+
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">
@@ -299,7 +311,8 @@ class DealerListForTank extends React.Component {
             )}
           </CardBody>
         </Card>
-      </React.Fragment>
+      </Col>
+      </Row>
     );
   }
 }

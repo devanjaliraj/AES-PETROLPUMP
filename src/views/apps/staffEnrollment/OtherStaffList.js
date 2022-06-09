@@ -34,7 +34,7 @@ class OtherStaffList extends React.Component {
       {
         headerName: "Staff Name",
         field: "staff_name",
-        width: 250,
+        width: 120,
         pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
@@ -47,7 +47,7 @@ class OtherStaffList extends React.Component {
       {
         headerName: "Address",
         field: "addres",
-        width: 250,
+        width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -59,7 +59,7 @@ class OtherStaffList extends React.Component {
       {
         headerName: "Mobile",
         field: "mobile",
-        width: 250,
+        width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -71,7 +71,7 @@ class OtherStaffList extends React.Component {
       {
         headerName: "Joining Date",
         field: "joining_date",
-        width: 140,
+        width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -83,7 +83,7 @@ class OtherStaffList extends React.Component {
       {
         headerName: "Adhar Number",
         field: "adhar_number",
-        width: 125,
+        width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -95,7 +95,7 @@ class OtherStaffList extends React.Component {
       {
         headerName: "Adhar Img",
         field: "adharimg",
-        width: 150,
+        width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -107,7 +107,7 @@ class OtherStaffList extends React.Component {
       {
         headerName: "Pan Number",
         field: "pan_number",
-        width: 150,
+        width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -119,7 +119,7 @@ class OtherStaffList extends React.Component {
       {
         headerName: "Pan Img",
         field: "panImg",
-        width: 150,
+        width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -131,7 +131,7 @@ class OtherStaffList extends React.Component {
       {
         headerName: "Photograh",
         field: "photograh",
-        width: 150,
+        width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -143,7 +143,7 @@ class OtherStaffList extends React.Component {
       {
         headerName: "Bate of Birth",
         field: "date_of_brith",
-        width: 150,
+        width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -155,7 +155,7 @@ class OtherStaffList extends React.Component {
       {
         headerName: "Monthly Salary",
         field: "salary_decieded",
-        width: 150,
+        width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -167,7 +167,7 @@ class OtherStaffList extends React.Component {
       {
         headerName: "Salary Date",
         field: "salary_date",
-        width: 150,
+        width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -183,7 +183,7 @@ class OtherStaffList extends React.Component {
         headerName: "Status",
         field: "status",
         // filter: true,
-        width: 150,
+        width: 100,
         cellRendererFramework: (params) => {
           return params.value === "Active" ? (
             <div className="badge badge-pill badge-success">
@@ -199,7 +199,7 @@ class OtherStaffList extends React.Component {
       {
         headerName: "Actions",
         field: "sortorder",
-        width: 150,
+        width: 100,
         pinned: window.innerWidth > 992 ? "right" : false,
 
         cellRendererFramework: (params) => {

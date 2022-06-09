@@ -1,5 +1,7 @@
 import React from "react";
 import {
+  Col,
+  Row,
   Card,
   CardBody,
   Input,
@@ -162,12 +164,7 @@ class DesignYourOutletList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              {/* <Eye
-                className="mr-50"
-                size="25px"
-                color="green"
-                onClick={() => history.push(`/app/ro-configuration/DesignYourOutlet/${params.data._id}`)}
-              /> */}
+           
               <Route
                 render={({ history }) => (
                   <Edit
@@ -241,14 +238,18 @@ class DesignYourOutletList extends React.Component {
   render() {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
-      <React.Fragment>
-        <Breadcrumbs
-          breadCrumbTitle="Design Your Outlet List"
-          // breadCrumbParent="Forms & Tables"
-          // breadCrumbActive="Dealer List"
-        />
-        <Card className="overflow-hidden agGrid-card">
-          <CardBody className="py-0">
+      <Row className="app-user-list">
+        <Col sm="12"></Col>
+          <Col sm="12">
+            <Card>
+              <Row className="m-2">
+              <Col>
+            <h1 col-sm-6 className="float-left">
+            Design Your Outlet List
+            </h1>
+          </Col>
+          </Row>
+          <CardBody >
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">
                 <div className="d-flex flex-wrap justify-content-between align-items-center">
@@ -336,8 +337,7 @@ class DesignYourOutletList extends React.Component {
               </div>
             )}
           </CardBody>
-        </Card>
-      </React.Fragment>
+    </Card></Col></Row>
     );
   }
 }

@@ -20,12 +20,16 @@ export default class OtherStaff extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      shiftManagment : false,
-      stockManagment : false,
-      cashManagment : false,
-      facilityManagment : false,
-      roconfiguration : false,
-
+      // shiftManagment : false,
+      // stockManagment : false,
+      // cashManagment : false,
+      // facilityManagment : false,
+      // roconfiguration : false,
+      shiftManagment:"",
+      stockManagment:"",
+      cashManagment:"",
+      facilityManagment:"",
+      roconfiguration:"",
       dealer_id: "",
 
       staff_name: "",
@@ -73,6 +77,11 @@ export default class OtherStaff extends Component {
           date_of_brith: response.data.data.date_of_brith,
           salary_decieded: response.data.data.salary_decieded,
           salary_date: response.data.data.salary_date,
+          shiftManagment: response.data.data.shiftManagment,
+           stockManagment: response.data.data.stockManagment,
+           cashManagment: response.data.data.cashManagment,
+           facilityManagment: response.data.data.facilityManagment,
+           roconfiguration: response.data.data.roconfiguration,
           status: response.data.data.status,
         });
       })
@@ -101,6 +110,11 @@ export default class OtherStaff extends Component {
     data.append("salary_date", this.state.salary_date);
     data.append("apprpved_leave", this.state.apprpved_leave);
     data.append("any_other_facility", this.state.any_other_facility);
+    data.append("shiftManagment", this.state.shiftManagment);
+    data.append("stockManagment", this.state.stockManagment);
+    data.append("cashManagment", this.state.cashManagment);
+    data.append("facilityManagment", this.state.facilityManagment);
+    data.append("roconfiguration", this.state.roconfiguration);
     data.append("status", this.state.status);
     if (this.state.selectedFile !== null) {
       data.append("adharimg", this.state.selectedFile, this.state.selectedName);
@@ -362,65 +376,46 @@ export default class OtherStaff extends Component {
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-                <Col lg="3" md="3" sm="6" className="m-1">
-                      <div>
-                        <input
-                          checked={this.state.shiftManagment}
-                          onChange={this.changeHandler}
-                          type="checkbox"
-                          name="shiftManagment"
-                        />{" "}
-                       Shift Managment
-                      </div>
-                    </Col>
-                   
-                <Col lg="3" md="3" sm="6" className="m-1">
-                      <div>
-                        <input
-                          checked={this.state.stockManagment}
-                          onChange={this.changeHandler}
-                          type="checkbox"
-                          name="stockManagment"
-                        />{" "}
-                       Stock Managment
-                      </div>
-                    </Col>
-                
-                <Col lg="3" md="3" sm="6" className="m-1">
-                      <div>
-                        <input
-                          checked={this.state.cashManagment}
-                          onChange={this.changeHandler}
-                          type="checkbox"
-                          name="cashManagment"
-                        />{" "}
-                       Cash Managment
-                      </div>
-                    </Col>
-                    
-                    <Col lg="3" md="3" sm="6" className="m-1">
-                      <div>
-                        <input
-                          checked={this.state.facilityManagment}
-                          onChange={this.changeHandler}
-                          type="checkbox"
-                          name="facilityManagment"
-                        />{" "}
-                       Facility Managment
-                      </div>
-                    </Col>
-                    <Col lg="3" md="3" sm="6" className="m-1">
-                      <div>
-                        <input
-                          checked={this.state.roconfiguration}
-                          onChange={this.changeHandler}
-                          type="checkbox"
-                          name="roconfiguration"
-                        />{" "}
-                      Ro-Configuration
-
-                      </div>
-                    </Col>
+                <Col lg="6" md="6" sm="6" className="mb-2">
+                  <h6>Shift Managment</h6>
+                  <Input
+                   readOnly
+                   name="shiftManagment"
+                   value={this.state.shiftManagment}
+                   ></Input>
+                </Col>
+                <Col lg="6" md="6" sm="6" className="mb-2">
+                  <h6>Stock Managment</h6>
+                  <Input
+                     readOnly
+                    name="stockManagment"
+                    value={this.state.stockManagment}
+                  ></Input>
+                </Col>
+                <Col lg="6" md="6" sm="6" className="mb-2">
+                  <h6>Cash Managment</h6>
+                  <Input
+                   readOnly
+                   name="cashManagment"
+                   value={this.state.cashManagment}
+                   ></Input>
+                </Col>
+                <Col lg="6" md="6" sm="6" className="mb-2">
+                  <h6>Facility Managment</h6>
+                  <Input
+                     readOnly
+                    name="facilityManagment"
+                    value={this.state.facilityManagment}
+                  ></Input>
+                </Col>
+                <Col lg="6" md="6" sm="6" className="mb-2">
+                  <h6>Ro-Configuration Managment</h6>
+                  <Input
+                     readOnly
+                    name="roconfiguration"
+                    value={this.state.roconfiguration}
+                  ></Input>
+                </Col>
 
                 <Col lg="6" md="6" sm="6" className="mb-2 mt-1">
                   <Label className="mb-1">Status</Label>

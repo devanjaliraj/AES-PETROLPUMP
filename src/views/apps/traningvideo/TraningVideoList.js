@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Col,
   Card,
   CardBody,
   Input,
@@ -16,6 +17,7 @@ import axiosConfig from "../../../axiosConfig";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 // import { history } from "../../../history";
+import { Route } from "react-router-dom";
 
 class TraningVideoList extends React.Component {
   state = {
@@ -30,29 +32,7 @@ class TraningVideoList extends React.Component {
       suppressMenu: true,
     },
     columnDefs: [
-      // {
-      //   headerName: "Sno",
-      //   field: "sno",
-      //   width: 175,
-      //   filter: true,
-      //   checkboxSelection: true,
-      //   headerCheckboxSelectionFilteredOnly: true,
-      //   headerCheckboxSelection: true,
-      // },
-      // {
-      //   headerName: "ID",
-      //   field: "_id",
-      //   filter: true,
-      //   width: 250,
-      //   pinned: window.innerWidth > 992 ? "left" : false,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         <span>{params.data._id}</span>
-      //       </div>
-      //     );
-      //   },
-      // },
+  
       {
         headerName: "Title",
         field: "title",
@@ -86,7 +66,7 @@ class TraningVideoList extends React.Component {
         field: "desc",
         filter: true,
         width: 250,
-        // pinned: window.innerWidth > 992 ? "left" : false,
+       
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -102,17 +82,21 @@ class TraningVideoList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              {/* <Eye
-                className="mr-50"
-                size="25px"
-                color="green"
-                onClick={() => history.push("/#/app/staffManagement/staffForm")}
-              /> */}
-              <Edit
-                className="mr-50"
-                size="25px"
-                color="blue"
-                // onClick={() => history.push("/#/app/slider/editSlider/${params.data._id}")}
+            
+            <Route
+                render={({ history }) => (
+                  <Edit
+                    className="mr-50"
+                    size="25px"
+                    color="blue"
+                    onClick={() =>
+                      history.push(
+                        
+                        `/app/traningvideo/editTraningVideo/${params.data._id}`
+                      )
+                    }
+                  />
+                )}
               />
               <Trash2
                 className="mr-50"
@@ -175,11 +159,25 @@ class TraningVideoList extends React.Component {
     return (
       <React.Fragment>
         <Breadcrumbs
-          breadCrumbTitle="Subscription Plan Video"
+          breadCrumbTitle="Traning Video"
           breadCrumbParent="Forms & Tables"
-          breadCrumbActive="Subscription Plan Video"
+          breadCrumbActive="Traning Video"
         />
         <Card className="overflow-hidden agGrid-card">
+        <Col className="pt-4">
+                <Route
+                render={({ history }) => (
+                  <Button
+                    className=" btn btn-success float-right"
+                    onClick={() =>
+                      history.push("/app/traningvideo/addTraningVideo")}
+                  >
+                    Add Traning Video
+                    </Button>
+                )}
+              />
+
+            </Col>
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">

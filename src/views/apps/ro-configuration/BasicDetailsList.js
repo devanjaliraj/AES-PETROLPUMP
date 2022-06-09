@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Row,
   Card,
   CardBody,
   Input,
@@ -202,13 +203,18 @@ class BasicDetailsList extends React.Component {
   render() {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
-      <React.Fragment>
-        <Card className="overflow-hidden agGrid-card">
-          <Col>
+    <Row className="app-user-list">
+        <Col sm="12"></Col>
+          <Col sm="12">
+            <Card>
+              <Row className="m-2">
+              <Col>
             <h1 col-sm-6 className="float-left">
-              Basic Details List
+            Basic Details List
             </h1>
           </Col>
+          </Row>
+        
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">
@@ -298,7 +304,7 @@ class BasicDetailsList extends React.Component {
             )}
           </CardBody>
         </Card>
-      </React.Fragment>
+     </Col></Row>
     );
   }
 }

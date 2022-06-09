@@ -4,7 +4,6 @@ import {
   CardBody,
   Row,
   Col,
- 
   Form,
   Label,
   Input,
@@ -55,7 +54,7 @@ class AboutUs extends React.Component {
     e.preventDefault();
 
     axiosConfig
-      .post("http://3.108.185.7/nodejs/api/admin/addabout", this.state,
+      .post("/admin/addabout", this.state
       // {
       //   headers: {
       //     "auth-adtoken": localStorage.getItem("auth-adtoken"),
@@ -107,29 +106,7 @@ class AboutUs extends React.Component {
         <CardBody>
           <Form className="m-1" onSubmit={this.submitHandler}>
             <Row>
-              {/* <Col lg="6" md="6" sm="6" className="mb-2">
-                <Label> Name</Label>
-                <Input
-                  type="text"
-
-                ></Input>
-              </Col>
-
-
-              <Col lg="6" md="6" sm="6" className="mb-2">
-                <Label>Email</Label>
-                <Input
-                  type="text"
-
-                ></Input>
-              </Col>
-              <Col lg="6" md="6" sm="6" className="mb-2">
-                <Label>Mobile</Label>
-                <Input
-                  type="number"
-
-                ></Input>
-              </Col> */}
+            
               <Col lg="12" md="12" sm="12" className="mb-2">
                 <Label>Descriptions</Label>
                 <Input

@@ -4,7 +4,6 @@ import {
   CardBody,
   Row,
   Col,
-
   Form,
   Label,
   Input,
@@ -16,7 +15,7 @@ import { Route } from "react-router-dom";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 // import Textarea from "../../forms/form-elements/textarea/Textarea";
 
-class TermsCondition extends React.Component {
+class AddTermsCondition extends React.Component {
   constructor(props) {
     super(props);
 
@@ -55,12 +54,8 @@ class TermsCondition extends React.Component {
     e.preventDefault();
 
     axiosConfig
-      .post("http://3.108.185.7/nodejs/api/admin/addabout", this.state,
-      // {
-      //   headers: {
-      //     "auth-adtoken": localStorage.getItem("auth-adtoken"),
-      //   },
-      // }
+      .post("/admin/add_termscondition", this.state,
+      
       )
       .then((response) => {
         console.log(response);
@@ -107,29 +102,7 @@ class TermsCondition extends React.Component {
         <CardBody>
           <Form className="m-1" onSubmit={this.submitHandler}>
             <Row>
-              {/* <Col lg="6" md="6" sm="6" className="mb-2">
-                <Label> Name</Label>
-                <Input
-                  type="text"
-
-                ></Input>
-              </Col>
-
-
-              <Col lg="6" md="6" sm="6" className="mb-2">
-                <Label>Email</Label>
-                <Input
-                  type="text"
-
-                ></Input>
-              </Col>
-              <Col lg="6" md="6" sm="6" className="mb-2">
-                <Label>Mobile</Label>
-                <Input
-                  type="number"
-
-                ></Input>
-              </Col> */}
+             
               <Col lg="12" md="12" sm="12" className="mb-2">
                 <Label>Descriptions</Label>
                 <Input
@@ -163,7 +136,7 @@ class TermsCondition extends React.Component {
   }
 }
 
-export default TermsCondition
+export default AddTermsCondition
 
 
 

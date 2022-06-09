@@ -404,7 +404,7 @@ class NavbarBasic extends React.Component {
                             >
                               <div className="user-nav d-sm-flex d-none">
                                 <span className="user-name text-bold-600">
-                                  John Doe
+                                  John Doe 
                                 </span>
                                 <span className="user-status">Available</span>
                               </div>

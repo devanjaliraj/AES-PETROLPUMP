@@ -8,43 +8,59 @@ import {
   Input,
   Label,
   Button,
-  FormGroup,
-  CustomInput,
+  // FormGroup,
+  // CustomInput,
+  
 } from "reactstrap";
 import { Route } from "react-router-dom";
-
-import { history } from "../../../history";
+import Select from "react-select"
+// import { history } from "../../../history";
 // import axiosConfig from "../../../../axiosConfig";
 // import swal from "sweetalert";
 import axiosConfig from "../../../axiosConfig";
+
+const dealerName = []
+
 export class AddNotification extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      dealer: "",
+      dealer: null,
       desc: "",
-    };
-    this.state = {
-      dealerN: [],
     };
   }
 
   async componentDidMount() {
     //dealer List
+    //let array =[]
+    //let obj ={}
     axiosConfig
       .get("/dealer/alldealers")
       .then((response) => {
+        
         console.log(response);
-        this.setState({ dealerN: response.data.data });
-      })
+        //this.setState({ dealerN: response.data.data });
+        
+        // eslint-disable-next-line no-unused-expressions
+        response.data?.data?.map((dealerp) => {
+         let obj = {
+            label:dealerp.dealer_name,
+            value:dealerp._id
+          }
+          dealerName.push(obj)
+
+      })})
       .catch((error) => {
         console.log(error);
       });
   }
 
-  changeHandler1 = (e) => {
-    this.setState({ status: e.target.value });
+  handleChange = (dealer) => {
+    this.setState({ dealer }, () =>
+      console.log(`Option selected:`, this.state.dealer)
+    );
   };
+
   changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
@@ -71,6 +87,7 @@ export class AddNotification extends Component {
       });
   };
   render() {
+    const { dealer } = this.state;
     return (
       <div>
         <Card>
@@ -98,23 +115,22 @@ export class AddNotification extends Component {
           <CardBody>
             <Form className="m-1" onSubmit={this.submitHandler}>
               <Row className="mb-2">
-                <Col lg="4" md="4" className="mb-2">
-                  <FormGroup>
-                    <Label>Dealer List</Label>
-                    <CustomInput
-                      type="select"
-                      name="dealer"
-                      value={this.state.dealer}
-                      onChange={this.changeHandler}
-                    >
-                      {this.state.dealerN?.map((dealerp) => (
-                        <option value={dealerp._id} key={dealerp._id}>
-                          {dealerp.dealer_name}
-                        </option>
-                      ))}
-                    </CustomInput>
-                  </FormGroup>
-                </Col>
+              <Col md="6" sm="12">
+              <Label>Dealer List</Label>
+              <Select
+               
+                isMulti
+                type="select"
+                name="dealer"
+                className="React"
+                classNamePrefix="select"
+                options={dealerName}
+                value={dealer}
+                onChange={this.handleChange}
+               
+               /> 
+            </Col>
+                
                 <Col lg="12" md="12" className="mb-2">
                   <Label>Descripiton</Label>
                   <Input

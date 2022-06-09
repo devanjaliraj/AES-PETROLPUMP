@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { Navbar } from "reactstrap"
 import { connect } from "react-redux"
 import classnames from "classnames"
@@ -10,8 +10,9 @@ import {
 import NavbarBookmarks from "./NavbarBookmarks"
 import NavbarUser from "./NavbarUser"
 import userImg from "../../../assets/img/portrait/small/avatar-s-11.jpg"
+import axiosConfig from "../../../axiosConfig";
 
-const UserName = props => {
+const UserName =  props => {
   let username = ""
   if (props.userdata !== undefined) {
     username = props.userdata.name
@@ -23,16 +24,37 @@ const UserName = props => {
     ) {
       username = props.user.login.values.loggedInUser.name
     }
+   
   } else {
-    username = "John Doe"
+    username = "john"
+    return username
   }
 
-  return username
+  
 }
 const ThemeNavbar = props => {
   const { user } = useAuth0()
   const colorsArr = [ "primary", "danger", "success", "info", "warning", "dark"]
   const navbarTypes = ["floating" , "static" , "sticky" , "hidden"]
+
+  const [userData, setUserData] = useState('')
+
+  useEffect(() => {
+    console.log('mount it!')
+    axiosConfig
+      .get(`http://15.206.122.110:4000/api/user/viewoneadmin/629b43e4b481821324ad3006`)
+      .then((response) => {
+        //console.log(response.data);
+        console.log(response.data.data);
+        //this.setState({ data: response.data.data });
+        setUserData(response.data?.data?.name)
+      })
+      .catch((error) => {
+        console.log(error.response);
+      });
+   
+  }, [])
+
   return (
     <React.Fragment>
       <div className="content-overlay" />
@@ -87,7 +109,7 @@ const ThemeNavbar = props => {
               <NavbarUser
                 handleAppOverlay={props.handleAppOverlay}
                 changeCurrentLang={props.changeCurrentLang}
-                userName={<UserName userdata={user} {...props} />}
+                userName={userData}
                 userImg={
                   props.user.login.values !== undefined &&
                   props.user.login.values.loggedInWith !== "jwt" &&

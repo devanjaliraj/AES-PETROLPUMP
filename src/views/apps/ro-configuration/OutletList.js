@@ -97,20 +97,7 @@ class OutletList extends React.Component {
           );
         },
       },
-      // {
-      //   headerName: "Tank ",
-      //   field: "tank_map.capacity_litre",
-      //   width: 140,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         {params.data.tank_map?.map((tank) => (
-      //         <span>{tank?.product_map}</span>
-      //         ))}
-      //       </div>
-      //     );
-      //   },
-      // },
+   
       {
         headerName: "Master Oil Company",
         field: "master_oil_company",
@@ -156,12 +143,7 @@ class OutletList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              {/* <Eye
-                className="mr-50"
-                size="25px"
-                color="green"
-                onClick={() => history.push("/app/ro-configuration/roForm")}
-              /> */}
+          
               <Edit
                 className="mr-50"
                 size="25px"

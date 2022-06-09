@@ -271,7 +271,7 @@ export default class CreditCustomersForm extends Component {
                 </Col>
 
                 <Col lg="6" md="0" sm="6" className="mb-2">
-                  <Label>Document Upload</Label>
+                  {/* <Label>Document Upload</Label> */}
                   {/* <img
                     src={this.state.document_upload}
                     name="document_upload"

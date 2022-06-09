@@ -13,6 +13,8 @@ import {
 import { history } from "../../../history";
 // import axiosConfig from "../../../../axiosConfig";
 // import swal from "sweetalert";
+import { Route } from "react-router-dom";
+
 import axios from "axios";
 export class AddPlans extends Component {
   constructor(props) {
@@ -24,23 +26,9 @@ export class AddPlans extends Component {
         associated_plan: "",
      
     };
-    // this.state = {
-    //   productS: [],
-    // };
+  
   }
 
-  // async componentDidMount() {
-  //   //Product List
-  //   axiosConfig
-  //     .get("/getproduct")
-  //     .then((response) => {
-  //       console.log(response);
-  //       this.setState({ productS: response.data.data });
-  //     })
-  //     .catch((error) => {
-  //       console.log(error);
-  //     });
-  // }
 
   changeHandler1 = (e) => {
     this.setState({ status: e.target.value });
@@ -62,7 +50,7 @@ export class AddPlans extends Component {
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push("/#/app/subPlan/SubPlanVideos");
+        this.props.history.push("/app/subPlan/SubPlanVideos");
       })
       .catch((error) => {
         console.log(error);
@@ -79,14 +67,18 @@ export class AddPlans extends Component {
               </h1>
             </Col>
             <Col>
+            <Route
+              render={({ history }) => (
               <Button
                 className=" btn btn-danger float-right"
                 onClick={() =>
-                  history.push("/#/app/subplan/SubPlanVideos")
+                  history.push("/app/subplan/SubPlanVideos")
                 }
               >
                 Back
               </Button>
+              )}
+          />
             </Col>
           </Row>
           <CardBody>

@@ -167,7 +167,7 @@ export default class BasicDetailForm extends Component {
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-                <Col lg="6" md="6" sm="6" className="mb-2">
+                {/* <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Mobile No.</Label>
                   <Input
                   readOnly
@@ -176,7 +176,7 @@ export default class BasicDetailForm extends Component {
                     value={this.state.mobile}
                     onChange={this.changeHandler}
                   ></Input>
-                </Col>
+                </Col> */}
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Email ID</Label>
                   <Input
