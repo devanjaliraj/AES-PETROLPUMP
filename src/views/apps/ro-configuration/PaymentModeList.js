@@ -47,12 +47,12 @@ class PaymentModeList extends React.Component {
         },
         {
           headerName: "Select Mode",
-          field: "select_mode.mode",
+          field: "select_mode",
           width: 140,
           cellRendererFramework: (params) => {
             return (
               <div className="d-flex align-items-center cursor-pointer">
-                <span>{params.data.select_mode?.mode}</span>
+                <span>{params.data.select_mode}</span>
               </div>
             );
           },

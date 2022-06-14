@@ -236,7 +236,7 @@ class StampingDataForm extends React.Component {
                 <h5 className="my-1 text-bold-600">Last Stamping Date</h5>
                 <Input
                   required
-                  type="date"
+                  type="text"
                   name="Last_Stamping_Date"
                   value={this.state.Last_Stamping_Date}
                   onChange={this.changeHandler}
@@ -246,7 +246,7 @@ class StampingDataForm extends React.Component {
                 <h5 className="my-1 text-bold-600">Due Date</h5>
                 <Input
                   required
-                  type="date"
+                  type="text"
                   name="Due_Date"
                   value={this.state.Due_Date}
                   onChange={this.changeHandler}
@@ -304,7 +304,7 @@ class StampingDataForm extends React.Component {
                 <h5 className="my-1 text-bold-600">Last Service Date</h5>
                 <Input
                   required
-                  type="date"
+                  type="text"
                   name="Last_Service_Date"
                   value={this.state.Last_Service_Date}
                   onChange={this.changeHandler}

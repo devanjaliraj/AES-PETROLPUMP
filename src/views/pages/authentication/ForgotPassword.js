@@ -51,7 +51,7 @@ class ForgotPassword extends React.Component {
       mobile : mobile
     }
     axios
-    .post("http://3.108.185.7/nodejs/api/dealer/signupsendotp", payload)
+    .post("http://15.206.122.110:4000/api/dealer/signupsendotp", payload)
     .then((response) => {
       console.log(response.data);
       if(response.data.status === 'success'){

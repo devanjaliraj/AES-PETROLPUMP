@@ -35,16 +35,16 @@ class StampingDataList extends React.Component {
     columnDefs: [
       {
         headerName: "MPD",
-        field: "mpd_map.mpd_number",
+        field: "MPD.mpd",
         width: 140,
         cellRendererFramework: (params) => {
           return (
-            <div className="d-flex align-items-center cursor-pointer">
-              {params.data.mpd_map?.map((mpd) => (
-                <span>{mpd?.mpd_number}</span>
-              ))}
-            </div>
-          );
+            
+              <div className="d-flex align-items-center cursor-pointer">
+                <span>{params.data.MPD?.mpd}</span>
+              </div>
+            );
+          
         },
       },
 

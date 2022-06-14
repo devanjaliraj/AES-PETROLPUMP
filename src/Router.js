@@ -673,10 +673,12 @@ const AppRoute = connect(mapStateToProps)(RouteConfig);
 class AppRouter extends React.Component {
   componentDidMount() {
     let data = localStorage.getItem("auth");
+    sessionStorage.clear();
     if (data === undefined || data === null) {
       //history.push("/#/pages/login")
 
        window.location.replace("/#/pages/login");
+     
     }
   }
   render() {
@@ -1485,7 +1487,7 @@ class AppRouter extends React.Component {
             />
             <AppRoute
               exact={true}
-              path="/app/helpUs/EdithelpusForm"
+              path="/app/helpUs/EdithelpusForm/:id"
               component={EdithelpusForm}
             />
              <AppRoute

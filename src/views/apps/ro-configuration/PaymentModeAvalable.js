@@ -21,6 +21,7 @@ export default class PaymentModeAvalable extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      dealer_name1: "",
       select_mode: "",
       select_bank: "",
       settlement_day: "",
@@ -62,6 +63,7 @@ export default class PaymentModeAvalable extends Component {
       .then((response) => {
         console.log(response);
         this.setState({
+          dealer_name1: response.data.data.dealer_name1,
           select_mode: response.data.data.select_mode,
           select_bank: response.data.data.select_bank,
           settlement_day: response.data.data.settlement_day,
@@ -100,8 +102,8 @@ export default class PaymentModeAvalable extends Component {
       .then((response) => {
         console.log(response);
         // swal("Success!", "Submitted SuccessFull!", "success");
-        this.props.history.push(`/app/ro-configuration/paymentModeList/${this.state.dealer_name1}`);
-        
+        this.props.history.push(`/app/ro-configuration/paymentModeList/${this.state.dealer_name1._id}`);
+       
       })
       .catch((error) => {
         console.log(error.response);
@@ -136,12 +138,16 @@ export default class PaymentModeAvalable extends Component {
               </h1>
             </Col>
             <Col>
-              <Route
+          
+
+          <Route
                 render={({ history }) => (
-                  <Button
+            <Button
                     className=" btn btn-danger float-right"
                     onClick={() =>
-                      history.push("/app/ro-configuration/paymentModeList")
+                      history.push(
+                        `/app/ro-configuration/paymentModeList/${this.state.dealer_name1._id}`
+                      )
                     }
                   >
                     Back

@@ -157,20 +157,20 @@ class termscondition extends React.Component {
         />
         <Card className="overflow-hidden agGrid-card">
 
-            {/* <Col className="pt-4">
+            <Col className="pt-4">
                 <Route
                 render={({ history }) => (
                   <Button
                     className=" btn btn-success float-right"
                     onClick={() =>
-                      history.push("/app/about/AboutUs")}
+                      history.push("/app/termscondition/AddTermsCondition")}
                   >
-                    Add Aboutus
+                    Add TermConditionList
                     </Button>
                 )}
               /> 
 
-            </Col> */}
+            </Col>
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">

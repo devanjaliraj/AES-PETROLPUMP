@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import axios from "axios";
 import { Route } from 'react-router-dom'
 import swal from 'sweetalert';
+import { Token } from "prismjs";
 
 class LoginJWT extends React.Component {
   constructor(props) {
@@ -80,6 +81,7 @@ class LoginJWT extends React.Component {
       // console.log(response.data.user);
       console.log(response.data.data);
       if(response.data.status === 200){
+      
         swal(response.data.message)
         localStorage.setItem("auth", response.data.data?._id);
         //history.push("/#/");
@@ -90,7 +92,7 @@ class LoginJWT extends React.Component {
       //history.push("/");
       
     })
-
+ 
     .catch((error) => {
       console.log(error.response);
       //swal("error!", "Invalied! Please enter valied Phone No. or Password", "error");

@@ -455,13 +455,13 @@ const navigationConfig = [
   ///////////////// facilityManagement end ///////////////////
   {
     id: "subplan",
-    title: "Credit Managent ",
+    title: "Subscription Plan ",
     type: "collapse",
     icon: <Icon.User size={20} />,
     children: [
       {
         id: "subplanvideos",
-        title: "Subscription plan videos",
+        title: " plan videos List",
         type: "item",
         icon: <Icon.Circle size={12} />,
         permissions: ["admin", "editor"],
@@ -543,30 +543,7 @@ const navigationConfig = [
         permissions: ["admin", "editor"],
         navLink: "/app/termscondition/TermConditionList",
       },
-      // {
-      //   id: "privacypolicy",
-      //   title: "Privacy policy",
-      //   type: "item",
-      //   icon: <Icon.User size={20} />,
-      //   permissions: ["admin", "editor"],
-      //   navLink: "/app/privacypolicy/PrivacyPolicy",
-      // },
-      // {
-      //   id: "tankList",
-      //   title: "TANK LIST",
-      //   type: "item",
-      //   icon: <Icon.Circle size={12} />,
-      //   permissions: ["admin", "editor"],
-      //   navLink: "/app/setting/tank/tankList",
-      // },
-      // {
-      //   id: "bayList",
-      //   title: "BAY LIST",
-      //   type: "item",
-      //   icon: <Icon.Circle size={12} />,
-      //   permissions: ["admin", "editor"],
-      //   navLink: "/app/setting/bay/bayList",
-      // },
+ 
 
   
 ];

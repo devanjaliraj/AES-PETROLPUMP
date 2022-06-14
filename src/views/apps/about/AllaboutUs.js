@@ -158,7 +158,7 @@ class AllaboutUs extends React.Component {
         <Card className="overflow-hidden agGrid-card">
 
             <Col className="pt-4">
-                <Route
+                {/* <Route
                 render={({ history }) => (
                   <Button
                     className=" btn btn-success float-right"
@@ -168,7 +168,7 @@ class AllaboutUs extends React.Component {
                     Add Aboutus
                     </Button>
                 )}
-              />
+              /> */}
 
             </Col>
           <CardBody className="py-0">

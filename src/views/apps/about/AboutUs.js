@@ -30,6 +30,7 @@ class AboutUs extends React.Component {
       dealerN: [],
     };
   }
+  
 
   async componentDidMount() {
     //dealer List

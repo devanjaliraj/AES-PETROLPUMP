@@ -45,7 +45,7 @@ export default class AddDSM extends Component {
       // selectedName: "",
     };
   }
-
+//Image Submit Handler
   onChangeHandler = (event) => {
     this.setState({ selectedFile: event.target.files[0] });
     this.setState({ selectedName: event.target.files[0].name });

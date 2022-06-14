@@ -21,7 +21,7 @@ import { tokenize } from "prismjs"
 class ResetPassword extends React.Component {
   
   state = {
-    email:"",
+    // email:"",
     password:"",
     confirm_password:""
    
@@ -51,14 +51,14 @@ class ResetPassword extends React.Component {
     // }
 
     var payload = {
-      email : email,
+      // email : email,
       password : password,
       confirm_password :confirm_password,
     }
      let { id } = this.props.match.params;
 
     axios
-    .post(`http://3.108.185.7/nodejs/api/user/changepassadmin/${id}`, payload)
+    .post(`http://15.206.122.110:4000/api/user/changepassadmin/629b43e4b481821324ad3006`, payload)
     .then((response) => {
       console.log(response.data);
       if(response.data.status === true){
@@ -104,12 +104,12 @@ class ResetPassword extends React.Component {
                   </p>
                   <CardBody className="pt-1">
                     <Form>
-                      <FormGroup className="form-label-group">
+                      {/* <FormGroup className="form-label-group">
                         <Input type="email" name="email" placeholder="Email"
                         onChange={this.handlechange}
                          required />
                         <Label>Email</Label>
-                      </FormGroup>
+                      </FormGroup> */}
                       <FormGroup className="form-label-group">
                         <Input
                           type="password"

@@ -48,7 +48,7 @@ class OtpScreen extends React.Component {
       otp:otp
     }
     axios
-    .post("http://3.108.185.7/nodejs/api/user/verifyotp", payload)
+    .post("http://15.206.122.110:4000/api/user/verifyotp", payload)
     .then((response) => { 
       console.log(response.data);
       if(response.data.status === 'success'){
