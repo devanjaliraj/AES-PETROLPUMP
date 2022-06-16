@@ -33,7 +33,7 @@ class ManagerList extends React.Component {
       {
         headerName: "Maneger Name",
         field: "maneger_name",
-        width: 250,
+        width: 120,
         pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
@@ -46,7 +46,7 @@ class ManagerList extends React.Component {
       {
         headerName: "Address",
         field: "addres",
-        width: 250,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -58,7 +58,7 @@ class ManagerList extends React.Component {
       {
         headerName: "Mobile",
         field: "mobile",
-        width: 250,
+        width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -70,7 +70,7 @@ class ManagerList extends React.Component {
       {
         headerName: "Joining Date",
         field: "joining_date",
-        width: 140,
+        width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -82,7 +82,7 @@ class ManagerList extends React.Component {
       {
         headerName: "Adhar Number",
         field: "adhar_number",
-        width: 125,
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -94,7 +94,7 @@ class ManagerList extends React.Component {
       {
         headerName: "Adhar Image",
         field: "adharimg",
-        width: 150,
+        width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -118,7 +118,7 @@ class ManagerList extends React.Component {
       {
         headerName: "Pan Image",
         field: "panImg",
-        width: 150,
+        width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -130,7 +130,7 @@ class ManagerList extends React.Component {
       {
         headerName: "Photograph",
         field: "photograh",
-        width: 150,
+        width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -142,7 +142,7 @@ class ManagerList extends React.Component {
       {
         headerName: "Date of Birth",
         field: "date_of_brith",
-        width: 150,
+        width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -154,7 +154,7 @@ class ManagerList extends React.Component {
       {
         headerName: "Monthly Salary",
         field: "salary_decieded",
-        width: 150,
+        width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -166,7 +166,7 @@ class ManagerList extends React.Component {
       {
         headerName: "Salary Date",
         field: "salary_date",
-        width: 150,
+        width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">

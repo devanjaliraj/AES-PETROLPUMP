@@ -11,9 +11,9 @@ import {
 } from "reactstrap";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2, Eye, Edit } from "react-feather";
+import { ChevronDown, Trash2, Eye} from "react-feather";
 import axios from "axios";
-import { Route } from 'react-router-dom'
+// import { Route } from 'react-router-dom'
 
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 
@@ -84,14 +84,14 @@ class MpdManagement extends React.Component {
                 // history.push(`/#/app/slider/viewSlider/${params.data._id}`)
                 // }
               />
-          <Route render={({ history}) => (
+          {/* <Route render={({ history}) => (
 
               <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
                 // onClick={() => history.push("/#/app/slider/editSlider/${params.data._id}")}
-              />)}/>
+              />)}/> */}
               <Trash2
                 className="mr-50"
                 size="25px"

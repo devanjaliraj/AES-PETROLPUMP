@@ -12,12 +12,12 @@ import {
   DropdownToggle,
 } from "reactstrap";
 import { AgGridReact } from "ag-grid-react";
-import { Route } from "react-router-dom";
+// import { Route } from "react-router-dom";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2, Edit } from "react-feather";
+import { ChevronDown, Trash2 } from "react-feather";
 import axiosConfig from "../../../axiosConfig";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-import { history } from "../../../history";
+// import { history } from "../../../history";
 
 class ProductReceiptList extends React.Component {
   state = {
@@ -386,7 +386,7 @@ class ProductReceiptList extends React.Component {
                 color="green"
                 onClick={() => history.push("/#/app/stockManagement/lubeStockForm")}
               /> */}
-              <Route
+              {/* <Route
                 render={({ history }) => (
                   <Edit
                     className="mr-50"
@@ -399,7 +399,7 @@ class ProductReceiptList extends React.Component {
                     }
                   />
                 )}
-              />
+              /> */}
               <Trash2
                 className="mr-50"
                 size="25px"

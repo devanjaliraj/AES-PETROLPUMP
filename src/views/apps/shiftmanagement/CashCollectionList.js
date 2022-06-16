@@ -11,8 +11,10 @@ import {
   DropdownItem,
   DropdownToggle,
 } from "reactstrap";
-import axios from "axios";
+// import axios from "axios";
 // import { Route } from "react-router-dom";
+import axiosConfig from "../../../axiosConfig";
+
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2 } from "react-feather";
@@ -209,9 +211,11 @@ class CashCollectionList extends React.Component {
     ],
   };
   componentDidMount() {
-    axios
-      .get("http://3.108.185.7/nodejs/api/dealer/allcashcollected")
-      .then((response) => {
+    let { id } = this.props.match.params;
+
+    
+    axiosConfig.get(`/dealer/allcashcollectedApp/${id}`).then((response) => {
+     
         let rowData = response.data.data;
         JSON.stringify(rowData);
         this.setState({ rowData });
@@ -220,8 +224,8 @@ class CashCollectionList extends React.Component {
   }
   async runthisfunction(id) {
     console.log(id);
-    await axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/deletecashcollected/${id}`)
+    await axiosConfig
+      .get(`/dealer/deletecashcollected/${id}`)
       .then((response) => {
         console.log(response);
       });

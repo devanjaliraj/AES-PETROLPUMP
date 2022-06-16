@@ -11,13 +11,13 @@ import {
 } from "reactstrap";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2, Edit } from "react-feather";
+import { ChevronDown, Trash2 } from "react-feather";
 import axios from "axios";
 
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 
 // import { history } from "../../../history";
-import { Route } from 'react-router-dom'
+// import { Route } from 'react-router-dom'
 
 class RaiseConcernToAESList extends React.Component {
   state = {
@@ -66,7 +66,7 @@ class RaiseConcernToAESList extends React.Component {
         cellRendererFramework: (params) => {
           return (
             <div className="actions cursor-pointer">
-              <Route render={({ history}) => (
+              {/* <Route render={({ history}) => (
               <Edit
                 className="mr-50"
                 size="25px"
@@ -76,7 +76,7 @@ class RaiseConcernToAESList extends React.Component {
                     `/app/facilityManagement/raiseConcernToAESForm/${params.data._id}`
                   )
                 }
-              />)}/>
+              />)}/> */}
               <Trash2
                 className="mr-50"
                 size="25px"

@@ -20,6 +20,7 @@ class StampingDataForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      
       mpds: [],
       nozzels: [],
       products: [],
@@ -136,7 +137,7 @@ class StampingDataForm extends React.Component {
       )
       .then((response) => {
         console.log(response);
-        this.props.history.push("/app/facilityManagement/stampingDataList");
+        this.props.history.push('/app/facilityManagement/stampingDataList');
       })
       .catch((error) => {
         console.log(error.response);

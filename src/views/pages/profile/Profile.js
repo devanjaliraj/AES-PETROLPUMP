@@ -7,7 +7,7 @@ import {
   Label,
   Input,
   Card,
-  CardTitle,Link
+  CardTitle
 } from "reactstrap";
 import "../../../assets/scss/pages/users-profile.scss";
 import CheckBoxesVuexy from "../../../components/@vuexy/checkbox/CheckboxesVuexy";
@@ -16,7 +16,7 @@ import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 // import axios from "axios";
 import swal from 'sweetalert';
 import axiosConfig from "../../../axiosConfig";
-import { Route } from "react-router-dom";
+// import { Route } from "react-router-dom";
 
 class Profile extends React.Component {
   constructor(props) {
@@ -33,11 +33,6 @@ class Profile extends React.Component {
       data: {},
     };
   }
-  //  handleClick() {
-  
-  //   window.location.replace("/#/pages/profile");
-  //   // history.push("/#/pages/profile");
-  // }
 
   //Image Submit Handler
   onChangeHandler = (event) => {
@@ -66,17 +61,13 @@ class Profile extends React.Component {
       });
   }
   
-  // changeHandler1 = (e) => {
-  //   this.setState({ status: e.target.value });
-  // };
   changeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   };
+
   submitHandler = (e) => {
     e.preventDefault();
-
     console.log(this.state);
-
     const data = new FormData();
     data.append("name", this.state.name);
     data.append("email", this.state.email);
@@ -86,6 +77,7 @@ class Profile extends React.Component {
     if (this.state.selectedFile !== null) {
     data.append("profilepic", this.state.selectedFile, this.state.selectedName);
     }
+
     for (var value of data.values()) {
       console.log(value);
     }
@@ -98,19 +90,14 @@ class Profile extends React.Component {
       .post(`http://15.206.122.110:4000/api/user/updateoneadmin/629b43e4b481821324ad3006`, data)
       .then((response) => {
         console.log(response.data);
-     
-         swal("Success!", "Submitted SuccessFull!", "success");
-       
-         window.location.reload("/#/pages/profile");
-        // this.props.reload.push(`/#/pages/profile`);
-        // this.props.history.push(`/`);
+        swal("Success!", "Submitted SuccessFull!", "success");
+        window.location.reload("/#/pages/profile");
       })
-      .catch((error) => {
-  swal("Error!", "You clicked the button!", "error");
-        console.log(error.response);
 
-      })
-     
+    .catch((error) => {
+      swal("Error!", "You clicked the button!", "error");
+      console.log(error.response);
+    })
   };
   render() {
     return (
@@ -162,15 +149,14 @@ class Profile extends React.Component {
                         <Col sm="12" className="p-0">
                           <Form action="/">
                           <Label>Name</Label>
-                              <Input
-                                type="text"
-                                name="name"
-                                placeholder="Name"
-                                value={this.state.name}
-                                onChange={this.changeHandler}
-                              />
-                            
-                               <Label>Email</Label>
+                            <Input
+                              type="text"
+                              name="name"
+                              placeholder="Name"
+                              value={this.state.name}
+                              onChange={this.changeHandler}
+                            />
+                            <Label>Email</Label>
                               <Input
                                 type="email"
                                 name="email"
@@ -178,7 +164,7 @@ class Profile extends React.Component {
                                 value={this.state.email}
                                 onChange={this.changeHandler}
                               />
-                                <Label>Mobile No.</Label>
+                            <Label>Mobile No.</Label>
                               <Input
                                 type="number"
                                 name="mobile"
@@ -186,7 +172,6 @@ class Profile extends React.Component {
                                 value={this.state.mobile}
                                 onChange={this.changeHandler}
                               />
-                             
                              <Label>Password</Label>
                               <Input
                                 type="password"
@@ -195,8 +180,6 @@ class Profile extends React.Component {
                                 value={this.state.password}
                                 onChange={this.changeHandler}
                               />
-                             
-                          
                               <Label>User Image</Label>
                                 <Input 
                                   className="form-control"  
@@ -204,7 +187,6 @@ class Profile extends React.Component {
                                   name="profilepic"
                                   onChange={this.onChangeHandler}
                                 />
-                         
                               <CheckBoxesVuexy
                                 color="primary"
                                 icon={<Check className="vx-icon"
@@ -212,7 +194,6 @@ class Profile extends React.Component {
                                 label=" I accept the terms & conditions."
                                 defaultChecked={true}
                               />
-                         
                             <div className="d-flex justify-content-between">
                               <Button.Ripple 
                                 color="primary" 

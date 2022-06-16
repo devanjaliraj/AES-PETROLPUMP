@@ -33,7 +33,7 @@ class DealerListForDSM extends React.Component {
       {
         headerName: "Dealer Name",
         field: "dealer_name",
-        width: 250,
+        width: 150,
         pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
@@ -46,7 +46,7 @@ class DealerListForDSM extends React.Component {
       {
         headerName: "Mobile",
         field: "mobile",
-        width: 150,
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -58,7 +58,7 @@ class DealerListForDSM extends React.Component {
       {
         headerName: "Email",
         field: "email",
-        width: 250,
+        width: 150,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -70,7 +70,7 @@ class DealerListForDSM extends React.Component {
       {
         headerName: "Master Oil Company",
         field: "master_oil_company.name",
-        width: 180,
+        width: 100,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -82,7 +82,7 @@ class DealerListForDSM extends React.Component {
       {
         headerName: "State",
         field: "state",
-        width: 125,
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -106,7 +106,7 @@ class DealerListForDSM extends React.Component {
       {
         headerName: "Actions",
         field: "sortorder",
-        width: 110,
+        width: 120,
         pinned: window.innerWidth > 992 ? "right" : false,
         cellRendererFramework: (params) => {
           return (

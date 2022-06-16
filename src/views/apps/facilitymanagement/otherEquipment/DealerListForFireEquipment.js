@@ -118,7 +118,7 @@ class DealerListForFireEquipment extends React.Component {
                   <Eye
                     className="mr-50"
                     size="25px"
-                    color="blue"
+                    color="green"
                     onClick={() =>
                       history.push(
                         `/app/facilitymanagement/otherEquipment/listForFireEquipment/${params.data._id}`

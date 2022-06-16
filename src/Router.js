@@ -412,6 +412,9 @@ const DealerListForNetProfit = lazy(() =>
 const DealerListForPaymentModeLists = lazy(() =>
   import("./views/apps/cashmanagement/status/DealerListForPaymentModeLists")
 );
+const NetProfitList = lazy(() =>
+  import("./views/apps/cashmanagement/status/NetProfitList")
+);
 const PaymentModeLists = lazy(() =>
   import("./views/apps/cashmanagement/status/PaymentModeLists")
 );
@@ -1322,6 +1325,11 @@ class AppRouter extends React.Component {
               exact={true}
               path="/app/cashManagement/creditManagementList/:id"
               component={CreditManagementList}
+            />
+               <AppRoute
+              exact={true}
+              path="/app/cashManagement/status/netProfitList/:id"
+              component={NetProfitList}
             />
             {/*///////////////////////  cashManagement -- end ////////////////////////////*/}
             {/* setting */}
