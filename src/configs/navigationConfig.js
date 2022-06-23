@@ -467,14 +467,14 @@ const navigationConfig = [
         permissions: ["admin", "editor"],
         navLink: "/app/subplan/subplanvideos",
       },
-      {
-        id: "addPlan",
-        title: "Add plan videos",
-        type: "item",
-        icon: <Icon.Circle size={12} />,
-        permissions: ["admin", "editor"],
-        navLink: "/app/subplan/addPlan",
-      },
+      // {
+      //   id: "addPlan",
+      //   title: "Add plan videos",
+      //   type: "item",
+      //   icon: <Icon.Circle size={12} />,
+      //   permissions: ["admin", "editor"],
+      //   navLink: "/app/subplan/addPlan",
+      // },
     ],
   },
   {

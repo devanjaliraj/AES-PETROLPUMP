@@ -68,6 +68,8 @@ const ReceiptForm = lazy(() =>
 
 /////////////////////////////// shiftmanagement -- start ///////////////////////////
 const AddRsp = lazy(() => import("./views/apps/shiftmanagement/rsp/AddRsp"));
+// const AddCashCollection = lazy(() => import("./views/apps/shiftmanagement/AddCashCollection"));
+
 const AddBm = lazy(() => import("./views/apps/shiftmanagement/rsp/AddBm"));
 const AddDsmClosing = lazy(() =>
   import("./views/apps/shiftmanagement/rsp/AddDsmCS")
@@ -261,6 +263,8 @@ const ListForFireEquipment = lazy(() =>
 
 // my component
 const subplanvideos = lazy(() => import("./views/apps/subplan/SubPlanVideos"));
+const editSubplanvideos = lazy(() => import("./views/apps/subplan/EditSubplanvideos"));
+
 const addPlan = lazy(() => import("./views/apps/subplan/AddPlan"));
 const dealerList = lazy(() => import("./views/apps/dealer/DealerList"));
 const editDealer = lazy(() => import("./views/apps/dealer/EditDealer"));
@@ -729,31 +733,19 @@ class AppRouter extends React.Component {
               path="/app/ro-configuration/basicDetails/:id"
               component={BasicDetails}
             />
-            {/* <AppRoute
-              exact={true}
-              path="/app/ro-configuration/roForm"
-              component={roForm}
-            /> */}
+          
             <AppRoute
               exact={true}
               path="/app/ro-configuration/otherEquipment/:id"
               component={otherEquipment}
             />
-            {/* <AppRoute
-              exact={true}
-              path="/app/ro-configuration/bankForTransaction"
-              component={bankForTransaction}
-            /> */}
+          
             <AppRoute
               exact={true}
               path="/app/ro-configuration/editBankForTransaction/:id"
               component={editBankForTransaction}
             />
-            {/* <AppRoute
-              exact={true}
-              path="/app/ro-configuration/viewBankForTransaction/:id"
-              component={viewBankForTransaction}
-            /> */}
+          
             <AppRoute
               exact={true}
               path="/app/ro-configuration/bankForTransactionList/:id"
@@ -1077,7 +1069,12 @@ class AppRouter extends React.Component {
             <AppRoute
               path="/app/shiftmanagement/rsp/addRsp"
               component={AddRsp}
+
             />
+            {/* <AppRoute
+              path="/app/shiftmanagement/AddCashCollection"
+              component={AddCashCollection}
+            /> */}
             <AppRoute path="/app/shiftmanagement/rsp/addBm" component={AddBm} />
             <AppRoute
               path="/app/shiftmanagement/rsp/addDsmClosing"
@@ -1383,7 +1380,6 @@ class AppRouter extends React.Component {
               path="/app/setting/tank/addTank"
               component={addTank}
             />
-            {/* <AppRoute exact={true} path="/app/setting/tank/tankList" component={tankList} /> */}
             <AppRoute
               exact={true}
               path="/app/setting/bay/bayList"
@@ -1423,6 +1419,11 @@ class AppRouter extends React.Component {
             />
             <AppRoute
               exact={true}
+              path="/app/subplan/editSubplanvideos/:id"
+              component={editSubplanvideos}
+            />
+            <AppRoute
+              exact={true}
               path="/app/subplan/addPlan"
               component={addPlan}
             />
@@ -1447,8 +1448,7 @@ class AppRouter extends React.Component {
               path="/todo"
               component={() => <Redirect to="/todo/all" />}
             />
-            {/* <AppRoute exact={true} path="/todo/:filter" component={todo} />
-          <AppRoute exact={true} path="/calendar" component={calendar} /> */}
+           
             <AppRoute exact={true} path="/ecommerce/shop" component={shop} />
             <AppRoute
               exact={true}

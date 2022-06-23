@@ -11,11 +11,12 @@ import {
 } from "reactstrap";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2, Edit } from "react-feather";
-import axios from "axios";
+import { ChevronDown, Edit } from "react-feather";
+import axiosConfig from "../../../axiosConfig";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 // import { history } from "../../../history";
+import { Route } from "react-router-dom";
 
 class SubPlanVideos extends React.Component {
   state = {
@@ -30,29 +31,7 @@ class SubPlanVideos extends React.Component {
       suppressMenu: true,
     },
     columnDefs: [
-      // {
-      //   headerName: "Sno",
-      //   field: "sno",
-      //   width: 175,
-      //   filter: true,
-      //   checkboxSelection: true,
-      //   headerCheckboxSelectionFilteredOnly: true,
-      //   headerCheckboxSelection: true,
-      // },
-      // {
-      //   headerName: "ID",
-      //   field: "_id",
-      //   filter: true,
-      //   width: 250,
-      //   pinned: window.innerWidth > 992 ? "left" : false,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         <span>{params.data._id}</span>
-      //       </div>
-      //     );
-      //   },
-      // },
+   
       {
         headerName: "Video Link",
         field: "video_link",
@@ -94,13 +73,21 @@ class SubPlanVideos extends React.Component {
                 color="green"
                 onClick={() => history.push("/#/app/staffManagement/staffForm")}
               /> */}
+               <Route
+                render={({ history }) => (
               <Edit
                 className="mr-50"
                 size="25px"
                 color="blue"
-                // onClick={() => history.push("/#/app/slider/editSlider/${params.data._id}")}
-              />
-              <Trash2
+                onClick={() =>
+                  history.push(
+                    
+                    `/app/subplan/editSubplanvideos/${params.data._id}`     )
+                  }
+                />
+              )}
+            />
+              {/* <Trash2
                 className="mr-50"
                 size="25px"
                 color="red"
@@ -109,7 +96,7 @@ class SubPlanVideos extends React.Component {
                   this.runthisfunction(params.data._id);
                   this.gridApi.updateRowData({ remove: selectedData });
                 }}
-              />
+              /> */}
             </div>
           );
         },
@@ -118,11 +105,19 @@ class SubPlanVideos extends React.Component {
   };
 
   async componentDidMount() {
-    await axios.get("http://3.108.185.7/nodejs/api/admin/allplan").then((response) => {
+    await axiosConfig.get("/admin/allplan").then((response) => {
       const rowData = response.data.data;
       console.log(rowData);
       this.setState({ rowData });
     });
+  }
+  async runthisfunction(id) {
+    console.log(id);
+    await axiosConfig
+      .get(`/admin/deleteplan/${id}`)
+      .then((response) => {
+        console.log(response);
+      });
   }
 
   onGridReady = (params) => {

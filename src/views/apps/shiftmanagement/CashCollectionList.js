@@ -14,6 +14,7 @@ import {
 // import axios from "axios";
 // import { Route } from "react-router-dom";
 import axiosConfig from "../../../axiosConfig";
+import { Route } from "react-router-dom";
 
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
@@ -213,7 +214,7 @@ class CashCollectionList extends React.Component {
   componentDidMount() {
     let { id } = this.props.match.params;
 
-    
+  
     axiosConfig.get(`/dealer/allcashcollectedApp/${id}`).then((response) => {
      
         let rowData = response.data.data;
@@ -264,6 +265,20 @@ class CashCollectionList extends React.Component {
               <h1 col-sm-6 className="float-left">
                 Cash Collection List
               </h1>
+            </Col>
+            <Col>
+              {/* <Route
+                render={({ history }) => (
+                  <Button
+                    className=" btn btn-danger float-right"
+                    onClick={() =>
+                      history.push("/app/shiftmanagement/AddCashCollection")
+                    }
+                  >
+                    Add Notification
+                  </Button>
+                )}
+              /> */}
             </Col>
           </Row>
 
