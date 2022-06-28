@@ -1,5 +1,7 @@
 import React from "react";
 import {
+  Col, 
+  Row,
   Card,
   CardBody,
   Input,
@@ -156,8 +158,15 @@ class AirGaugage1 extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs breadCrumbTitle="AirGaugage1" />
+        {/* <Breadcrumbs breadCrumbTitle="AirGaugage1" /> */}
         <Card className="overflow-hidden agGrid-card">
+        <Row className="m-2">
+              <Col>
+            <h1 col-sm-6 className="float-left">
+            Air Gaugage 1 List
+            </h1>
+          </Col>
+          </Row>
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">

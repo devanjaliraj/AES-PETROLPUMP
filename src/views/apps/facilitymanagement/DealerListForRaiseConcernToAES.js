@@ -1,5 +1,7 @@
 import React from "react";
 import {
+  Col, 
+  Row,
   Card,
   CardBody,
   Input,
@@ -15,7 +17,7 @@ import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Eye } from "react-feather";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+// import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 import { Route } from "react-router-dom";
 class DealerListForRaiseConcernToAES extends React.Component {
   state = {
@@ -33,7 +35,7 @@ class DealerListForRaiseConcernToAES extends React.Component {
       {
         headerName: "Dealer Name",
         field: "dealer_name",
-        width: 200,
+        width: 135,
         pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
@@ -46,7 +48,7 @@ class DealerListForRaiseConcernToAES extends React.Component {
       {
         headerName: "Mobile",
         field: "mobile",
-        width: 150,
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -58,7 +60,7 @@ class DealerListForRaiseConcernToAES extends React.Component {
       {
         headerName: "Email",
         field: "email",
-        width: 180,
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -70,7 +72,7 @@ class DealerListForRaiseConcernToAES extends React.Component {
       {
         headerName: "Master Oil Company",
         field: "master_oil_company.name",
-        width: 200,
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -82,7 +84,7 @@ class DealerListForRaiseConcernToAES extends React.Component {
       {
         headerName: "State",
         field: "state",
-        width: 150,
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -94,7 +96,7 @@ class DealerListForRaiseConcernToAES extends React.Component {
       {
         headerName: "District",
         field: "district",
-        width: 150,
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -185,8 +187,15 @@ class DealerListForRaiseConcernToAES extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs breadCrumbTitle="Dealer Details List " />
+        {/* <Breadcrumbs breadCrumbTitle="Dealer Details List " /> */}
         <Card className="overflow-hidden agGrid-card">
+        <Row className="m-2">
+              <Col>
+            <h1 col-sm-6 className="float-left">
+            Dealer List For Raise Concern To AES
+            </h1>
+          </Col>
+          </Row>
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">

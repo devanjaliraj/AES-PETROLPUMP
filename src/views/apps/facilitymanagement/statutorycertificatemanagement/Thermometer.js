@@ -1,5 +1,7 @@
 import React from "react";
 import {
+  Col,
+  Row,
   Card,
   CardBody,
   Input,
@@ -17,7 +19,7 @@ import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../../utility/context/Layout";
 import { ChevronDown, Trash2 } from "react-feather";
 import "../../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-import Breadcrumbs from "../../../../components/@vuexy/breadCrumbs/BreadCrumb";
+// import Breadcrumbs from "../../../../components/@vuexy/breadCrumbs/BreadCrumb";
 class Thermometer extends React.Component {
   state = {
     rowData: null,
@@ -175,8 +177,15 @@ class Thermometer extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs breadCrumbTitle="Thermometer" />
+        {/* <Breadcrumbs breadCrumbTitle="Thermometer" /> */}
         <Card className="overflow-hidden agGrid-card">
+        <Row className="m-2">
+            <Col>
+              <h1 col-sm-6 className="float-left">
+              Thermometer
+              </h1>
+            </Col>
+            </Row>
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">

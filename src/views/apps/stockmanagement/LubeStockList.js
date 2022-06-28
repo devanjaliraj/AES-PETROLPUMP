@@ -96,7 +96,7 @@ class LubeStockList extends React.Component {
         },
       },
       {
-        headerName: "Selling Price",
+        headerName: "Selling Price Maintained",
         field: "selling_price_maintained",
         filter: false,
         width: 100,

@@ -1,5 +1,7 @@
 import React from "react";
 import {
+  Row,
+  Col,
   Card,
   CardBody,
   Input,
@@ -15,7 +17,7 @@ import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Eye } from "react-feather";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+// import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 import { Route } from "react-router-dom";
 class DealerListForCreditCus extends React.Component {
   state = {
@@ -184,10 +186,16 @@ class DealerListForCreditCus extends React.Component {
   render() {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
-      <React.Fragment>
-        <Breadcrumbs breadCrumbTitle=" List of Dealers for Credit Customer " />
+       <React.Fragment>
+      {/* <Breadcrumbs breadCrumbTitle=" List of Dealers for Credit Customer " /> */}
         <Card className="overflow-hidden agGrid-card">
-       
+        <Row className="m-2">
+              <Col>
+            <h1 col-sm-6 className="float-left">
+            List of Dealers for Credit Customer
+            </h1>
+          </Col>
+          </Row>
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">

@@ -1,5 +1,7 @@
 import React from "react";
 import {
+  Col,
+  Row,
   Card,
   CardBody,
   Input,
@@ -14,7 +16,7 @@ import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
 import axiosConfig from "../../../axiosConfig";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+// import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 // import { history } from "../../../history";
 import { Route } from 'react-router-dom'
 
@@ -281,12 +283,20 @@ class OtherStaffList extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs
+        {/* <Breadcrumbs
           breadCrumbTitle="Other Staff List"
-          // breadCrumbParent="Forms & Tables"
-          // breadCrumbActive="Staff Management List"
-        />
+          breadCrumbParent="Forms & Tables"
+          breadCrumbActive="Staff Management List"
+        /> */}
         <Card className="overflow-hidden agGrid-card">
+        <Row className="m-2">
+              <Col>
+            <h1 col-sm-6 className="float-left">
+            Other Staff List
+            </h1>
+          </Col>
+          </Row>
+
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">

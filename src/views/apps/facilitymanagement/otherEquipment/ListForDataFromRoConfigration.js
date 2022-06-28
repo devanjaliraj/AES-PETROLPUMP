@@ -1,5 +1,7 @@
 import React from "react";
 import {
+  Col,
+  Row,
   Card,
   CardBody,
   Input,
@@ -17,7 +19,7 @@ import { Route } from "react-router-dom";
 
 import "../../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 
-import Breadcrumbs from "../../../../components/@vuexy/breadCrumbs/BreadCrumb";
+// import Breadcrumbs from "../../../../components/@vuexy/breadCrumbs/BreadCrumb";
 // import { history } from "../../../history";
 
 class ListForDataFromRoConfigration extends React.Component {
@@ -166,13 +168,20 @@ class ListForDataFromRoConfigration extends React.Component {
   render() {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
-      <React.Fragment>
-        <Breadcrumbs
-          breadCrumbTitle="Data From Ro Configation List"
-          // breadCrumbParent="Forms & Tables"
-          // breadCrumbActive="Shift Management"
-        />
+      // <React.Fragment>
+      //   <Breadcrumbs
+      //     breadCrumbTitle="Data From Ro Configation List"
+      //     // breadCrumbParent="Forms & Tables"
+      //     // breadCrumbActive="Shift Management"
+      //   />
         <Card className="overflow-hidden agGrid-card">
+        <Row className="m-2">
+                <Col>
+                  <h1 sm="6" className="float-left">
+                  Data From Ro-Configation List
+                  </h1>
+                </Col>
+                </Row>
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">
@@ -262,7 +271,7 @@ class ListForDataFromRoConfigration extends React.Component {
             )}
           </CardBody>
         </Card>
-      </React.Fragment>
+      // </React.Fragment>
     );
   }
 }

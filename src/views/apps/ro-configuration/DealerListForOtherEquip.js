@@ -16,7 +16,7 @@ import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Eye } from "react-feather";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+// import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 import { Route } from "react-router-dom";
 class DealerListForOtherEquip extends React.Component {
   state = {
@@ -34,7 +34,7 @@ class DealerListForOtherEquip extends React.Component {
       {
         headerName: "Dealer Name",
         field: "dealer_name",
-        width: 200,
+        width: 135,
         pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
@@ -47,7 +47,7 @@ class DealerListForOtherEquip extends React.Component {
       {
         headerName: "Mobile",
         field: "mobile",
-        width: 150,
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -59,7 +59,7 @@ class DealerListForOtherEquip extends React.Component {
       {
         headerName: "Email",
         field: "email",
-        width: 180,
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -71,7 +71,7 @@ class DealerListForOtherEquip extends React.Component {
       {
         headerName: "Master Oil Company",
         field: "master_oil_company.name",
-        width: 200,
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -83,7 +83,7 @@ class DealerListForOtherEquip extends React.Component {
       {
         headerName: "State",
         field: "state",
-        width: 150,
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -95,7 +95,7 @@ class DealerListForOtherEquip extends React.Component {
       {
         headerName: "District",
         field: "district",
-        width: 150,
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">

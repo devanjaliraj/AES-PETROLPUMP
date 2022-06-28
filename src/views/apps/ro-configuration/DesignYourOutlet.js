@@ -8,8 +8,8 @@ import {
   Label,
   Input,
   Button,
-  Breadcrumb,
-  BreadcrumbItem,
+  // Breadcrumb,
+  // BreadcrumbItem,
 } from "reactstrap";
 import axiosConfig from "../../../axiosConfig";
 // import { history } from "../../../history";
@@ -74,21 +74,7 @@ export default class DesignYourOutlet extends Component {
     // } = this.state
     return (
       <div>
-        <Row>
-          <Col sm="12">
-            <div>
-              <Breadcrumb listTag="div">
-                <BreadcrumbItem href="/analyticsDashboard" tag="a">
-                  Home
-                </BreadcrumbItem>
-                {/* <BreadcrumbItem href="/app/material/materialList" tag="a">
-                    Material List
-                    </BreadcrumbItem> */}
-                <BreadcrumbItem active>Edit Design Your Outlet</BreadcrumbItem>
-              </Breadcrumb>
-            </div>
-          </Col>
-        </Row>
+        
         <Card>
           <Row className="m-2">
             <Col>

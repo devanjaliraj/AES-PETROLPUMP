@@ -1,5 +1,7 @@
 import React from "react";
 import {
+  Col,
+  Row,
   Card,
   CardBody,
   Input,
@@ -12,7 +14,7 @@ import {
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2 } from "react-feather";
-import axios from "axios";
+import axiosConfig from "../../../axiosConfig";
 
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 
@@ -97,8 +99,8 @@ class RaiseConcernToAESList extends React.Component {
   componentDidMount() {
     let { id } = this.props.match.params;
 
-    axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/allraiseConcernApp/${id}`)
+    axiosConfig
+      .get(`/dealer/allraiseConcernApp/${id}`)
       .then((response) => {
         let rowData = response.data.data;
         JSON.stringify(rowData);
@@ -108,8 +110,8 @@ class RaiseConcernToAESList extends React.Component {
 
   async runthisfunction(id) {
     console.log(id);
-    await axios
-      .get(`http://3.108.185.7/nodejs/api/dealer/deleteraiseConcern/${id}`)
+    await axiosConfig
+      .get(`/dealer/deleteraiseConcern/${id}`)
       .then((response) => {
         console.log(response);
       });
@@ -143,6 +145,13 @@ class RaiseConcernToAESList extends React.Component {
     return (
       <React.Fragment>
         <Card className="overflow-hidden agGrid-card">
+        {/* <Row className="m-2">
+            <Col>
+              <h1 col-sm-6 className="float-left">
+              Raise Concern To AES List
+              </h1>
+            </Col>
+            </Row> */}
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">

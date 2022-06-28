@@ -170,7 +170,7 @@ export default class Manager extends Component {
           <Row className="m-1">
             <Col>
               <h1 col-sm-6 className="float-left">
-                Update Retail Selling Price
+                Update Manager
               </h1>
             </Col>
             <Col>

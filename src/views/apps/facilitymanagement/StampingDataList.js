@@ -1,5 +1,6 @@
 import React from "react";
-import {
+import {Col,
+  Row,
   Card,
   CardBody,
   Input,
@@ -17,7 +18,7 @@ import axiosConfig from "../../../axiosConfig";
 
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 
-import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+// import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 // import { history } from "../../../history";
 
 class StampingDataList extends React.Component {
@@ -184,15 +185,7 @@ class StampingDataList extends React.Component {
     ],
   };
   componentDidMount() {
-    // axiosConfig
-    //   .get("http://3.108.185.7/nodejs/api/dealer/alldealers")
-    //   .then((response) => {
-    //     console.log(response.data.data);
-    //     this.setState({ mfp: response.data.data });
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
+  
   
     let { id } = this.props.match.params;
     axiosConfig 
@@ -243,12 +236,19 @@ class StampingDataList extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs
+        {/* <Breadcrumbs
           breadCrumbTitle="Stamping Data List"
-          // breadCrumbParent="Forms & Tables"
-          // breadCrumbActive="Facility Management"
-        />
+           breadCrumbParent="Forms & Tables"
+           breadCrumbActive="Facility Management"
+        /> */}
         <Card className="overflow-hidden agGrid-card">
+        <Row className="m-2">
+            <Col>
+              <h1 col-sm-6 className="float-left">
+              Stamping Data List
+              </h1>
+            </Col>
+            </Row>
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">

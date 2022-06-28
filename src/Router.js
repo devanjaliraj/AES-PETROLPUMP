@@ -219,7 +219,7 @@ const PESOLicense = lazy(() =>
   import("./views/apps/facilitymanagement/statutorycertificatemanagement/PESOLicense")
 );
 const DealerListForThermometer = lazy(() =>
-  import("./views/apps/facilitymanagement/statutorycertificatemanagement/Thermometer")
+  import("./views/apps/facilitymanagement/statutorycertificatemanagement/DealerListForThermometer")
 );
 const Thermometer  = lazy(() =>
   import("./views/apps/facilitymanagement/statutorycertificatemanagement/Thermometer")
@@ -228,6 +228,8 @@ const Thermometer  = lazy(() =>
 const DealerListForStatutoryCertificateManagementList = lazy(() =>
 import("./views/apps/facilitymanagement/DealerListForStatutoryCertificateManagementList")
 );
+
+
 const MpdManagement = lazy(() =>
   import("./views/apps/facilitymanagement/MpdManagement")
 );const DealerListForMpdManagement = lazy(() =>
@@ -922,12 +924,12 @@ class AppRouter extends React.Component {
           
              <AppRoute
             exact={true}
-            path="/app/facilityManagement/statutoryCertificateManagement/dealerListForAirGaugage1/:id"
+            path="/app/facilityManagement/statutoryCertificateManagement/dealerListForAirGaugage1"
             component={DealerListForAirGaugage1}
           />
             <AppRoute
             exact={true}
-            path="/app/facilityManagement/statutoryCertificateManagement/AirGaugage1"
+            path="/app/facilityManagement/statutoryCertificateManagement/AirGaugage1/:id"
             component={AirGaugage1}
           />
              <AppRoute

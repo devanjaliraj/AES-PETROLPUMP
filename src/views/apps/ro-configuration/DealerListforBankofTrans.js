@@ -1,5 +1,7 @@
 import React from "react";
 import {
+  Col,
+  Row,
   Card,
   CardBody,
   Input,
@@ -15,7 +17,7 @@ import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Eye } from "react-feather";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+// import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 import { Route } from "react-router-dom";
 class DealerListforBankofTrans extends React.Component {
   state = {
@@ -103,23 +105,7 @@ class DealerListforBankofTrans extends React.Component {
           );
         },
       },
-      // {
-      //   headerName: "Status",
-      //   field: "userverified",
-      //   // filter: true,
-      //   width: 150,
-      //   cellRendererFramework: (params) => {
-      //     return params.value === "Active" ? (
-      //       <div className="badge badge-pill badge-success">
-      //         {params.data.userverified}
-      //       </div>
-      //     ) : params.value === "Inactive" ? (
-      //       <div className="badge badge-pill badge-warning">
-      //         {params.data.userverified}
-      //       </div>
-      //     ) : null;
-      //   },
-      // },
+
       {
         headerName: "Actions",
         field: "sortorder",
@@ -185,8 +171,15 @@ class DealerListforBankofTrans extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs breadCrumbTitle=" List of Dealers for Bank List " />
+        {/* <Breadcrumbs breadCrumbTitle=" List of Dealers for Bank List " /> */}
         <Card className="overflow-hidden agGrid-card">
+        <Row className="m-2">
+              <Col>
+            <h1 col-sm-6 className="float-left">
+            List of Dealers for Bank List
+            </h1>
+          </Col>
+          </Row>
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">

@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Row,
   Card,
   CardBody,
   Input,
@@ -9,15 +10,15 @@ import {
   DropdownMenu,
   DropdownItem,
   DropdownToggle,
-  CardTitle,
+  // CardTitle,
 } from "reactstrap";
 import axiosConfig from "../../../axiosConfig";
 // import { history } from "../../../history";
 import { AgGridReact } from "ag-grid-react";
 import { ContextLayout } from "../../../utility/context/Layout";
-import { ChevronDown, Trash2, Edit } from "react-feather";
+import { ChevronDown,  Edit } from "react-feather";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+// import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 import { Route } from "react-router-dom";
 
 class AllaboutUs extends React.Component {
@@ -150,13 +151,19 @@ class AllaboutUs extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-         <Breadcrumbs
+         {/* <Breadcrumbs
           breadCrumbTitle="AboutUs List"
           breadCrumbParent="Home"
           breadCrumbActive="AboutUs List"
-        />
+        /> */}
         <Card className="overflow-hidden agGrid-card">
-
+        <Row className="m-1">
+            <Col>
+              <h1 col-sm-6 className="float-left">
+              AboutUs List
+              </h1>
+            </Col>
+          </Row>
             <Col className="pt-4">
                 {/* <Route
                 render={({ history }) => (

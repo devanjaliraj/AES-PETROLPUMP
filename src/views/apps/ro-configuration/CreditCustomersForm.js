@@ -8,8 +8,8 @@ import {
   Label,
   Input,
   Button,
-  Breadcrumb,
-  BreadcrumbItem,
+  // Breadcrumb,
+  // BreadcrumbItem,
 } from "reactstrap";
 import axiosConfig from "../../../axiosConfig";
 // import { history } from "../../../history";
@@ -146,21 +146,21 @@ export default class CreditCustomersForm extends Component {
   render() {
     return (
       <div>
-        <Row>
+        {/* <Row>
           <Col sm="12">
             <div>
               <Breadcrumb listTag="div">
                 <BreadcrumbItem href="/" tag="a">
                   Home
-                </BreadcrumbItem>
+                </BreadcrumbItem> */}
                 {/* <BreadcrumbItem href="/app/material/materialList" tag="a">
                     Material List
                     </BreadcrumbItem> */}
-                <BreadcrumbItem active>Credit Customers</BreadcrumbItem>
+                {/* <BreadcrumbItem active>Credit Customers</BreadcrumbItem>
               </Breadcrumb>
             </div>
           </Col>
-        </Row>
+        </Row> */}
         <Card>
           <Row className="m-2">
             <Col>

@@ -7,8 +7,8 @@ import {
   Form,
   Input,
   Button,
-  Breadcrumb,
-  BreadcrumbItem,
+  // Breadcrumb,
+  // BreadcrumbItem,
 } from "reactstrap";
 import axiosConfig from "../../../axiosConfig";
 import { Route } from "react-router-dom";
@@ -93,7 +93,7 @@ export default class EditNozzleMap extends Component {
 
     return (
       <div>
-        <Row>
+        {/* <Row>
           <Col sm="12">
             <div>
               <Breadcrumb listTag="div">
@@ -110,7 +110,7 @@ export default class EditNozzleMap extends Component {
               </Breadcrumb>
             </div>
           </Col>
-        </Row>
+        </Row> */}
         <Card>
           <Row className="m-2">
             <Col>

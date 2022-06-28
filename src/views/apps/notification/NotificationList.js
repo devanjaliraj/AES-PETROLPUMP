@@ -17,7 +17,7 @@ import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
 import axiosConfig from "../../../axiosConfig";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+// import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 
 
 class NotificationList extends React.Component {
@@ -141,10 +141,10 @@ componentDidMount() {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs
+        {/* <Breadcrumbs
           breadCrumbTitle="Notification"
           breadCrumbParent="Forms & Tables"
-          breadCrumbActive="Notification List"/>
+          breadCrumbActive="Notification List"/> */}
         <Card className="overflow-hidden agGrid-card">
           <Row className="m-2">
             <Col>

@@ -33,7 +33,7 @@ class DealerListForOtherEquipment extends React.Component {
       {
         headerName: "Dealer Name",
         field: "dealer_name",
-        width: 200,
+        width: 135,
         pinned: window.innerWidth > 992 ? "left" : false,
         cellRendererFramework: (params) => {
           return (
@@ -46,7 +46,7 @@ class DealerListForOtherEquipment extends React.Component {
       {
         headerName: "Mobile",
         field: "mobile",
-        width: 150,
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -58,7 +58,7 @@ class DealerListForOtherEquipment extends React.Component {
       {
         headerName: "Email",
         field: "email",
-        width: 180,
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -70,7 +70,7 @@ class DealerListForOtherEquipment extends React.Component {
       {
         headerName: "Master Oil Company",
         field: "master_oil_company.name",
-        width: 200,
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -82,7 +82,7 @@ class DealerListForOtherEquipment extends React.Component {
       {
         headerName: "State",
         field: "state",
-        width: 150,
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">
@@ -94,7 +94,7 @@ class DealerListForOtherEquipment extends React.Component {
       {
         headerName: "District",
         field: "district",
-        width: 150,
+        width: 120,
         cellRendererFramework: (params) => {
           return (
             <div className="d-flex align-items-center cursor-pointer">

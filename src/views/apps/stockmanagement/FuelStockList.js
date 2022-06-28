@@ -1,5 +1,7 @@
 import React from "react";
 import {
+  Col,
+  Row,
   Card,
   CardBody,
   Input,
@@ -14,7 +16,7 @@ import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2 } from "react-feather";
 import axiosConfig from "../../../axiosConfig";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+// import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 // import { history } from "../../../history";
 
 class FuelStockList extends React.Component {
@@ -45,7 +47,7 @@ class FuelStockList extends React.Component {
       },
 
       {
-        headerName: "Grade",
+        headerName: "Tank",
         field: "tank.tank",
         filter: false,
         width: 100,
@@ -124,7 +126,7 @@ class FuelStockList extends React.Component {
         },
       },
       {
-        headerName: "total_expected_stock",
+        headerName: "Total Expected Stock",
         field: "total_expected_stock",
         filter: false,
         width: 100,
@@ -137,7 +139,7 @@ class FuelStockList extends React.Component {
         },
       },
       {
-        headerName: "actual_closing_stock",
+        headerName: "Actual Closing Stock",
         field: "actual_closing_stock",
         filter: false,
         width: 100,
@@ -150,7 +152,7 @@ class FuelStockList extends React.Component {
         },
       },
       {
-        headerName: "loss_gain",
+        headerName: "Loss Gain",
         field: "loss_gain",
         filter: false,
         width: 100,
@@ -162,58 +164,7 @@ class FuelStockList extends React.Component {
           );
         },
       },
-      {
-        headerName: "ms_closing",
-        field: "ms_closing",
-        filter: false,
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.ms_closing}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "hsd_closing",
-        field: "hsd_closing",
-        filter: false,
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.hsd_closing}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "msactual_closing",
-        field: "msactual_closing",
-        filter: false,
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.msactual_closing}</span>
-            </div>
-          );
-        },
-      },
-      {
-        headerName: "hsdactual_closing",
-        field: "hsdactual_closing",
-        filter: false,
-        width: 100,
-        cellRendererFramework: (params) => {
-          return (
-            <div className="d-flex align-items-center cursor-pointer">
-              <span>{params.data.hsdactual_closing}</span>
-            </div>
-          );
-        },
-      },
+     
       {
         headerName: "Actions",
         field: "sortorder",
@@ -295,12 +246,16 @@ class FuelStockList extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs
-          breadCrumbTitle="Fuel Stock List"
-          // breadCrumbParent="Forms & Tables"
-          // breadCrumbActive="Stock Management"
-        />
+     
         <Card className="overflow-hidden agGrid-card">
+        <Row className="m-2">
+            <Col>
+              <h1 col-sm-6 className="float-left">
+              Fuel Stock List
+              </h1>
+            </Col>
+            
+            </Row>
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">

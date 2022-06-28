@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Row,Col,
   Card,
   CardBody,
   Input,
@@ -16,7 +17,7 @@ import axios from "axios";
 
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
 
-import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+// import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 // import { history } from "../../../history";
 import { Route } from 'react-router-dom'
 
@@ -42,12 +43,7 @@ class FacilityManagement extends React.Component {
         headerCheckboxSelectionFilteredOnly: false,
         headerCheckboxSelection: false,
       },
-      // {
-      //   headerName: "Last Name",
-      //   field: "lastname",
-      //   filter: false,
-      //   width: 175,
-      // },
+     
       {
         headerName: "Email",
         field: "email",
@@ -173,12 +169,19 @@ class FacilityManagement extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs
+        {/* <Breadcrumbs
           breadCrumbTitle="Facility Management"
-          // breadCrumbParent="Forms & Tables"
-          // breadCrumbActive="Facility Management"
-        />
+          breadCrumbParent="Forms & Tables"
+          breadCrumbActive="Facility Management"
+        /> */}
         <Card className="overflow-hidden agGrid-card">
+        <Row className="m-2">
+            <Col>
+              <h1 col-sm-6 className="float-left">
+              Facility Management
+              </h1>
+            </Col>
+            </Row>
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">

@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import {
   Card,
   CardHeader,
-  CardTitle,
+  // CardTitle,
   CardBody,
   Row,
   Col,
   Form,
   Label,
   Input,
-  Breadcrumb,
-  BreadcrumbItem,
+  // Breadcrumb,
+  // BreadcrumbItem,
   Button,
 } from "reactstrap";
 import axiosConfig from "../../../axiosConfig";
@@ -164,7 +164,7 @@ export default class OtherStaff extends Component {
   render() {
     return (
       <div>
-        <Row>
+        {/* <Row>
           <Col sm="12">
             <div>
               <Breadcrumb listTag="div">
@@ -176,10 +176,18 @@ export default class OtherStaff extends Component {
               </Breadcrumb>
             </div>
           </Col>
-        </Row>
+        </Row> */}
         <Card>
+        <Row className="m-2">
+              <Col>
+            <h1 col-sm-6 className="float-left">
+            Update Other Staff
+            </h1>
+          </Col>
+          </Row>
+
           <CardHeader>
-            <CardTitle>Add Other Staff</CardTitle>
+            {/* <CardTitle>Update Other Staff</CardTitle> */}
           </CardHeader>
           <CardBody>
             <Form className="m-1" onSubmit={this.submitHandler}>

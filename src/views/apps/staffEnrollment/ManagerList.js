@@ -1,5 +1,7 @@
 import React from "react";
 import {
+  Col,
+  Row,
   Card,
   CardBody,
   Input,
@@ -14,7 +16,7 @@ import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown, Trash2, Edit } from "react-feather";
 import axiosConfig from "../../../axiosConfig";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
-import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+// import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
 import { Route } from "react-router-dom";
 
 class ManagerList extends React.Component {
@@ -175,129 +177,7 @@ class ManagerList extends React.Component {
           );
         },
       },
-      // {
-      //   headerName: "Shift Managment",
-      //   field: "shiftManagment",
-      //   filter: true,
-      //   width: 150,
-      //   cellRendererFramework: (params) => {
-      //     return params.value === "true" ? (
-      //       <div className="badge badge-pill badge-success">
-      //         {params.data.shiftManagment}
-      //       </div>
-      //     ) : params.value === "false" ? (
-      //       <div className="badge badge-pill badge-warning">
-      //         {params.data.shiftManagment}
-      //       </div>
-      //     ) : null;
-      //   },
-      // },
-      // {
-      //   headerName: "Status",
-      //   field: "shiftManagment",
-      //   filter: true,
-      //   width: 150,
-      //   cellRendererFramework: (params) => {
-      //     return params.value === "Pending" ? (
-      //       <div className="badge badge-pill badge-warning ml-2">
-      //         {params.data.shiftManagment}
-      //       </div>
-      //     ) : params.value === "Confirm" ? (
-      //       <div className="badge badge-pill badge-success ml-2">
-      //         {params.data.shiftManagment}
-      //       </div>
-      //     ) : null;
-      //   },
-      // },
-      // // {
-      // //   headerName: "Shift Managment",
-      // //   field: "shiftManagment",
-      // //   filter: true,
-      // //   width: 150,
-      // //   cellRendererFramework: (params) => {
-      // //     return (
-      // //       <div className="d-flex align-items-center cursor-pointer">
-      // //         <span>{params.data.shiftManagment}</span>
-      // //       </div>
-      // //     );
-      // //   },
-      // // },
-
-      // // {
-      // //   headerName: "Shift Managment",
-      // //   field: "shiftManagment",
-      // //   filter: true,
-      // //   editable: false,
-      // //   width: 120,
-      // //   cellRenderer: (params) => {
-      // //     return `<input type='checkbox' ${
-      // //       params.data.shiftManagment ? "checked" : ""
-      // //     } />`;
-      // //   },
-      // // },
-      // {
-      //   headerName: "Stock Managment",
-      //   field: "stockManagment",
-      //   width: 150,
-      //   cellRendererFramework: (params) => {
-      //     return (
-      //       <div className="d-flex align-items-center cursor-pointer">
-      //         <span>{params.data.stockManagment}</span>
-      //       </div>
-      //     );
-      //   },
-      // },
-      // // {
-      // //   headerName: "Stock Managment",
-      // //   field: "stockManagment",
-      // //   filter: true,
-      // //   editable: false,
-      // //   width: 120,
-      // //   cellRenderer: (params) => {
-      // //     return `<input type='checkbox' ${
-      // //       params.data.stockManagment ? "checked" : ""
-      // //     } />`;
-      // //   },
-      // // },
-
-      // {
-      //   headerName: "Cash Managment",
-      //   field: "cashManagment",
-      //   filter: true,
-      //   editable: false,
-      //   width: 120,
-      //   cellRenderer: (params) => {
-      //     return `<input type='checkbox' ${
-      //       params.data.cashManagment ? "checked" : ""
-      //     } />`;
-      //   },
-      // },
- 
-      // {
-      //   headerName: "Facility Managment",
-      //   field: "facilityManagment",
-      //   filter: true,
-      //   editable: false,
-      //   width: 120,
-      //   cellRenderer: (params) => {
-      //     return `<input type='checkbox' ${
-      //       params.data.facilityManagment ? "checked" : ""
-      //     } />`;
-      //   },
-      // },
-      // {
-      //   headerName: "Ro-Configuration",
-      //   field: "roconfiguration",
-      //   filter: true,
-      //   editable: false,
-      //   width: 120,
-      //   cellRenderer: (params) => {
-      //     return `<input type='checkbox' ${
-      //       params.data.roconfiguration ? "checked" : ""
-      //     } />`;
-      //   },
-      // },
-   
+     
       
       {
         headerName: "Status",
@@ -398,12 +278,20 @@ class ManagerList extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-        <Breadcrumbs
+        {/* <Breadcrumbs
           breadCrumbTitle="Management List"
-          // breadCrumbParent="Forms & Tables"
-          // breadCrumbActive="Staff Management List"
-        />
+          breadCrumbParent="Forms & Tables"
+          breadCrumbActive="Staff Management List"
+        /> */}
         <Card className="overflow-hidden agGrid-card">
+        <Row className="m-2">
+              <Col>
+            <h1 col-sm-6 className="float-left">
+            Management List
+            </h1>
+          </Col>
+          </Row>
+
           <CardBody className="py-0">
             {this.state.rowData === null ? null : (
               <div className="ag-theme-material w-100 my-2 ag-grid-table">

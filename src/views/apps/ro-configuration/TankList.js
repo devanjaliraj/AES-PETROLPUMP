@@ -1,5 +1,7 @@
 import React from "react";
 import {
+  Row,
+  Col,
   Card,
   CardBody,
   Input,
@@ -15,8 +17,8 @@ import { ContextLayout } from "../../../utility/context/Layout";
 import { ChevronDown } from "react-feather";
 import axiosConfig from "../../../axiosConfig";
 import "../../../assets/scss/plugins/tables/_agGridStyleOverride.scss";
- import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
-import { Trash2, Edit, Eye } from "react-feather";
+//  import Breadcrumbs from "../../../components/@vuexy/breadCrumbs/BreadCrumb";
+import { Trash2, Edit } from "react-feather";
 // import { history } from "../../../history";
 import { Route } from "react-router-dom";
 class TankList extends React.Component {
@@ -147,13 +149,20 @@ class TankList extends React.Component {
     const { rowData, columnDefs, defaultColDef } = this.state;
     return (
       <React.Fragment>
-          <Breadcrumbs
+          {/* <Breadcrumbs
           breadCrumbTitle="Tank List"
           // breadCrumbParent="Forms & Tables"
           // breadCrumbActive="Stock Management"
-        />
+        /> */}
         <div>
           <Card className="overflow-hidden agGrid-card">
+          <Row className="m-1">
+            <Col>
+              <h1 col-sm-6 className="float-left">
+                Tank List
+              </h1>
+            </Col>
+          </Row>
             <CardBody className="py-0">
               {this.state.rowData === null ? null : (
                 <div className="ag-theme-material w-100 my-2 ag-grid-table">

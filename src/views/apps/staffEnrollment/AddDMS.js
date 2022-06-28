@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import {
   Card,
-  CardHeader,
-  CardTitle,
+  // CardHeader,
+  // CardTitle,
   CardBody,
   Row,
   Col,
@@ -17,11 +17,7 @@ export default class AddDSM extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // shiftManagment : false,
-      // stockManagment : false,
-      // cashManagment : false,
-      // facilityManagment : false,
-      // roconfiguration : false,
+   
       shiftManagment:"",
        stockManagment:"",
        cashManagment:"",
@@ -42,7 +38,6 @@ export default class AddDSM extends Component {
       salary_decieded: "",
       status: "",
       selectedFile: null,
-      // selectedName: "",
     };
   }
 //Image Submit Handler
@@ -163,9 +158,13 @@ export default class AddDSM extends Component {
     return (
       <div>
         <Card>
-          <CardHeader>
-            <CardTitle className="text-center">Update DSM </CardTitle>
-          </CardHeader>
+        <Row className="m-2">
+              <Col>
+            <h1 col-sm-6 className="float-left">
+          Update DSM
+            </h1>
+          </Col>
+          </Row>
           <CardBody>
             <Form className="m-1" onSubmit={this.submitHandler}>
               <Row>
@@ -191,23 +190,10 @@ export default class AddDSM extends Component {
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-                {/* <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>Photograph Url</Label>
-                  <Input
-                    type="url"
-                    name="photograh"
-                    value={this.state.photograh}
-                    onChange={this.onChangeHandler}
-                  />
-                </Col> */}
+              
 
                 <Col lg="6" md="0" sm="6">
-                  {/* <Label>Photograph</Label> */}
-                  {/* <img
-                    src={this.state.photograh}
-                    name="photograh"
-                    className="w-25 ml-5 h-50"
-                  /> */}
+                
                       <a
                       href={this.state.photograh}
                       download
@@ -241,22 +227,9 @@ export default class AddDSM extends Component {
                     onChange={this.changeHandler}
                   ></Input>
                 </Col>
-                {/* <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>Adhar Url</Label>
-                  <Input
-                    type="url"
-                    name="adharimg"
-                    value={this.state.adharimg}
-                    onChange={this.onChangeHandler}
-                  />
-                </Col> */}
+            
                 <Col lg="6" md="0" sm="6">
-                  {/* <Label>Adhar Image</Label> */}
-                  {/* <img
-                    src={this.state.adharimg}
-                    name="adharimg"
-                    className="w-25 ml-5 h-50"
-                  /> */}
+               
                            <a
                       href={this.state.adharimg}
                       download 
@@ -280,12 +253,7 @@ export default class AddDSM extends Component {
                 </Col>
 
                 <Col lg="6" md="0" sm="6" className="mb-2">
-                  {/* <Label>Pan Image</Label> */}
-                  {/* <img
-                    src={this.state.panImg}
-                    name="panImg"
-                    className="w-25 ml-5 h-50"
-                  /> */}
+                
                              <a
                       href={this.state.panImg}
                       download
@@ -297,15 +265,7 @@ export default class AddDSM extends Component {
                       download Pan Image
                 </a>
                 </Col>
-                {/* <Col lg="6" md="6" sm="6" className="mb-2">
-                  <Label>Pan Url</Label>
-                  <Input
-                    type="url"
-                    value={this.state.panImg}
-                    onChange={this.onChangeHandler}
-                    name="panImg"
-                  />
-                </Col> */}
+             
                 <Col lg="6" md="6" sm="6" className="mb-2">
                   <Label>Joining Date</Label>
                   <Input
